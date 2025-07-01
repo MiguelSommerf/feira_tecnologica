@@ -56,12 +56,12 @@ session_start();
 
           <?php endif ?>
 
-          <a href="" class="btn-2 btn">
+          <a href="tela_ods.php" class="btn-2 btn">
             <p>ODS</p>
             <div class="dots-2">&gt;</div>
           </a>
 
-          <a href="" class="btn-2 btn">
+          <a href="tela_creditos" class="btn-2 btn">
             <p>Créditos</p>
             <div class="dots-2">&gt;</div>
           </a>
