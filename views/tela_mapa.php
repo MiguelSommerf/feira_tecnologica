@@ -48,6 +48,7 @@
                         <a href="#">Cursos</a>
                         <a href="#">Sobre a Etec</a>
                         <a href="#">Configurações</a>
+                        <a href="" class="deslogar" id="deslogar" name="deslogar">Sair da Conta</a>
                     </div>
                 </nav>
         HTML;

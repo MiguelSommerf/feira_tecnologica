@@ -35,6 +35,7 @@ require_once '../back/connect.php';
     <a href="tela_cursos.php">Cursos</a>
     <a href="tela_sobreEtec.php">Sobre a Etec</a>
     <a href="tela_configuracoes.php">Configurações</a>
+    <a href="" class="deslogar" id="deslogar" name="deslogar">Sair da Conta</a>
   </div>
 
   <div id="conteudo" style="text-align: center;"></div>
