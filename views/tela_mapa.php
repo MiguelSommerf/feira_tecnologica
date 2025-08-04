@@ -106,7 +106,6 @@
         $result = $stmt->get_result();
 
         echo "<div class='BTNLocais'>";
-        echo "<a href='../index.php' class='btn btn-sm btn-outline-dark mb-3'><h5>&larr; Voltar</h5></a>";
         echo "<h1>Salas do Bloco $bloco</h1>";
         while ($row = $result->fetch_assoc()) {
             $salaNome = htmlspecialchars($row['sala']);
@@ -134,7 +133,6 @@
 
         $grupos = ceil($total / 8);
         echo "<div class='BTNLocais'>";
-        echo "<a href='?bloco=$bloco' class='btn btn-sm btn-outline-dark mb-3'><h5>&larr; Voltar para salas</h5></a>";
         echo "<h1>Projetos na Quadra</h1>";
         for ($i = 1; $i <= $grupos; $i++) {
                 $inicio = (($i - 1) * 8) + 1;
@@ -165,7 +163,6 @@
             echo "<div>Nenhum projeto encontrado para essa sala.</div>";
         } else {
             echo "<div class='BTNLocais'>";
-            echo "<a href='?bloco=$bloco' class='btn btn-sm btn-outline-dark mb-3'><h5>&larr; Voltar para salas</h5></a>";
             echo "<h1>Projetos da Sala $sala (Bloco $bloco)</h1>";
             while ($row = $result->fetch_assoc()) {
                 echo "<div class='BTNLocais div-project'>
