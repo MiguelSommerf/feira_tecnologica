@@ -9,29 +9,54 @@ if (session_status() === PHP_SESSION_NONE) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Verificação de dois fatores</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Karantina:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/2step.css">
 </head>
-<body>
-    <?php if (isset($_SESSION['redefine'])): ?>
-        <form action="../back/redefinir.php" method="post">
-            <h3>Digite a sua nova senha</h3>
-            <label>Senha</label>
-            <input type="text" name="novaSenha" required minlength="8">
-            <button type="submit">Enviar</button>
-        </form>
-    <?php elseif (!isset($_SESSION['email'])): ?>
-        <form action="../back/verificacao_dois_fatores.php" method="post">
-            <h3>Digite o seu endereço de e-mail</h3>
-            <label>E-mail</label>
-            <input type="text" name="email" required>
-            <button type="submit">Enviar</button>
-        </form>
-    <?php else: ?>
-        <form action="../back/verificacao_dois_fatores.php" method="post">
-            <h3>Digite o código que foi enviado no seu E-mail</h3>
-            <label>Código</label>
-            <input type="text" name="codigo" minlength="6" maxlength="6" required>
-            <button type="submit">Enviar</button>
-        </form>
-    <?php endif; ?>
+<body class="TelaInicio">
+<header>
+      <div id="mobile-menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+      <div class="logo-container">
+        <img src="../assets/img/etecmcm.png" alt="Logo MCM"/>
+      </div>
+      <div class="ORGInfoHeader">
+        <h1>Inicio</h1>
+      </div>
+    </header>
+    <main>
+        <?php if (isset($_SESSION['redefine'])): ?>
+            <form action="../back/redefinir.php" method="post">
+                <h3>Digite a sua nova senha</h3>
+                <div>
+                    <label>Senha</label>
+                    <input type="text" name="novaSenha" required minlength="8">
+                </div>
+                <button type="submit">Enviar</button>
+            </form>
+        <?php elseif (!isset($_SESSION['email'])): ?>
+            <form action="../back/verificacao_dois_fatores.php" method="post">
+                <h3>Digite o seu endereço de e-mail</h3>
+                <div>
+                    <label>E-mail</label>
+                    <input type="text" name="email" required>
+                </div>
+                <button type="submit">Enviar</button>
+            </form>
+        <?php else: ?>
+            <form action="../back/verificacao_dois_fatores.php" method="post">
+                <h3>Digite o código que foi enviado no seu E-mail</h3>
+                <div>
+                    <label>Código</label>
+                    <input type="text" name="codigo" minlength="6" maxlength="6" required>
+                </div>
+                <button type="submit">Enviar</button>
+            </form>
+        <?php endif; ?>
+    </main>
 </body>
 </html>
