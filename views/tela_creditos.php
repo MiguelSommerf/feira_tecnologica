@@ -48,7 +48,7 @@ if (session_status() === PHP_SESSION_NONE) {
                         ["Matheus Pereira", "../assets/img/Back/Matheus.jpeg", "Programador - Back", null, "https://github.com/MatheusSontos"],
                         ["Miguel Sommerfeld", "../assets/img/Back/Miguel Sommerfeld.jpeg", "Team leader - Back", "https://www.linkedin.com/in/miguel-sommerfeld-06491b340/", "https://github.com/MiguelSommerf"],
                         ["Miguel Teodoro", "../assets/img/Back/Miguel Teodoro_.jpg", "Programador - Back", null, "https://github.com/Miguelteodorodesouza"],
-                        ["Sabrina Bela", "../assets/img/Back/Sabrina Nicole.jpeg    ", "Programadora - Back", null, "https://github.com/sabrinabela1"],
+                        ["Sabrina Bela", "../assets/img/Back/Sabrina Nicole.jpeg    ", "Programadora - Back", "https://www.linkedin.com/in/sabrina-nicole-bela-4157b1289?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", "https://github.com/sabrinabela1"],
                         ["Stephany dos Santos", "../assets/img/Back/Stephany Santos.jpeg", "Programadora - Back", null, "https://github.com/stephanydossantos16"],
                         ["Thomas Coradi", "../assets/img/Back/Thomas.jpeg", "Programador - Back", null, "https://github.com/thomcoradi"]
                     ];
@@ -79,8 +79,8 @@ if (session_status() === PHP_SESSION_NONE) {
                         ["Guilherme Benatte", "../assets/img/Banco de dados/Guilherme Benatte.jpeg", "Team leader - Banco de Dados", "", "https://github.com/guibenatte"],
                         ["Katharina Iaussoghi", "../assets/img/Banco de dados/Katharina.jpeg", "Administradora - Banco de Dados", "", "https://github.com/Katharinasilveira"],
                         ["Mariana Campello", "../assets/img/Banco de dados/Mariana.jpeg", "Administradora - Banco de Dados", "https://www.linkedin.com/in/mariana-cunha-campello-b865b5363/", "https://github.com/marianacampelo"],
-                        ["Nicole Pereira", "../assets/img/Perfil.jpeg", "Administradora - Banco de Dados", "", "https://github.com/Nicolepereiragregorutti"],
-                        ["Rafaela Mayumi", "../assets/img/Banco de dados/Rafaela.jpeg", "Team leader - Banco de Dados", "", "https://github.com/RafaelaMayumiFukuda"]
+                        
+                        ["Rafaela Mayumi", "../assets/img/Banco de dados/Rafaela.jpeg", "Team leader - Banco de Dados", "https://www.linkedin.com/in/rafaela-mayumi-3b4587286?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", "https://github.com/RafaelaMayumiFukuda"]
                     ];
 
                     foreach ($dadosBanco as $pessoa) {
@@ -112,7 +112,7 @@ if (session_status() === PHP_SESSION_NONE) {
                         ["João Xavier", "../assets/img/Front/João.jpeg", "Programador - Front", "https://www.linkedin.com/in/jo%C3%A3o-vitor-xavier-de-carvalho-469147183/?trk=opento_nprofile_details", "https://github.com/joaovitorxc"],
                         ["Kevin Rafael", "../assets/img/Front/Kevin.jpeg", "Programador - Front", null, "https://github.com/Kevin2007x"],
                         ["Lívia Amaral", "../assets/img/Front/Livia.jpeg", "Team leader - Front", "https://www.linkedin.com/in/l%C3%ADvia-amaral-sales-antonio-675219326/", "https://github.com/Liviaamaralsales"],
-                        ["Olavo Alves", "../assets/img/Front/Olavo.jpeg", "Programador - Front", null, "https://github.com/Olavoschiavi"],
+                        ["Olavo Alves", "../assets/img/Front/Olavo.jpeg", "Programador - Front", "https://www.linkedin.com/in/olavo-alves-schiavi-338488353?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app","https://github.com/Olavoschiavi"],
                         ["Sabrina Vitória", "../assets/img/Front/Sabrina Vitoria.jpeg", "Programadora - Front", null, "https://github.com/Sabrinavmoura"],
                         ["Stefanny Sayuri", "../assets/img/Front/Stefanie Sayuri.jpeg", "Programadora - Front", null, "https://github.com/StefannySayuri"],
                         ["Welington Fernando", "../assets/img/Front/Wellington.jpeg", "Programador - Front", null, "https://github.com/Welingtonf"]
@@ -141,7 +141,8 @@ if (session_status() === PHP_SESSION_NONE) {
                         ["Giovana Pracanico", "../assets/img/Gestão/Giovana.jpeg", "Gestora", null, "https://github.com/projgipracanico"],
                         ["Heitor Albuquerque", "../assets/img/Gestão/Heitor.jpeg", "Gestor", null, "https://github.com/projheitorfreitas"],
                         ["Joshua Rodrigues", "../assets/img/Gestão/Joshua.jpeg", "Gestor", null, "https://github.com/JoshRodriguescae"],
-                        ["Luara Gouveia", "../assets/img/Gestão/Luara.jpeg", "Gestora", null, "https://github.com/luarag45"]
+                        ["Luara Gouveia", "../assets/img/Gestão/Luara.jpeg", "Gestora", null, "https://github.com/luarag45"],
+                        ["Nicole Pereira", "../assets/img/Gestão/Nicole.jpeg", "Administradora - Banco de Dados", "", "https://github.com/Nicolepereiragregorutti"]
                     ];
                     foreach ($dadosGestao as $pessoa) {
                         echo "<div class='cartao'>";
