@@ -41,15 +41,15 @@ if (session_status() === PHP_SESSION_NONE) {
         <div class="card-curso-content">
             <div class="card-curso-list">
                 <p>Curso de Administração</p>
-                <a href="">Ver mais</a>
+                <a href="https://etecmcm.cps.sp.gov.br/etim-administracao/">Ver mais</a>
             </div>
             <div class="card-curso-list">
                 <p>Curso de Recursos Humanos</p>
-                <a href="">Ver mais</a>
+                <a href="https://etecmcm.cps.sp.gov.br/mtec-recursos-humanos/">Ver mais</a>
             </div>
             <div class="card-curso-list">
                 <p>Curso de Informática Para Internet</p>
-                <a href="">Ver mais</a>
+                <a href="https://etecmcm.cps.sp.gov.br/informatica-para-internet/">Ver mais</a>
             </div>
         </div>
     </div>
@@ -64,7 +64,7 @@ if (session_status() === PHP_SESSION_NONE) {
             </div>
             <div class="card-curso-list">
                 <p>Curso de Informática Para Internet</p>
-                <a href="">Ver mais</a>
+                <a href="https://etecmcm.cps.sp.gov.br/informatica-para-internet/">Ver mais</a>
             </div>
         </div>
     </div>
@@ -75,19 +75,19 @@ if (session_status() === PHP_SESSION_NONE) {
         <div class="card-curso-content">
             <div class="card-curso-list">
                 <p>Curso de Química</p>
-                <a href="">Ver mais</a>
+                <a href="https://etecmcm.cps.sp.gov.br/quimica-noite/">Ver mais</a>
             </div>
             <div class="card-curso-list">
-                <p>Curso de Contabilidade</p>
-                <a href="">Ver mais</a>
+                <p>Curso de Recursos Humanos</p>
+                <a href="https://etecmcm.cps.sp.gov.br/recursos-humanos-noite-2/">Ver mais</a>
             </div>
             <div class="card-curso-list">
                 <p>Curso de Losgística</p>
-                <a href="">Ver mais</a>
+                <a href="https://etecmcm.cps.sp.gov.br/logistica-noite/">Ver mais</a>
             </div>
             <div class="card-curso-list">
                 <p>Curso de Administração</p>
-                <a href="">Ver mais</a>
+                <a href="https://etecmcm.cps.sp.gov.br/administracao-noite/">Ver mais</a>
             </div>
         </div>
     </div>
