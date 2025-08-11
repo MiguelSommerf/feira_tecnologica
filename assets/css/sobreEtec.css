@@ -1,89 +1,267 @@
-<?php
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
+:root {
+  /* INÍCIO ROOT TITULO */
+  --FONTTitulo: Grenze;
+  --FONTPadrao: Roboto;
+  --FONTTituloSIZE: 20px;
+  --FONTBTNSMenu: Roboto;
+  --COLORBTNSMenu: black;
+  --BACKGROUNDCOLORBTNSMenu: rgba(255, 255, 255, 0.5);
+  /* FIM ROOT TITULO */
+
+  /* INÍCIO ROOT BUTTON NEON */
+    --glow-color: rgb(255, 255, 255);
+    --glow-spread-color: rgb(255, 255, 255);
+    --enhanced-glow-color: rgb(255, 255, 255);
+    --btn-color: rgb(0, 0, 0);
+  /* FIM ROOT BUTTON NEON */
 }
-?>
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sobre Etec</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Karantina:wght@300;400;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="sobreEtec.css" />
-  </head>
-  <body class="telaSobreEtec">
-    <header>
-      <div class="menu-toggle" id="mobile-menu">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-      </div>
-      <div class="logo-container">
-        <img src="img/etecmcm.png" alt="Logo MCM" />
-      </div>
-      <div class="ORGInfoHeader">
-        <h1>ETEC MCM</h1>
-      </div>
-      <button class="btn-voltar" onclick="history.back()">Voltar</button>
-    </header>
 
-    <main class="main-sobreEtec">
-      <div class="sobreEtec">
+* {
+  padding: 0;
+  margin: 0;
+}
 
-        <p>A Etec de Ribeirão Pires teve sua história iniciada em 2005, com apoio do então prefeito Clóvis Volpi e do Centro Paula Souza, dentro de um projeto do Governo do Estado para expandir o ensino técnico em São Paulo. No começo, a escola funcionava como uma extensão da Etec de Santo André, com dois cursos: Química e Turismo. As aulas começaram em 2006, em um prédio no Jardim Alvorada que foi reformado especialmente para receber os alunos.</p> 
-        <br>
-        <p>Ainda em 2006, a escola foi oficialmente criada por um decreto do governador Geraldo Alckmin e passou a ter autonomia. A professora Maria Cristina Medeiros assumiu a direção e teve papel fundamental na organização da escola, reunindo professores, criando laboratórios e planejando novos cursos para atender melhor os jovens da cidade.</p>
+/* HEADER BASE */
+header {
+  padding: 5px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-          <img src="img/etec-frente.jpeg" alt="imagem etec mcm">
+h1 {
+  font-family: var(--FONTTitulo);
+  font-size: var(--FONTTituloSIZE);
+}
+/*  ==========================================================
+                          FIM ROOT 
+  ==========================================================*/
 
-        <p>A partir de 2007, a Etec começou a crescer. Foram implantados cursos como Administração, Web Design, Contabilidade, Eventos, Logística e Informática. Novas turmas foram abertas e a equipe também aumentou. A escola participou de programas estaduais de qualificação profissional e manteve uma forte parceria com a Prefeitura de Ribeirão Pires, inclusive envolvendo os alunos em eventos culturais e turísticos da cidade.</p>
-        <br>        
-        <p>Entre 2011 e 2014, foi realizada uma grande obra de ampliação. O projeto arquitetônico, feito e doado pela própria diretora, Maria Cristina Medeiros (que também era arquiteta), resultou na construção de dois blocos com novas salas de aula e laboratórios. Essa reforma melhorou muito a estrutura da escola, permitindo o crescimento da oferta de cursos e vagas.</p>
-        <br>        
-        <p>A partir de 2012, a escola passou a oferecer cursos que unem o Ensino Médio com o Técnico, em período integral, como os de Informática para Internet e Administração. Isso deu aos alunos a oportunidade de sair da escola já com uma formação profissional completa.</p>
-        <br>       
-        <p>Em 2015, infelizmente, a professora Maria Cristina faleceu, após um longo afastamento por problemas de saúde. Em reconhecimento ao seu trabalho e dedicação, a escola passou a se chamar oficialmente Escola Técnica Estadual Professora Maria Cristina Medeiros, por meio de um decreto estadual. A mudança foi um pedido da comunidade escolar como forma de homenageá-la.</p>
-        <br>
-        <p>Hoje, a Etec é um importante centro de educação em Ribeirão Pires, oferecendo ensino gratuito e de qualidade, preparando jovens e adultos para o mercado de trabalho e para o futuro.</p>
-      </div>
-    </main>
+/*  ==========================================================
+                     INÍCIO CSS NAV BAR
+  ==========================================================*/
+  .menu-toggle {
+    display: flex;
+    flex-direction: column;
+    width: 30px;
+    padding: 10px;
+    cursor: pointer;
+    transition: transform 0.5s;
+  }
+  .bar {
+    height: 3px;
+    width: 100%;
+    background-color: #000;
+    margin: 4px 0;
+    border-radius: 15px;
+    transition: transform 0.5s, opacity 0.5s;
+  }
+  .menu-toggle.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  .menu-toggle.active .bar:nth-child(2) {
+    opacity: 0;
+  }
+  .menu-toggle.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+  .side-menu {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: width 0.5s;
+    padding-top: 60px;
+  }
+  .side-menu a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: all 0.3s ease;
+  }
+  .side-menu a:hover {
+    color: #f1f1f1;
+    background-color: #444;
+  }
+  .side-menu .close-btn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+  }
 
-    <div id="mySideMenu" class="side-menu">
-      <a href="javascript:void(0)" class="close-btn" onclick="closeMenu()">&times;</a>
-      <a href="tela_mapa.php">Mapa</a>
-      <a href="tela_avaliacao.php">Avaliação</a>
-      <a href="tela_projetos.php">Projetos</a>
-      <a href="tela_ranking.php">Ranking</a>
-      <a href="tela_cursos.php">Cursos</a>
-      <a href="tela_sobreEtec.php">Sobre a Etec</a>
-      <a href="tela_acessibilidade.php">Acessibilidade</a>
-      <?php if(isset($_SESSION['id'])): ?>
-      <a href="../back/logout.php" class="deslogar" id="deslogar" name="deslogar">Sair da Conta</a>
-      <?php endif; ?>
-    </div>
+  ::-webkit-scrollbar {
+    display: none;
+  }
 
-    <script>
-      document
-        .getElementById("mobile-menu")
-        .addEventListener("click", function () {
-          this.classList.toggle("active");
-          openMenu();
-        });
+  #BTNMenu {
+    display: none;
+  }
 
-      function openMenu() {
-        document.getElementById("mySideMenu").style.width = "250px";
-      }
+  #Menu {
+    border-radius: 4px;
+    width: fit-content;
+    border: 2px solid transparent;
+    position: fixed;
+    left: 10px;
+  }
 
-      function closeMenu() {
-        document.getElementById("mySideMenu").style.width = "0";
-        document.getElementById("mobile-menu").classList.remove("active");
-      }
-    </script>
-  </body>
-</html>
+  input[type="checkbox"]#BTNMenu:checked ~ #Menu {
+    box-shadow: 0 0 4px white, inset 0 0 4px white;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 2px solid white;
+  }
+
+  input[type="checkbox"]#BTNMenu:not(:checked) ~ div ul#MenuHolder {
+    display: none;
+  }
+
+  ul#MenuHolder li.BTNSMenu a {
+    appearance: auto;
+    text-decoration: none;
+    color: var(--COLORBTNSMenu);
+    font-family: var(--FONTBTNSMenu);
+    padding: 10px 20px;
+    background-color: var(--BACKGROUNDCOLORBTNSMenu);
+    box-shadow: inset 0 0 4px white;
+  }
+
+  ul#MenuHolder li.BTNSMenu {
+    list-style: none;
+  }
+
+  ul#MenuHolder {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .header-cursos {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .logo-container img {
+    width: 50px;
+    height: auto;
+  }
+  .ORGInfoHeader {
+    display: flex;
+    width: 50%;
+    gap: 50%;
+    justify-content: flex-end;
+  }
+
+  header{
+      display: flex;
+      align-items: center;
+  }
+
+main {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding-top: 20px;
+  align-items: center;
+  gap: 20px;
+  justify-content: center;
+}
+
+/* Estilo de fundo que o body terá no Tablet */
+@media (min-width: 768px) {
+    body.telaSobreEtec {
+      background-image: url(../img/inicio.jpg);
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+  }
+
+  @media (min-width: 375px) and (max-width: 768px) {
+    body.telaSobreEtec {
+      background-image: url(../img/inicio.jpg);
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+  }
+
+  @media (max-width: 375px) {
+    body.telaSobreEtec {
+      background-image: url(../img/inicio.jpg);
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+  }
+  .sobreEtec {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  background-color: white;
+  box-shadow:
+      0 0 10px rgb(221, 221, 221),
+      0 0 20px #f7f7f7,
+      0 0 40px #e7e7e7;
+  padding: 40px; 
+  border-radius: 20px;
+  font-size: 21px;
+  text-align: justify;
+  justify-content: center;
+  align-items: center;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+}
+
+img {
+  border-radius: 15px;
+  margin: 20px;
+  width: 500px;
+}
+
+
+.btn-voltar {
+  background-color: #00ffe5;
+  border: 2px solid #00ffe5;
+  color: #000000;
+  padding: 1em 3em;
+  font-weight: bold;
+  font-size: 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  text-shadow: none;
+  box-shadow: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn-voltar:hover {
+  background-color: #00cbcc;
+  color: #000000;
+  border-color: #00ffe5;
+}
+
+.logo-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      height: fit-content;
+      width: fit-content;
+    }
