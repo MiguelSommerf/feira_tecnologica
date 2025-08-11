@@ -82,7 +82,7 @@ if (session_status() === PHP_SESSION_NONE) {
                 <a href="">Ver mais</a>
             </div>
             <div class="card-curso-list">
-                <p>Curso de Losgística</p>
+                <p>Curso de Logística</p>
                 <a href="">Ver mais</a>
             </div>
             <div class="card-curso-list">
