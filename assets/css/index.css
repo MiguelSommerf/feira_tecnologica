@@ -192,24 +192,23 @@
           inset 0 0 5px 2px var(--glow-color);
       }
 
-      /* Responsividade */
       @media (min-width: 768px) {
         body.TelaInicio {
-          background-image: url(../img/inicioTabletDeitado.jpg);
+          background-image: url(../img/inicioDeita.png);
           background-repeat: no-repeat;
           background-size: cover;
         }
       }
       @media (min-width: 375px) and (max-width: 768px) {
         body.TelaInicio {
-          background-image: url(../img/inicioTabletEmPe.jpg);
+          background-image: url(../img/inicioDeita.png);
           background-repeat: no-repeat;
           background-size: cover;
         }
       }
       @media (max-width: 375px) {
         body.TelaInicio {
-          background-image: url(../img/inicioCelular.jpg);
+          background-image: url(../img/inicio.png);
           background-repeat: no-repeat;
           background-size: cover;
         }
