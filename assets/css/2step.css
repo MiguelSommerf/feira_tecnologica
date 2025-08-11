@@ -347,3 +347,14 @@ main > form > div > input {
     border-radius: 10px;
     border: none;
 }
+
+.logo-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      height: fit-content;
+      width: fit-content;
+    }
