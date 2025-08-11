@@ -8,6 +8,16 @@
         transition: transform 0.5s;
       }
 
+.logo-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      height: fit-content;
+      width: fit-content;
+    }
       .bar {
         height: 3px;
         width: 100%;
