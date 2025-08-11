@@ -233,18 +233,17 @@ $result = $stmt->get_result();
     </div>
 
     <div id="mySideMenu" class="side-menu">
-      <a href="javascript:void(0)" class="close-btn" onclick="closeMenu()">&times;</a>
-      <a href="tela_mapa.php">Mapa</a>
-      <a href="tela_avaliacao.php">Avaliação</a>
-      <a href="tela_projetos.php">Projetos</a>
-      <a href="tela_ranking.php">Ranking</a>
-      <a href="tela_cursos.php">Cursos</a>
-      <a href="tela_sobreEtec.php">Sobre a Etec</a>
-      <a href="tela_acessibilidade.php">Acessibilidade</a>
-      <?php if(isset($_SESSION['id'])): ?>
-      <a href="../back/logout.php" class="deslogar" id="deslogar" name="deslogar">Sair da Conta</a>
-      <?php endif; ?>
+        <a href="javascript:void(0)" class="close-btn" onclick="closeMenu()">&times;</a>
+        <a href="tela_mapa.php">Mapa</a>
+        <a href="tela_projetos.php">Projetos</a>
+        <a href="tela_ranking.php">Ranking</a>
+        <a href="tela_cursos.php">Cursos</a>
+        <a href="tela_sobreEtec.php">Sobre a Etec</a>
+        <?php if(isset($_SESSION['id'])): ?>
+        <a href="../back/logout.php" class="deslogar" id="deslogar" name="deslogar">Sair da Conta</a>
+        <?php endif; ?>
     </div>
+    
 
     <script>
         document
