@@ -15,16 +15,23 @@ if (session_status() === PHP_SESSION_NONE) {
     <link rel="stylesheet" href="../assets/css/avaliacao.css">
 </head>
 <body class="telaAvaliacao">
-    <header>
-        <div class="ORGInfoHeader">
-            <h1>Avaliação</h1>
-        </div>
+<header>
+      <div class="menu-toggle" id="mobile-menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+      <div class="logo-container">
+        <img src="../assets/img/etecmcm.png" alt="Logo MCM"/>
+      </div>
+      <div class="ORGInfoHeader">
+        <h1>Avaliação</h1>
+      </div>
     </header>
 
     <main>
-        <div class="logo-container">
-            <img src="../assets/img/etecmcm.png" alt="Logo MCM" />
-        </div>
+        
+    <button class="btn-voltar" onclick="history.back()">Voltar</button>
         
         <div class="avaliacao-container">
             <div class="avaliacao-header">
@@ -66,12 +73,10 @@ if (session_status() === PHP_SESSION_NONE) {
                 </div>
             </div>
         </div>
-<<<<<<< HEAD
         <div class="avaliacao-comentario">
             <textarea class="avaliacao-textarea" placeholder="Deixe um comentário..."></textarea>
             <button class="avaliacao-button" id="">Enviar</button>
         </div>
-        <button class="btn-voltar" onclick="history.back()">Voltar</button>
     </main>
 
     <div id="mySideMenu" class="side-menu">
@@ -86,36 +91,6 @@ if (session_status() === PHP_SESSION_NONE) {
       <?php if(isset($_SESSION['id'])): ?>
       <a href="../back/logout.php" class="deslogar" id="deslogar" name="deslogar">Sair da Conta</a>
       <?php endif; ?>
-=======
-    </div>
-
-    <div class="avaliacao-linha">
-        <span>Avialiação do Projeto</span>
-        <div class="avaliacao-estrelas-container">
-        <div class="avaliacao-estrelas" data-id="0"></div>
-        </div>
-    </div>
-
-    <div class="avaliacao-comentario">
-        <form action="../back/avaliacao.php" method="POST">
-            <textarea class="avaliacao-textarea" placeholder="Deixe um comentário..."></textarea>
-            <button class="avaliacao-button" id="">Enviar</button>
-        </form>    
-    </div>
-
-    </main>
-
-    <div id="mySideMenu" class="side-menu">
-        <a href="javascript:void(0)" class="close-btn" onclick="closeMenu()">&times;</a>
-        <a href="tela_mapa.php">Mapa</a>
-        <a href="tela_projetos.php">Projetos</a>
-        <a href="tela_ranking.php">Ranking</a>
-        <a href="tela_cursos.php">Cursos</a>
-        <a href="tela_sobreEtec.php">Sobre a Etec</a>
-        <?php if(isset($_SESSION['id'])): ?>
-        <a href="../back/logout.php" class="deslogar" id="deslogar" name="deslogar">Sair da Conta</a>
-        <?php endif; ?>
->>>>>>> 94ac375d1ec118c9a3f0f7fddb3d68a34f3ba47a
     </div>
 
     <script>

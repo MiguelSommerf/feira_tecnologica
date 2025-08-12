@@ -8,6 +8,13 @@
   --COLORBTNSMenu: black;
   --BACKGROUNDCOLORBTNSMenu: rgba(255, 255, 255, 0.5);
   /* FIM ROOT TITULO */
+
+  /* INÍCIO ROOT BUTTON NEON */
+    --glow-color: rgb(255, 255, 255);
+    --glow-spread-color: rgb(255, 255, 255);
+    --enhanced-glow-color: rgb(255, 255, 255);
+    --btn-color: rgb(0, 0, 0);
+  /* FIM ROOT BUTTON NEON */
 }
 
 * {
@@ -136,7 +143,12 @@ h1 {
     gap: 2px;
   }
 
-
+  .header-cursos {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
   .logo-container {
     display: flex;
     justify-content: center;
@@ -157,12 +169,6 @@ h1 {
       display: flex;
       align-items: center;
   }
-
-
-
-
-
-
 
     /*===================================================
       Responsividade via Media NÃO alterar
@@ -345,22 +351,26 @@ h1 {
 
 .btn-voltar {
   background-color: #00ffe5;
-  border: 2px solid #00ffe5;
+  border: none;
   color: #000000;
   padding: 1em 3em;
   font-weight: bold;
-  font-size: 18px;
-  border-radius: 6px;
+  font-size: 100%;
+  border-radius: 20px;
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease;
-  text-shadow: none;
-  box-shadow: none;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  max-width: 100px;
+  min-width: 50px;
+  height: 100%;
+  min-height: 20px;
+  max-height: 20px;
+  align-self: flex-start;
+  margin-left: 20px;
 }
 .btn-voltar:hover {
   background-color: #00cbcc;
-  color: #000000;
-  border-color: #00ffe5;
 }
