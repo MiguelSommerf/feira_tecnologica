@@ -41,6 +41,8 @@ if (!isset($_SESSION['id'])) {
     </header>
     <div class="main-container">
     
+    <button class="btn-voltar" onclick="history.back()">Voltar</button>
+    
 <a href="tela_home.php" class="voltar">Voltar</a>
   <div class="feedback-form">
     <h2>Envie seu Feedback</h2>
@@ -61,8 +63,6 @@ if (!isset($_SESSION['id'])) {
 
       <button type="submit" class="enviar">Enviar</button>
     </form> 
-   
-    <button class="btn-voltar" onclick="history.back()">Voltar</button>
   </div>
    </div>
   <div id="mySideMenu" class="side-menu">

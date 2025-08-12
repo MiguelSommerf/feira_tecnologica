@@ -16,22 +16,22 @@ if (session_status() === PHP_SESSION_NONE) {
     <link rel="stylesheet" href="../assets/css/ods.css">
 </head>
 <body class="TelaOds">
-    <header>
-        <div class="menu-toggle" id="mobile-menu">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-        </div>
+<header>
+<div class="menu-toggle" id="mobile-menu">
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+</div>
         <div class="logo-container">
             <img src="../assets/img/etecmcm.png" alt="Logo MCM"/>
         </div>
         <div class="ORGInfoHeader">
-            <h1>ODS's</h1>
+            <h1 class="h1-ranking">ODS's</h1>
         </div>
-        <button class="btn-voltar" onclick="history.back()">Voltar</button>
-    </header>    
+    </header>
 
     <main>
+        <button class="btn-voltar" onclick="history.back()">Voltar</button>
         <div class="container-ods">
             <div class="ods-dupla">
             <div class="component" onclick="expandComponent(this)">

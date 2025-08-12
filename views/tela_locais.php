@@ -32,9 +32,9 @@ if (session_status() === PHP_SESSION_NONE) {
     <div class="ORGInfoHeader">
       <h1>Locais</h1>
     </div>
-    <button class="btn-voltar" onclick="history.back()">Voltar</button>
   </header>
 
+    <button class="btn-voltar" onclick="history.back()">Voltar</button>
   <div id="mySideMenu" class="side-menu">
         <a href="javascript:void(0)" class="close-btn" onclick="closeMenu()">&times;</a>
         <a href="tela_mapa.php">Mapa</a>

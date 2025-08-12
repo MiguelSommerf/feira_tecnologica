@@ -30,10 +30,11 @@ if (session_status() === PHP_SESSION_NONE) {
       <div class="ORGInfoHeader">
         <h1>Feira</h1>
       </div>
-      <button class="btn-voltar" onclick="history.back()">Voltar</button>
     </header>
 
     <main>
+      
+      <button class="btn-voltar" onclick="history.back()">Voltar</button>
         <section class="container-feira">
             <p> 
                 A Feira Tecnológica e Sustentável da ETEC Maria Cristina Medeiros é um evento anual que reúne criatividade, inovação e consciência socioambiental. Desenvolvida pelos alunos com apoio dos professores, a feira apresenta projetos que integram tecnologia e sustentabilidade. Mais do que uma simples exposição de trabalhos, a feira é um espaço de troca de conhecimentos, onde a comunidade escolar e visitantes externos podem conhecer de perto as iniciativas dos cursos técnicos e integrados.

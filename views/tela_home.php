@@ -30,6 +30,7 @@ if (session_status() === PHP_SESSION_NONE) {
       </div>
     </header>
     <main>
+      <button class="btn-voltar" onclick="history.back()">Voltar</button>
       <div>
         <div class="a0">
             <?php if (isset($_SESSION['nome'])) {
@@ -39,7 +40,6 @@ if (session_status() === PHP_SESSION_NONE) {
             <a href="tela_projetos.php">Projetos</a>
             <a href="tela_ods.php">ODS</a>
             <a href="tela_creditos.php">Créditos</a>
-            <button class="btn-voltar" onclick="history.back()">Voltar</button>
           </div>
         </div>
         <div class="rateOrg">
@@ -47,6 +47,7 @@ if (session_status() === PHP_SESSION_NONE) {
         </div>
       </div>
     </main>
+    
     <div id="mySideMenu" class="side-menu">
         <a href="javascript:void(0)" class="close-btn" onclick="closeMenu()">&times;</a>
         <a href="tela_mapa.php">Mapa</a>
