@@ -261,7 +261,7 @@ h1 {
 /* Responsividade */
 @media (min-width: 768px) {
     body.TelaOds {
-        background-image: url(../img/inicio.jpg);
+        background-image: url(../img/inicio.png);
         background-repeat: no-repeat;
         background-size: cover;
     }
@@ -269,7 +269,7 @@ h1 {
 
 @media (min-width: 375px) and (max-width: 768px) {
     body.TelaOds {
-        background-image: url(../img/inicioTabletEmPe.jpg);
+        background-image: url(../img/inicio.png);
         background-repeat: no-repeat;
         background-size: cover;
     }
@@ -283,7 +283,7 @@ h1 {
 
 @media (max-width: 375px) {
     body.TelaOds {
-        background-image: url(../img/inicioCelular.jpg);
+        background-image: url(../img/inicio.png);
         background-repeat: no-repeat;
         background-size: cover;
     }
@@ -295,6 +295,9 @@ h1 {
     }
 }
 
+    main{
+        overflow: scroll;
+    }
 
 .btn-voltar {
     background-color: #00ffe5;
