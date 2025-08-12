@@ -11,9 +11,9 @@ if (!isset($_SESSION['id'])) {
     $id_user = $_SESSION['id'];
 }
 
-$voto = (int)$_POST['estrelas'] ?? null;
-$comentario = $_POST['comentario'] ?? null;
-$id_projeto = (int)$_POST['id_projeto'] ?? null;
+$voto = isset($_POST['estrelas']) ? (int)$_POST['estrelas'] : null;
+$comentario = isset($_POST['comentario']) ? $_POST['comentario'] : null;
+$id_projeto = isset($_POST['id_projeto']) ? (int)$_POST['id_projeto'] : null;
 
 if (isset($voto) && isset($id_projeto)) {
     $queryVerificacao = "SELECT id_user, id_projetos FROM tb_votos WHERE id_user = (?) AND id_projetos = (?)";

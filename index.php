@@ -49,7 +49,6 @@ $logout->logout();
         <div class="ORGmainInfo">
           <p class="info">Utilitários</p>
           <div class="a0">
-            <a href="views/tela_acessibilidade.php">Acessibilidade</a>
             <a href="views/tela_creditos.php">Créditos</a>
           </div>
         </div>

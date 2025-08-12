@@ -42,12 +42,12 @@
   /* 2.Estilo do body e fundo     */
   
   .Creditos_body {
-    background-image: url('../img/creditos.jpg');
+    background-image: url('../img/cursos.png');
     width: auto;
     font-family: Arial, sans-serif;
     color: var(--cor-texto-primario);
     padding: 20px;
-    background-size: cover;
+    background-size:cover;
     background-repeat: no-repeat;
     background-position: center;
     position: relative; /* para posicionar pseudo-elementos */
@@ -322,7 +322,7 @@
 /* Estilo de fundo que o body terá no Tablet */
 @media (min-width: 768px) {
       body.Creditos_body {
-        background-image: url(../img/creditos.jpg);
+        background-image: url('../img/cursos.png');
         background-repeat: no-repeat;
         background-size: cover;
       }
@@ -330,15 +330,15 @@
 
     @media (min-width: 375px) and (max-width: 768px) {
       body.Creditos_body {
-        background-image: url(../img/creditos.jpg);
+        background-image: url('../img/cursos.png');
         background-repeat: no-repeat;
-        background-size: cover;
+        background-size:cover;
       }
     }
 
     @media (max-width: 375px) {
       body.Creditos_body {
-        background-image: url(../img/creditos.jpg);
+        background-image: url('../img/cursos.png');
         background-repeat: no-repeat;
         background-size: cover;
       }
@@ -346,7 +346,11 @@
 
 
     body{
-        background-color: aquamarine;
+      max-height: 100dvh;
+      overflow: hidden;
+    }
+    body main{
+      overflow: scroll;
     }
 
     main {
@@ -404,3 +408,14 @@
     color: #000000;
     border-color: #00ffe5;
   }
+
+.logo-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      height: fit-content;
+      width: fit-content;
+    }

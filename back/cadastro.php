@@ -5,10 +5,6 @@ require_once 'classes/VerificarCampos.php';
 
 $verif = new VerificarCampos($mysqli);
 
-
-
-
-
 if(isset($_POST['nameuser']) && ($_POST['emailuser']) && ($_POST['passuser']) && ($_POST['birthuser'])){
 
     $verif->verificarNome($_POST['nameuser']);
