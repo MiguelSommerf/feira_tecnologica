@@ -229,7 +229,7 @@
       /*Estido de fundo que o body tera no Tablet*/
       @media (min-width: 768px) {
         body.telaTal {
-          background-image: url(../img/); /*aqui tem que substituir pelo caminho da foto para o fundo*/
+          background-image: url(../img/locais.png); /*aqui tem que substituir pelo caminho da foto para o fundo*/
           background-repeat: no-repeat;
           background-size: cover;
         }
@@ -237,7 +237,7 @@
       /*Estido de fundo que o body tera no Tablet*/
       @media (min-width: 375px) and (max-width: 768px) {
         body.telaTal {
-          background-image: url(../img/locaisHoriz.jpg); /*aqui tem que substituir pelo caminho da foto para o fundo*/
+          background-image: url(../img/locais.png); /*aqui tem que substituir pelo caminho da foto para o fundo*/
           background-repeat: no-repeat;
           background-size: cover;
         }
@@ -245,7 +245,7 @@
       /*Estido de fundo que o body tera no Celular*/
       @media (max-width: 375px) {
         body.telaTal {
-          background-image: url(../img/locaisCel.jpg); /*aqui tem que substituir pelo caminho da foto para o fundo*/
+          background-image: url(../img/locais.png); /*aqui tem que substituir pelo caminho da foto para o fundo*/
           background-repeat: no-repeat;
           background-size: cover;
         }
