@@ -32,7 +32,7 @@ if (session_status() === PHP_SESSION_NONE) {
     </header>
 
     <main style="padding: 0">
-        <div class="container">
+        <div class="container" style="padding-bottom: 200px;">
             <!-- Back-end -->
             <div class="sep-cat-cred"><p class="titulo">Back-end</p></div>
             <div class="cartoes">
