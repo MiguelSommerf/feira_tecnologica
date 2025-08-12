@@ -26,6 +26,8 @@ $verif->logout();
       <img src="../assets/img/etecmcm.png" alt="Logo" class="logo" />
     </div>
 
+    
+    <button class="btn-voltar" onclick="history.back()">Voltar</button>
     <div class="form-container">
       <form action="../back/cadastro.php" method="post" id="cadastroForm">
         <label for="nome">Nome</label>
@@ -54,7 +56,6 @@ $verif->logout();
           <button onclick="checkSenha()" type="submit">Cadastrar</button>
         </div>
       </form>
-      <button class="btn-voltar" onclick="history.back()">Voltar</button>
     </div>
 
     <div class="login-container">

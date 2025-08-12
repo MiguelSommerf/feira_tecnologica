@@ -342,7 +342,6 @@ h1 {
   align-items: center;
   gap: 20px;
 }
-<<<<<<< HEAD
 
 .btn-voltar {
   background-color: #00ffe5;
@@ -365,15 +364,3 @@ h1 {
   color: #000000;
   border-color: #00ffe5;
 }
-=======
-.logo-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      height: fit-content;
-      width: fit-content;
-    }
->>>>>>> 94ac375d1ec118c9a3f0f7fddb3d68a34f3ba47a
