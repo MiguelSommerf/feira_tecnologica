@@ -23,7 +23,7 @@ if (session_status() === PHP_SESSION_NONE) {
         <span class="bar"></span>
       </div>
       <div class="logo-container">
-        <img src="img/etecmcm.png" alt="Logo MCM" />
+        <img src="../assets/img/etecmcm.png" alt="Logo MCM" />
       </div>
       <div class="ORGInfoHeader">
         <h1>ETEC MCM</h1>
