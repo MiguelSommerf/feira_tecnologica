@@ -229,7 +229,7 @@
       /*Estido de fundo que o body tera no Tablet*/
       @media (min-width: 768px) {
         body.telaTal {
-          background-image: url(../img/locaisDeitado.jpg); /*aqui tem que substituir pelo caminho da foto para o fundo*/
+          background-image: url(../img/); /*aqui tem que substituir pelo caminho da foto para o fundo*/
           background-repeat: no-repeat;
           background-size: cover;
         }
