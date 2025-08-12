@@ -27,6 +27,7 @@ function headerHTML() {
             <link rel="preconnect" href="https://fonts.googleapis.com" />
             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
             <link href="https://fonts.googleapis.com/css2?family=Karantina:wght@300;400;700&display=swap" rel="stylesheet" />
+            <script type="text/javascript" src="https://cdn.rybena.com.br/dom/master/latest/rybena.js"></script>
         </head>
         <body class="telaTal">
         <div>
