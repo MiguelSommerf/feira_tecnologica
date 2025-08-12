@@ -242,7 +242,7 @@ main {
 /* Estilo de fundo que o body terá no Tablet */
 @media (min-width: 768px) {
       body.telaRanking {
-        background-image: url(../img/inicio.jpg);
+        background-image: url(../img/inicio.png);
         background-repeat: no-repeat;
         background-size: cover;
       }
@@ -250,7 +250,7 @@ main {
 
     @media (min-width: 375px) and (max-width: 768px) {
       body.telaRanking {
-        background-image: url(../img/inicio.jpg);
+        background-image: url(../img/inicio.png);
         background-repeat: no-repeat;
         background-size: cover;
       }
@@ -258,7 +258,7 @@ main {
 
     @media (max-width: 375px) {
       body.telaRanking {
-        background-image: url(../img/inicio.jpg);
+        background-image: url(../img/inicio.png);
         background-repeat: no-repeat;
         background-size: cover;
       }

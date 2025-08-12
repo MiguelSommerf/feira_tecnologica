@@ -257,24 +257,24 @@ input {
 
 /* Estilo de fundo que o body terá no Tablet */
 @media (min-width: 768px) {
-      body.telalogin {
-        background-image: url(../img/login.jpg);
+      body.TelaLogin {
+        background-image: url(../img/login.png);
         background-repeat: no-repeat;
         background-size: cover;
       }
     }
 
     @media (min-width: 375px) and (max-width: 768px) {
-      body.telalogin {
-        background-image: url(../img/login.jpg);
+      body.TelaLogin {
+        background-image: url(../img/login.png);
         background-repeat: no-repeat;
         background-size: cover;
       }
     }
 
     @media (max-width: 375px) {
-      body.telalogin {
-        background-image: url(../img/login.jpg);
+      body.TelaLogin {
+        background-image: url(../img/login.png);
         background-repeat: no-repeat;
         background-size: cover;
       }
