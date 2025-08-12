@@ -38,7 +38,7 @@ if (session_status() === PHP_SESSION_NONE) {
         <br>
         <p>Ainda em 2006, a escola foi oficialmente criada por um decreto do governador Geraldo Alckmin e passou a ter autonomia. A professora Maria Cristina Medeiros assumiu a direção e teve papel fundamental na organização da escola, reunindo professores, criando laboratórios e planejando novos cursos para atender melhor os jovens da cidade.</p>
 
-          <img src="img/etec-frente.jpeg" alt="imagem etec mcm">
+          <img src="../assets/img/etec-frente.jpeg" alt="imagem etec mcm">
 
         <p>A partir de 2007, a Etec começou a crescer. Foram implantados cursos como Administração, Web Design, Contabilidade, Eventos, Logística e Informática. Novas turmas foram abertas e a equipe também aumentou. A escola participou de programas estaduais de qualificação profissional e manteve uma forte parceria com a Prefeitura de Ribeirão Pires, inclusive envolvendo os alunos em eventos culturais e turísticos da cidade.</p>
         <br>        
