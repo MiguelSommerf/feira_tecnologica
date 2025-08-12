@@ -22,6 +22,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 }
 
 h1 {
@@ -140,6 +141,9 @@ ul#MenuHolder {
 }
 
 .logo-container {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -151,15 +155,7 @@ ul#MenuHolder {
 }
 
 .ORGInfoHeader {
-  display: flex;
-  width: 50%;
-  gap: 50%;
-  justify-content: flex-end;
-}
-
-header {
-  display: flex;
-  align-items: center;
+  margin-left: auto;
 }
 
 main {
@@ -173,14 +169,16 @@ main {
 }
 
 .sobreEtec {
-  width: 90%;
-  max-width: 800px;
+  width: 70%;
+  max-width: 700px;
   display: flex;
   flex-direction: column;
   height: auto;
   background-color: white;
   box-shadow: 0 0 10px rgb(221, 221, 221), 0 0 20px #f7f7f7, 0 0 40px #e7e7e7;
   padding: 20px;
+  margin-left: 20%;
+  margin-right: 20%;
   margin-bottom: 50px;
   border-radius: 20px;
   font-size: 16px;
@@ -223,7 +221,54 @@ img {
   border-color: #00ffe5;
 }
 
-/* Background Image (mantido exatamente como no seu código) */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .logo-container {
+    position: static;
+    transform: none;
+  }
+  .menu-toggle {
+    position: absolute;
+    left: 20px;
+    top: 10px;
+  }
+  .ORGInfoHeader {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+  .sobreEtec {
+    width: auto;
+    margin-left: 10%;
+    margin-right: 10%;
+    padding: 15px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 375px) {
+  .ORGInfoHeader {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+  .sobreEtec {
+    width: 95%;
+    padding: 10px;
+    font-size: 14px;
+  }
+  img {
+    max-width: 300px;
+  }
+  .btn-voltar {
+    width: 100%;
+    margin-top: 10px;
+  }
+}
+
 @media (min-width: 768px) {
   body.telaSobreEtec {
     background-image: url(../img/inicio.png);
@@ -239,41 +284,13 @@ img {
     background-size: cover;
   }
   .sobreEtec {
-    width: 95%;
-    padding: 15px;
-    font-size: 14px;
-  }
-  img {
-    max-width: 400px;
-  }
-}
-
-@media (max-width: 375px) {
-  body.telaSobreEtec {
-    background-image: url(../img/inicio.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
-  .sobreEtec {
-    width: 95%;
+    width: auto;
+    margin-left: 10%;
+    margin-right: 5%;
     padding: 10px;
     font-size: 14px;
   }
   img {
-    max-width: 300px;
-  }
-  header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-  }
-  .ORGInfoHeader {
-    width: 100%;
-    justify-content: center;
-    text-align: center;
-  }
-  .btn-voltar {
-    width: 100%;
-    margin-top: 10px;
+    max-width: 400px;
   }
 }
