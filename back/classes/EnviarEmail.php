@@ -6,13 +6,13 @@ use PHPMailer\PHPMailer\Exception;
 
 class EnviarEmail{
 
-    public function enviarCodigo($codigo) {
+    public function enviarCodigo($emailUsuario, $codigo) {
         global $email;
 
         try {
             // Configurações de envio
-            $email->setFrom("etecmcm@etec.sp.gov.br", "ETEC MCM");
-            $email->addAddress("miguel.sommerfeldluiz@gmail.com", "Miguel Sommerfeld");
+            $email->setFrom(SMTP_USER, "Feira Tecnológica");
+            $email->addAddress($emailUsuario);
 
             // Conteúdo
             $email->isHTML(true);
