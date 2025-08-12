@@ -177,12 +177,14 @@ if (session_status() === PHP_SESSION_NONE) {
             </div>
             </div>
 
-            <div class="component" onclick="expandComponent(this)">
-                <div class="image-ods">
-                    <img src="../assets/img/ods17.png" alt="ODS 17 - Parcerias e Meios de Implementação">
+            <div class="ods-dupla">
+                <div class="component" onclick="expandComponent(this)">
+                    <div class="image-ods">
+                        <img src="../assets/img/ods17.png" alt="ODS 17 - Parcerias e Meios de Implementação">
+                    </div>
+                    <div class="text">ODS 17 - Parcerias e Meios de Implementação</div>
+                    <div class="caption">O Objetivo 17 visa fortalecer a implementação e revitalizar a parceria global para o desenvolvimento sustentável. Busca mobilizar recursos financeiros, promover transferências de tecnologia e capacitação, e fomentar a cooperação entre os países para alcançar os ODS.</div>
                 </div>
-                <div class="text">ODS 17 - Parcerias e Meios de Implementação</div>
-                <div class="caption">O Objetivo 17 visa fortalecer a implementação e revitalizar a parceria global para o desenvolvimento sustentável. Busca mobilizar recursos financeiros, promover transferências de tecnologia e capacitação, e fomentar a cooperação entre os países para alcançar os ODS.</div>
             </div>
         </div>
     </main>
