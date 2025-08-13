@@ -244,7 +244,7 @@ input {
   top: 80px;
 }
 .btn-voltar:hover {
-  background-color: #00cbcc;
+background-color: #00cbcc;
 }
 
 .logo-container {
@@ -257,28 +257,3 @@ input {
       height: fit-content;
       width: fit-content;
     }
-
-    @media (min-width: 768px) {
-      body.TelaCadastro {
-        background-image: url(../img/login.png);
-        background-repeat: no-repeat;
-        background-size: cover;
-  
-      }
-    }
-
-    @media (min-width: 375px) and (max-width: 768px) {
-      body.TelaCadastro {
-        background-image: url(../img/login.png);
-        background-repeat: no-repeat;
-        background-size: cover;
-      }
-    }
-
-    @media (max-width: 375px) {
-      body.TelaCadastro {
-        background-image: url(../img/login.png);
-        background-repeat: no-repeat;
-        background-size: cover;
-      }
-    } 

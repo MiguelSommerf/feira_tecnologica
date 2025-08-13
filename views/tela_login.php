@@ -21,7 +21,11 @@ $verif->logout();
 <body class="TelaLogin">
   <div class="container">
     <div class="top">
+<<<<<<< HEAD
       <img src="../assets/img/etecmcm.png" alt="Logo" class="logo" />
+=======
+    <img src="../assets/img/etecmcm.png" alt="Logo" class="logo" />
+>>>>>>> 43dd2bc68a786264cb422bc87926d4cefb316889
     </div>
 
     <button class="btn-voltar" onclick="history.back()">Voltar</button>
