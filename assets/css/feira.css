@@ -274,6 +274,9 @@ body.telaRanking {
     max-height: 20px;
     align-self: flex-start;
     margin-left: 20px;
+    position: fixed;
+    right:  20px;
+    top: 80px;
   }
   .btn-voltar:hover {
     background-color: #00cbcc;

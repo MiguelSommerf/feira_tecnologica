@@ -43,7 +43,6 @@ if (!isset($_SESSION['id'])) {
     
     <button class="btn-voltar" onclick="history.back()">Voltar</button>
     
-<a href="tela_home.php" class="voltar">Voltar</a>
   <div class="feedback-form">
     <h2>Envie seu Feedback</h2>
     
@@ -72,6 +71,7 @@ if (!isset($_SESSION['id'])) {
         <a href="tela_ranking.php">Ranking</a>
         <a href="tela_cursos.php">Cursos</a>
         <a href="tela_sobreEtec.php">Sobre a Etec</a>
+        <a href="../index.php">Início</a>
         <?php if(isset($_SESSION['id'])): ?>
         <a href="../back/logout.php" class="deslogar" id="deslogar" name="deslogar">Sair da Conta</a>
         <?php endif; ?>
