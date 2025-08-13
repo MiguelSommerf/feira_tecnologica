@@ -2,8 +2,8 @@
 //Codado por Miguel Luiz Sommerfeld - 3°F Turma B
 require_once 'classes/EnviarEmail.php';
 
-$emailUsuario = $_POST['email'] ?? null;
-$inputCodigo = $_POST['codigo'] ?? null;
+$emailUsuario = isset($_POST['email']) ? $_POST['email'] : null;
+$inputCodigo = isset($_POST['codigo']) ? $_POST['codigo'] : null;
 
 if ($inputCodigo) {
     if (session_status() === PHP_SESSION_NONE) {
@@ -37,7 +37,7 @@ if ($inputCodigo) {
 if ($emailUsuario) {
     $codigoVerificacao = mt_rand(100000, 999999);
     $envio = new EnviarEmail();
-    $envio->enviarCodigo($codigoVerificacao);
+    $envio->enviarCodigo($emailUsuario, $codigoVerificacao);
 
     if (session_status() === PHP_SESSION_NONE) {
         session_start();
