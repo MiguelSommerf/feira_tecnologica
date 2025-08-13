@@ -213,8 +213,7 @@
 .colocacao {
     background-color: white;
     position: absolute;
-    width: 30px;
-    height: 20px;
+    padding: 5px 10px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -222,7 +221,6 @@
     font-weight: bold;
     border-radius: 5px;
 }
-
 main {
     display: flex;
     flex-direction: column;
@@ -230,6 +228,8 @@ main {
     padding-top: 20px;
     align-items: center;
     gap: 20px;
+    overflow: scroll;
+    height: 100vh;
 }
 
 .projetos {
@@ -264,7 +264,7 @@ main {
       }
     } 
 
-
+    
     .btn-voltar {
     background-color: #00ffe5;
     border: none;
