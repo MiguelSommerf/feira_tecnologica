@@ -50,6 +50,10 @@ body, html {
   margin-bottom: 20px;
 }
 
+.g_id_signin{
+  width: 100%;
+}
+
 /* Formulário */
 .form-container {
   background: #dedede;
