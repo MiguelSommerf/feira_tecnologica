@@ -251,32 +251,6 @@ button:active {
   }
 }
 .div-project {
-<<<<<<< HEAD
-  --glow-color: rgb(255, 255, 255);
-  --glow-spread-color: rgb(255, 255, 255);
-  --enhanced-glow-color: rgb(255, 255, 255);
-  --btn-color: rgb(0, 0, 0);
-  border: 0.25em solid white;
-  padding: 1em 3em;
-  color: var(--btn-color);
-  font-size: 15px;
-  font-weight: bold;
-  background-color: rgba(255, 255, 255, 0.6);
-  outline: none;
-  box-shadow: 0 0 0p 2pxem white;
-  text-shadow: 0 0 0.5em var(--glow-color);
-  position: relative;
-  transition: all 0.2s;
-  border-radius: 4px;
-}
-.div-project:hover {
-  color: var(--btn-color);
-  border: 0.25em solid var(--glow-spread-color);
-  background-color: transparent;
-  box-shadow: 0 0 10px 4px var(--glow-color),
-              inset 0 0 10px 4px var(--glow-color);
-  color: var(--glow-color);
-=======
         --glow-color: rgb(255, 255, 255);
         --glow-spread-color: rgb(255, 255, 255);
         --enhanced-glow-color: rgb(255, 255, 255);
@@ -328,5 +302,4 @@ button:active {
   }
   .btn-voltar:hover {
     background-color: #00cbcc;
->>>>>>> 833d23bbbe3518cf619e3dfa6fca3eacf221541c
 }

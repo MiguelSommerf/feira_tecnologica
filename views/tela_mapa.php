@@ -46,8 +46,8 @@ function headerHTML() {
                     <div class="ORGInfoHeader">
                         <h1>Locais</h1><!--Nome da tela (ex. Avaliação)-->
                     </div>
-                    <button class="btn-voltar" onclick="history.back()">Voltar</button>
                 </header>
+                <button class="btn-voltar" onclick="history.back()">Voltar</button>
 
                 <div id="mySideMenu" class="side-menu">
                     <a href="javascript:void(0)" class="close-btn" onclick="closeMenu()">&times;</a>

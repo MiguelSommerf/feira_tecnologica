@@ -43,7 +43,6 @@ if (!isset($_SESSION['id'])) {
     
     <button class="btn-voltar" onclick="history.back()">Voltar</button>
     
-<a href="tela_home.php" class="voltar">Voltar</a>
   <div class="feedback-form">
     <h2>Envie seu Feedback</h2>
     

@@ -408,6 +408,7 @@
     max-height: 20px;
     align-self: flex-start;
     margin-left: 20px;
+    position: fixed;
   }
   .btn-voltar:hover {
     background-color: #00cbcc;
