@@ -1,260 +1,282 @@
-
-      .menu-toggle {
-        display: flex;
-        flex-direction: column;
-        width: 30px;
-        padding: 10px;
-        cursor: pointer;
-        transition: transform 0.5s;
-      }
-
+/* Seus estilos originais, com ajustes apenas na ordem dos elementos do topo */
+.menu-toggle {
+  display: flex;
+  flex-direction: column;
+  width: 30px;
+  padding: 10px;
+  cursor: pointer;
+  transition: transform 0.5s;
+  z-index: 1000; /* Garante que fique acima */
+}
 .logo-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      height: fit-content;
-      width: fit-content;
-    }
-      .bar {
-        height: 3px;
-        width: 100%;
-        background-color: #000;
-        margin: 4px 0;
-        border-radius: 15px;
-        transition: transform 0.5s, opacity 0.5s;
-      }
-
-      .menu-toggle.active .bar:nth-child(1) {
-        transform: translateY(8px) rotate(45deg);
-      }
-
-      .menu-toggle.active .bar:nth-child(2) {
-        opacity: 0;
-      }
-
-      .menu-toggle.active .bar:nth-child(3) {
-        transform: translateY(-8px) rotate(-45deg);
-      }
-
-      .side-menu {
-        height: 100%;
-        width: 0;
-        position: fixed;
-        z-index: 1;
-        top: 0;
-        left: 0;
-        background-color: #111;
-        overflow-x: hidden;
-        transition: width 0.5s;
-        padding-top: 60px;
-      }
-
-      .side-menu a {
-        padding: 8px 8px 8px 32px;
-        text-decoration: none;
-        font-size: 25px;
-        color: #818181;
-        display: block;
-        transition: all 0.3s ease;
-      }
-
-      .side-menu a:hover {
-        color: #f1f1f1;
-        background-color: #444;
-      }
-
-      .side-menu .close-btn {
-        position: absolute;
-        top: 0;
-        right: 25px;
-        font-size: 36px;
-      }
-
-      .side-menu .close-btn:hover {
-        color: #818181;
-        background-color: transparent;
-      }
-
-      /*aqui é o style provisorio para mostrar a base do css, n sera usado ele dessa forma tem que usar o arquivo principal style.css*/
-
-      /*reset de css padrão*/
-      * {
-        padding: 0;
-        margin: 0;
-      }
-       :root {
-        --FONTTitulo: Grenze;
-        --FONTPadrao: Roboto;
-        --FONTTituloSIZE: 40px;
-        --FONTBTNSMenu: Roboto;
-        --COLORBTNSMenu: black;
-        --BACKGROUNDCOLORBTNSMenu: rgba(255, 255, 255, 0.5);
-      }
-      /*NÃO MEXER NEM EDITAR O CODIGO*/
-      header {
-        padding: 10px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-      #BTNMenu {
-        display: none;
-      }
-      #Menu {
-        border-radius: 4px;
-        width: fit-content;
-        border: 2px solid transparent;
-        position: fixed;
-        left: 10px;
-      }
-      input[type="checkbox"]#BTNMenu:checked ~ #Menu {
-        box-shadow: 0 0 4px white, inset 0 0 4px white;
-        background-color: rgba(255, 255, 255, 0.5);
-        border: 2px solid white;
-      }
-      input[type="checkbox"]#BTNMenu:not(:checked) ~ div ul#MenuHolder {
-        display: none;
-      }
-      ul#MenuHolder li.BTNSMenu a {
-        appearance: auto;
-        text-decoration: none;
-        color: var(--COLORBTNSMenu);
-        font-family: var(--FONTBTNSMenu);
-        padding: 10px 20px;
-        background-color: var(--BACKGROUNDCOLORBTNSMenu);
-        box-shadow: inset 0 0 4px white;
-      }
-      ul#MenuHolder li.BTNSMenu {
-        list-style: none;
-      }
-      ul#MenuHolder {
-        display: flex;
-        flex-direction: column;
-        gap: 2px;
-      }
-      .logo-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: relative;
-        top: 20px;
-      }
-      .logo-container img {
-        width: 80px;
-        height: 80px;
-      }
-      .ORGInfoHeader {
-        display: flex;
-        gap: 50%;
-        justify-content: flex-end;
-      }
-      h1 {
-        font-family: var(--FONTTitulo);
-        font-size: var(--FONTTituloSIZE);
-      }
-      h5 {
-        font-family: var(--FONTTitulo);
-        font-size: 30px;
-      }
-      a{
-        text-decoration: none;
-      }
-      p{
-        font-family: var(--FONTTitulo);
-        font-size: 20px;
-      }
-      button {
-        --glow-color: rgb(255, 255, 255);
-        --glow-spread-color: rgb(255, 255, 255);
-        --enhanced-glow-color: rgb(255, 255, 255);
-        --btn-color: rgb(0, 0, 0);
-
-        cursor: pointer;
-        border: 0.25em solid white;
-        padding: 1em 3em;
-        color: var(--btn-color);
-        font-size: 15px;
-        font-weight: bold;
-        background-color: rgba(255, 255, 255, 0.6);
-        outline: none;
-        box-shadow: 0 0 0p 2pxem white;
-        text-shadow: 0 0 0.5em var(--glow-color);
-        position: relative;
-        transition: all 0.2s;
-        border-radius: 4px;
-      }
-      button::after {
-        pointer-events: none;
-        content: "";
-        position: absolute;
-        top: 120%;
-        left: 0;
-        height: 100%;
-        width: 100%;
-        filter: blur(2em);
-        opacity: 0.7;
-        transform: perspective(1.5em) rotateX(35deg) scale(1, 0.6);
-      }
-      button:hover {
-        color: var(--btn-color);
-        border: 0.25em solid var(--glow-spread-color);
-        background-color: transparent;
-        box-shadow: 0 0 10px 4px var(--glow-color),
-          inset 0 0 10px 4px var(--glow-color);
-        color: var(--glow-color);
-      }
-      button:active {
-        box-shadow: 0 0 5px 2px var(--glow-color),
-          inset 0 0 5px 2px var(--glow-color);
-      }
-        .BTNLocais {
-            text-align: center; display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 20px;
-        }
-
-        .BTNLocais button{
-          margin-top: 20px;
-          width: 200px;
-        }
-      /*===================================================
-        Responsividade via Media NÃO alterar
-        os @media, alterar apenas o
-        background-image para os respectivas telas
-      ===================================================*/
-      /*Estido de fundo que o body tera no Tablet*/
-      @media (min-width: 768px) {
-        body.telaTal {
-          background-image: url(../img/locaisDeitado.jpg); /*aqui tem que substituir pelo caminho da foto para o fundo*/
-          background-repeat: no-repeat;
-          background-size: cover;
-        }
-      }
-      /*Estido de fundo que o body tera no Tablet*/
-      @media (min-width: 375px) and (max-width: 768px) {
-        body.telaTal {
-          background-image: url(../img/locaisHoriz.jpg); /*aqui tem que substituir pelo caminho da foto para o fundo*/
-          background-repeat: no-repeat;
-          background-size: cover;
-        }
-      }
-      /*Estido de fundo que o body tera no Celular*/
-      @media (max-width: 375px) {
-        body.telaTal {
-          background-image: url(../img/locaisCel.jpg); /*aqui tem que substituir pelo caminho da foto para o fundo*/
-          background-repeat: no-repeat;
-          background-size: cover;
-        }
-      }
-
-
-/* Angelo fico louco e virou front*/
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  height: fit-content;
+  width: fit-content;
+}
+.bar {
+  height: 3px;
+  width: 100%;
+  background-color: #000;
+  margin: 4px 0;
+  border-radius: 15px;
+  transition: transform 0.5s, opacity 0.5s;
+}
+.menu-toggle.active .bar:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.menu-toggle.active .bar:nth-child(2) {
+  opacity: 0;
+}
+.menu-toggle.active .bar:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+.side-menu {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: width 0.5s;
+  padding-top: 60px;
+}
+.side-menu a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: all 0.3s ease;
+}
+.side-menu a:hover {
+  color: #f1f1f1;
+  background-color: #444;
+}
+.side-menu .close-btn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+}
+.side-menu .close-btn:hover {
+  color: #818181;
+  background-color: transparent;
+}
+/* reset de css padrão */
+* {
+  padding: 0;
+  margin: 0;
+}
+:root {
+  --FONTTitulo: Grenze;
+  --FONTPadrao: Roboto;
+  --FONTTituloSIZE: 40px;
+  --FONTBTNSMenu: Roboto;
+  --COLORBTNSMenu: black;
+  --BACKGROUNDCOLORBTNSMenu: rgba(255, 255, 255, 0.5);
+}
+/* Header: Flex para alinhar hambúrguer à esquerda e título+botão à direita */
+header {
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+#BTNMenu {
+  display: none;
+}
+#Menu {
+  border-radius: 4px;
+  width: fit-content;
+  border: 2px solid transparent;
+  position: fixed;
+  left: 10px;
+}
+input[type="checkbox"]#BTNMenu:checked ~ #Menu {
+  box-shadow: 0 0 4px white, inset 0 0 4px white;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 2px solid white;
+}
+input[type="checkbox"]#BTNMenu:not(:checked) ~ div ul#MenuHolder {
+  display: none;
+}
+ul#MenuHolder li.BTNSMenu a {
+  appearance: auto;
+  text-decoration: none;
+  color: var(--COLORBTNSMenu);
+  font-family: var(--FONTBTNSMenu);
+  padding: 10px 20px;
+  background-color: var(--BACKGROUNDCOLORBTNSMenu);
+  box-shadow: inset 0 0 4px white;
+}
+ul#MenuHolder li.BTNSMenu {
+  list-style: none;
+}
+ul#MenuHolder {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+/* Logo centralizada (absoluta) */
+.logo-container {
+  top: 10px; /* Ajuste para alinhar verticalmente */
+}
+.logo-container img {
+  width: 80px;
+  height: 80px;
+}
+/* Título e Botão Voltar à direita */
+.ORGInfoHeader {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-left: auto; /* Empurra para a direita */
+}
+h1 {
+  font-family: var(--FONTTitulo);
+  font-size: var(--FONTTituloSIZE);
+}
+h5 {
+  font-family: var(--FONTTitulo);
+  font-size: 30px;
+}
+a {
+  text-decoration: none;
+}
+p {
+  font-family: var(--FONTTitulo);
+  font-size: 20px;
+}
+button {
+  --glow-color: rgb(255, 255, 255);
+  --glow-spread-color: rgb(255, 255, 255);
+  --enhanced-glow-color: rgb(255, 255, 255);
+  --btn-color: rgb(0, 0, 0);
+  cursor: pointer;
+  border: 0.25em solid white;
+  padding: 1em 3em;
+  color: var(--btn-color);
+  font-size: 15px;
+  font-weight: bold;
+  background-color: rgba(255, 255, 255, 0.6);
+  outline: none;
+  box-shadow: 0 0 0p 2pxem white;
+  text-shadow: 0 0 0.5em var(--glow-color);
+  position: relative;
+  transition: all 0.2s;
+  border-radius: 4px;
+}
+button::after {
+  pointer-events: none;
+  content: "";
+  position: absolute;
+  top: 120%;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  filter: blur(2em);
+  opacity: 0.7;
+  transform: perspective(1.5em) rotateX(35deg) scale(1, 0.6);
+}
+button:hover {
+  color: var(--btn-color);
+  border: 0.25em solid var(--glow-spread-color);
+  background-color: transparent;
+  box-shadow: 0 0 10px 4px var(--glow-color),
+              inset 0 0 10px 4px var(--glow-color);
+  color: var(--glow-color);
+}
+button:active {
+  box-shadow: 0 0 5px 2px var(--glow-color),
+              inset 0 0 5px 2px var(--glow-color);
+}
+.BTNLocais {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+.BTNLocais button {
+  margin-top: 20px;
+  width: 200px;
+}
+/* Botão Voltar */
+.btn-voltar {
+  background-color: #00ffe5;
+  border: 2px solid #00ffe5;
+  color: #000000;
+  padding: 0.5em 1.5em;
+  font-weight: bold;
+  font-size: 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  text-shadow: none;
+  box-shadow: none;
+}
+.btn-voltar:hover {
+  background-color: #00cbcc;
+  color: #000000;
+  border-color: #00ffe5;
+}
+/* Responsividade */
+@media (min-width: 768px) {
+  body.telaTal {
+    background-image: url(../img/locais.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+}
+@media (min-width: 375px) and (max-width: 768px) {
+  body.telaTal {
+    background-image: url(../img/locais.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+}
+@media (max-width: 375px) {
+  body.telaTal {
+    background-image: url(../img/locais.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+}
 .div-project {
+<<<<<<< HEAD
+  --glow-color: rgb(255, 255, 255);
+  --glow-spread-color: rgb(255, 255, 255);
+  --enhanced-glow-color: rgb(255, 255, 255);
+  --btn-color: rgb(0, 0, 0);
+  border: 0.25em solid white;
+  padding: 1em 3em;
+  color: var(--btn-color);
+  font-size: 15px;
+  font-weight: bold;
+  background-color: rgba(255, 255, 255, 0.6);
+  outline: none;
+  box-shadow: 0 0 0p 2pxem white;
+  text-shadow: 0 0 0.5em var(--glow-color);
+  position: relative;
+  transition: all 0.2s;
+  border-radius: 4px;
+}
+.div-project:hover {
+  color: var(--btn-color);
+  border: 0.25em solid var(--glow-spread-color);
+  background-color: transparent;
+  box-shadow: 0 0 10px 4px var(--glow-color),
+              inset 0 0 10px 4px var(--glow-color);
+  color: var(--glow-color);
+=======
         --glow-color: rgb(255, 255, 255);
         --glow-spread-color: rgb(255, 255, 255);
         --enhanced-glow-color: rgb(255, 255, 255);
@@ -306,4 +328,5 @@
   }
   .btn-voltar:hover {
     background-color: #00cbcc;
+>>>>>>> 833d23bbbe3518cf619e3dfa6fca3eacf221541c
 }

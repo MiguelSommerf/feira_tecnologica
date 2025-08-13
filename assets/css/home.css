@@ -223,7 +223,7 @@ button:active {
 /* Responsividade */
 @media (min-width: 768px) {
     body.TelaInicio {
-        background-image: url(../img/inicio.jpg);
+        background-image: url(../img/inicio.png);
         background-repeat: no-repeat;
         background-size: cover;
     }
@@ -231,7 +231,7 @@ button:active {
 
 @media (min-width: 375px) and (max-width: 768px) {
     body.TelaInicio {
-        background-image: url(../img/inicio.jpg);
+        background-image: url(../img/avaliacao.png);
         background-repeat: no-repeat;
         background-size: cover;
     }
@@ -239,7 +239,7 @@ button:active {
 
 @media (max-width: 375px) {
     body.TelaInicio {
-        background-image: url(../img/inicio.jpg);
+        background-image: url(../img/inicio.png);
         background-repeat: no-repeat;
         background-size: cover;
     }
@@ -285,7 +285,9 @@ button:active {
     gap: 20px;
 }
 
-
+.a0 {
+    margin-top: 40%;
+}
 .a0 a{
     --glow-color: rgb(255, 255, 255);
     --glow-spread-color: rgb(255, 255, 255);

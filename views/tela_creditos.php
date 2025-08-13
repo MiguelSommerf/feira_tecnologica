@@ -31,8 +31,12 @@ if (session_status() === PHP_SESSION_NONE) {
     </header>
 
     <main style="padding: 0">
+<<<<<<< HEAD
+        <div class="container" style="padding-bottom: 200px;">
+=======
     <button class="btn-voltar" onclick="history.back()">Voltar</button>
         <div class="container">
+>>>>>>> 833d23bbbe3518cf619e3dfa6fca3eacf221541c
             <!-- Back-end -->
             <div class="sep-cat-cred"><p class="titulo">Back-end</p></div>
             <div class="cartoes">
