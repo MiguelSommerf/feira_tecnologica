@@ -15,7 +15,6 @@ $bloco = $_GET['bloco'] ?? null;
 $sala = $_GET['sala'] ?? null;
 $pagina = $_GET['pagina'] ?? 1;
 
-<<<<<<< HEAD
 // HTML: TOPO
 function headerHTML() {
     echo <<<HTML
@@ -38,25 +37,6 @@ function headerHTML() {
                         <span class="bar"></span>
                         <span class="bar"></span>
                         <span class="bar"></span>
-=======
-                        <div class="ORGInfoHeader">
-                            <h1>Locais</h1><!--Nome da tela (ex. Avaliação)-->
-                        </div>
-                    </header>
-
-                    <button class="btn-voltar" onclick="history.back()">Voltar</button>
-
-                    <div id="mySideMenu" class="side-menu">
-                        <a href="javascript:void(0)" class="close-btn" onclick="closeMenu()">&times;</a>
-                        <a href="tela_mapa.php">Mapa</a>
-                        <a href="tela_projetos.php">Projetos</a>
-                        <a href="tela_ranking.php">Ranking</a>
-                        <a href="tela_cursos.php">Cursos</a>
-                        <a href="tela_sobreEtec.php">Sobre a Etec</a>
-                        <?php if(isset($_SESSION['id'])): ?>
-                        <a href="../back/logout.php" class="deslogar" id="deslogar" name="deslogar">Sair da Conta</a>
-                        <?php endif; ?>
->>>>>>> 833d23bbbe3518cf619e3dfa6fca3eacf221541c
                     </div>
 
                     <div class="logo-container">

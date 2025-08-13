@@ -40,11 +40,8 @@ if (session_status() === PHP_SESSION_NONE) {
             <a href="tela_projetos.php">Projetos</a>
             <a href="tela_ods.php">ODS</a>
             <a href="tela_creditos.php">Créditos</a>
-<<<<<<< HEAD
             <a href="tela_feedback.php">Avalie-nos</a>
             <button class="btn-voltar" onclick="history.back()">Voltar</button>
-=======
->>>>>>> 833d23bbbe3518cf619e3dfa6fca3eacf221541c
           </div>
         </div>
       </div>
