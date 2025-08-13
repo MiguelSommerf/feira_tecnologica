@@ -112,9 +112,9 @@ if ($result_nomes->num_rows > 0) {
         $posicao++;
     }
 
-} else {
-    echo "<script>alert('Nenhum projeto com votos ainda.')</script>";
-    echo "<script>window.history.back()</script>";
-    exit();
-}
+} //else {
+    //echo "<script>alert('Nenhum projeto com votos ainda.')</script>";
+    //echo "<script>window.history.back()</script>";
+    //exit();
+//}
 ?>

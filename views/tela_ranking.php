@@ -30,10 +30,10 @@ if (session_status() === PHP_SESSION_NONE) {
       <div class="ORGInfoHeader">
         <h1>Inicio</h1>
       </div>
-      <button class="btn-voltar" onclick="history.back()">Voltar</button>
     </header>
 
     <main class="main-ranking">
+      <button class="btn-voltar" onclick="history.back()">Voltar</button>
       <?php
           foreach ($resultados as $linha) {
               echo $linha;

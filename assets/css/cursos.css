@@ -256,6 +256,7 @@
 
 
 .btn-voltar {
+<<<<<<< HEAD
     background-color: #00ffe5;
     border: 2px solid #00ffe5;
     color: #000000;
@@ -288,3 +289,29 @@
     height: fit-content;
     width: fit-content;
   }
+=======
+  background-color: #00ffe5;
+  border: none;
+  color: #000000;
+  padding: 1em 3em;
+  font-weight: bold;
+  font-size: 100%;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 100px;
+  min-width: 50px;
+  height: 100%;
+  min-height: 20px;
+  max-height: 20px;
+  align-self: flex-start;
+  margin-left: 20px;
+}
+.btn-voltar:hover {
+  background-color: #00cbcc;
+}
+>>>>>>> 833d23bbbe3518cf619e3dfa6fca3eacf221541c

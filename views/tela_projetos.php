@@ -95,11 +95,10 @@ $result = $stmt->get_result();
         <div class="ORGInfoHeader">
             <h1>Projetos</h1>
         </div>
-        <button class="btn-voltar" onclick="history.back()">Voltar</button>
     </header>
 
-<div class="tudo">
     <main class="main-projetos">
+        <button class="btn-voltar" onclick="history.back()">Voltar</button>
     
         <div class="filtros">
             <form method="GET">
@@ -230,7 +229,6 @@ $result = $stmt->get_result();
             </div>
         </div>
     </main>
-    </div>
 
     <div id="mySideMenu" class="side-menu">
         <a href="javascript:void(0)" class="close-btn" onclick="closeMenu()">&times;</a>
