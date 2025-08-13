@@ -81,7 +81,7 @@
 }
   .side-menu {
     height: 100%;
-    width: 250px; /* Ajuste o tamanho do menu quando aberto */
+    width: 0;
     position: fixed;
     z-index: 1;
     top: 0;

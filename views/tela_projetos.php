@@ -112,8 +112,8 @@ $result = $stmt->get_result();
                         $curso = $row['curso'];
                     ?>
 
-                    <option value="<?= $curso ?>" <?= $filtroCurso == $curso ? 'selected' : '' ?>>
-                        <?= strtoupper($curso) ?>
+                    <option value="<?= htmlspecialchars($curso) ?>" <?= $filtroCurso == $curso ? 'selected' : '' ?>>
+                        <?= strtoupper(htmlspecialchars($curso)) ?>
                     </option>
                     
                     <?php endwhile; ?>
