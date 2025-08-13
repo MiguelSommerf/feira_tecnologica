@@ -19,14 +19,9 @@ $verif->logout();
   <title>Tela de Login</title>
 </head>
 <body class="TelaLogin">
-  <header>
-    <div class="logo-container">
-      <img src="../assets/img/etecmcm.png" alt="Logo" class="logo" />
-    </div>
-  </header>
   <div class="container">
     <div class="top">
-      
+    <img src="../assets/img/etecmcm.png" alt="Logo" class="logo" />
     </div>
 
     <button class="btn-voltar" onclick="history.back()">Voltar</button>
