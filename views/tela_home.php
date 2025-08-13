@@ -41,7 +41,6 @@ if (session_status() === PHP_SESSION_NONE) {
             <a href="tela_ods.php">ODS</a>
             <a href="tela_creditos.php">Créditos</a>
             <a href="tela_feedback.php">Avalie-nos</a>
-            <button class="btn-voltar" onclick="history.back()">Voltar</button>
           </div>
         </div>
       </div>
@@ -54,6 +53,7 @@ if (session_status() === PHP_SESSION_NONE) {
         <a href="tela_ranking.php">Ranking</a>
         <a href="tela_cursos.php">Cursos</a>
         <a href="tela_sobreEtec.php">Sobre a Etec</a>
+        <a href="../index.php">Início</a>
         <?php if(isset($_SESSION['id'])): ?>
         <a href="../back/logout.php" class="deslogar" id="deslogar" name="deslogar">Sair da Conta</a>
         <?php endif; ?>
