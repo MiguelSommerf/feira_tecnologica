@@ -10,7 +10,7 @@ if(empty($dataJSON) && empty($data)){
     $email = $data['emailGoogle'];
 }
 
-$query = "SELECT id_users, nome FROM tbl_users WHERE email = ?";
+$query = "SELECT id_users, nome FROM tbl_users WHERE email = ? AND senha IS NULL";
 $stmt = $mysqli->prepare($query);
 $stmt->bind_param("s", $email);
 $stmt->execute();
@@ -31,7 +31,18 @@ if($stmt->num_rows == 1){
     ];
     echo json_encode($mensagem_json);
 }else{
-    echo json_encode(['error' => 'E-mail não cadastrado.']);
+    $query = "SELECT id_users, nome FROM tbl_users WHERE email = ?";
+    $stmt = $mysqli->prepare($query);
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $stmt->store_result();
+
+    if ($stmt->num_rows == 1) {
+        echo json_encode(['error' => 'E-mail já cadastrado manualmente.']);
+        exit();
+    } else {
+        echo json_encode(['error' => 'E-mail não cadastrado.']);
+    }
 }
 
 $stmt->close();
