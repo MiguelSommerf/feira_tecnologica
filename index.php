@@ -43,7 +43,7 @@ $logout->logout();
           <p class="info">Informativo</p>
           <div class="a0">
             <a href="https://etecmcm.cps.sp.gov.br/" target="blank">Etec - MCM</a>
-            <a href="https://www.etecmcm.com.br/vestibulinho">Vestibulinho</a>
+            <a href="https://www.etecmcm.com.br/vestibulinho" target="blank">Vestibulinho</a>
           </div>
         </div>
         <div class="ORGmainInfo">
