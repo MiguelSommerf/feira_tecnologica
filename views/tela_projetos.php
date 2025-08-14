@@ -145,8 +145,6 @@ $result = $stmt->get_result();
                         <?php endforeach; ?>
                 </select>
 
-                <input type="text" name="orientador" id="orientador" class="botao" placeholder="Orientador">
-
                 <input type="text" name="nome" id="nome" class="botao" value="<?= htmlspecialchars($filtroNome ?? null) ?>" placeholder="Nome do Aluno:">
 
                 <input type="text" name="ods" id="ods" class="botao" value="" placeholder="Tema (ODS):">
@@ -175,6 +173,8 @@ $result = $stmt->get_result();
                 $stmtOds->bind_param("i", $row['id_projetos']);
                 $stmtOds->execute();
                 $resultOds = $stmtOds->get_result();
+
+                $queryIdProjeto = "SELECT id_projeto FROM tbl_projetos"
         ?>
 
         <div class="linha-projeto">
@@ -184,7 +184,7 @@ $result = $stmt->get_result();
                     <div class="projeto-nome">
                         <h3><?php
                             echo $row['titulo_projeto'] . " - ";
-                            echo ucfirst($row['serie']) . " ";
+                            echo ucfirst($row['serie']) . "° ";
                             echo strtoupper($row['curso']); ?>
                         </h3>
                     </div>
@@ -219,6 +219,11 @@ $result = $stmt->get_result();
                         <p><strong>Posição no Ranking:</strong>
                             <?= $row['posicao'] ?? '?' ?>
                         </p>
+                        <form action="tela_avaliacao.php" method="post">
+                            <input type="hidden" name="id_projeto" value="<?= $row['id_projetos']; ?>">
+                            <input type="hidden" name="titulo_projeto" value="<?= $row['titulo_projeto']; ?>">
+                            <button type="submit">Avaliar</button>
+                        </form>
                     </div>
                         <?php endwhile; ?>
                         <?php else: ?>

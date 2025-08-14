@@ -11,9 +11,9 @@ if (!isset($_SESSION['id'])) {
     $id_user = $_SESSION['id'];
 }
 
-$voto = isset($_POST['estrelas']) ? (int)$_POST['estrelas'] : null;
-$comentario = isset($_POST['comentario']) ? $_POST['comentario'] : null;
-$id_projeto = isset($_POST['id_projeto']) ? (int)$_POST['id_projeto'] : null;
+$voto = !empty($_POST['estrelas']) ? (int)$_POST['estrelas'] : null;
+$comentario = !empty($_POST['comentario']) ? $_POST['comentario'] : null;
+$id_projeto = !empty($_POST['id_projeto']) ? (int)$_POST['id_projeto'] : null;
 
 if (isset($voto) && isset($id_projeto)) {
     $queryVerificacao = "SELECT id_user, id_projetos FROM tb_votos WHERE id_user = (?) AND id_projetos = (?)";
@@ -24,7 +24,7 @@ if (isset($voto) && isset($id_projeto)) {
 
     if ($resultVerificacao->num_rows > 0) {
         echo "<script>alert('Você não pode votar duas vezes em um mesmo projeto.')</script>";
-        echo "<script>window.history.back()</script>";
+        echo "<script>window.location.href = '../views/tela_projetos.php';</script>";
         exit();
     }
 
@@ -40,6 +40,7 @@ if (isset($voto) && isset($id_projeto)) {
         exit();
     }
 
+    date_default_timezone_set('America/Sao_Paulo');
     $fusoHorario = new DateTime();
     $data = $fusoHorario->format('Y-m-d H:i:s');
 
@@ -50,9 +51,10 @@ if (isset($voto) && isset($id_projeto)) {
     $stmt->execute();
 
     echo "<script>alert('Agradecemos pela sua avaliação!')</script>";
-    echo "<script>window.history.back();</script>";
+    echo "<script>window.location.href = '../views/tela_projetos.php';</script>";
+    exit();
 } else {
     echo "<script>alert('Não foi possível enviar a sua avaliação. Tente novamente.')</script>";
-    echo "<script>window.history.back()</script>";
+    echo "<script>window.location.href = '../views/tela_projetos.php';</script>";
     exit();
 }
