@@ -219,6 +219,11 @@ $result = $stmt->get_result();
                         <p><strong>Posição no Ranking:</strong>
                             <?= $row['posicao'] ?? '?' ?>
                         </p>
+                        <form action="tela_avaliacao.php" method="post">
+                            <input type="hidden" name="id_projeto" value="<?= $row['id_projetos']; ?>">
+                            <input type="hidden" name="titulo_projeto" value="<?= $row['titulo_projeto']; ?>">
+                            <button type="submit" class="avaliar">Avaliar</button>
+                        </form>
                     </div>
                         <?php endwhile; ?>
                         <?php else: ?>

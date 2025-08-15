@@ -1,35 +1,45 @@
 :root {
+  /* INÍCIO ROOT TITULO */
   --FONTTitulo: Grenze;
   --FONTPadrao: Roboto;
   --FONTTituloSIZE: 20px;
   --FONTBTNSMenu: Roboto;
   --COLORBTNSMenu: black;
   --BACKGROUNDCOLORBTNSMenu: rgba(255, 255, 255, 0.5);
+  /* FIM ROOT TITULO */
+
+  /* INÍCIO ROOT BUTTON NEON */
   --glow-color: rgb(255, 255, 255);
   --glow-spread-color: rgb(255, 255, 255);
   --enhanced-glow-color: rgb(255, 255, 255);
   --btn-color: rgb(0, 0, 0);
+  /* FIM ROOT BUTTON NEON */
 }
 
 * {
   padding: 0;
   margin: 0;
-  box-sizing: border-box;
 }
 
+/* HEADER BASE */
 header {
   padding: 5px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: relative;
 }
 
 h1 {
   font-family: var(--FONTTitulo);
   font-size: var(--FONTTituloSIZE);
 }
+/*  ==========================================================
+                            FIM ROOT 
+    ==========================================================*/
 
+/*  ==========================================================
+                       INÍCIO CSS NAV BAR
+    ==========================================================*/
 .menu-toggle {
   display: flex;
   flex-direction: column;
@@ -38,28 +48,24 @@ h1 {
   cursor: pointer;
   transition: transform 0.5s;
 }
-
 .bar {
   height: 3px;
   width: 100%;
   background-color: #000;
+  min-width: none;
   margin: 4px 0;
   border-radius: 15px;
   transition: transform 0.5s, opacity 0.5s;
 }
-
 .menu-toggle.active .bar:nth-child(1) {
   transform: translateY(8px) rotate(45deg);
 }
-
 .menu-toggle.active .bar:nth-child(2) {
   opacity: 0;
 }
-
 .menu-toggle.active .bar:nth-child(3) {
   transform: translateY(-8px) rotate(-45deg);
 }
-
 .side-menu {
   height: 100%;
   width: 0;
@@ -72,7 +78,6 @@ h1 {
   transition: width 0.5s;
   padding-top: 60px;
 }
-
 .side-menu a {
   padding: 8px 8px 8px 32px;
   text-decoration: none;
@@ -81,12 +86,10 @@ h1 {
   display: block;
   transition: all 0.3s ease;
 }
-
 .side-menu a:hover {
   color: #f1f1f1;
   background-color: #444;
 }
-
 .side-menu .close-btn {
   position: absolute;
   top: 0;
@@ -140,22 +143,31 @@ ul#MenuHolder {
   gap: 2px;
 }
 
+.header-cursos {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .logo-container {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
 .logo-container img {
   width: 50px;
   height: auto;
 }
-
 .ORGInfoHeader {
-  margin-left: auto;
+  display: flex;
+  width: 50%;
+  gap: 50%;
+  justify-content: flex-end;
+}
+
+header {
+  display: flex;
+  align-items: center;
 }
 
 main {
@@ -199,30 +211,30 @@ img {
 }
 
 .btn-voltar {
-  background-color: #00ffe5;
-  border: none;
-  color: #000000;
-  padding: 1em 3em;
-  font-weight: bold;
-  font-size: 100%;
-  border-radius: 20px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  max-width: 100px;
-  min-width: 50px;
-  height: 100%;
-  min-height: 20px;
-  max-height: 20px;
-  align-self: flex-start;
-  margin-left: 20px;
-  position: fixed;
-  right:  20px;
-  top: 80px;
-}
+      background-color: #00ffe5;
+      border: none;
+      color: #000000;
+      padding: 1em 3em;
+      font-weight: bold;
+      font-size: 100%;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 100px;
+      min-width: 50px;
+      height: 100%;
+      min-height: 20px;
+      max-height: 20px;
+      align-self: flex-start;
+      margin-left: 20px;
+      position: fixed;
+      right:  20px;
+      top: 80px;
+    }
 .btn-voltar:hover {
 background-color: #00cbcc;
 }

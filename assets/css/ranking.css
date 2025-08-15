@@ -176,16 +176,6 @@
     height: 100px;
 }
 
-.foto-perfil {
-    width: 100px;
-    height: 100px;
-    background: #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-}
-
 .projeto-nome {
     background-color: #fd9797c0;
     height: 40px;
