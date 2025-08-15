@@ -344,3 +344,15 @@ main {
       height: fit-content;
       width: fit-content;
     }
+
+.avaliar{
+  max-width: 100px;
+  width: 100%;
+  margin: 15px;
+  height: 20px;
+  background-color: #044e37;
+  color: white;
+  border-radius: 5px;
+  font-weight: bold;
+  border: solid 1px #fff';
+}

@@ -98,8 +98,6 @@ if ($result_nomes->num_rows > 0) {
     foreach ($ranking as $item) {
         $linha = '
         <div class="container-projeto">
-            <div class="foto-perfil" alt="Foto de Perfil"></div>
-    
             <div class="projetos">
                 <div class="projeto-nome">Projeto ' . htmlspecialchars($item["nome"]) . ' - ' . htmlspecialchars($item["curso"]) . ' 
                     <div class="colocacao">' . $posicao . 'º lugar</div>

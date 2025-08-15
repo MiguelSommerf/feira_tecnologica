@@ -23,15 +23,16 @@ if (session_status() === PHP_SESSION_NONE) {
         <span class="bar"></span>
       </div>
       <div class="logo-container">
-        <img src="../assets/img/etecmcm.png" alt="Logo MCM" />
+        <img src="../assets/img/etecmcm.png" alt="Logo MCM"/>
       </div>
       <div class="ORGInfoHeader">
-        <h1>ETEC MCM</h1>
+        <h1>Etec MCM</h1>
       </div>
-      <button class="btn-voltar" onclick="history.back()">Voltar</button>
     </header>
 
     <main class="main-sobreEtec">
+      <button class="btn-voltar" onclick="history.back()">Voltar</button>
+      
       <div class="sobreEtec">
 
         <p>A Etec de Ribeirão Pires teve sua história iniciada em 2005, com apoio do então prefeito Clóvis Volpi e do Centro Paula Souza, dentro de um projeto do Governo do Estado para expandir o ensino técnico em São Paulo. No começo, a escola funcionava como uma extensão da Etec de Santo André, com dois cursos: Química e Turismo. As aulas começaram em 2006, em um prédio no Jardim Alvorada que foi reformado especialmente para receber os alunos.</p> 
