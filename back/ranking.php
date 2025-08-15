@@ -2,8 +2,10 @@
 require_once '../config/connect.php';
 
 // Pega todos os nomes e id's diferentes dos projetos que receberam votos
-$sql_nomes = "SELECT DISTINCT v.id_projetos, p.titulo_projeto FROM tbl_projetos as p
-              INNER JOIN tb_votos AS v ON p.id_projetos = v.id_projetos";
+$sql_nomes = "SELECT DISTINCT v.id_projetos, p.titulo_projeto, a.curso FROM tbl_projetos as p
+              INNER JOIN tb_votos AS v ON p.id_projetos = v.id_projetos
+              INNER JOIN tb_integrantes AS i ON p.id_projetos = i.id_projetos
+              INNER JOIN tbl_alunos AS a ON i.id_aluno = a.id_aluno";
 $stmt = $mysqli->prepare($sql_nomes);
 $stmt->execute();
 $result_nomes = $stmt->get_result();
