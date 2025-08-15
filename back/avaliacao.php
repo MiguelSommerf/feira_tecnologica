@@ -5,7 +5,7 @@ session_start();
 
 if (!isset($_SESSION['id'])) {
     echo "<script>alert('Você precisa estar logado para avaliar os projetos.')</script>";
-    echo "<script>window.history.back()</script>";
+    echo "<script>window.location.href = '../views/tela_login.php'</script>";
     exit();
 } else {
     $id_user = $_SESSION['id'];
