@@ -1,9 +1,3 @@
-<?php
-require_once 'back/classes/Logout.php';
-
-$logout = new Logout();
-$logout->logout();
-?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -33,11 +27,17 @@ $logout->logout();
     <main>
       <div>
         <div class="ORGmainInfo">
+          <?php if (isset($_SESSION['id'])): ?>
+          <div class="a0">
+            <a href="views/tela_home.php">Home</a>
+          </div>
+          <?php else: ?>
           <p class="info">Usuário</p>
           <div class="a0">
             <a href="views/tela_home.php">Entrar sem conta</a>
             <a href="views/tela_login.php">Entrar</a>
           </div>
+          <?php endif; ?>
         </div>
         <div class="ORGmainInfo">
           <p class="info">Informativo</p>
