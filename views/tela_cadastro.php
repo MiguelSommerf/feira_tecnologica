@@ -29,7 +29,7 @@ $verif->logout();
     
     <button class="btn-voltar" onclick="history.back()">Voltar</button>
     <div class="form-container">
-      <form action="../back/cadastro.php" method="post" id="cadastroForm">
+      <form action="../back/verificarEmail.php" method="post" id="cadastroForm">
         <label for="nome">Nome</label>
         <input type="text" id="nome" name="nameuser" placeholder="Digite seu nome" required />
 

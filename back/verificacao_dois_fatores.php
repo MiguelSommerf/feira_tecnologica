@@ -37,7 +37,7 @@ if ($inputCodigo) {
 if ($emailUsuario) {
     $codigoVerificacao = mt_rand(100000, 999999);
     $envio = new EnviarEmail();
-    $envio->enviarCodigo($emailUsuario, $codigoVerificacao);
+    $envio->enviarCodigo($emailUsuario, $codigoVerificacao, "Código de redefinição de senha:");
 
     if (session_status() === PHP_SESSION_NONE) {
         session_start();

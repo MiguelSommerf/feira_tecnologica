@@ -6,7 +6,7 @@ use PHPMailer\PHPMailer\Exception;
 
 class EnviarEmail{
 
-    public function enviarCodigo($emailUsuario, $codigo) {
+    public function enviarCodigo($emailUsuario, $codigo, $assunto) {
         global $email;
 
         try {
@@ -16,7 +16,7 @@ class EnviarEmail{
 
             // Conteúdo
             $email->isHTML(true);
-            $email->Subject = "Código de redefinição de senha:";
+            $email->Subject = "$assunto";
             $email->Body = "<center>
                                 <h1>Não compartilhe esse código:</h1><br>
                                 <h1>$codigo</h1><br>
