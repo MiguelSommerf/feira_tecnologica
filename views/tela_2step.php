@@ -54,6 +54,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     <label>Código</label>
                     <input type="text" name="codigo" minlength="6" maxlength="6" required>
                 </div>
+                <a href="../back/reenviarCodigo.php">Reenviar código</a>
                 <button type="submit">Enviar</button>
             </form>
         <?php endif; ?>
