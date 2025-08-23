@@ -1,9 +1,3 @@
-<?php
-require_once 'back/classes/Logout.php';
-
-$logout = new Logout();
-$logout->logout();
-?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -33,17 +27,23 @@ $logout->logout();
     <main>
       <div>
         <div class="ORGmainInfo">
+          <?php if (isset($_SESSION['id'])): ?>
+          <div class="a0">
+            <a href="views/tela_home.php">Home</a>
+          </div>
+          <?php else: ?>
           <p class="info">Usuário</p>
           <div class="a0">
             <a href="views/tela_home.php">Entrar sem conta</a>
             <a href="views/tela_login.php">Entrar</a>
           </div>
+          <?php endif; ?>
         </div>
         <div class="ORGmainInfo">
           <p class="info">Informativo</p>
           <div class="a0">
-            <a href="https://etecmcm.cps.sp.gov.br/" target="_blank">Etec - MCM</a>
-            <a href="https://www.etecmcm.com.br/vestibulinho" target="_blank">Vestibulinho</a>
+            <a href="https://etecmcm.cps.sp.gov.br/" target="blank">Etec - MCM</a>
+            <a href="https://www.etecmcm.com.br/vestibulinho" target="blank">Vestibulinho</a>
           </div>
         </div>
         <div class="ORGmainInfo">

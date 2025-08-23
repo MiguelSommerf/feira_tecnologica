@@ -2,10 +2,10 @@
 require_once '../config/connect.php';
 
 // Pega todos os nomes e id's diferentes dos projetos que receberam votos
-$sql_nomes = "SELECT DISTINCT v.id_projetos, p.titulo_projeto, a.curso FROM tbl_projetos as p
+$sql_nomes = "SELECT DISTINCT v.id_projetos, p.titulo_projeto, p.bloco, p.stand, p.sala, a.curso FROM tbl_projetos as p
               INNER JOIN tb_votos AS v ON p.id_projetos = v.id_projetos
-              INNER JOIN tb_integrantes AS i ON p.id_projetos = i.id_projetos
-              INNER JOIN tbl_alunos AS a ON i.id_aluno = a.id_aluno";
+              INNER JOIN tb_integrantes AS i ON i.id_projetos = p.id_projetos
+              INNER JOIN tbl_alunos AS a ON a.id_aluno = i.id_aluno";
 $stmt = $mysqli->prepare($sql_nomes);
 $stmt->execute();
 $result_nomes = $stmt->get_result();
@@ -22,6 +22,10 @@ if ($result_nomes->num_rows > 0) {
     while ($row = $result_nomes->fetch_assoc()) {
         $id_projeto = $row['id_projetos'];
         $nomeProjeto = $row["titulo_projeto"];
+        $blocoProjeto = $row['bloco'];
+        $standProjeto = $row['stand'];
+        $salaProjeto = $row['sala'];
+        $cursoProjeto = $row['curso'];
 
         // proteção contra SQL Injection
         $nomeSeguro = $mysqli->real_escape_string($nomeProjeto);
@@ -65,6 +69,10 @@ if ($result_nomes->num_rows > 0) {
         // coloca isso no array de ranking 
         $ranking[] = [
             "nome" => $nomeProjeto,
+            "curso" => $cursoProjeto,
+            "bloco" => $blocoProjeto,
+            "sala" => $salaProjeto,
+            "stand" => $standProjeto,
             "total" => (int)$total,
             "qtd_votos" => (int)$qtd_votos,
             "qtd5" => (int)$qtd5,
@@ -100,8 +108,6 @@ if ($result_nomes->num_rows > 0) {
     foreach ($ranking as $item) {
         $linha = '
         <div class="container-projeto">
-            <div class="foto-perfil" alt="Foto de Perfil"></div>
-    
             <div class="projetos">
                 <div class="projeto-nome">Projeto ' . htmlspecialchars($item["nome"]) . ' - ' . htmlspecialchars($item["curso"]) . ' 
                     <div class="colocacao">' . $posicao . 'º lugar</div>
@@ -114,9 +120,9 @@ if ($result_nomes->num_rows > 0) {
         $posicao++;
     }
 
-} //else {
-    //echo "<script>alert('Nenhum projeto com votos ainda.')</script>";
-    //echo "<script>window.history.back()</script>";
-    //exit();
-//}
+} else {
+    echo "<script>alert('Nenhum projeto com votos ainda.')</script>";
+    echo "<script>window.history.back()</script>";
+    exit();
+}
 ?>

@@ -39,7 +39,7 @@ if (session_status() === PHP_SESSION_NONE) {
                 <?php
                     $dados = [
                         ["Ângelo Gabriel", "../assets/img/Perfil.jpeg", "Team leader - Back", null, "https://github.com/projAngeloAraujo"],
-                        ["Enzo Móbile", "../assets/img/Perfil.jpeg", "Programador - Back", null, "https://github.com/enzomobile"],
+                        ["Enzo Móbile", "../assets/img/Back/enzo.jpeg", "Programador - Back", null, "https://github.com/enzomobile"],
                         ["Guilherme Solon", "../assets/img/Back/Guilherme Solon.jpeg", "Programador - Back", "https://www.linkedin.com/in/guilherme-solon-691289369?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app ", "https://github.com/Solonguitec"],
                         ["Gustavo da Rocha", "../assets/img/Perfil.jpeg", "Programador - Back", null, "https://github.com/gustapinheiro"],
                         ["Gustavo Rangel", "../assets/img/Back/Gustavo Rangel.jpeg", "Programador - Back","https://www.linkedin.com/in/gustavo-rangel-b9ba18357?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app ", "https://github.com/DEVRangelll"],
@@ -191,6 +191,7 @@ if (session_status() === PHP_SESSION_NONE) {
         <a href="tela_ranking.php">Ranking</a>
         <a href="tela_cursos.php">Cursos</a>
         <a href="tela_sobreEtec.php">Sobre a Etec</a>
+        <a href="../index.php">Início</a>
         <?php if(isset($_SESSION['id'])): ?>
         <a href="../back/logout.php" class="deslogar" id="deslogar" name="deslogar">Sair da Conta</a>
         <?php endif; ?>

@@ -46,8 +46,8 @@ function headerHTML() {
                     <div class="ORGInfoHeader">
                         <h1>Locais</h1><!--Nome da tela (ex. Avaliação)-->
                     </div>
-                    <button class="btn-voltar" onclick="history.back()">Voltar</button>
                 </header>
+                <button class="btn-voltar" onclick="history.back()">Voltar</button> 
 
                 <div id="mySideMenu" class="side-menu">
                     <a href="javascript:void(0)" class="close-btn" onclick="closeMenu()">&times;</a>
@@ -56,6 +56,7 @@ function headerHTML() {
                     <a href="tela_ranking.php">Ranking</a>
                     <a href="tela_cursos.php">Cursos</a>
                     <a href="tela_sobreEtec.php">Sobre a Etec</a>
+                    <a href="../index.php">Início</a>
                     <a href="../back/logout.php" class="deslogar" id="deslogar" name="deslogar">Sair da Conta</a>
                 </div>
             </nav>

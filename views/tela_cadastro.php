@@ -29,7 +29,7 @@ $verif->logout();
     
     <button class="btn-voltar" onclick="history.back()">Voltar</button>
     <div class="form-container">
-      <form action="../back/cadastro.php" method="post" id="cadastroForm">
+      <form action="../back/verificarEmail.php" method="post" id="cadastroForm">
         <label for="nome">Nome</label>
         <input type="text" id="nome" name="nameuser" placeholder="Digite seu nome" required />
 
@@ -70,6 +70,13 @@ $verif->logout();
   <!--API DO GOOGLE-->
   <!--Codado por Guilherme Solon (Turma A) e Miguel Luiz Sommerfeld (Turma B) - 3°F-->
 
+  <!-- Tive que alterar a declaração das variáveis para cá, pois a API tentava acessar antes, e dava alguns erros de escopo. -->
+   <script>
+      let email = "";
+      let name = "";
+      let dataNasc = "";
+   </script>
+
     <script src="https://accounts.google.com/gsi/client" async defer></script>
 
     <div id="g_id_onload"
@@ -87,9 +94,7 @@ $verif->logout();
     </div>
 
     <script>
-      document
-        .getElementById("mobile-menu")
-        .addEventListener("click", function () {
+      document.getElementById("mobile-menu").addEventListener("click", function () {
           this.classList.toggle("active");
           openMenu();
         });
@@ -102,13 +107,6 @@ $verif->logout();
         document.getElementById("mySideMenu").style.width = "0";
         document.getElementById("mobile-menu").classList.remove("active");
       }
-
-      let name = "";
-      let email = "";
-      let dataNasc = "";
-      
-      google.accounts.id.disableAutoSelect();
-      localStorage.clear();
 
       function handleCredentialResponse(response){
           console.log("ID Token:", response.credential);
@@ -163,6 +161,9 @@ $verif->logout();
           const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
           return JSON.parse(atob(base64));
       }
+
+      google.accounts.id.disableAutoSelect();
+      localStorage.clear();
   </script>
   <script>
       // Confirmar senha

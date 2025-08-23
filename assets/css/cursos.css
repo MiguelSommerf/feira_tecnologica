@@ -256,40 +256,6 @@
 
 
 .btn-voltar {
-<<<<<<< HEAD
-    background-color: #00ffe5;
-    border: 2px solid #00ffe5;
-    color: #000000;
-    padding: 1em 3em;
-    font-weight: bold;
-    font-size: 18px;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    text-shadow: none;
-    box-shadow: none;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .btn-voltar:hover {
-    background-color: #00cbcc;
-    color: #000000;
-    border-color: #00ffe5;
-  }
-
-
-  .logo-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    height: fit-content;
-    width: fit-content;
-  }
-=======
   background-color: #00ffe5;
   border: none;
   color: #000000;
@@ -310,8 +276,10 @@
   max-height: 20px;
   align-self: flex-start;
   margin-left: 20px;
+  position: fixed;
+  right:  20px;
+  top: 80px;
 }
 .btn-voltar:hover {
   background-color: #00cbcc;
 }
->>>>>>> 833d23bbbe3518cf619e3dfa6fca3eacf221541c

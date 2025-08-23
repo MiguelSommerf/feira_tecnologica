@@ -1,6 +1,33 @@
 <?php
+require_once '../config/connect.php';
+
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
+}
+
+$id_projeto = isset($_POST['id_projeto']) ? (int)$_POST['id_projeto'] : null;
+$titulo_projeto = isset($_POST['titulo_projeto']) ? $_POST['titulo_projeto'] : null;
+
+$queryAluno = "SELECT nome FROM tb_integrantes as i
+                INNER JOIN tbl_projetos AS p ON p.id_projetos = i.id_projetos
+                INNER JOIN tbl_alunos as a ON a.id_aluno = i.id_aluno
+                WHERE i.id_projetos = ?";
+$stmtAluno = $mysqli->prepare($queryAluno);
+$stmtAluno->bind_param("i", $id_projeto);
+$stmtAluno->execute();
+$resultAlunos = $stmtAluno->get_result();
+
+$querySerieCurso = "SELECT DISTINCT a.serie, a.curso FROM tbl_projetos AS p
+          INNER JOIN tb_integrantes AS i ON p.id_projetos = i.id_projetos
+          INNER JOIN tbl_alunos AS a ON a.id_aluno = i.id_aluno";
+$stmtSerieCurso = $mysqli->prepare($querySerieCurso);
+$stmtSerieCurso->execute();
+$resultSerieCurso = $stmtSerieCurso->get_result();
+
+if (!isset($id_projeto)) {
+    echo "<script>alert('Não há nenhum projeto para avaliar.')</script>";
+    echo "<script>window.history.back()</script>";
+    exit();
 }
 ?>
 <!DOCTYPE html>
@@ -35,48 +62,34 @@ if (session_status() === PHP_SESSION_NONE) {
         
         <div class="avaliacao-container">
             <div class="avaliacao-header">
-                <img src="" alt="" class="avaliacao-logo"> <!-- Inserir Foto-->
                 <div class="avaliacao-infos">
                     <div class="campo">
-                        <input type="text" placeholder="Projeto:" readonly/>
+                        <input type="text" value="Projeto: <?= $titulo_projeto ?>" readonly>
                     </div>
                     <div class="campo">
-                        <input type="text" placeholder="Alunos:" readonly/>
+                        <input type="text" value="Alunos: <?php while ($row = $resultAlunos->fetch_assoc()) echo $row['nome'] . '; ';
+                        ?>" readonly/>
                     </div>
                     <div class="campo">
-                        <input type="text" placeholder="Turma:" readonly/>
+                        <input type="text" value="Série: <?php while ($rowSerieCurso = $resultSerieCurso->fetch_assoc()) echo $rowSerieCurso['serie'] . '° ' . $rowSerieCurso['curso']; ?>" readonly>
                     </div>
                 </div>
             </div>
-            <div class="avaliacao-linha">
-                <span>Apresentação</span>
-                <div class="avaliacao-estrelas-container">
-                    <div class="avaliacao-estrelas" data-id="0"></div>
+
+            <form action="../back/avaliacao.php" method="post">
+                <input type="hidden" name="id_projeto" value="<?=$id_projeto?>">
+                <div class="avaliacao-linha">
+                    <span><strong>Nota:</strong></span>
+                    <div class="avaliacao-estrelas-container">
+                        <input type="hidden" name="estrelas" id="nota" value="" required>
+                        <div class="avaliacao-estrelas" data-id="0"></div>
+                    </div>
                 </div>
-            </div>
-            <div class="avaliacao-linha">
-                <span>Organização</span>
-                <div class="avaliacao-estrelas-container">
-                    <div class="avaliacao-estrelas" data-id="1"></div>
+                <div class="avaliacao-comentario">
+                    <textarea name="comentario" class="avaliacao-textarea" placeholder="Deixe um comentário..."></textarea>
+                    <button type="submit" class="avaliacao-button" id="">Enviar</button>
                 </div>
-            </div>
-            <div class="avaliacao-linha">
-                <span>Banner</span>
-                <div class="avaliacao-estrelas-container">
-                    <div class="avaliacao-estrelas" data-id="2"></div>
-                </div>
-            </div>
-            <div class="avaliacao-linha">
-                <span>Ideia do projeto</span>
-                <div class="avaliacao-estrelas-container">
-                    <div class="avaliacao-estrelas" data-id="3"></div>
-                </div>
-            </div>
-        </div>
-        <div class="avaliacao-comentario">
-            <textarea class="avaliacao-textarea" placeholder="Deixe um comentário..."></textarea>
-            <button class="avaliacao-button" id="">Enviar</button>
-        </div>
+            </form>
     </main>
 
     <div id="mySideMenu" class="side-menu">
@@ -88,6 +101,7 @@ if (session_status() === PHP_SESSION_NONE) {
       <a href="tela_cursos.php">Cursos</a>
       <a href="tela_sobreEtec.php">Sobre a Etec</a>
       <a href="tela_acessibilidade.php">Acessibilidade</a>
+      <a href="../index.php">Início</a>
       <?php if(isset($_SESSION['id'])): ?>
       <a href="../back/logout.php" class="deslogar" id="deslogar" name="deslogar">Sair da Conta</a>
       <?php endif; ?>
@@ -124,6 +138,7 @@ if (session_status() === PHP_SESSION_NONE) {
         //Script da avalicao
         function criarEstrelas(container, numEstrelas = 5) {
         for (let i = 0; i < numEstrelas; i++) {
+            const inputNota = document.getElementById('nota');
             const estrela = document.createElement("span");
             estrela.innerHTML = "★";
             estrela.classList.add("avaliacao-estrela");
@@ -132,6 +147,8 @@ if (session_status() === PHP_SESSION_NONE) {
             todasEstrelas.forEach((s, idx) => {
                 s.classList.toggle("checked", idx <= i);
             });
+            
+            inputNota.value = i + 1; 
             });
             container.appendChild(estrela);
         }
@@ -139,6 +156,16 @@ if (session_status() === PHP_SESSION_NONE) {
         document.querySelectorAll('.avaliacao-estrelas').forEach(containerEstrela => {
         criarEstrelas(containerEstrela);
         });
+
+        const formulario = document.querySelector('form');
+        formulario.addEventListener('submit', function(e){
+            const inputNota = document.getElementById('nota');
+
+            if (inputNota.value === "") {
+                alert('Selecione a quantidade de estrelas para enviar a avaliação.');
+                e.preventDefault();
+            }
+        })
     </script>
 </body>
 </html>

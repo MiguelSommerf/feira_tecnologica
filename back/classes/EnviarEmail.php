@@ -6,7 +6,7 @@ use PHPMailer\PHPMailer\Exception;
 
 class EnviarEmail{
 
-    public function enviarCodigo($emailUsuario, $codigo) {
+    public function enviarCodigo($emailUsuario, $codigo, $assunto) {
         global $email;
 
         try {
@@ -16,7 +16,7 @@ class EnviarEmail{
 
             // Conteúdo
             $email->isHTML(true);
-            $email->Subject = "Código de redefinição de senha:";
+            $email->Subject = "$assunto";
             $email->Body = "<center>
                                 <h1>Não compartilhe esse código:</h1><br>
                                 <h1>$codigo</h1><br>
@@ -30,6 +30,34 @@ class EnviarEmail{
             return true;
         } catch (Exception $e) {
             return false;
+        }
+    }
+
+    public static function reenviarCodigo() {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        if (empty($_SESSION['hashcode']) or empty($_SESSION['email'])) {
+            header('Location: ../views/tela_login.php');
+            exit();
+        };
+
+        if ((time() - $_SESSION['hashcode-time']) < 60) {
+            echo "<script>alert('Aguarde 1 minuto antes de pedir o reenvio de código.')</script>";
+            echo "<script>window.location.href = '../views/tela_2step.php'</script>";
+            exit();
+        }
+
+        if ((time() - $_SESSION['hashcode-time']) >= 60) {
+            $codigoVerificacao = mt_rand(100000, 999999);
+            $_SESSION['hashcode'] = password_hash($codigoVerificacao, PASSWORD_DEFAULT);
+            $_SESSION['hashcode-time'] = time();
+            $envioEmail = new EnviarEmail();
+            $envioEmail->enviarCodigo($_SESSION['email'], $codigoVerificacao, "Reenvio de código de redefinição de senha:");
+            
+            header('Location: ../views/tela_2step.php');
+            exit();
         }
     }
 }

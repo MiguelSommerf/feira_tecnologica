@@ -3,25 +3,25 @@
 require_once '../config/connect.php';
 require_once 'classes/VerificarCampos.php';
 
-$verif = new VerificarCampos($mysqli);
+if(isset($_SESSION['nameuser']) && ($_SESSION['emailuser']) && ($_SESSION['passuser']) && ($_SESSION['birthuser'])){
 
-if(isset($_POST['nameuser']) && ($_POST['emailuser']) && ($_POST['passuser']) && ($_POST['birthuser'])){
+    $verif = new VerificarCampos($mysqli);
 
-    $verif->verificarNome($_POST['nameuser']);
-    $verif->verificarEmail($_POST['emailuser']);
-    $verif->verificarSenha($_POST['passuser']);
-    $verif->verificarDataDeNascimento($_POST['birthuser']);
-    $verif->verificarEspacoEmBranco($_POST['emailuser']);
-    $verif->verificarEspacoEmBranco($_POST['passuser']);
+    $verif->verificarNome($_SESSION['nameuser']);
+    $verif->verificarEmail($_SESSION['emailuser']);
+    $verif->verificarSenha($_SESSION['passuser']);
+    $verif->verificarDataDeNascimento($_SESSION['birthuser']);
+    $verif->verificarEspacoEmBranco($_SESSION['emailuser']);
+    $verif->verificarEspacoEmBranco($_SESSION['passuser']);
 
-    if((!empty($_POST['emailuser']) && !empty($_POST['passuser'])) && (!empty($_POST['nameuser']) && !empty($_POST['birthuser']))){
-        $verif->verificarEmailExistente($_POST['emailuser']);
-        $senha = trim($_POST['passuser']);
+    if((!empty($_SESSION['emailuser']) && !empty($_SESSION['passuser'])) && (!empty($_SESSION['nameuser']) && !empty($_SESSION['birthuser']))){
+        $verif->verificarEmailExistente($_SESSION['emailuser']);
+        $senha = trim($_SESSION['passuser']);
 
-        $nome = trim(ucwords(strtolower($_POST['nameuser'])));
-        $email = trim(strtolower($_POST['emailuser']));
+        $nome = trim(ucwords(strtolower($_SESSION['nameuser'])));
+        $email = trim(strtolower($_SESSION['emailuser']));
         $hash = password_hash($senha, PASSWORD_DEFAULT);
-        $data_nascimento = $_POST['birthuser'];
+        $data_nascimento = $_SESSION['birthuser'];
 
         //aqui eu basicamente criei um 'template' de quais campos serão preenchidos, cada um desses '?', serão preenchidos com dados de forma segura depois.
         $sql_query = "INSERT INTO tbl_users (nome, email, senha, data_nasc) VALUES (?,?,?,?)";
@@ -40,4 +40,3 @@ if(isset($_POST['nameuser']) && ($_POST['emailuser']) && ($_POST['passuser']) &&
         exit();
     };
 }
-?>

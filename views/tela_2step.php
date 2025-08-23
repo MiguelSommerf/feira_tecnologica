@@ -18,9 +18,6 @@ if (session_status() === PHP_SESSION_NONE) {
 <body class="TelaInicio">
 <header>
       <div class="menu-toggle" id="mobile-menu">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
       </div>
       <div class="logo-container">
         <img src="../assets/img/etecmcm.png" alt="Logo MCM"/>
@@ -29,9 +26,9 @@ if (session_status() === PHP_SESSION_NONE) {
         <h1>Esqueci a Senha</h1>
       </div>
     </header>
+    <button class="btn-voltar" onclick="history.back()">Voltar</button>
     <main>
         
-      <button class="btn-voltar" onclick="history.back()">Voltar</button>
         <?php if (isset($_SESSION['redefine'])): ?>
             <form action="../back/redefinir.php" method="post">
                 <h3>Digite a sua nova senha</h3>
@@ -57,6 +54,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     <label>Código</label>
                     <input type="text" name="codigo" minlength="6" maxlength="6" required>
                 </div>
+                <a href="../back/reenviarCodigo.php">Reenviar código</a>
                 <button type="submit">Enviar</button>
             </form>
         <?php endif; ?>
