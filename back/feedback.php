@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($nota < 1 || $nota > 5) {
         echo "<script>
             alert('Nota inválida.');
-            window.history.back();
+            window.location.href = '../views/tela_feedback.php';
         </script>";
         exit();
     }
@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $mysqli->close();
         echo "<script>
             alert('Você já enviou um feedback.');
-            window.history.back();
+            window.location.href = '../views/tela_home.php';
         </script>";
         exit();
     }
@@ -52,16 +52,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $mysqli->close();
             echo "<script>
                 alert('Feedback enviado!');
-                window.history.back();
+                window.location.href = '../views/tela_home.php';
             </script>";
         } else {
             $stmt->close();
             $mysqli->close();
             echo "<script>
                 alert('Erro ao enviar feedback.');
-                window.history.back();
+                window.location.href = '../views/tela_feedback.php';
             </script>";
         }
     }
 }
-?>

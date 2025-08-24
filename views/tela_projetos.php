@@ -70,7 +70,6 @@ $result = $stmt->get_result();
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -81,7 +80,6 @@ $result = $stmt->get_result();
     <script type="text/javascript" src="https://cdn.rybena.com.br/dom/master/latest/rybena.js"></script>
     <link rel="stylesheet" href="../assets/css/filtro.css">
 </head>
-
 <body class="TelaProjetos">
     <header>
         <div class="menu-toggle" id="mobile-menu">
@@ -98,8 +96,7 @@ $result = $stmt->get_result();
     </header>
 
     <main class="main-projetos">
-        <button class="btn-voltar" onclick="history.back()">Voltar</button>
-    
+        <button class="btn-voltar" onclick="window.location.href = '../views/tela_home.php'">Voltar</button>
         <div class="filtros">
             <form method="GET">
                 <select name="curso" id="curso" class="botao">
@@ -154,32 +151,30 @@ $result = $stmt->get_result();
 
         <h2>Resultados: <?=$result->num_rows ?></h2>
         <?php
-        if ($result->num_rows > 0) :
-            while ($row = $result->fetch_assoc()) :
-                $queryAluno = "SELECT nome FROM tb_integrantes as i
-                            INNER JOIN tbl_projetos AS p ON p.id_projetos = i.id_projetos
-                            INNER JOIN tbl_alunos as a ON a.id_aluno = i.id_aluno
-                            WHERE i.id_projetos = ?";
-                $stmt = $mysqli->prepare($queryAluno);
-                $stmt->bind_param("i", $row['id_projetos']);
-                $stmt->execute();
-                $resultAlunos = $stmt->get_result();
+            if ($result->num_rows > 0):
+                while ($row = $result->fetch_assoc()):
+                    $queryAluno = "SELECT nome FROM tb_integrantes as i
+                                INNER JOIN tbl_projetos AS p ON p.id_projetos = i.id_projetos
+                                INNER JOIN tbl_alunos as a ON a.id_aluno = i.id_aluno
+                                WHERE i.id_projetos = ?";
+                    $stmt = $mysqli->prepare($queryAluno);
+                    $stmt->bind_param("i", $row['id_projetos']);
+                    $stmt->execute();
+                    $resultAlunos = $stmt->get_result();
 
-                $queryOds = "SELECT ods FROM ods_projeto AS op
-                            INNER JOIN tbl_projetos as p ON op.id_projetos = p.id_projetos
-                            INNER JOIN tbl_ods AS o ON o.id_ods = op.id_ods
-                WHERE op.id_projetos = ?";
-                $stmtOds = $mysqli->prepare($queryOds);
-                $stmtOds->bind_param("i", $row['id_projetos']);
-                $stmtOds->execute();
-                $resultOds = $stmtOds->get_result();
+                    $queryOds = "SELECT ods FROM ods_projeto AS op
+                                INNER JOIN tbl_projetos as p ON op.id_projetos = p.id_projetos
+                                INNER JOIN tbl_ods AS o ON o.id_ods = op.id_ods
+                    WHERE op.id_projetos = ?";
+                    $stmtOds = $mysqli->prepare($queryOds);
+                    $stmtOds->bind_param("i", $row['id_projetos']);
+                    $stmtOds->execute();
+                    $resultOds = $stmtOds->get_result();
 
-                $queryIdProjeto = "SELECT id_projeto FROM tbl_projetos"
+                    $queryIdProjeto = "SELECT id_projeto FROM tbl_projetos"
         ?>
-
         <div class="linha-projeto">
             <div class="container-projeto">
-
                 <div class="projetos">
                     <div class="projeto-nome">
                         <h3><?php
@@ -188,7 +183,6 @@ $result = $stmt->get_result();
                             echo strtoupper($row['curso']); ?>
                         </h3>
                     </div>
-                    
                     <div class="projeto-lugar">
                         <?php
                         echo "Sala: " . htmlspecialchars($row['sala']) . " - ";
@@ -225,16 +219,14 @@ $result = $stmt->get_result();
                             <button type="submit" class="avaliar">Avaliar</button>
                         </form>
                     </div>
-                        <?php endwhile; ?>
-                        <?php else: ?>
-                            <h1>Nenhum trabalho encontrado com os filtros selecionados.</h1>
-                        <?php endif; ?>
-                    </div>
+                    <?php endwhile; ?>
+                    <?php else: ?>
+                        <h1>Nenhum trabalho encontrado com os filtros selecionados.</h1>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
     </main>
-
     <div id="mySideMenu" class="side-menu">
         <a href="javascript:void(0)" class="close-btn" onclick="closeMenu()">&times;</a>
         <a href="tela_mapa.php">Mapa</a>
@@ -247,8 +239,6 @@ $result = $stmt->get_result();
         <a href="../back/logout.php" class="deslogar" id="deslogar" name="deslogar">Sair da Conta</a>
         <?php endif; ?>
     </div>
-    
-
     <script>
         document
             .getElementById("mobile-menu")
@@ -267,5 +257,4 @@ $result = $stmt->get_result();
         }
     </script>
 </body>
-
 </html>

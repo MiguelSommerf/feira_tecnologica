@@ -1,12 +1,11 @@
 <?php 
-    if (session_status() === PHP_SESSION_NONE) {
-        session_start();
-    }
-
-    if ($_SESSION['verificando'] != 1) {
-        echo "<script>window.history.back();</script>";
-        exit();
-    }
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+if ($_SESSION['verificando'] != 1) {
+    echo "<script>window.location.href='../views/tela_cadastro.php'</script>";
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -22,6 +21,7 @@
     <h2>Insira o código:</h2>
     <form action="../back/verificarEmail.php" method="POST">
         <input type="number" name="codigo" id="codigo" placeholder="Código">
+        <a href="../back/reenviarCodigo.php">Reenviar código</a>
         <button type="submit">Verificar</button>
     </form>
 </body>

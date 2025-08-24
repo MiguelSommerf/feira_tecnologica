@@ -27,6 +27,9 @@ SET time_zone = "+00:00";
 -- Estrutura da tabela `ods_projeto`
 --
 
+CREATE DATABASE IF NOT EXISTS `feira` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `feira`;
+
 CREATE TABLE `ods_projeto` (
   `id_ods` int(11) NOT NULL,
   `id_projetos` int(11) NOT NULL
@@ -154,7 +157,7 @@ INSERT INTO `tbl_projetos` (`id_projetos`, `titulo_projeto`, `descricao_projeto`
 
 CREATE TABLE `tbl_users` (
   `id_users` int(11) NOT NULL,
-  `is_admin` tinyint(1) NOT NULL,
+  `is_admin` BIT NOT NULL DEFAULT 0,
   `nome` varchar(50) NOT NULL,
   `email` varchar(100) NOT NULL,
   `senha` varchar(255) DEFAULT NULL,

@@ -67,3 +67,6 @@ if ($resultEmailExistente->num_rows === 1) {
     echo "<script>window.location.href = '../views/tela_login.php'</script>";
     exit();
 }
+
+echo "<script>window.history.back();</script>";
+exit();

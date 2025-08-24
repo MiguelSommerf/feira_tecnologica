@@ -125,4 +125,3 @@ if ($result_nomes->num_rows > 0) {
     echo "<script>window.history.back()</script>";
     exit();
 }
-?>

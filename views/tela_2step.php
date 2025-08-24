@@ -2,6 +2,9 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+if (isset($_SESSION['verificando'])) {
+    unset($_SESSION['verificando']);
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -16,19 +19,18 @@ if (session_status() === PHP_SESSION_NONE) {
     <link rel="stylesheet" href="../assets/css/2step.css">
 </head>
 <body class="TelaInicio">
-<header>
-      <div class="menu-toggle" id="mobile-menu">
-      </div>
-      <div class="logo-container">
+    <header>
+        <div class="menu-toggle" id="mobile-menu">
+        </div>
+        <div class="logo-container">
         <img src="../assets/img/etecmcm.png" alt="Logo MCM"/>
-      </div>
-      <div class="ORGInfoHeader">
+        </div>
+        <div class="ORGInfoHeader">
         <h1>Esqueci a Senha</h1>
-      </div>
+        </div>
     </header>
-    <button class="btn-voltar" onclick="history.back()">Voltar</button>
+    <button class="btn-voltar" onclick="window.location.href = '../views/tela_login.php'"">Voltar</button>
     <main>
-        
         <?php if (isset($_SESSION['redefine'])): ?>
             <form action="../back/redefinir.php" method="post">
                 <h3>Digite a sua nova senha</h3>

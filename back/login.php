@@ -46,5 +46,3 @@ if($stmt->num_rows == 1){
     echo "<script>window.history.back();</script>";
     exit();
 };
-
-?>

@@ -3,23 +3,23 @@
 require_once '../config/connect.php';
 require_once 'classes/VerificarCampos.php';
 
-if(isset($_SESSION['nameuser']) && ($_SESSION['emailuser']) && ($_SESSION['passuser']) && ($_SESSION['birthuser'])){
+if(isset($_SESSION['nameuser']) && ($_SESSION['email']) && ($_SESSION['passuser']) && ($_SESSION['birthuser'])){
 
     $verif = new VerificarCampos($mysqli);
 
     $verif->verificarNome($_SESSION['nameuser']);
-    $verif->verificarEmail($_SESSION['emailuser']);
+    $verif->verificarEmail($_SESSION['email']);
     $verif->verificarSenha($_SESSION['passuser']);
     $verif->verificarDataDeNascimento($_SESSION['birthuser']);
-    $verif->verificarEspacoEmBranco($_SESSION['emailuser']);
+    $verif->verificarEspacoEmBranco($_SESSION['email']);
     $verif->verificarEspacoEmBranco($_SESSION['passuser']);
 
-    if((!empty($_SESSION['emailuser']) && !empty($_SESSION['passuser'])) && (!empty($_SESSION['nameuser']) && !empty($_SESSION['birthuser']))){
-        $verif->verificarEmailExistente($_SESSION['emailuser']);
+    if((!empty($_SESSION['email']) && !empty($_SESSION['passuser'])) && (!empty($_SESSION['nameuser']) && !empty($_SESSION['birthuser']))){
+        $verif->verificarEmailExistente($_SESSION['email']);
         $senha = trim($_SESSION['passuser']);
 
         $nome = trim(ucwords(strtolower($_SESSION['nameuser'])));
-        $email = trim(strtolower($_SESSION['emailuser']));
+        $email = trim(strtolower($_SESSION['email']));
         $hash = password_hash($senha, PASSWORD_DEFAULT);
         $data_nascimento = $_SESSION['birthuser'];
 

@@ -22,3 +22,6 @@ if (isset($_SESSION['redefine'])) {
     echo "<script>window.location.href = '../views/tela_login.php'</script>";
     exit();
 }
+
+echo "<script>window.history.back();</script>";
+exit();

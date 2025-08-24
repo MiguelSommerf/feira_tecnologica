@@ -8,4 +8,3 @@ echo "<script>window.location.href = '../index.php'</script>";
 exit();
 
 //Método logoutDirecionado não está em uso.
-?>

@@ -21,12 +21,12 @@ function headerHTML() {
         <!DOCTYPE html>
         <html lang="pt-br">
         <head>
-            <meta charset="UTF-8" />
-            <title>Feira de Projetos</title>
-            <link href="../assets/css/mapa.css" rel="stylesheet" /> 
-            <link rel="preconnect" href="https://fonts.googleapis.com" />
-            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-            <link href="https://fonts.googleapis.com/css2?family=Karantina:wght@300;400;700&display=swap" rel="stylesheet" />
+            <meta charset="UTF-8">
+            <title>Mapa da feira</title>
+            <link href="../assets/css/mapa.css" rel="stylesheet"> 
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Karantina:wght@300;400;700&display=swap" rel="stylesheet">
             <script type="text/javascript" src="https://cdn.rybena.com.br/dom/master/latest/rybena.js"></script>
         </head>
         <body class="telaTal">
@@ -38,17 +38,14 @@ function headerHTML() {
                         <span class="bar"></span>
                         <span class="bar"></span>
                     </div>
-
                     <div class="logo-container">
                         <img src="../assets/img/etecmcm.png" alt="Logo MCM"/>
                     </div>
-
                     <div class="ORGInfoHeader">
                         <h1>Locais</h1><!--Nome da tela (ex. Avaliação)-->
                     </div>
                 </header>
-                <button class="btn-voltar" onclick="history.back()">Voltar</button> 
-
+                <button class="btn-voltar" onclick="window.location.href = '../views/tela_home.php'">Voltar</button> 
                 <div id="mySideMenu" class="side-menu">
                     <a href="javascript:void(0)" class="close-btn" onclick="closeMenu()">&times;</a>
                     <a href="tela_mapa.php">Mapa</a>
@@ -67,7 +64,6 @@ function headerHTML() {
 function footerHTML() {
     echo <<<HTML
         </div>
-
             <script>
                 document.getElementById('mobile-menu').addEventListener('click', function() {
                     this.classList.toggle('active');
@@ -199,4 +195,3 @@ if ($bloco && $sala) {
     footerHTML();
     exit;
 }
-?>

@@ -45,7 +45,7 @@ class EnviarEmail{
 
         if ((time() - $_SESSION['hashcode-time']) < 60) {
             echo "<script>alert('Aguarde 1 minuto antes de pedir o reenvio de código.')</script>";
-            echo "<script>window.location.href = '../views/tela_2step.php'</script>";
+            echo "<script>history.back();</script>";
             exit();
         }
 
@@ -54,9 +54,16 @@ class EnviarEmail{
             $_SESSION['hashcode'] = password_hash($codigoVerificacao, PASSWORD_DEFAULT);
             $_SESSION['hashcode-time'] = time();
             $envioEmail = new EnviarEmail();
-            $envioEmail->enviarCodigo($_SESSION['email'], $codigoVerificacao, "Reenvio de código de redefinição de senha:");
+
+            if (isset($_SESSION['verificando'])) {
+                $mensagem = "Reenvio de código de verificação de e-mail:";
+            } else {
+                $mensagem = "Reenvio de código de redefinição de senha:";
+            }
+
+            $envioEmail->enviarCodigo($_SESSION['email'], $codigoVerificacao, $mensagem);
             
-            header('Location: ../views/tela_2step.php');
+            echo "<script>history.back();</script>";
             exit();
         }
     }

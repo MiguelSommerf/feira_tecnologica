@@ -8,10 +8,10 @@ if (session_status() === PHP_SESSION_NONE) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Layout de Equipes</title>
+    <title>Equipes</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Grenze:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Grenze:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <script type="text/javascript" src="https://cdn.rybena.com.br/dom/master/latest/rybena.js"></script>
     <link rel="stylesheet" href="../assets/css/creditos.css">
 </head>
@@ -29,9 +29,8 @@ if (session_status() === PHP_SESSION_NONE) {
             <h1 class="h1-Creditos">Creditos</h1>
         </div>
     </header>
-
     <main style="padding: 0">
-    <button class="btn-voltar" onclick="history.back()">Voltar</button>
+        <button class="btn-voltar" onclick="window.location.href = '../views/tela_home.php'">Voltar</button>
         <div class="container">
             <!-- Back-end -->
             <div class="sep-cat-cred"><p class="titulo">Back-end</p></div>
@@ -39,7 +38,7 @@ if (session_status() === PHP_SESSION_NONE) {
                 <?php
                     $dados = [
                         ["Ângelo Gabriel", "../assets/img/Perfil.jpeg", "Team leader - Back", null, "https://github.com/projAngeloAraujo"],
-                        ["Enzo Móbile", "../assets/img/Back/enzo.jpeg", "Programador - Back", null, "https://github.com/enzomobile"],
+                        ["Enzo Móbile", "../assets/img/Back/enzo.jpeg", "Programador - Back", "https://www.linkedin.com/in/enzo-m%C3%B3bile-de-oliveira-4b5472304/", "https://github.com/enzomobile"],
                         ["Guilherme Solon", "../assets/img/Back/Guilherme Solon.jpeg", "Programador - Back", "https://www.linkedin.com/in/guilherme-solon-691289369?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app ", "https://github.com/Solonguitec"],
                         ["Gustavo da Rocha", "../assets/img/Perfil.jpeg", "Programador - Back", null, "https://github.com/gustapinheiro"],
                         ["Gustavo Rangel", "../assets/img/Back/Gustavo Rangel.jpeg", "Programador - Back","https://www.linkedin.com/in/gustavo-rangel-b9ba18357?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app ", "https://github.com/DEVRangelll"],

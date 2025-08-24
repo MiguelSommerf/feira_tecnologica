@@ -41,4 +41,3 @@ if(!empty($nome) && !empty($email) && !empty($data_nascimento)){
 
 require_once 'login_api.php';
 exit();
-?>

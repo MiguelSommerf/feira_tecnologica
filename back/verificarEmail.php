@@ -27,7 +27,7 @@ if (isset($_POST['nameuser']) && ($_POST['emailuser']) && ($_POST['passuser']) &
         }
 
         $_SESSION['nameuser'] = ucfirst(trim($_POST['nameuser']));
-        $_SESSION['emailuser'] = strtolower(trim($_POST['emailuser']));
+        $_SESSION['email'] = strtolower(trim($_POST['emailuser']));
         $_SESSION['passuser'] = $_POST['passuser'];
         $_SESSION['birthuser'] = $_POST['birthuser'];
 
@@ -40,6 +40,7 @@ if (isset($_POST['nameuser']) && ($_POST['emailuser']) && ($_POST['passuser']) &
         exit();
     } else {
         echo "<script>alert('Preencha todos os campos.')</script>";
+        echo "<script>window.location.href = '../views/tela_cadastro.php'</script>";
         exit();
     }
 }
@@ -64,6 +65,10 @@ if (isset($_SESSION['hashcode']) && isset($_POST['codigo'])) {
         require_once 'cadastro.php';
     } else {
         echo "<script>alert('Código incorreto.')</script>";
+        echo "<script>window.location.href = '../views/tela_verificarEmail.php'</script>";
         exit();
     }
 }
+
+echo "<script>window.history.back();</script>";
+exit();

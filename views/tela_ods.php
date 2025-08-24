@@ -8,7 +8,7 @@ if (session_status() === PHP_SESSION_NONE) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Objetivo de Desenvolvimento Sustentável</title>
+    <title>Objetivos de Desenvolvimento Sustentável</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Grenze:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -16,12 +16,12 @@ if (session_status() === PHP_SESSION_NONE) {
     <link rel="stylesheet" href="../assets/css/ods.css">
 </head>
 <body class="TelaOds">
-<header>
-<div class="menu-toggle" id="mobile-menu">
-    <span class="bar"></span>
-    <span class="bar"></span>
-    <span class="bar"></span>
-</div>
+    <header>
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
         <div class="logo-container">
             <img src="../assets/img/etecmcm.png" alt="Logo MCM"/>
         </div>
@@ -29,9 +29,8 @@ if (session_status() === PHP_SESSION_NONE) {
             <h1 class="h1-ranking">ODS's</h1>
         </div>
     </header>
-
     <main>
-        <button class="btn-voltar" onclick="history.back()">Voltar</button>
+        <button class="btn-voltar" onclick="window.location.href = '../views/tela_home.php'">Voltar</button>
         <div class="container-ods">
             <div class="ods-dupla">
             <div class="component" onclick="expandComponent(this)">
