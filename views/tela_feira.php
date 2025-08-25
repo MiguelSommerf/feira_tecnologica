@@ -47,12 +47,12 @@ if (session_status() === PHP_SESSION_NONE) {
 
   <div id="mySideMenu" class="side-menu">
     <a href="javascript:void(0)" id="close-btn" class="close-btn">&times;</a>
+    <a href="../index.php">Início</a>
     <a href="tela_mapa.php">Mapa</a>
     <a href="tela_projetos.php">Projetos</a>
     <a href="tela_ranking.php">Ranking</a>
     <a href="tela_cursos.php">Cursos</a>
     <a href="tela_sobreEtec.php">Sobre a Etec</a>
-    <a href="../index.php">Início</a>
     <?php if(isset($_SESSION['id'])): ?>
     <a href="../back/logout.php" class="deslogar" id="deslogar" name="deslogar">Sair da Conta</a>
     <?php endif; ?>

@@ -48,12 +48,12 @@ function headerHTML() {
                 <button class="btn-voltar" onclick="window.location.href = '../views/tela_home.php'">Voltar</button> 
                 <div id="mySideMenu" class="side-menu">
                     <a href="javascript:void(0)" id="close-btn" class="close-btn">&times;</a>
+                    <a href="../index.php">Início</a>
                     <a href="tela_mapa.php">Mapa</a>
                     <a href="tela_projetos.php">Projetos</a>
                     <a href="tela_ranking.php">Ranking</a>
                     <a href="tela_cursos.php">Cursos</a>
                     <a href="tela_sobreEtec.php">Sobre a Etec</a>
-                    <a href="../index.php">Início</a>
                     <a href="../back/logout.php" class="deslogar" id="deslogar" name="deslogar">Sair da Conta</a>
                 </div>
             </nav>
