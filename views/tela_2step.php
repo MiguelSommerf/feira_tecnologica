@@ -5,7 +5,7 @@ if (session_status() === PHP_SESSION_NONE) {
 if (isset($_SESSION['verificando'])) {
     unset($_SESSION['verificando']);
 }
-$hashcodeTime = $_SESSION['hashcode-time'];
+$hashcodeTime = !empty($_SESSION['hashcode-time']) ? $_SESSION['hashcode-time'] : null;
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

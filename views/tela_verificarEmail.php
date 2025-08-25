@@ -37,7 +37,7 @@ $hashcodeTime = $_SESSION['hashcode-time'];
             <h1>Enviamos um código no seu e-mail</h1>
             <h1>Confirme que é você.</h1>
             <h2>Insira o código:</h2>
-            <input type="number" name="codigo" id="codigo" placeholder="Código">
+            <input type="number" name="codigo" id="codigo" placeholder="Código" required>
             <a id="reenviar" href="../back/reenviarCodigo.php">Reenviar código</a>
             <span id="timerReenvio"></span>
             <button type="submit">Verificar</button>
