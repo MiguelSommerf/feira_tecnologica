@@ -5,6 +5,7 @@ if (session_status() === PHP_SESSION_NONE) {
 if (isset($_SESSION['verificando'])) {
     unset($_SESSION['verificando']);
 }
+$hashcodeTime = $_SESSION['hashcode-time'];
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -56,9 +57,12 @@ if (isset($_SESSION['verificando'])) {
                     <label>Código</label>
                     <input type="text" name="codigo" minlength="6" maxlength="6" required>
                 </div>
-                <a href="../back/reenviarCodigo.php">Reenviar código</a>
+                <a id="reenviar" href="../back/reenviarCodigo.php">Reenviar código</a>
+                <span id="timerReenvio"></span>
                 <button type="submit">Enviar</button>
             </form>
+            <script>var hashcodeTime = <?= (int)$hashcodeTime; ?>;</script>
+            <script src="../assets/JS/timerReenviarCodigo.js"></script>
         <?php endif; ?>
     </main>
 </body>

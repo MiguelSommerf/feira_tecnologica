@@ -47,7 +47,7 @@ function headerHTML() {
                 </header>
                 <button class="btn-voltar" onclick="window.location.href = '../views/tela_home.php'">Voltar</button> 
                 <div id="mySideMenu" class="side-menu">
-                    <a href="javascript:void(0)" class="close-btn" onclick="closeMenu()">&times;</a>
+                    <a href="javascript:void(0)" id="close-btn" class="close-btn">&times;</a>
                     <a href="tela_mapa.php">Mapa</a>
                     <a href="tela_projetos.php">Projetos</a>
                     <a href="tela_ranking.php">Ranking</a>
@@ -64,21 +64,7 @@ function headerHTML() {
 function footerHTML() {
     echo <<<HTML
         </div>
-            <script>
-                document.getElementById('mobile-menu').addEventListener('click', function() {
-                    this.classList.toggle('active');
-                    openMenu();
-                });
-
-                function openMenu() {
-                    document.getElementById('mySideMenu').style.width = '250px';
-                }
-
-                function closeMenu() {
-                    document.getElementById('mySideMenu').style.width = '0';
-                    document.getElementById('mobile-menu').classList.remove('active');
-                }
-            </script>
+            <script src="../assets/JS/menuLateral.js"></script>
         </body>
         </html>
     HTML;

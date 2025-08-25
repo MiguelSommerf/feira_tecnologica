@@ -96,7 +96,7 @@ if (!isset($id_projeto)) {
     </main>
 
     <div id="mySideMenu" class="side-menu">
-      <a href="javascript:void(0)" class="close-btn" onclick="closeMenu()">&times;</a>
+      <a href="javascript:void(0)" id="close-btn" class="close-btn">&times;</a>
       <a href="tela_mapa.php">Mapa</a>
       <a href="tela_projetos.php">Projetos</a>
       <a href="tela_ranking.php">Ranking</a>
@@ -108,33 +108,6 @@ if (!isset($id_projeto)) {
       <?php endif; ?>
     </div>
     <script>
-        document
-        .getElementById("mobile-menu")
-        .addEventListener("click", function () {
-          this.classList.toggle("active");
-          openMenu();
-        });
-
-      function openMenu() {
-        document.getElementById("mySideMenu").style.width = "250px";
-      }
-
-      function closeMenu() {
-        document.getElementById("mySideMenu").style.width = "0";
-        document.getElementById("mobile-menu").classList.remove("active");
-      }
-      
-        document.getElementById('mobile-menu').addEventListener('click', function() {
-            this.classList.toggle('active');
-            openMenu();
-        });
-        function openMenu() {
-            document.getElementById('mySideMenu').style.width = '250px';
-        }
-        function closeMenu() {
-            document.getElementById('mySideMenu').style.width = '0';
-            document.getElementById('mobile-menu').classList.remove('active');
-        }
         //Script da avalicao
         function criarEstrelas(container, numEstrelas = 5) {
         for (let i = 0; i < numEstrelas; i++) {
@@ -167,5 +140,6 @@ if (!isset($id_projeto)) {
             }
         })
     </script>
+    <script src="../assets/JS/menuLateral.js"></script>
 </body>
 </html>

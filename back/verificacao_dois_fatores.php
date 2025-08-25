@@ -14,7 +14,7 @@ if ($inputCodigo) {
     if (isset($_SESSION['hashcode-time'])) {
         if (time() - $_SESSION['hashcode-time'] > 600) {
             echo "<script>alert('Código expirado.')</script>";
-            echo "<script>window.location.href = '../views/tela_login.php'</script>";
+            echo "<script>window.location.href = '../views/tela_2step.php'</script>";
             exit();
         }
     }
@@ -64,7 +64,7 @@ if ($resultEmailExistente->num_rows === 1) {
     }
 } else {
     echo "<script>alert('O endereço de e-mail digitado ainda não foi cadastrado.')</script>";
-    echo "<script>window.location.href = '../views/tela_login.php'</script>";
+    echo "<script>window.location.href = '../views/tela_2step.php'</script>";
     exit();
 }
 

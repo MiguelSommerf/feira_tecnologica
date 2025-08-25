@@ -1,6 +1,9 @@
 <?php
 if (session_status() === PHP_SESSION_NONE) {
-    session_start();
+  session_start();
+}
+if (isset($_SESSION['verificando'])) {
+  unset($_SESSION['verificando']);
 }
 ?>
 <!DOCTYPE html>
@@ -45,7 +48,7 @@ if (session_status() === PHP_SESSION_NONE) {
   </main>
 
   <div id="mySideMenu" class="side-menu">
-    <a href="javascript:void(0)" class="close-btn" onclick="closeMenu()">&times;</a>
+    <a href="javascript:void(0)" id="close-btn" class="close-btn"">&times;</a>
     <a href="tela_mapa.php">Mapa</a>
     <a href="tela_projetos.php">Projetos</a>
     <a href="tela_ranking.php">Ranking</a>
@@ -56,20 +59,6 @@ if (session_status() === PHP_SESSION_NONE) {
     <a href="../back/logout.php" class="deslogar" id="deslogar" name="deslogar">Sair da Conta</a>
     <?php endif; ?>
   </div>
-  <script>
-    document
-      .getElementById("mobile-menu")
-      .addEventListener("click", function () {
-        this.classList.toggle("active");
-        openMenu();
-      });
-    function openMenu() {
-      document.getElementById("mySideMenu").style.width = "250px";
-    }
-    function closeMenu() {
-      document.getElementById("mySideMenu").style.width = "0";
-      document.getElementById("mobile-menu").classList.remove("active");
-    }
-  </script>
+  <script src="../assets/JS/menuLateral.js"></script>
 </body>
 </html>

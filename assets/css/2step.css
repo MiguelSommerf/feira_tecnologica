@@ -7,6 +7,9 @@
     cursor: pointer;
     transition: transform 0.5s;
   }
+  span {
+    font-family: sans-serif;
+  }
   .bar {
     height: 3px;
     width: 100%;
@@ -240,46 +243,46 @@
   }
 
   .a0 a{
---glow-color: rgb(255, 255, 255);
---glow-spread-color: rgb(255, 255, 255);
---enhanced-glow-color: rgb(255, 255, 255);
---btn-color: rgb(0, 0, 0);
+    --glow-color: rgb(255, 255, 255);
+    --glow-spread-color: rgb(255, 255, 255);
+    --enhanced-glow-color: rgb(255, 255, 255);
+    --btn-color: rgb(0, 0, 0);
 
-cursor: pointer;
-border: 0.25em solid white;
-padding: 1em 3em;
-color: var(--btn-color);
-font-family: var(--FONTBTNSMenu);
-text-align: center;
-font-size: 15px;
-font-weight: bold;
-background-color: rgba(255, 255, 255, 0.6);
-outline: none;
-box-shadow: 0 0 0p 2pxem white;
-text-shadow: 0 0 0.5em var(--glow-color);
-position: relative;
-transition: all 0.2s;
-border-radius: 4px;
-text-decoration: none;
-display: flex;
-flex-direction: column;
-gap: 10px;
-margin-top: 5px;
-}
+    cursor: pointer;
+    border: 0.25em solid white;
+    padding: 1em 3em;
+    color: var(--btn-color);
+    font-family: var(--FONTBTNSMenu);
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+    background-color: rgba(255, 255, 255, 0.6);
+    outline: none;
+    box-shadow: 0 0 0p 2pxem white;
+    text-shadow: 0 0 0.5em var(--glow-color);
+    position: relative;
+    transition: all 0.2s;
+    border-radius: 4px;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 5px;
+  }
 
-.a0 a:hover {
-color: var(--btn-color);
-border: 0.25em solid var(--glow-spread-color);
-background-color: transparent;
-box-shadow: 0 0 10px 4px var(--glow-color),
-    inset 0 0 10px 4px var(--glow-color);
-color: var(--glow-color);
-}
+  .a0 a:hover {
+    color: var(--btn-color);
+    border: 0.25em solid var(--glow-spread-color);
+    background-color: transparent;
+    box-shadow: 0 0 10px 4px var(--glow-color),
+        inset 0 0 10px 4px var(--glow-color);
+    color: var(--glow-color);
+    }
 
-.a0 a:active {
-box-shadow: 0 0 5px 2px var(--glow-color),
-    inset 0 0 5px 2px var(--glow-color);
-}
+  .a0 a:active {
+  box-shadow: 0 0 5px 2px var(--glow-color),
+      inset 0 0 5px 2px var(--glow-color);
+  }
 
 .btn-voltar {
   background-color: #00ffe5;
@@ -330,6 +333,15 @@ main > form {
     background-color: #d1d1d1;
     border: 2px solid #f1f1f1;
     border-radius: 10px;
+}
+
+a {
+  width: fit-content;
+  padding: 4px;
+  text-decoration: none;
+  font-family: sans-serif;
+  border: 1px solid black;
+  border-radius: 10px;
 }
 
 main > form > h3 {
