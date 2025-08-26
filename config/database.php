@@ -41,7 +41,7 @@ const TABELA_PROJETO_ALUNO = [
 ];
 
 const TABELA_VOTO = [
-    'nome_tabela' => 'tb_votos',
+    'nome_tabela' => 'tb_voto',
     'id'          => 'id_voto',
     'data'        => 'data_hora_voto',
     'valor'       => 'valor_voto',
