@@ -1,9 +1,9 @@
--- phpMyAdmin SQL Dump
+'-- phpMyAdmin SQL Dump
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 26-Ago-2025 às 21:13
+-- Tempo de geração: 26-Ago-2025 às 21:51
 -- Versão do servidor: 10.4.22-MariaDB
 -- versão do PHP: 8.1.2
 
@@ -205,10 +205,10 @@ INSERT INTO `tb_usuario` (`id_usuario`, `is_admin`, `nome_usuario`, `email_usuar
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tb_votos`
+-- Estrutura da tabela `tb_voto`
 --
 
-CREATE TABLE `tb_votos` (
+CREATE TABLE `tb_voto` (
   `id_voto` int(11) NOT NULL,
   `data_hora_voto` datetime NOT NULL,
   `valor_voto` int(11) NOT NULL,
@@ -218,10 +218,10 @@ CREATE TABLE `tb_votos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `tb_votos`
+-- Extraindo dados da tabela `tb_voto`
 --
 
-INSERT INTO `tb_votos` (`id_voto`, `data_hora_voto`, `valor_voto`, `comentario_voto`, `fk_id_usuario`, `fk_id_projeto`) VALUES
+INSERT INTO `tb_voto` (`id_voto`, `data_hora_voto`, `valor_voto`, `comentario_voto`, `fk_id_usuario`, `fk_id_projeto`) VALUES
 (1, '2025-07-28 21:51:44', 100, NULL, 2, 3),
 (2, '2025-07-28 21:51:44', 0, 'abcd', 3, 1),
 (3, '2025-07-28 21:51:44', 50, '', 3, 2);
@@ -276,9 +276,9 @@ ALTER TABLE `tb_usuario`
   ADD PRIMARY KEY (`id_usuario`);
 
 --
--- Índices para tabela `tb_votos`
+-- Índices para tabela `tb_voto`
 --
-ALTER TABLE `tb_votos`
+ALTER TABLE `tb_voto`
   ADD PRIMARY KEY (`id_voto`),
   ADD KEY `id_projetos` (`fk_id_projeto`),
   ADD KEY `id_users` (`fk_id_usuario`);
@@ -330,9 +330,9 @@ ALTER TABLE `tb_projeto_aluno`
   ADD CONSTRAINT `id_projetos_integrantes` FOREIGN KEY (`fk_id_projeto`) REFERENCES `tb_projeto` (`id_projeto`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Limitadores para a tabela `tb_votos`
+-- Limitadores para a tabela `tb_voto`
 --
-ALTER TABLE `tb_votos`
+ALTER TABLE `tb_voto`
   ADD CONSTRAINT `id_projetos` FOREIGN KEY (`fk_id_projeto`) REFERENCES `tb_projeto` (`id_projeto`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `id_users` FOREIGN KEY (`fk_id_usuario`) REFERENCES `tb_usuario` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
