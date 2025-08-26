@@ -12,7 +12,7 @@ $verif->verificarSenha($senha);
 $verif->verificarEspacoEmBranco($email);
 $verif->verificarEspacoEmBranco($senha);
 
-$consulta = "SELECT id_users, nome, senha FROM tbl_users WHERE email = ?";
+$consulta = "SELECT id_users, is_admin, nome, senha FROM tbl_users WHERE email = ?";
 $stmt = $mysqli->prepare($consulta);
 $stmt->bind_param("s", $email);
 $stmt->execute();
@@ -22,7 +22,7 @@ $stmt->store_result();
 //se o valor de linhas retornadas for igual a 1
 if($stmt->num_rows == 1){
     //Vincula a senha criptografada e o id do usuário que está dentro do banco, com a variável $hash e $user_id.
-    $stmt->bind_result($id_user, $nome_user, $hash);
+    $stmt->bind_result($id_user, $is_admin, $nome_user, $hash);
     //fetch() é necessário para que o valor vinculado seja atribuído, sem ele, o valor nunca será atribuído, pois a execução nunca será realizada.
     $stmt->fetch();
 
@@ -32,6 +32,7 @@ if($stmt->num_rows == 1){
             session_start();
         }
         $_SESSION['id'] = $id_user;
+        $_SESSION['is_admin'] = $is_admin;
         $_SESSION['nome'] = $nome_user;
 
         echo "<script>window.location.href = '../views/tela_home.php'</script>";

@@ -2,6 +2,9 @@
 if (session_status() === PHP_SESSION_NONE) {
   session_start();
 }
+if ($_SESSION['is_admin'] === 0) {
+  unset($_SESSION['is_admin']);
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -31,6 +34,12 @@ if (session_status() === PHP_SESSION_NONE) {
   <main>
     <div>
       <div class="ORGmainInfo">
+        <?php if (isset($_SESSION['is_admin'])): ?>
+         <p class="info">Admin</p>
+         <div class="a0">
+          <a href="admin/index.php">Admin</a>
+         </div> 
+        <?php endif;?>
         <?php if (isset($_SESSION['id'])): ?>
         <p class="info">Usuário</p>
         <div class="a0">
