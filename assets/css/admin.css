@@ -1,0 +1,147 @@
+*{
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-admin {
+    background-color: #44f525;
+    color: rgb(0, 0, 0);
+    font-size: 80%;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.btn-delete {
+    background-color: #ff1c0c;
+    color: rgb(0, 0, 0);
+    font-size: 80%;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.nav-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #a3a3a3;
+    margin-bottom: 10px;
+    padding: 30px 30px;
+}
+
+.nav-bar-content {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 50%;
+    margin: 20px 0;
+    font-size: 18px;
+}
+
+th, td {
+    background-color: #a3a3a3;
+    border: 1px solid #000000;
+    padding: 8px;
+    align-content: center;
+}
+
+.button-group {
+    display: flex;
+    gap: 10px; /* espaçamento entre os botões */
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-admin {
+    background-color: limegreen;
+    color: black;
+    padding: 8px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-delete {
+    background-color: red;
+    color: white;
+    padding: 8px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+form.ocult {
+    margin: 0;
+}
+
+form-group {
+    background-color: #a3a3a3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+label {
+    display:grid;
+    font-size: 20px;
+    color: #000000;
+    margin: 3px;
+}
+
+input {
+    display: flex;
+    width: 200px;
+    padding: 10px;
+    border: 1px solid #000000;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+a{
+    text-decoration: none;
+    color: #000000;
+    font-size: 20px;
+}
+
+a:hover{
+    text-decoration: none;
+    color: #5100b4;
+    font-size: 20px;
+}
+
+button {
+    display: flex;
+    background-color: #27b12b;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 5px;
+}
+
+select {
+    display: flex;
+    width: 200px;
+    padding: 10px;
+    border: 1px solid #000000;
+    border-radius: 4px;
+    font-size: 16px;
+    margin: 3px;
+}
