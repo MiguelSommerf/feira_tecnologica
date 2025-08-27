@@ -2,7 +2,7 @@
 if (session_status() === PHP_SESSION_NONE) {
   session_start();
 }
-if ($_SESSION['is_admin'] === 0) {
+if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === 0) {
   unset($_SESSION['is_admin']);
 }
 ?>

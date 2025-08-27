@@ -3,6 +3,7 @@ require_once 'connect.php';
 
 const TABELA_USUARIO = [
     'nome_tabela'     => 'tb_usuario',
+    'id'              => 'id_usuario',
     'admin'           => 'is_admin',
     'nome'            => 'nome_usuario',
     'email'           => 'email_usuario',

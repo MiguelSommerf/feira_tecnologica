@@ -1,10 +1,7 @@
 <?php
 header('Content-Type: text/html; charset=utf-8');
 // CONEXÃO COM BANCO
-require_once '../config/connect.php';
-
-// Forçar charset UTF-8 na conexão
-$mysqli->set_charset("utf8mb4");
+require_once '../config/database.php';
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -86,7 +83,7 @@ if (!$bloco && !$sala) {
 if ($bloco && !$sala) {
     headerHTML();
 
-    $stmt = $mysqli->prepare("SELECT DISTINCT sala FROM tbl_projetos WHERE bloco = ? ORDER BY sala ASC");
+    $stmt = $mysqli->prepare("SELECT DISTINCT " . TABELA_PROJETO['sala'] . " FROM " . TABELA_PROJETO['nome_tabela'] . " WHERE " . TABELA_PROJETO['bloco'] . " = ? ORDER BY " . TABELA_PROJETO['sala'] . " ASC");
     if (!$stmt) {
         die("Erro no prepare: " . $mysqli->error);
     }
@@ -97,7 +94,7 @@ if ($bloco && !$sala) {
     echo "<div class='BTNLocais'>";
     echo "<h1>Salas do Bloco " . htmlspecialchars($bloco, ENT_QUOTES, 'UTF-8') . "</h1>";
     while ($row = $result->fetch_assoc()) {
-        $salaNome = htmlspecialchars($row['sala'], ENT_QUOTES, 'UTF-8');
+        $salaNome = htmlspecialchars($row['sala_projeto'], ENT_QUOTES, 'UTF-8');
         echo "<div>
                 <a href='?bloco=" . urlencode($bloco) . "&sala=" . urlencode($salaNome) . "'><button>$salaNome</button></a>
             </div>";
@@ -113,7 +110,7 @@ if ($bloco && !$sala) {
 if ($bloco && isset($_GET['sala']) && $sala === 'Quadra' && !isset($_GET['pagina'])) {
     headerHTML();
 
-    $stmt = $mysqli->prepare("SELECT COUNT(*) as total FROM tbl_projetos WHERE bloco = ? AND sala = ?");
+    $stmt = $mysqli->prepare("SELECT COUNT(*) as total FROM " . TABELA_PROJETO['nome_tabela'] . " WHERE " . TABELA_PROJETO['bloco'] . " = ? AND " . TABELA_PROJETO['sala'] . " = ?");
     if (!$stmt) {
         die("Erro no prepare: " . $mysqli->error);
     }
@@ -146,7 +143,7 @@ if ($bloco && $sala) {
     $limit = 8;
     $offset = ($pagina - 1) * $limit;
 
-    $stmt = $mysqli->prepare("SELECT titulo_projeto, descricao_projeto, stand, prof_orientador FROM tbl_projetos WHERE bloco = ? AND sala = ? ORDER BY id_projetos ASC LIMIT ? OFFSET ?");
+    $stmt = $mysqli->prepare("SELECT " . TABELA_PROJETO['titulo'] . ", " . TABELA_PROJETO['descricao'] . ", " . TABELA_PROJETO['stand'] . ", " . TABELA_PROJETO['orientador'] . " FROM " . TABELA_PROJETO['nome_tabela'] . " WHERE " . TABELA_PROJETO['bloco'] . " = ? AND " . TABELA_PROJETO['sala'] . " = ? ORDER BY " . TABELA_PROJETO['id'] . " ASC LIMIT ? OFFSET ?");
     if (!$stmt) {
         die("Erro no prepare: " . $mysqli->error);
     }
@@ -170,8 +167,8 @@ if ($bloco && $sala) {
             echo "<div class='BTNLocais div-project'>
                     <h5>" . htmlspecialchars($row['titulo_projeto'], ENT_QUOTES, 'UTF-8') . "</h5>
                     <p>" . htmlspecialchars($row['descricao_projeto'], ENT_QUOTES, 'UTF-8') . "</p>
-                    <p><strong>Stand:</strong> " . htmlspecialchars($row['stand'], ENT_QUOTES, 'UTF-8') . "</p>
-                    <p><strong>Orientador:</strong> " . htmlspecialchars($row['prof_orientador'], ENT_QUOTES, 'UTF-8') . "</p>
+                    <p><strong>Stand:</strong> " . htmlspecialchars($row['stand_projeto'], ENT_QUOTES, 'UTF-8') . "</p>
+                    <p><strong>Orientador:</strong> " . htmlspecialchars($row['orientador_projeto'], ENT_QUOTES, 'UTF-8') . "</p>
                 </div>";
         }
         echo "</div>";
