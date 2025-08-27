@@ -7,7 +7,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 define("SMTP_HOST", "smtp.gmail.com");
 define("SMTP_PORT", 587);
 define("SMTP_USER", "feiratecnologica2025@gmail.com");
-define("SMTP_PASSWORD", "inckldcxyzdbpqqn");
+define("SMTP_PASSWORD", "");
 
 $email = new PHPMailer();
 

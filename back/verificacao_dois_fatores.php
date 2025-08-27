@@ -1,6 +1,6 @@
 <?php
 //Codado por Miguel Luiz Sommerfeld - 3°F Turma B
-require_once '../config/connect.php';
+require_once '../config/database.php';
 require_once 'classes/EnviarEmail.php';
 
 $emailUsuario = isset($_POST['email']) ? $_POST['email'] : null;
@@ -35,7 +35,7 @@ if ($inputCodigo) {
     }
 }
 
-$queryEmailExistente = "SELECT email FROM tbl_users WHERE email = ?";
+$queryEmailExistente = "SELECT " . TABELA_USUARIO['email'] . " FROM " . TABELA_USUARIO['nome_tabela'] . " WHERE " . TABELA_USUARIO['email'] . " = ?";
 $stmtEmailExistente = $mysqli->prepare($queryEmailExistente);
 $stmtEmailExistente->bind_param("s", $emailUsuario);
 $stmtEmailExistente->execute();

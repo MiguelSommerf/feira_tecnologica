@@ -1,6 +1,6 @@
 <?php
 //Codado por Miguel Luiz Sommerfeld - 3°F Turma B
-require_once __DIR__ . '/../../config/connect.php';
+require_once __DIR__ . '/../../config/database.php';
 
 class VerificarCampos{
     private $mysqli;
@@ -51,7 +51,7 @@ class VerificarCampos{
 
     public function verificarEmailExistente($email){
        $email = trim(strtolower($email));
-       $sql_query = "SELECT email FROM tbl_users WHERE email = ?";
+       $sql_query = "SELECT " . TABELA_USUARIO['email'] . " FROM " . TABELA_USUARIO['nome_tabela'] . " WHERE " . TABELA_USUARIO['email'] . " = ?";
        $stmt = $this->mysqli->prepare($sql_query);
        $stmt->bind_param("s", $email);
        $stmt->execute();

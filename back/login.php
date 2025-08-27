@@ -1,6 +1,6 @@
 <?php
 //Codado por Miguel Luiz Sommerfeld - 3°F Turma B
-require_once '../config/connect.php';
+require_once '../config/database.php';
 require_once 'classes/VerificarCampos.php';
 
 $verif = new VerificarCampos($mysqli);
@@ -12,7 +12,7 @@ $verif->verificarSenha($senha);
 $verif->verificarEspacoEmBranco($email);
 $verif->verificarEspacoEmBranco($senha);
 
-$consulta = "SELECT id_users, is_admin, nome, senha FROM tbl_users WHERE email = ?";
+$consulta = "SELECT " . TABELA_USUARIO['id'] . ", " . TABELA_USUARIO['admin'] . ", " . TABELA_USUARIO['nome'] . ", " . TABELA_USUARIO['senha'] . " FROM " . TABELA_USUARIO['nome_tabela'] . " WHERE " . TABELA_USUARIO['email'] . " = ?";
 $stmt = $mysqli->prepare($consulta);
 $stmt->bind_param("s", $email);
 $stmt->execute();

@@ -1,6 +1,6 @@
 <?php
 //Codado por Miguel Luiz Sommerfeld - 3°F Turma B
-require_once '../config/connect.php';
+require_once '../config/database.php';
 require_once 'classes/VerificarCampos.php';
 
 $dataJSON = file_get_contents("php://input");
@@ -17,7 +17,7 @@ $verif->verificarDataDeNascimento($data_nascimento);
 
 if(!empty($nome) && !empty($email) && !empty($data_nascimento)){
     if(isset($email)){
-        $query = "SELECT email FROM tbl_users WHERE email = ?";
+        $query = "SELECT " . TABELA_USUARIO['email'] . " FROM " . TABELA_USUARIO['nome_tabela'] . " WHERE " . TABELA_USUARIO['email'] . " = ?";
         $stmt = $mysqli->prepare($query);
         $stmt->bind_param("s", $email);
         $stmt->execute();
@@ -30,7 +30,7 @@ if(!empty($nome) && !empty($email) && !empty($data_nascimento)){
             echo json_encode($mensagem);
             exit();
         }else{
-            $query = "INSERT INTO tbl_users (nome, email, data_nasc) VALUES (?, ?, ?)";
+            $query = "INSERT INTO " . TABELA_USUARIO['nome_tabela'] . "(" . TABELA_USUARIO['nome'] . ", " . TABELA_USUARIO['email'] . ", " . TABELA_USUARIO['data_nascimento'] . ") VALUES (?, ?, ?)";
             $stmt = $mysqli->prepare($query);
             $stmt->bind_param("sss", $nome, $email, $data_nascimento);
             $stmt->execute();

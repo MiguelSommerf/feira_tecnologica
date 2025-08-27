@@ -1,42 +1,126 @@
-'-- phpMyAdmin SQL Dump
--- version 5.1.1
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Tempo de geração: 26-Ago-2025 às 21:51
--- Versão do servidor: 10.4.22-MariaDB
--- versão do PHP: 8.1.2
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Banco de dados: `feira`
---
-
+-- --------------------------------------------------------
+-- Servidor:                     127.0.0.1
+-- Versão do servidor:           11.7.2-MariaDB - mariadb.org binary distribution
+-- OS do Servidor:               Win64
+-- HeidiSQL Versão:              12.11.0.7065
 -- --------------------------------------------------------
 
---
--- Estrutura da tabela `tb_aluno`
---
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-CREATE TABLE `tb_aluno` (
-  `id_aluno` int(11) NOT NULL,
+
+-- Copiando estrutura do banco de dados para feira
+CREATE DATABASE IF NOT EXISTS `feira` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_uca1400_ai_ci */;
+USE `feira`;
+
+-- Copiando estrutura para tabela feira.tb_aluno
+CREATE TABLE IF NOT EXISTS `tb_aluno` (
+  `id_aluno` int(11) NOT NULL AUTO_INCREMENT,
   `nome_aluno` varchar(100) NOT NULL,
   `serie_aluno` enum('1','2','3') NOT NULL,
-  `curso_aluno` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `curso_aluno` varchar(50) NOT NULL,
+  PRIMARY KEY (`id_aluno`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
---
--- Extraindo dados da tabela `tb_aluno`
---
+-- Exportação de dados foi desmarcado.
+
+-- Copiando estrutura para tabela feira.tb_feedback
+CREATE TABLE IF NOT EXISTS `tb_feedback` (
+  `id_feedback` int(4) NOT NULL AUTO_INCREMENT,
+  `fk_id_usuario` int(11) NOT NULL,
+  `nota_feedback` int(11) NOT NULL,
+  `comentario_feedback` varchar(255) DEFAULT NULL,
+  `data_envio_feedback` datetime NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id_feedback`),
+  KEY `id_users` (`fk_id_usuario`),
+  CONSTRAINT `tb_feedback_ibfk_1` FOREIGN KEY (`fk_id_usuario`) REFERENCES `tb_usuario` (`id_usuario`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+
+-- Exportação de dados foi desmarcado.
+
+-- Copiando estrutura para tabela feira.tb_ods
+CREATE TABLE IF NOT EXISTS `tb_ods` (
+  `id_ods` int(11) NOT NULL AUTO_INCREMENT,
+  `nome_ods` varchar(255) NOT NULL,
+  PRIMARY KEY (`id_ods`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+
+-- Exportação de dados foi desmarcado.
+
+-- Copiando estrutura para tabela feira.tb_ods_projeto
+CREATE TABLE IF NOT EXISTS `tb_ods_projeto` (
+  `fk_id_ods` int(11) NOT NULL,
+  `fk_id_projeto` int(11) NOT NULL,
+  KEY `id_ods` (`fk_id_ods`),
+  KEY `id_projetos` (`fk_id_projeto`),
+  CONSTRAINT `tb_ods_projeto_ibfk_1` FOREIGN KEY (`fk_id_ods`) REFERENCES `tb_ods` (`id_ods`),
+  CONSTRAINT `tb_ods_projeto_ibfk_2` FOREIGN KEY (`fk_id_projeto`) REFERENCES `tb_projeto` (`id_projeto`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+
+-- Exportação de dados foi desmarcado.
+
+-- Copiando estrutura para tabela feira.tb_projeto
+CREATE TABLE IF NOT EXISTS `tb_projeto` (
+  `id_projeto` int(11) NOT NULL,
+  `titulo_projeto` varchar(100) NOT NULL,
+  `descricao_projeto` varchar(255) NOT NULL,
+  `bloco_projeto` enum('A','B') NOT NULL,
+  `sala_projeto` varchar(20) NOT NULL,
+  `posicao_projeto` int(11) NOT NULL,
+  `stand_projeto` varchar(3) NOT NULL,
+  `orientador_projeto` varchar(100) NOT NULL,
+  PRIMARY KEY (`id_projeto`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+
+-- Exportação de dados foi desmarcado.
+
+-- Copiando estrutura para tabela feira.tb_projeto_aluno
+CREATE TABLE IF NOT EXISTS `tb_projeto_aluno` (
+  `fk_id_projeto` int(11) NOT NULL,
+  `fk_id_aluno` int(11) NOT NULL,
+  KEY `id_projetos_integrantes` (`fk_id_projeto`),
+  KEY `id_alunos_integrantes` (`fk_id_aluno`),
+  CONSTRAINT `id_alunos_integrantes` FOREIGN KEY (`fk_id_aluno`) REFERENCES `tb_aluno` (`id_aluno`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `id_projetos_integrantes` FOREIGN KEY (`fk_id_projeto`) REFERENCES `tb_projeto` (`id_projeto`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+
+-- Exportação de dados foi desmarcado.
+
+-- Copiando estrutura para tabela feira.tb_usuario
+CREATE TABLE IF NOT EXISTS `tb_usuario` (
+  `id_usuario` int(11) NOT NULL AUTO_INCREMENT,
+  `is_admin` bit(1) NOT NULL DEFAULT b'0',
+  `nome_usuario` varchar(50) NOT NULL,
+  `email_usuario` varchar(255) NOT NULL,
+  `senha_usuario` varchar(255) DEFAULT NULL,
+  `data_nascimento_usuario` date NOT NULL,
+  PRIMARY KEY (`id_usuario`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+
+-- Exportação de dados foi desmarcado.
+
+-- Copiando estrutura para tabela feira.tb_voto
+CREATE TABLE IF NOT EXISTS `tb_voto` (
+  `id_voto` int(11) NOT NULL,
+  `data_hora_voto` datetime NOT NULL,
+  `valor_voto` int(11) NOT NULL,
+  `comentario_voto` varchar(200) DEFAULT NULL,
+  `fk_id_usuario` int(11) NOT NULL,
+  `fk_id_projeto` int(11) NOT NULL,
+  PRIMARY KEY (`id_voto`),
+  KEY `id_projetos` (`fk_id_projeto`),
+  KEY `id_users` (`fk_id_usuario`),
+  CONSTRAINT `id_projetos` FOREIGN KEY (`fk_id_projeto`) REFERENCES `tb_projeto` (`id_projeto`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `id_users` FOREIGN KEY (`fk_id_usuario`) REFERENCES `tb_usuario` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+
+-- Exportação de dados foi desmarcado.
 
 INSERT INTO `tb_aluno` (`id_aluno`, `nome_aluno`, `serie_aluno`, `curso_aluno`) VALUES
 (1, 'aluno1', '1', 'informatíca'),
@@ -51,35 +135,6 @@ INSERT INTO `tb_aluno` (`id_aluno`, `nome_aluno`, `serie_aluno`, `curso_aluno`) 
 (10, 'aluno10', '1', 'Recursos Humanos'),
 (11, 'aluno11', '2', 'Recursos Humanos'),
 (12, 'aluno12', '3', 'Recursos Humanos');
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `tb_feedback`
---
-
-CREATE TABLE `tb_feedback` (
-  `id_feedback` int(4) NOT NULL,
-  `fk_id_usuario` int(11) NOT NULL,
-  `nota_feedback` int(11) NOT NULL,
-  `comentario_feedback` varchar(255) DEFAULT NULL,
-  `data_envio_feedback` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `tb_ods`
---
-
-CREATE TABLE `tb_ods` (
-  `id_ods` int(11) NOT NULL,
-  `nome_ods` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Extraindo dados da tabela `tb_ods`
---
 
 INSERT INTO `tb_ods` (`id_ods`, `nome_ods`) VALUES
 (1, 'Erradicação da pobreza'),
@@ -100,21 +155,6 @@ INSERT INTO `tb_ods` (`id_ods`, `nome_ods`) VALUES
 (16, 'Paz, justiça e instituições eficazes'),
 (17, 'Parcerias e meios de implementação');
 
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `tb_ods_projeto`
---
-
-CREATE TABLE `tb_ods_projeto` (
-  `fk_id_ods` int(11) NOT NULL,
-  `fk_id_projeto` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Extraindo dados da tabela `tb_ods_projeto`
---
-
 INSERT INTO `tb_ods_projeto` (`fk_id_ods`, `fk_id_projeto`) VALUES
 (7, 1),
 (11, 1),
@@ -122,27 +162,6 @@ INSERT INTO `tb_ods_projeto` (`fk_id_ods`, `fk_id_projeto`) VALUES
 (14, 2),
 (15, 2),
 (2, 3);
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `tb_projeto`
---
-
-CREATE TABLE `tb_projeto` (
-  `id_projeto` int(11) NOT NULL,
-  `titulo_projeto` varchar(100) NOT NULL,
-  `descricao_projeto` varchar(255) NOT NULL,
-  `bloco_projeto` enum('A','B') NOT NULL,
-  `sala_projeto` varchar(20) NOT NULL,
-  `posicao_projeto` int(11) NOT NULL,
-  `stand_projeto` varchar(3) NOT NULL,
-  `orientador_projeto` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Extraindo dados da tabela `tb_projeto`
---
 
 INSERT INTO `tb_projeto` (`id_projeto`, `titulo_projeto`, `descricao_projeto`, `bloco_projeto`, `sala_projeto`, `posicao_projeto`, `stand_projeto`, `orientador_projeto`) VALUES
 (1, 'titulo1', 'projeto1', 'A', '5', 56, '5', 'fulano1'),
@@ -159,184 +178,17 @@ INSERT INTO `tb_projeto` (`id_projeto`, `titulo_projeto`, `descricao_projeto`, `
 (12, 'titulo12', 'projeto12', 'B', '4', 8, '8', 'fulano12'),
 (13, 'titulo13', 'projeto13', 'B', '5', 9, '9', 'fulano13');
 
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `tb_projeto_aluno`
---
-
-CREATE TABLE `tb_projeto_aluno` (
-  `fk_id_projeto` int(11) NOT NULL,
-  `fk_id_aluno` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Extraindo dados da tabela `tb_projeto_aluno`
---
-
 INSERT INTO `tb_projeto_aluno` (`fk_id_projeto`, `fk_id_aluno`) VALUES
 (1, 1),
 (2, 2);
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `tb_usuario`
---
-
-CREATE TABLE `tb_usuario` (
-  `id_usuario` int(11) NOT NULL,
-  `is_admin` bit(1) NOT NULL DEFAULT b'0',
-  `nome_usuario` varchar(50) NOT NULL,
-  `email_usuario` varchar(255) NOT NULL,
-  `senha_usuario` varchar(255) DEFAULT NULL,
-  `data_nascimento_usuario` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Extraindo dados da tabela `tb_usuario`
---
-
-INSERT INTO `tb_usuario` (`id_usuario`, `is_admin`, `nome_usuario`, `email_usuario`, `senha_usuario`, `data_nascimento_usuario`) VALUES
-(1, b'0', 'teste1', 'teste1@gmail.com', '12345678', '2025-07-01'),
-(2, b'0', 'teste2', 'teste2@gmail.com', '12345678', '2025-07-16'),
-(3, b'0', 'teste3', 'teste3@gmail.com', '12345678', '2025-07-10');
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `tb_voto`
---
-
-CREATE TABLE `tb_voto` (
-  `id_voto` int(11) NOT NULL,
-  `data_hora_voto` datetime NOT NULL,
-  `valor_voto` int(11) NOT NULL,
-  `comentario_voto` varchar(200) DEFAULT NULL,
-  `fk_id_usuario` int(11) NOT NULL,
-  `fk_id_projeto` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Extraindo dados da tabela `tb_voto`
---
 
 INSERT INTO `tb_voto` (`id_voto`, `data_hora_voto`, `valor_voto`, `comentario_voto`, `fk_id_usuario`, `fk_id_projeto`) VALUES
 (1, '2025-07-28 21:51:44', 100, NULL, 2, 3),
 (2, '2025-07-28 21:51:44', 0, 'abcd', 3, 1),
 (3, '2025-07-28 21:51:44', 50, '', 3, 2);
 
---
--- Índices para tabelas despejadas
---
-
---
--- Índices para tabela `tb_aluno`
---
-ALTER TABLE `tb_aluno`
-  ADD PRIMARY KEY (`id_aluno`);
-
---
--- Índices para tabela `tb_feedback`
---
-ALTER TABLE `tb_feedback`
-  ADD PRIMARY KEY (`id_feedback`),
-  ADD KEY `id_users` (`fk_id_usuario`);
-
---
--- Índices para tabela `tb_ods`
---
-ALTER TABLE `tb_ods`
-  ADD PRIMARY KEY (`id_ods`);
-
---
--- Índices para tabela `tb_ods_projeto`
---
-ALTER TABLE `tb_ods_projeto`
-  ADD KEY `id_ods` (`fk_id_ods`),
-  ADD KEY `id_projetos` (`fk_id_projeto`);
-
---
--- Índices para tabela `tb_projeto`
---
-ALTER TABLE `tb_projeto`
-  ADD PRIMARY KEY (`id_projeto`);
-
---
--- Índices para tabela `tb_projeto_aluno`
---
-ALTER TABLE `tb_projeto_aluno`
-  ADD KEY `id_projetos_integrantes` (`fk_id_projeto`),
-  ADD KEY `id_alunos_integrantes` (`fk_id_aluno`);
-
---
--- Índices para tabela `tb_usuario`
---
-ALTER TABLE `tb_usuario`
-  ADD PRIMARY KEY (`id_usuario`);
-
---
--- Índices para tabela `tb_voto`
---
-ALTER TABLE `tb_voto`
-  ADD PRIMARY KEY (`id_voto`),
-  ADD KEY `id_projetos` (`fk_id_projeto`),
-  ADD KEY `id_users` (`fk_id_usuario`);
-
---
--- AUTO_INCREMENT de tabelas despejadas
---
-
---
--- AUTO_INCREMENT de tabela `tb_aluno`
---
-ALTER TABLE `tb_aluno`
-  MODIFY `id_aluno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
---
--- AUTO_INCREMENT de tabela `tb_feedback`
---
-ALTER TABLE `tb_feedback`
-  MODIFY `id_feedback` int(4) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de tabela `tb_ods`
---
-ALTER TABLE `tb_ods`
-  MODIFY `id_ods` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
-
---
--- Restrições para despejos de tabelas
---
-
---
--- Limitadores para a tabela `tb_feedback`
---
-ALTER TABLE `tb_feedback`
-  ADD CONSTRAINT `tb_feedback_ibfk_1` FOREIGN KEY (`fk_id_usuario`) REFERENCES `tb_usuario` (`id_usuario`);
-
---
--- Limitadores para a tabela `tb_ods_projeto`
---
-ALTER TABLE `tb_ods_projeto`
-  ADD CONSTRAINT `tb_ods_projeto_ibfk_1` FOREIGN KEY (`fk_id_ods`) REFERENCES `tb_ods` (`id_ods`),
-  ADD CONSTRAINT `tb_ods_projeto_ibfk_2` FOREIGN KEY (`fk_id_projeto`) REFERENCES `tb_projeto` (`id_projeto`);
-
---
--- Limitadores para a tabela `tb_projeto_aluno`
---
-ALTER TABLE `tb_projeto_aluno`
-  ADD CONSTRAINT `id_alunos_integrantes` FOREIGN KEY (`fk_id_aluno`) REFERENCES `tb_aluno` (`id_aluno`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `id_projetos_integrantes` FOREIGN KEY (`fk_id_projeto`) REFERENCES `tb_projeto` (`id_projeto`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Limitadores para a tabela `tb_voto`
---
-ALTER TABLE `tb_voto`
-  ADD CONSTRAINT `id_projetos` FOREIGN KEY (`fk_id_projeto`) REFERENCES `tb_projeto` (`id_projeto`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `id_users` FOREIGN KEY (`fk_id_usuario`) REFERENCES `tb_usuario` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE;
-COMMIT;
-
+/*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
+/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;

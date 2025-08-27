@@ -1,6 +1,6 @@
 <?php
 //Codado por Miguel Luiz Sommerfeld - 3°F Turma B
-require_once '../config/connect.php';
+require_once '../config/database.php';
 
 if(empty($dataJSON) && empty($data)){
     $dataJSON = file_get_contents("php://input");
@@ -10,7 +10,7 @@ if(empty($dataJSON) && empty($data)){
     $email = $data['emailGoogle'];
 }
 
-$query = "SELECT id_users, nome FROM tbl_users WHERE email = ? AND senha IS NULL";
+$query = "SELECT " . TABELA_USUARIO['id'] . ", " . TABELA_USUARIO['nome'] . " FROM " . TABELA_USUARIO['nome_tabela'] . " WHERE " . TABELA_USUARIO['email'] . " = ? AND " . TABELA_USUARIO['senha'] . " IS NULL";
 $stmt = $mysqli->prepare($query);
 $stmt->bind_param("s", $email);
 $stmt->execute();
@@ -31,7 +31,7 @@ if($stmt->num_rows == 1){
     ];
     echo json_encode($mensagem_json);
 }else{
-    $query = "SELECT id_users, nome FROM tbl_users WHERE email = ?";
+    $query = "SELECT " . TABELA_USUARIO['id'] . ", " . TABELA_USUARIO['nome'] . " FROM " . TABELA_USUARIO['nome_tabela'] . " WHERE " . TABELA_USUARIO['email'] . " = ?";
     $stmt = $mysqli->prepare($query);
     $stmt->bind_param("s", $email);
     $stmt->execute();

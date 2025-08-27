@@ -1,12 +1,12 @@
 <?php
-require_once '../config/connect.php';
+require_once '../config/database.php';
 session_start();
 
 if (isset($_SESSION['redefine'])) {
     $novaSenha = $_POST['novaSenha'];
     $novaSenhaHash = password_hash($novaSenha, PASSWORD_DEFAULT);
 
-    $queryRedefinirSenha = "UPDATE tbl_users SET senha = ? WHERE email = ?";
+    $queryRedefinirSenha = "UPDATE " . TABELA_USUARIO['senha'] . " SET " . TABELA_USUARIO['senha'] . " = ? WHERE " . TABELA_USUARIO['email'] . " = ?";
     $stmtRedefinirSenha = $mysqli->prepare($queryRedefinirSenha);
     $stmtRedefinirSenha->bind_param("ss", $novaSenhaHash, $_SESSION['email']);
     $stmtRedefinirSenha->execute();

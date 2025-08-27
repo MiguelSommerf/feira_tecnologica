@@ -1,6 +1,6 @@
 <?php
 //Codado por Miguel Luiz Sommerfeld - 3°F Turma B
-require_once '../config/connect.php';
+require_once '../config/database.php';
 require_once 'classes/VerificarCampos.php';
 
 if(isset($_SESSION['nameuser']) && ($_SESSION['email']) && ($_SESSION['passuser']) && ($_SESSION['birthuser'])){
@@ -24,7 +24,7 @@ if(isset($_SESSION['nameuser']) && ($_SESSION['email']) && ($_SESSION['passuser'
         $data_nascimento = $_SESSION['birthuser'];
 
         //aqui eu basicamente criei um 'template' de quais campos serão preenchidos, cada um desses '?', serão preenchidos com dados de forma segura depois.
-        $sql_query = "INSERT INTO tbl_users (nome, email, senha, data_nasc) VALUES (?,?,?,?)";
+        $sql_query = "INSERT INTO " . TABELA_USUARIO['nome_tabela'] . "(" . TABELA_USUARIO['nome'] . ", " . TABELA_USUARIO['email'] . ", " . TABELA_USUARIO['senha'] . ", " . TABELA_USUARIO['data_nascimento'] . ") VALUES (?,?,?,?)";
         //$$mysqli->prepare($slq) ----> prepara a query fazendo com que os '?' fiquem aguardando para receberem os dados digitados, evitando MySQL injection porque os dados serão tratados pelo MySQL ANTES da execução.
         $stmt = $mysqli->prepare($sql_query);
         //bind_param ----> vincula os dados digitados aos '?'. os 'ss' dizem que $email e $senha são dois valores do tipo string (s = string)

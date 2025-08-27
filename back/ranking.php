@@ -1,11 +1,11 @@
 <?php
-require_once '../config/connect.php';
+require_once '../config/database.php';
 
 // Pega todos os nomes e id's diferentes dos projetos que receberam votos
-$sql_nomes = "SELECT DISTINCT v.id_projetos, p.titulo_projeto, p.bloco, p.stand, p.sala, a.curso FROM tbl_projetos as p
-              INNER JOIN tb_votos AS v ON p.id_projetos = v.id_projetos
-              INNER JOIN tb_integrantes AS i ON i.id_projetos = p.id_projetos
-              INNER JOIN tbl_alunos AS a ON a.id_aluno = i.id_aluno";
+$sql_nomes = "SELECT DISTINCT v.id_projetos, p.titulo_projeto, p.bloco, p.stand, p.sala, a.curso FROM . " . TABELA_PROJETO['nome_tabela'] . " as p
+              INNER JOIN " . TABELA_VOTO['nome_tabela'] . " AS v ON p.id_projetos = v.id_projetos
+              INNER JOIN " . TABELA_PROJETO_ALUNO['nome_tabela'] . " AS i ON i.id_projetos = p.id_projetos
+              INNER JOIN " . TABELA_ALUNO['nome_tabela'] . " AS a ON a.id_aluno = i.id_aluno";
 $stmt = $mysqli->prepare($sql_nomes);
 $stmt->execute();
 $result_nomes = $stmt->get_result();
@@ -31,7 +31,7 @@ if ($result_nomes->num_rows > 0) {
         $nomeSeguro = $mysqli->real_escape_string($nomeProjeto);
 
         // pega o total de pontos que o projeto recebeu 
-        $sql_total = "SELECT SUM(valor_voto) AS total FROM tb_votos WHERE id_projetos = ?";
+        $sql_total = "SELECT SUM(". TABELA_VOTO['valor'] . ") AS total FROM " . TABELA_VOTO['nome_tabela'] . " WHERE " . TABELA_VOTO['projeto'] . " = ?";
         $stmt_total = $mysqli->prepare($sql_total);
         $stmt_total->bind_param("i", $id_projeto);
         $stmt_total->execute();
@@ -40,7 +40,7 @@ if ($result_nomes->num_rows > 0) {
         $total = $result_total->fetch_assoc()["total"];
 
         // pega quantos votos esse projeto recebeu no total
-        $sql_qtd_votos = "SELECT COUNT(*) AS qtd FROM tb_votos WHERE id_projetos = ?";
+        $sql_qtd_votos = "SELECT COUNT(*) AS qtd FROM " . TABELA_VOTO['nome_tabela'] . " WHERE " . TABELA_VOTO['projeto'] . " = ?";
         $stmt_qtd_votos = $mysqli->prepare($sql_qtd_votos);
         $stmt_qtd_votos->bind_param("i", $id_projeto);
         $stmt_qtd_votos->execute();
@@ -49,7 +49,7 @@ if ($result_nomes->num_rows > 0) {
         $qtd_votos = $result_qtd_votos->fetch_assoc()["qtd"];
 
         // conta quantas  5 esse projeto recebeu
-        $sql_qtd_5 = "SELECT COUNT(*) AS qtd5 FROM tb_votos WHERE id_projetos = ? AND valor_voto = 5";
+        $sql_qtd_5 = "SELECT COUNT(*) AS qtd5 FROM " . TABELA_VOTO['nome_tabela'] . " WHERE " . TABELA_VOTO['projeto'] . " = ? AND " . TABELA_VOTO['valor'] . " = 5";
         $stmt_qtd_5 = $mysqli->prepare($sql_qtd_5);
         $stmt_qtd_5->bind_param("i", $id_projeto);
         $stmt_qtd_5->execute();
@@ -58,7 +58,7 @@ if ($result_nomes->num_rows > 0) {
         $qtd5 = $result_qtd_5->fetch_assoc()["qtd5"];
 
         // conta quantas 4 ou 5 ele recebeu
-        $sql_qtd_45 = "SELECT COUNT(*) AS qtd45 FROM tb_votos WHERE id_projetos = ? AND valor_voto IN (4, 5)";
+        $sql_qtd_45 = "SELECT COUNT(*) AS qtd45 FROM " . TABELA_VOTO['nome_tabela'] . " WHERE " . TABELA_VOTO['projeto'] . " = ? AND " . TABELA_VOTO['valor'] . " IN (4, 5)";
         $stmt_qtd_45 = $mysqli->prepare($sql_qtd_45);
         $stmt_qtd_45->bind_param("i", $id_projeto);
         $stmt_qtd_45->execute();

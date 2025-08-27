@@ -1,6 +1,6 @@
 <?php
 //Codado por Miguel Luiz Sommerfeld - 3°F Turma B
-require_once '../config/connect.php';
+require_once '../config/database.php';
 session_start();
 
 if (!isset($_SESSION['id'])) {
@@ -16,7 +16,7 @@ $comentario = !empty($_POST['comentario']) ? $_POST['comentario'] : null;
 $id_projeto = !empty($_POST['id_projeto']) ? (int)$_POST['id_projeto'] : null;
 
 if (isset($voto) && isset($id_projeto)) {
-    $queryVerificacao = "SELECT id_user, id_projetos FROM tb_votos WHERE id_user = (?) AND id_projetos = (?)";
+    $queryVerificacao = "SELECT " . TABELA_VOTO['usuario'] . ", " . TABELA_VOTO['projeto'] . " FROM " . TABELA_VOTO['nome_tabela'] . " WHERE " . TABELA_VOTO['usuario'] . " = (?) AND " . TABELA_VOTO['projeto'] . " = (?)";
     $stmt = $mysqli->prepare($queryVerificacao);
     $stmt->bind_param("ii", $id_user, $id_projeto);
     $stmt->execute();
@@ -28,7 +28,7 @@ if (isset($voto) && isset($id_projeto)) {
         exit();
     }
 
-    $queryQtdVotos = "SELECT id_user FROM tb_votos WHERE id_user = (?)";
+    $queryQtdVotos = "SELECT " . TABELA_VOTO['usuario'] . " FROM " . TABELA_VOTO['nome_tabela'] . " WHERE " . TABELA_VOTO['usuario'] . " = (?)";
     $stmt = $mysqli->prepare($queryQtdVotos);
     $stmt->bind_param("i", $id_user);
     $stmt->execute();
@@ -44,8 +44,7 @@ if (isset($voto) && isset($id_projeto)) {
     $fusoHorario = new DateTime();
     $data = $fusoHorario->format('Y-m-d H:i:s');
 
-    $query = "INSERT INTO tb_votos (dt_hora_voto, valor_voto, coment_voto, id_user, id_projetos)
-    VALUES (?, ?, ?, ?, ?)";
+    $query = "INSERT INTO " . TABELA_VOTO['nome_tabela'] . "(" . TABELA_VOTO['data'] . ", " . TABELA_VOTO['valor'] . ", " . TABELA_VOTO['comentario'] . ", " . TABELA_VOTO['usuario'] . ", " . TABELA_VOTO['projeto'] . ") VALUES (?, ?, ?, ?, ?)";
     $stmt = $mysqli->prepare($query);
     $stmt->bind_param("sisii", $data, $voto, $comentario, $id_user, $id_projeto);
     $stmt->execute();

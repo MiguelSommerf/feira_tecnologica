@@ -1,5 +1,5 @@
 <?php
-require_once '../config/connect.php';
+require_once '../config/database.php';
 
 session_start();
 //Chama o banco, verifica o método de requisição, muda a nota para inteiro e insere os dados no banco.
@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $comentario = trim($comentario) === '' ? null : $comentario;
 
     //Verifica se o usuário já enviou um feedback
-    $select = "SELECT id_feedback FROM tb_feedback WHERE id_users = ?";
+    $select = "SELECT " . TABELA_FEEDBACK['id'] . " FROM " . TABELA_FEEDBACK['nome_tabela'] . " WHERE ". TABELA_FEEDBACK['usuario'] . " = ?";
     $stmt = $mysqli->prepare($select);
     $stmt->bind_param("i", $id);
     $stmt->execute();
@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit();
     }
 
-    $query = "INSERT INTO tb_feedback (id_users, nota, comentario) VALUES (?, ?, ?)";
+    $query = "INSERT INTO " . TABELA_FEEDBACK['nome_tabela'] . "(" . TABELA_FEEDBACK['usuario'] . ", " . TABELA_FEEDBACK['nota'] . ", " . TABELA_FEEDBACK['comentario'] . ") VALUES (?, ?, ?)";
     $stmt = $mysqli->prepare($query);
     if ($stmt) {
         $stmt->bind_param("iis", $id, $nota, $comentario);
