@@ -1,7 +1,9 @@
 <?php
 //Codado por Miguel Luiz Sommerfeld - 3°F Turma B
 require_once '../config/database.php';
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 if (!isset($_SESSION['id'])) {
     echo "<script>alert('Você precisa estar logado para avaliar os projetos.')</script>";

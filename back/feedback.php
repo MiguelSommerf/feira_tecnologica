@@ -1,7 +1,9 @@
 <?php
 require_once '../config/database.php';
 
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 //Chama o banco, verifica o método de requisição, muda a nota para inteiro e insere os dados no banco.
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($_SESSION['id'])) {
