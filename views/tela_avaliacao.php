@@ -1,5 +1,5 @@
 <?php
-require_once '../config/connect.php';
+require_once '../config/database.php';
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -8,18 +8,18 @@ if (session_status() === PHP_SESSION_NONE) {
 $id_projeto = isset($_POST['id_projeto']) ? (int)$_POST['id_projeto'] : null;
 $titulo_projeto = isset($_POST['titulo_projeto']) ? $_POST['titulo_projeto'] : null;
 
-$queryAluno = "SELECT nome FROM tb_integrantes as i
-                INNER JOIN tbl_projetos AS p ON p.id_projetos = i.id_projetos
-                INNER JOIN tbl_alunos as a ON a.id_aluno = i.id_aluno
-                WHERE i.id_projetos = ?";
+$queryAluno = "SELECT " . TABELA_ALUNO['nome'] . " FROM " . TABELA_PROJETO_ALUNO['nome_tabela'] . " as i
+                INNER JOIN " . TABELA_PROJETO['nome_tabela'] . " AS p ON p." . TABELA_PROJETO['id'] . " = i." . TABELA_PROJETO_ALUNO['projeto'] . "
+                INNER JOIN " . TABELA_ALUNO['nome_tabela'] . " AS a ON a." . TABELA_ALUNO['id'] . " = i." . TABELA_PROJETO_ALUNO['aluno'] . "
+                WHERE i." . TABELA_PROJETO_ALUNO['projeto'] . " = ?";
 $stmtAluno = $mysqli->prepare($queryAluno);
 $stmtAluno->bind_param("i", $id_projeto);
 $stmtAluno->execute();
 $resultAlunos = $stmtAluno->get_result();
 
-$querySerieCurso = "SELECT DISTINCT a.serie, a.curso FROM tbl_projetos AS p
-          INNER JOIN tb_integrantes AS i ON p.id_projetos = i.id_projetos
-          INNER JOIN tbl_alunos AS a ON a.id_aluno = i.id_aluno";
+$querySerieCurso = "SELECT DISTINCT a." . TABELA_ALUNO['serie'] . ", a." . TABELA_ALUNO['curso'] . " FROM " . TABELA_PROJETO['nome_tabela'] . " AS p
+          INNER JOIN " . TABELA_PROJETO_ALUNO['nome_tabela'] . " AS i ON p." . TABELA_PROJETO['id'] . " = i." . TABELA_PROJETO_ALUNO['projeto'] . "
+          INNER JOIN " . TABELA_ALUNO['nome_tabela'] . " AS a ON a." . TABELA_ALUNO['id'] . " = i." . TABELA_PROJETO_ALUNO['aluno'];
 $stmtSerieCurso = $mysqli->prepare($querySerieCurso);
 $stmtSerieCurso->execute();
 $resultSerieCurso = $stmtSerieCurso->get_result();
@@ -70,11 +70,11 @@ if (!isset($id_projeto)) {
                         <input type="text" value="Projeto: <?= $titulo_projeto ?>" readonly>
                     </div>
                     <div class="campo">
-                        <input type="text" value="Alunos: <?php while ($row = $resultAlunos->fetch_assoc()) echo $row['nome'] . '; ';
+                        <input type="text" value="Alunos: <?php while ($row = $resultAlunos->fetch_assoc()) echo $row['nome_aluno'] . '; ';
                         ?>" readonly/>
                     </div>
                     <div class="campo">
-                        <input type="text" value="Série: <?php while ($rowSerieCurso = $resultSerieCurso->fetch_assoc()) echo $rowSerieCurso['serie'] . '° ' . $rowSerieCurso['curso']; ?>" readonly>
+                        <input type="text" value="Série: <?php while ($rowSerieCurso = $resultSerieCurso->fetch_assoc()) echo $rowSerieCurso['serie_aluno'] . '° ' . $rowSerieCurso['curso']; ?>" readonly>
                     </div>
                 </div>
             </div>

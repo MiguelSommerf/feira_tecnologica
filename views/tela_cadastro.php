@@ -1,5 +1,5 @@
 <?php
-require_once '../config/connect.php';
+require_once '../config/database.php';
 require_once '../back/classes/Logout.php';
 
 $verif = new Logout();

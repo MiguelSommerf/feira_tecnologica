@@ -1,6 +1,6 @@
 <?php
-#Modificado por Miguel Luiz Sommerfeld às 16:53 no dia 10/06/2025 - Team Leader (Turma B)
-require_once '../config/connect.php';
+#Modificado por Miguel Luiz Sommerfeld às 23:09 no dia 26/08/2025 - Team Leader (Turma B)
+require_once '../config/database.php';
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -18,43 +18,50 @@ $filtroOds = trim($_GET['ods'] ?? null);
 $filtroBloco = trim($_GET['bloco'] ?? null);
 
 // Query com filtros
-$query = "SELECT DISTINCT a.serie, a.curso, p.id_projetos, p.titulo_projeto, p.descricao_projeto,
-          p.bloco, p.sala, p.stand, p.prof_orientador
-          FROM tbl_projetos AS p
-          INNER JOIN tb_integrantes AS i ON p.id_projetos = i.id_projetos
-          INNER JOIN tbl_alunos AS a ON a.id_aluno = i.id_aluno
-          INNER JOIN ods_projeto AS op ON op.id_projetos = p.id_projetos
-          INNER JOIN tbl_ods AS o ON o.id_ods = op.id_ods";
+$query = "SELECT DISTINCT a." . TABELA_ALUNO['serie'] . ",
+         a." . TABELA_ALUNO['curso'] . ",
+         p." . TABELA_PROJETO['id'] . ",
+         p." . TABELA_PROJETO['titulo'] . ",
+         p." . TABELA_PROJETO['descricao'] . ",
+         p." . TABELA_PROJETO['bloco'] . ",
+         p." . TABELA_PROJETO['sala'] . ",
+         p." . TABELA_PROJETO['stand'] . ",
+         p." . TABELA_PROJETO['orientador'] . "
+         FROM " . TABELA_PROJETO['nome_tabela'] . " AS p
+         INNER JOIN " . TABELA_PROJETO_ALUNO['nome_tabela'] . " AS i ON p." . TABELA_PROJETO['id'] . " = i." . TABELA_PROJETO_ALUNO['projeto'] . "
+         INNER JOIN " . TABELA_ALUNO['nome_tabela'] . " AS a ON a." . TABELA_ALUNO['id'] . " = i." . TABELA_PROJETO_ALUNO['aluno'] . "
+         INNER JOIN " . TABELA_ODS_PROJETO['nome_tabela'] . " AS op ON op." . TABELA_ODS_PROJETO['projeto'] . " = p." . TABELA_PROJETO['id'] . "
+         INNER JOIN " . TABELA_ODS['nome_tabela'] . " AS o ON o.". TABELA_ODS['id'] ." = op." . TABELA_ODS_PROJETO['ods'];
 
 $params = [];
 $types = "";
 
 if ($filtroNome) {
-    $query .= " AND a.nome LIKE ?";
+    $query .= " AND a.". TABELA_ALUNO['nome'] ." LIKE ?";
     $params[] .= "%" . $filtroNome . "%";
     $types .= "s";
 }
 
 if ($filtroCurso) {
-    $query .= " AND a.curso = ?";
+    $query .= " AND a." . TABELA_ALUNO['curso'] . " = ?";
     $params[] .= $filtroCurso;
     $types .= "s";
 }
 
 if ($filtroSerie) {
-    $query .= " AND a.serie = ?";
+    $query .= " AND a." . TABELA_ALUNO['serie'] . " = ?";
     $params[] .= $filtroSerie;
     $types .= "s";
 }
 
 if ($filtroOds) {
-    $query .= " AND o.ods LIKE ?";
+    $query .= " AND o." . TABELA_ODS['nome'] . " LIKE ?";
     $params[] .= "%" . $filtroOds . "%";
     $types .= "s";
 }
 
 if ($filtroBloco) {
-    $query .= " AND p.bloco = ?";
+    $query .= " AND p.". TABELA_PROJETO['bloco'] ." = ?";
     $params[] .= $filtroBloco;
     $types .= "s";
 }
@@ -102,11 +109,11 @@ $result = $stmt->get_result();
                 <select name="curso" id="curso" class="botao">
                     <option value="" disabled selected>Curso</option>
                     <?php
-                    $queryCurso = "SELECT DISTINCT curso FROM tbl_alunos";
+                    $queryCurso = "SELECT DISTINCT " . TABELA_ALUNO['curso'] . " FROM " . TABELA_ALUNO['nome_tabela'];
                     $resultCurso = $mysqli->query($queryCurso);
                     
                     while ($row = $resultCurso->fetch_assoc()):
-                        $curso = $row['curso'];
+                        $curso = $row['curso_aluno'];
                     ?>
 
                     <option value="<?= htmlspecialchars($curso) ?>" <?= $filtroCurso == $curso ? 'selected' : '' ?>>
@@ -120,11 +127,11 @@ $result = $stmt->get_result();
                     <option value="" disabled selected>Série</option>
                     <option value="">Todas</option>
                         <?php
-                        $querySerie = "SELECT DISTINCT serie FROM tbl_alunos";
+                        $querySerie = "SELECT DISTINCT " . TABELA_ALUNO['serie'] . " FROM " . TABELA_ALUNO['nome_tabela'];
                         $resultSerie = $mysqli->query($querySerie);
 
                         while ($row = $resultSerie->fetch_assoc()):
-                            $serie = $row['serie'];
+                            $serie = $row['serie_aluno'];
                         ?>
 
                         <option value="<?= $serie ?>" <?= $filtroSerie == $serie ? 'selected' : '' ?>>
@@ -153,25 +160,23 @@ $result = $stmt->get_result();
         <?php
             if ($result->num_rows > 0):
                 while ($row = $result->fetch_assoc()):
-                    $queryAluno = "SELECT nome FROM tb_integrantes as i
-                                INNER JOIN tbl_projetos AS p ON p.id_projetos = i.id_projetos
-                                INNER JOIN tbl_alunos as a ON a.id_aluno = i.id_aluno
-                                WHERE i.id_projetos = ?";
+                    $queryAluno = "SELECT " . TABELA_ALUNO['nome'] . " FROM " . TABELA_PROJETO_ALUNO['nome_tabela'] . " AS i
+                                  INNER JOIN " . TABELA_PROJETO['nome_tabela'] . " AS p ON p." . TABELA_PROJETO['id'] . " = i." . TABELA_PROJETO_ALUNO['projeto'] . "
+                                  INNER JOIN " . TABELA_ALUNO['nome_tabela'] . " AS a ON a." . TABELA_ALUNO['id'] . " = i." . TABELA_PROJETO_ALUNO['aluno'] . "
+                                  WHERE i." . TABELA_PROJETO_ALUNO['projeto'] . " = ?";
                     $stmt = $mysqli->prepare($queryAluno);
-                    $stmt->bind_param("i", $row['id_projetos']);
+                    $stmt->bind_param("i", $row['id_projeto']);
                     $stmt->execute();
                     $resultAlunos = $stmt->get_result();
 
-                    $queryOds = "SELECT ods FROM ods_projeto AS op
-                                INNER JOIN tbl_projetos as p ON op.id_projetos = p.id_projetos
-                                INNER JOIN tbl_ods AS o ON o.id_ods = op.id_ods
-                    WHERE op.id_projetos = ?";
+                    $queryOds = "SELECT " . TABELA_ODS['nome'] . " FROM " . TABELA_ODS_PROJETO['nome_tabela'] . " AS op
+                                INNER JOIN " . TABELA_PROJETO['nome_tabela'] . " AS p ON op." . TABELA_ODS_PROJETO['projeto'] . " = p." . TABELA_PROJETO['id'] . "
+                                INNER JOIN " . TABELA_ODS['nome_tabela'] . " AS o ON o." . TABELA_ODS['id'] . " = op." . TABELA_ODS_PROJETO['ods'] . "
+                    WHERE op." . TABELA_ODS_PROJETO['projeto'] . " = ?";
                     $stmtOds = $mysqli->prepare($queryOds);
-                    $stmtOds->bind_param("i", $row['id_projetos']);
+                    $stmtOds->bind_param("i", $row['id_projeto']);
                     $stmtOds->execute();
                     $resultOds = $stmtOds->get_result();
-
-                    $queryIdProjeto = "SELECT id_projeto FROM tbl_projetos"
         ?>
         <div class="linha-projeto">
             <div class="container-projeto">
@@ -179,22 +184,22 @@ $result = $stmt->get_result();
                     <div class="projeto-nome">
                         <h3><?php
                             echo $row['titulo_projeto'] . " - ";
-                            echo ucfirst($row['serie']) . "° ";
-                            echo strtoupper($row['curso']); ?>
+                            echo ucfirst($row['serie_aluno']) . "° ";
+                            echo strtoupper($row['curso_aluno']); ?>
                         </h3>
                     </div>
                     <div class="projeto-lugar">
                         <?php
-                        echo "Sala: " . htmlspecialchars($row['sala']) . " - ";
-                        echo "Stand: " . htmlspecialchars($row['stand']) . " - ";
-                        echo "Bloco: " . htmlspecialchars($row['bloco']);
+                        echo "Sala: " . htmlspecialchars($row['sala_projeto']) . " - ";
+                        echo "Stand: " . htmlspecialchars($row['stand_projeto']) . " - ";
+                        echo "Bloco: " . htmlspecialchars($row['bloco_projeto']);
                         ?>
                     </div>
                     <div class="projeto-lugar">
                         <p><strong>Aluno:</strong>
                             <?php
                             while ($rowAluno = $resultAlunos->fetch_assoc()) {
-                                $aluno = $rowAluno['nome'];
+                                $aluno = $rowAluno['nome_aluno'];
                                 echo htmlspecialchars($aluno) . "; ";
                             }
                             ?>
@@ -202,19 +207,19 @@ $result = $stmt->get_result();
                         <p><strong>ODS:</strong>
                             <?php
                             while ($rowOds = $resultOds->fetch_assoc()) {
-                                $ods = $rowOds['ods'];
+                                $ods = $rowOds['nome_ods'];
                                 echo htmlspecialchars($ods) . "; ";
                             }
                             ?>
                         </p>
                         <p><strong>Orientador:</strong>
-                            <?= htmlspecialchars($row['prof_orientador']) ?>
+                            <?= htmlspecialchars($row['orientador_projeto']) ?>
                         </p>
                         <p><strong>Posição no Ranking:</strong>
-                            <?= $row['posicao'] ?? '?' ?>
+                            <?= $row['posicao_projeto'] ?? '?' ?>
                         </p>
                         <form action="tela_avaliacao.php" method="post">
-                            <input type="hidden" name="id_projeto" value="<?= $row['id_projetos']; ?>">
+                            <input type="hidden" name="id_projeto" value="<?= $row['id_projeto']; ?>">
                             <input type="hidden" name="titulo_projeto" value="<?= $row['titulo_projeto']; ?>">
                             <button type="submit" class="avaliar">Avaliar</button>
                         </form>
