@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../../config/connect.php';
+require_once __DIR__ . '/../../config/database.php';
 
 session_start();
 if (!isset($_SESSION['is_admin']) or $_SESSION['is_admin'] !== 2) {
