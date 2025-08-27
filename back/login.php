@@ -32,7 +32,7 @@ if($stmt->num_rows == 1){
             session_start();
         }
         $_SESSION['id'] = $id_user;
-        $_SESSION['is_admin'] = $is_admin;
+        $_SESSION['admin'] = $is_admin;
         $_SESSION['nome'] = $nome_user;
 
         echo "<script>window.location.href = '../views/tela_home.php'</script>";

@@ -21,7 +21,7 @@ $stmtAdmin->close();
 
 if ($resultAdmin->num_rows > 0) {
     $usuario = $resultAdmin->fetch_assoc();
-        if($usuario['is_admin'] == 0) {
+        if($usuario['admin'] == 0) {
             $querySetAdmin = "UPDATE " . TABELA_USUARIO['nome_tabela'] . " SET " . TABELA_USUARIO['admin'] . " = 1 WHERE " . TABELA_USUARIO['id'] . " = ?";
             $stmtSetAdmin = $mysqli->prepare($querySetAdmin);
             $stmtSetAdmin->bind_param("i", $id_usuario);

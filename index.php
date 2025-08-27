@@ -34,10 +34,10 @@ if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === 0) {
   <main>
     <div>
       <div class="ORGmainInfo">
-        <?php if (isset($_SESSION['is_admin'])): ?>
+        <?php if (isset($_SESSION['admin'])): ?>
          <p class="info">Admin</p>
          <div class="a0">
-          <a href="admin/index.php">Admin</a>
+          <a href="admin/views/home.php">Admin</a>
          </div> 
         <?php endif;?>
         <?php if (isset($_SESSION['id'])): ?>
