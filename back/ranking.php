@@ -2,10 +2,10 @@
 require_once '../config/database.php';
 
 // Pega todos os nomes e id's diferentes dos projetos que receberam votos
-$sql_nomes = "SELECT DISTINCT v.id_projetos, p.titulo_projeto, p.bloco, p.stand, p.sala, a.curso FROM . " . TABELA_PROJETO['nome_tabela'] . " as p
-              INNER JOIN " . TABELA_VOTO['nome_tabela'] . " AS v ON p.id_projetos = v.id_projetos
-              INNER JOIN " . TABELA_PROJETO_ALUNO['nome_tabela'] . " AS i ON i.id_projetos = p.id_projetos
-              INNER JOIN " . TABELA_ALUNO['nome_tabela'] . " AS a ON a.id_aluno = i.id_aluno";
+$sql_nomes = "SELECT DISTINCT v." . TABELA_VOTO['projeto'] . ", " . "p." . TABELA_PROJETO['titulo'] . ", " . "p." . TABELA_PROJETO['bloco'] . ", " . "p." . TABELA_PROJETO['stand'] . ", " . "p." . TABELA_PROJETO['sala'] . ", " . "a." . TABELA_ALUNO['curso'] . " FROM " . TABELA_PROJETO['nome_tabela'] . " as p
+              INNER JOIN " . TABELA_VOTO['nome_tabela'] . " AS v ON p." . TABELA_PROJETO['id'] . " = v." . TABELA_VOTO['projeto'] . "
+              INNER JOIN " . TABELA_PROJETO_ALUNO['nome_tabela'] . " AS i ON i." . TABELA_PROJETO_ALUNO['projeto'] . " = p." . TABELA_PROJETO['id'] . "
+              INNER JOIN " . TABELA_ALUNO['nome_tabela'] . " AS a ON a." . TABELA_ALUNO['id'] . " = i." . TABELA_PROJETO_ALUNO['aluno'];
 $stmt = $mysqli->prepare($sql_nomes);
 $stmt->execute();
 $result_nomes = $stmt->get_result();

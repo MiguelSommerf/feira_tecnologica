@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `tb_ods_projeto` (
 
 -- Copiando estrutura para tabela feira.tb_projeto
 CREATE TABLE IF NOT EXISTS `tb_projeto` (
-  `id_projeto` int(11) NOT NULL,
+  `id_projeto` int(11) NOT NULL AUTO_INCREMENT,
   `titulo_projeto` varchar(100) NOT NULL,
   `descricao_projeto` varchar(255) NOT NULL,
   `bloco_projeto` enum('A','B') NOT NULL,
@@ -95,7 +95,7 @@ CREATE TABLE IF NOT EXISTS `tb_projeto_aluno` (
 -- Copiando estrutura para tabela feira.tb_usuario
 CREATE TABLE IF NOT EXISTS `tb_usuario` (
   `id_usuario` int(11) NOT NULL AUTO_INCREMENT,
-  `is_admin` bit(1) NOT NULL DEFAULT b'0',
+  `is_admin` bit(1) NOT NULL DEFAULT 0,
   `nome_usuario` varchar(50) NOT NULL,
   `email_usuario` varchar(255) NOT NULL,
   `senha_usuario` varchar(255) DEFAULT NULL,
@@ -107,7 +107,7 @@ CREATE TABLE IF NOT EXISTS `tb_usuario` (
 
 -- Copiando estrutura para tabela feira.tb_voto
 CREATE TABLE IF NOT EXISTS `tb_voto` (
-  `id_voto` int(11) NOT NULL,
+  `id_voto` int(11) NOT NULL AUTO_INCREMENT,
   `data_hora_voto` datetime NOT NULL,
   `valor_voto` int(11) NOT NULL,
   `comentario_voto` varchar(200) DEFAULT NULL,
