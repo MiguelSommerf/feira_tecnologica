@@ -20,12 +20,12 @@ if ($result_nomes->num_rows > 0) {
 
     // vai percorrendo cada nome de projeto
     while ($row = $result_nomes->fetch_assoc()) {
-        $id_projeto = $row['id_projetos'];
+        $id_projeto = $row['id_projeto'];
         $nomeProjeto = $row["titulo_projeto"];
-        $blocoProjeto = $row['bloco'];
-        $standProjeto = $row['stand'];
-        $salaProjeto = $row['sala'];
-        $cursoProjeto = $row['curso'];
+        $blocoProjeto = $row['bloco_projeto'];
+        $standProjeto = $row['stand_projeto'];
+        $salaProjeto = $row['sala_projeto'];
+        $cursoProjeto = $row['curso_projeto'];
 
         // proteção contra SQL Injection
         $nomeSeguro = $mysqli->real_escape_string($nomeProjeto);
