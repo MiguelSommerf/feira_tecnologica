@@ -72,25 +72,6 @@ th, td {
     align-items: center;
 }
 
-.btn-admin {
-    background-color: limegreen;
-    color: black;
-    padding: 8px 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.btn-delete {
-    background-color: red;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
 form.ocult {
     margin: 0;
 }
