@@ -2,7 +2,7 @@
 require_once __DIR__ . '/../../config/database.php';
 
 session_start();
-if (!isset($_SESSION['admin']) or $_SESSION['admin'] != true) {
+if (!isset($_SESSION['admin']) or $_SESSION['admin'] !== 1) {
     header('Location: ../Views/home.php');
     exit('Você não tem permissão para acessar esta página.');
 }
@@ -14,22 +14,6 @@ if (!isset($_SESSION['admin']) or $_SESSION['admin'] != true) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../assets/css/admin.css">
-    <script>
-        function deleteFunction() {
-            const confirmacao = confirm('Você tem certeza que deseja deletar este usuário?');
-            return confirmacao;
-        }
-
-        function adminFunction() {
-            const confirmacao = confirm('Você tem certeza que deseja tornar este usuário administrador?');
-            return confirmacao;
-        }
-
-        function standardFunction() {
-            const confirmacao = confirm('Você tem certeza que deseja tornar este administrador um usuário padrão?');
-            return confirmacao;
-        }
-    </script>
     <title>Usuários</title>
 </head>
 <body>
@@ -39,7 +23,6 @@ if (!isset($_SESSION['admin']) or $_SESSION['admin'] != true) {
         </div>
     </div>
     <div class="container">
-        <p>Usuários Comuns</p>
         <?php
             $query = "SELECT * FROM " . TABELA_USUARIO['nome_tabela'] . " WHERE " . TABELA_USUARIO['admin'] . " = 0";
             $stmt = $mysqli->prepare($query);
@@ -47,6 +30,7 @@ if (!isset($_SESSION['admin']) or $_SESSION['admin'] != true) {
             $result = $stmt->get_result();
 
             if ($result->num_rows > 0) {
+                echo "<p>Usuários Comuns</p>";
                 echo "<table>";
                 echo "<tr><th>Username</th>";
                 echo "<th>Opções</th></tr>";
@@ -60,15 +44,16 @@ if (!isset($_SESSION['admin']) or $_SESSION['admin'] != true) {
                             </form>
                             <form class='ocult' action='../src/deleteUser.php' method='POST'>
                                 <input type='hidden' name='id_usuario' value=" . $usuario['id_usuario'] . ">
-                                <button class='btn-delete' type='submit' onclick='return deleteFunction()'>Deletar</button>
+                                <button class='btn-delete' type='submit' onclick='return deleteUser()'>Deletar</button>
                             </form>
                         </div>
                     </td></tr>";
                 }
                 echo "</table>";
+            } else {
+                echo "<strong><p>Nenhum usuário comum encontrado.</p></strong>";
             }
         ?>
-        <p>Usuários Admin's</p>
         <?php
             $query = "SELECT * FROM " . TABELA_USUARIO['nome_tabela'] . " WHERE " . TABELA_USUARIO['admin'] . " = 1";
             $stmt = $mysqli->prepare($query);
@@ -76,6 +61,7 @@ if (!isset($_SESSION['admin']) or $_SESSION['admin'] != true) {
             $result = $stmt->get_result();
 
             if ($result->num_rows > 0) {
+                echo "<p>Usuários Admin</p>";
                 echo "<table>";
                 echo "<tr><th>Username</th>";
                 echo "<th>Opções</th></tr>";
@@ -89,7 +75,7 @@ if (!isset($_SESSION['admin']) or $_SESSION['admin'] != true) {
                                 </form>
                                 <form class='ocult' action='../src/deleteUser.php' method='POST'>
                                     <input type='hidden' name='id_usuario' value=" . $usuario['id_usuario'] . ">
-                                    <button class='btn-delete' type='submit' onclick='return deleteFunction()'>Deletar</button>
+                                    <button class='btn-delete' type='submit' onclick='return deleteUser()'>Deletar</button>
                                 </form>
                             </div>
                         </td></tr>";
@@ -98,5 +84,6 @@ if (!isset($_SESSION['admin']) or $_SESSION['admin'] != true) {
             }
         ?>
     </div>
+    <script src="../../assets/JS/adminFunctions.js"></script>
 </body>
 </html>

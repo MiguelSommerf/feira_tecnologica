@@ -11,11 +11,12 @@
     if (session_status() === PHP_SESSION_NONE) {
         session_start();
     }
+    
+    if (empty($_SESSION['admin'])) {
+        unset($_SESSION['admin']);
+    }
 
-    if (!empty($_SESSION['id'])) {
-        if (empty($_SESSION['admin'])) {
-            unset($_SESSION['admin']);
-        }
+    if (!empty($_SESSION['id']) && $_SESSION['admin'] === 1) {
 
         if (!empty($_SESSION['admin'])): ?>
             <div class="nav-bar">
@@ -32,7 +33,7 @@
         <?php endif; ?>
     <?php
     } else {
-        $url = '../../views/tela_login.php';
+        $url = '../../index.php';
         header("Location: $url");
         exit();
     }

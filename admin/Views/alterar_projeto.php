@@ -5,7 +5,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-if (empty($_SESSION['admin']) or $_SESSION['admin'] != true) {
+if (empty($_SESSION['admin']) or $_SESSION['admin'] !== 1) {
     header('Location: ../Views/home.php');
     exit();
 }
@@ -18,11 +18,21 @@ if (!isset($id)) {
 
 # Altera os dados do projeto quando o form é enviado.
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $titulo = $_POST['titulo'];
+    $descricao = $_POST['descricao'];
     $sala = $_POST['sala'];
     $bloco = $_POST['bloco'];
     $stand = $_POST['stand'];
+    $orientador = $_POST['orientador'];
 
-    $queryAlterarProjeto = "UPDATE " . TABELA_PROJETO['nome_tabela'] . " SET " . TABELA_PROJETO['sala'] . " = ?, " . TABELA_PROJETO['bloco'] . " = ?, " . TABELA_PROJETO['stand'] . " = ? WHERE " . TABELA_PROJETO['id'] . " = ?";
+    $queryAlterarProjeto = "UPDATE ". TABELA_PROJETO['nome_tabela'] . " SET " 
+                                    . TABELA_PROJETO['titulo'] . " = ?, " 
+                                    . TABELA_PROJETO['descricao'] . " = ?, " 
+                                    . TABELA_PROJETO['sala'] . " = ?, " 
+                                    . TABELA_PROJETO['bloco'] . " = ?, " 
+                                    . TABELA_PROJETO['stand'] . " = ?, "  
+                                    . TABELA_PROJETO['sala'] . " = ?, WHERE " 
+                                    . TABELA_PROJETO['id'] . " = ?";
     $stmtAlterarProjeto = $mysqli->prepare($queryAlterarProjeto);
     $stmtAlterarProjeto->bind_param("isii", $sala, $bloco, $stand, $id);
     $stmtAlterarProjeto->execute();
@@ -59,14 +69,44 @@ $projeto = $stmtSelecionarProjeto->get_result()->fetch_assoc();
 
         <!-- Formulário para alteração. -->
         <form method="POST">
-            <label>Sala:</label>
-            <input type="text" name="sala" value="<?= htmlspecialchars($projeto['sala_projeto']) ?>" required>
-            
+            <label>Título:</label>
+            <input type="text" name="titulo" value="<?= htmlspecialchars($projeto['titulo_projeto']) ?>" placeholder="Novo título do projeto" required>
+
+            <label>Descrição:</label>
+            <textarea name="descricao" id="descricao" minlength="15" maxlength="200" placeholder="Digite até 200 caractéres" required><?= htmlspecialchars($projeto['descricao_projeto']) ?></textarea>
+
             <label>Bloco:</label>
-            <input type="text" name="bloco" value="<?= htmlspecialchars($projeto['bloco_projeto']) ?>" required>
+            <select name="bloco" id="bloco" required>
+                <option value="A">A</option>
+                <option value="B">B</option>
+            </select>
+
+            <label>Sala:</label>
+            <select name="sala" id="sala" required>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+            </select>
             
             <label>Stand:</label>
-            <input type="text" name="stand" value="<?= htmlspecialchars($projeto['stand_projeto']) ?>" required>
+            <select name="stand" id="stand" required>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+            </select>
+
+            <label>Orientador:</label>
+            <input type="text" name="orientador" value="<?= htmlspecialchars($projeto['orientador_projeto']) ?>" placeholder="Orientador do projeto" required>
             
             <button type="submit">Salvar</button>
         </form>
