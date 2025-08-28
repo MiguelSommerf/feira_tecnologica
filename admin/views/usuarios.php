@@ -3,7 +3,7 @@ require_once __DIR__ . '/../../config/database.php';
 
 session_start();
 if (!isset($_SESSION['admin']) or $_SESSION['admin'] !== 1) {
-    header('Location: ../Views/home.php');
+    header('Location: ../views/home.php');
     exit('Você não tem permissão para acessar esta página.');
 }
 
@@ -19,7 +19,7 @@ if (!isset($_SESSION['admin']) or $_SESSION['admin'] !== 1) {
 <body>
     <div class="nav-bar">
         <div class="nav-bar-content">
-            <a href="../Views/home.php">Voltar</a>
+            <a href="../views/home.php">Voltar</a>
         </div>
     </div>
     <div class="container">

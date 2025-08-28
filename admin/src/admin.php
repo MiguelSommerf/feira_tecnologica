@@ -6,7 +6,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 if (empty($_SESSION['admin']) or $_SESSION['admin'] != true) {
-    header('Location: ../Views/home.php');
+    header('Location: ../views/home.php');
     exit();
 }
 
