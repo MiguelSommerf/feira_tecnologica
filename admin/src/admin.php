@@ -36,10 +36,10 @@ if ($resultAdmin->num_rows > 0) {
         }
 
     echo "<script>alert('Usuário atualizado com sucesso!');</script>";
-    echo "<script>window.location.href = ''</script>";
+    echo "<script>window.location.href = '../views/usuarios.php'</script>";
     exit();
 } else {
     echo "<script>alert('Usuário não encontrado!');</script>";
-    echo "<script>window.location.href = ''</script>";
+    echo "<script>window.location.href = '../views/usuarios.php'</script>";
     exit();
 }

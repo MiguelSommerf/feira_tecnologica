@@ -18,12 +18,12 @@ if (!isset($id)) {
 
 # Altera os dados do projeto quando o form é enviado.
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $titulo = $_POST['titulo'];
-    $descricao = $_POST['descricao'];
-    $sala = $_POST['sala'];
-    $bloco = $_POST['bloco'];
-    $stand = $_POST['stand'];
-    $orientador = $_POST['orientador'];
+    $titulo = !empty($_POST['titulo']) ? $_POST['titulo'] : null;
+    $descricao = !empty($_POST['descricao']) ? $_POST['descricao'] : null;
+    $sala = !empty($_POST['sala']) ? $_POST['sala'] : null;
+    $bloco = !empty($_POST['bloco']) ? $_POST['bloco'] : null;
+    $stand = !empty($_POST['stand']) ? $_POST['stand'] : null;
+    $orientador = !empty($_POST['orientador']) ? $_POST['orientador'] : null;
 
     $queryAlterarProjeto = "UPDATE ". TABELA_PROJETO['nome_tabela'] . " SET " 
                                     . TABELA_PROJETO['titulo'] . " = ?, " 
@@ -65,10 +65,10 @@ $projeto = $stmtSelecionarProjeto->get_result()->fetch_assoc();
     </div>
 
     <div class="container">
-        <h2>Editando Projeto ID <?= $id ?></h2>
+        <h2>Editando Projeto <?= $projeto['titulo_projeto'] ?></h2>
 
         <!-- Formulário para alteração. -->
-        <form method="POST">
+        <form method="POST" action="">
             <label>Título:</label>
             <input type="text" name="titulo" value="<?= htmlspecialchars($projeto['titulo_projeto']) ?>" placeholder="Novo título do projeto" required>
 
@@ -77,39 +77,58 @@ $projeto = $stmtSelecionarProjeto->get_result()->fetch_assoc();
 
             <label>Bloco:</label>
             <select name="bloco" id="bloco" required>
-                <option value="A">A</option>
-                <option value="B">B</option>
+                <option value="" disabled selected>Selecione o bloco:</option>
+                <?php
+                switch ($projeto['bloco_projeto']) {
+                    case 'A':
+                        echo "<option value='A' disabled selected>A (Atual)</option>";
+                        echo "<option value='B'>B</option>";
+                        break;
+                    case 'B':
+                        echo "<option value='B' disabled selected>B (Atual)</option>";
+                        echo "<option value='A'>A</option>";
+                        break;
+                }
+                ?>
             </select>
 
             <label>Sala:</label>
             <select name="sala" id="sala" required>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
+                <option value="" disabled selected>Selecione a sala:</option>
+                <?php
+                $querySala = "SELECT DISTINCT " . TABELA_PROJETO['sala'] . " FROM " . TABELA_PROJETO['nome_tabela'] . " ORDER BY " . TABELA_PROJETO['sala'] . " DESC";
+                $stmtSala = $mysqli->prepare($querySala);
+                $stmtSala->execute();
+                $salas = $stmtSala->get_result();
+
+                foreach ($salas as $sala) {
+                    echo "<option value='" . $sala['sala_projeto'] . "'>Sala " . $sala['sala_projeto'] . "</option>";
+                }
+                ?>
             </select>
             
             <label>Stand:</label>
             <select name="stand" id="stand" required>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
+                <option value="" disabled selected>Selecione o stand:</option>
+                <?php
+                $queryStand = "SELECT DISTINCT " . TABELA_PROJETO['stand'] . " FROM " . TABELA_PROJETO['nome_tabela'] . " ORDER BY " . TABELA_PROJETO['stand'] . " DESC";
+                $stmtStand = $mysqli->prepare($queryStand);
+                $stmtStand->execute();
+                $stands = $stmtStand->get_result();
+
+                foreach ($stands as $stand) {
+                    echo "<option value='" . $sala['stand_projeto'] . "'>Stand " . $stand['stand_projeto'] . "</option>";
+                }
+                ?>
             </select>
 
             <label>Orientador:</label>
             <input type="text" name="orientador" value="<?= htmlspecialchars($projeto['orientador_projeto']) ?>" placeholder="Orientador do projeto" required>
             
             <button type="submit">Salvar</button>
+            <button type="reset" onclick="window.location.reload()" class="btn-delete">Reverter</button>
         </form>
     </div>
+    <script src="../../assets/JS/selectedOptions.js"></script>
 </body>
 </html>

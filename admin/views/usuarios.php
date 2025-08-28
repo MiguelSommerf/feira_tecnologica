@@ -30,7 +30,7 @@ if (!isset($_SESSION['admin']) or $_SESSION['admin'] !== 1) {
             $result = $stmt->get_result();
 
             if ($result->num_rows > 0) {
-                echo "<p>Usuários Comuns</p>";
+                echo "<h1>Usuários Comuns</h1>";
                 echo "<table>";
                 echo "<tr><th>Username</th>";
                 echo "<th>Opções</th></tr>";
@@ -61,26 +61,41 @@ if (!isset($_SESSION['admin']) or $_SESSION['admin'] !== 1) {
             $result = $stmt->get_result();
 
             if ($result->num_rows > 0) {
-                echo "<p>Usuários Admin</p>";
-                echo "<table>";
-                echo "<tr><th>Username</th>";
-                echo "<th>Opções</th></tr>";
-                foreach ($result as $usuario) {
-                    echo "<tr><td>" . $usuario['nome_usuario'] . "</td>";
-                    echo "<td>
-                            <div class='button-group'>
-                                <form class='ocult' action='../src/admin.php' method='POST'>
-                                    <input type='hidden' name='id_usuario' value=" . $usuario['id_usuario'] . ">
-                                    <button class='btn-admin' type='submit' onclick='return standardFunction()'>Tornar Padrão</button>
-                                </form>
-                                <form class='ocult' action='../src/deleteUser.php' method='POST'>
-                                    <input type='hidden' name='id_usuario' value=" . $usuario['id_usuario'] . ">
-                                    <button class='btn-delete' type='submit' onclick='return deleteUser()'>Deletar</button>
-                                </form>
-                            </div>
-                        </td></tr>";
+                $queryId = "SELECT " . TABELA_USUARIO['id'] . " FROM " . TABELA_USUARIO['nome_tabela'] . " WHERE " . TABELA_USUARIO['id'] . " = ?";
+                $stmtId = $mysqli->prepare($queryId);
+                $stmtId->bind_param("i", $_SESSION['id']);
+                $stmtId->execute();
+                $resultId = $stmtId->get_result();
+                $stmt->close();
+
+                if ($result->num_rows === 1 && $resultId->num_rows > 0) {
+                    echo "<strong><p>Nenhum administrador encontrado.</p></strong>";
+                } else {
+                    echo "<h1>Usuários Admin</h1>";
+                    echo "<table>";
+                    echo "<tr><th>Admin's</th>";
+                    echo "<th>Opções</th></tr>";
+                    foreach ($result as $usuario) {
+                        if ($usuario['id_usuario'] === $_SESSION['id']) {
+                            continue;
+                        } else {
+                            echo "<tr><td>" . $usuario['nome_usuario'] . "</td>";
+                            echo "<td>
+                                    <div class='button-group'>
+                                        <form class='ocult' action='../src/admin.php' method='POST'>
+                                            <input type='hidden' name='id_usuario' value=" . $usuario['id_usuario'] . ">
+                                            <button class='btn-admin' type='submit' onclick='return standardFunction()'>Tornar Padrão</button>
+                                        </form>
+                                        <form class='ocult' action='../src/deleteUser.php' method='POST'>
+                                            <input type='hidden' name='id_usuario' value=" . $usuario['id_usuario'] . ">
+                                            <button class='btn-delete' type='submit' onclick='return deleteUser()'>Deletar</button>
+                                        </form>
+                                    </div>
+                                </td></tr>";
+                        }
+                    }
+                    echo "</table>";
                 }
-                echo "</table>";
             }
         ?>
     </div>

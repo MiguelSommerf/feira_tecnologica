@@ -23,7 +23,7 @@
                 <div class="nav-bar-content">
                     <a href="projetos.php">Projetos</a>
                     <a href="usuarios.php">Usuários</a>
-                    <a href="../../index.php">Deslogar</a>
+                    <a href="../../back/logout.php">Logout</a>
                 </div>
             </div>
             <div class="container">
