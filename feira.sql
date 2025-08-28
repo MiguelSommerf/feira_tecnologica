@@ -77,6 +77,8 @@ CREATE TABLE IF NOT EXISTS `tb_projeto` (
   `orientador_projeto` varchar(100) NOT NULL,
   PRIMARY KEY (`id_projeto`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+ALTER TABLE tb_projeto 
+ADD CONSTRAINT uq_bloco_sala_stand UNIQUE (bloco_projeto, sala_projeto, stand_projeto);
 
 -- Exportação de dados foi desmarcado.
 
