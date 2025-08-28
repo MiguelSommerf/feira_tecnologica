@@ -235,6 +235,9 @@ $result = $stmt->get_result();
     <div id="mySideMenu" class="side-menu">
         <a href="javascript:void(0)" id="close-btn" class="close-btn">&times;</a>
         <a href="../index.php">Início</a>
+        <?php if (!empty($_SESSION['admin'])): ?>
+        <a href="../admin/views/home.php">Admin</a>
+        <?php endif; ?>
         <a href="tela_mapa.php">Mapa</a>
         <a href="tela_projetos.php">Projetos</a>
         <a href="tela_ranking.php">Ranking</a>
