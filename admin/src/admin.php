@@ -12,7 +12,7 @@ if (empty($_SESSION['admin']) or $_SESSION['admin'] != true) {
 
 $id_usuario = !empty($_POST['id_usuario']) ? $_POST['id_usuario'] : null;
 
-$queryAdmin = "SELECT " . TABELA_USUARIO['admin'] . " FROM " . TABELA_USUARIO['nome_tabela'] . " WHERE " . TABELA_ALUNO['id'] . " = ?";
+$queryAdmin = "SELECT " . TABELA_USUARIO['admin'] . " FROM " . TABELA_USUARIO['nome_tabela'] . " WHERE " . TABELA_USUARIO['id'] . " = ?";
 $stmtAdmin = $mysqli->prepare($queryAdmin);
 $stmtAdmin->bind_param("i", $id_usuario);
 $stmtAdmin->execute();
@@ -21,7 +21,7 @@ $stmtAdmin->close();
 
 if ($resultAdmin->num_rows > 0) {
     $usuario = $resultAdmin->fetch_assoc();
-        if($usuario['admin'] == 0) {
+        if($usuario['is_admin'] == 0) {
             $querySetAdmin = "UPDATE " . TABELA_USUARIO['nome_tabela'] . " SET " . TABELA_USUARIO['admin'] . " = 1 WHERE " . TABELA_USUARIO['id'] . " = ?";
             $stmtSetAdmin = $mysqli->prepare($querySetAdmin);
             $stmtSetAdmin->bind_param("i", $id_usuario);

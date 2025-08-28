@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="../../assets/css/admin.css">
     <title>Home Page</title>
 </head>
 <body>
@@ -16,17 +16,17 @@
         if (empty($_SESSION['admin'])) {
             unset($_SESSION['admin']);
         }
-        
+
         if (!empty($_SESSION['admin'])): ?>
             <div class="nav-bar">
                 <div class="nav-bar-content">
                     <a href="projetos.php">Projetos</a>
                     <a href="usuarios.php">Usuários</a>
-                    <a href="login_form.php">Deslogar</a>
+                    <a href="../../index.php">Deslogar</a>
                 </div>
             </div>
             <div class="container">
-                <h1>Olá, Admin avançado!</h1>
+                <h1>Olá, Admin!</h1>
                 <p>Você tem acesso a todas as funcionalidades do sistema.</p>
             </div>
         <?php endif; ?>

@@ -1,5 +1,5 @@
 <?php
-require_once '../config/connect.php';
+require_once __DIR__ . '/../../config/database.php';
 
 session_start();
 if (!isset($_SESSION['admin']) or $_SESSION['admin'] != true) {
@@ -8,16 +8,22 @@ if (!isset($_SESSION['admin']) or $_SESSION['admin'] != true) {
 }
 
 # Esse SELECT é pra trazer todos os dados que podem ser alterados, dos projetos.
-$sql = "SELECT id_projeto, sala, bloco, stand FROM tb_projetos ORDER BY id_projeto ASC";
-$result = $conn->query($sql);
+$sqlProjeto = "SELECT " . TABELA_PROJETO['id'] . ", " 
+                        . TABELA_PROJETO['descricao'] . ", " 
+                        . TABELA_PROJETO['sala'] . ", " 
+                        . TABELA_PROJETO['bloco'] . ", " 
+                        . TABELA_PROJETO['stand'] . " FROM " 
+                        . TABELA_PROJETO['nome_tabela'] . " ORDER BY " 
+                        . TABELA_PROJETO['id'] . " ASC";
+$resultProjeto = $mysqli->query($sqlProjeto);
 
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../style/projetos.css">
+    <link rel="stylesheet" href="../../assets/css/admin.css">
     <title>Projetos</title>
 </head>
 <body>
@@ -34,6 +40,7 @@ $result = $conn->query($sql);
             <thead>
                 <tr>
                     <th>ID</th>
+                    <th>Descrição</th>
                     <th>Sala</th>
                     <th>Bloco</th>
                     <th>Stand</th>
@@ -42,12 +49,13 @@ $result = $conn->query($sql);
             </thead>
             <tbody>
                 <!-- Todos vão ter o botão "editar", que vai mandar o admin para a tela alterar_projeto-->
-                <?php while ($row = $result->fetch_assoc()): ?>
+                <?php while ($row = $resultProjeto->fetch_assoc()): ?>
                     <tr>
-                        <td><?= $row['id_projeto'] ?></td>
-                        <td><?= htmlspecialchars($row['sala']) ?></td>
-                        <td><?= htmlspecialchars($row['bloco']) ?></td>
-                        <td><?= htmlspecialchars($row['stand']) ?></td>
+                        <td><?= htmlspecialchars($row['id_projeto']); ?></td>
+                        <td><?= htmlspecialchars($row['descricao_projeto']); ?></td>
+                        <td><?= htmlspecialchars($row['sala_projeto']); ?></td>
+                        <td><?= htmlspecialchars($row['bloco_projeto']); ?></td>
+                        <td><?= htmlspecialchars($row['stand_projeto']); ?></td>
                         <td>
                             <form action="alterar_projeto.php" method="GET">
                                 <input type="hidden" name="id_projeto" value="<?= $row['id_projeto'] ?>">
