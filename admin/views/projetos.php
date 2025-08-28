@@ -66,8 +66,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <tr>
                     <th>ID</th>
                     <th>Título</th>
-                    <th>Sala</th>
                     <th>Bloco</th>
+                    <th>Sala</th>
                     <th>Stand</th>
                     <th>Ações</th>
                 </tr>
@@ -78,8 +78,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     <tr>
                         <td><strong><?= htmlspecialchars($row['id_projeto']); ?></strong></td>
                         <td><?= htmlspecialchars($row['titulo_projeto']); ?></td>
-                        <td><?= htmlspecialchars($row['sala_projeto']); ?></td>
                         <td><?= htmlspecialchars($row['bloco_projeto']); ?></td>
+                        <td><?= htmlspecialchars($row['sala_projeto']); ?></td>
                         <td><?= htmlspecialchars($row['stand_projeto']); ?></td>
                         <td>
                             <div class="actions">

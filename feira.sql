@@ -72,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `tb_projeto` (
   `descricao_projeto` varchar(255) NOT NULL,
   `bloco_projeto` enum('A','B') NOT NULL,
   `sala_projeto` varchar(20) NOT NULL,
-  `posicao_projeto` int(11) NOT NULL,
+  `posicao_projeto` int(11) DEFAULT NULL,
   `stand_projeto` varchar(3) NOT NULL,
   `orientador_projeto` varchar(100) NOT NULL,
   PRIMARY KEY (`id_projeto`)
