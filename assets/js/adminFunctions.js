@@ -3,9 +3,15 @@ function deleteUser() {
     return confirmacao;
 }
 
-function deleteProject() {
+function deleteProject(e) {
+    e.preventDefault();
+    
+    const submitForm = document.getElementById('delete');
     const confirmacao = confirm('Você tem certeza que deseja deletar este projeto?');
-    return confirmacao;
+
+    if (confirmacao === true) {
+        submitForm.submit();
+    }
 }
 
 function adminFunction() {
