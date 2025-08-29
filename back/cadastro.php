@@ -15,7 +15,6 @@ if(isset($_SESSION['nameuser']) && ($_SESSION['email']) && ($_SESSION['passuser'
     $verif->verificarEspacoEmBranco($_SESSION['passuser']);
 
     if((!empty($_SESSION['email']) && !empty($_SESSION['passuser'])) && (!empty($_SESSION['nameuser']) && !empty($_SESSION['birthuser']))){
-        $verif->verificarEmailExistente($_SESSION['email']);
         $senha = trim($_SESSION['passuser']);
 
         $nome = trim(ucwords(strtolower($_SESSION['nameuser'])));

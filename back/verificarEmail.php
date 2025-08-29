@@ -15,6 +15,7 @@ if (isset($_POST['nameuser']) && ($_POST['emailuser']) && ($_POST['passuser']) &
     $verif->verificarDataDeNascimento($_POST['birthuser']);
     $verif->verificarEspacoEmBranco($_POST['emailuser']);
     $verif->verificarEspacoEmBranco($_POST['passuser']);
+    $verif->verificarEmailExistente($_POST['emailuser']);
 
     // Caso tudo esteja preenchido, vai enviar o e-mail de verificação
     if ((!empty($_POST['emailuser']) && !empty($_POST['passuser'])) && (!empty($_POST['nameuser']) && !empty($_POST['birthuser']))) {
