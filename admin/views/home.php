@@ -21,6 +21,7 @@
         if (!empty($_SESSION['admin'])): ?>
             <div class="nav-bar">
                 <div class="nav-bar-content">
+                    <a href="../../views/tela_home.php">Home</a>
                     <a href="projetos.php">Projetos</a>
                     <a href="usuarios.php">Usuários</a>
                     <a href="../../back/logout.php">Logout</a>

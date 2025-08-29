@@ -16,31 +16,6 @@ if (!isset($id)) {
     exit();
 }
 
-# Altera os dados do projeto quando o form é enviado.
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $titulo = !empty($_POST['titulo']) ? $_POST['titulo'] : null;
-    $descricao = !empty($_POST['descricao']) ? $_POST['descricao'] : null;
-    $sala = !empty($_POST['sala']) ? $_POST['sala'] : null;
-    $bloco = !empty($_POST['bloco']) ? $_POST['bloco'] : null;
-    $stand = !empty($_POST['stand']) ? $_POST['stand'] : null;
-    $orientador = !empty($_POST['orientador']) ? $_POST['orientador'] : null;
-
-    $queryAlterarProjeto = "UPDATE ". TABELA_PROJETO['nome_tabela'] . " SET " 
-                                    . TABELA_PROJETO['titulo'] . " = ?, " 
-                                    . TABELA_PROJETO['descricao'] . " = ?, " 
-                                    . TABELA_PROJETO['sala'] . " = ?, " 
-                                    . TABELA_PROJETO['bloco'] . " = ?, " 
-                                    . TABELA_PROJETO['stand'] . " = ?, "  
-                                    . TABELA_PROJETO['sala'] . " = ?, WHERE " 
-                                    . TABELA_PROJETO['id'] . " = ?";
-    $stmtAlterarProjeto = $mysqli->prepare($queryAlterarProjeto);
-    $stmtAlterarProjeto->bind_param("isii", $sala, $bloco, $stand, $id);
-    $stmtAlterarProjeto->execute();
-
-    header("Location: projetos.php");
-    exit();
-}
-
 # Pega os dados do projeto.
 $sqlSelecionarProjeto = "SELECT * FROM " . TABELA_PROJETO['nome_tabela'] . " WHERE " . TABELA_PROJETO['id'] . " = ?";
 $stmtSelecionarProjeto = $mysqli->prepare($sqlSelecionarProjeto);
@@ -65,15 +40,16 @@ $projeto = $stmtSelecionarProjeto->get_result()->fetch_assoc();
     </div>
 
     <div class="container">
-        <h2>Editando Projeto <?= $projeto['titulo_projeto'] ?></h2>
+        <h2>Editando Projeto '<?= $projeto['titulo_projeto'] ?>'</h2>
 
         <!-- Formulário para alteração. -->
-        <form method="POST" action="">
+        <form method="POST" action="../src/editar_projeto.php">
+            <input type="hidden" name="id_projeto" value="<?=$id?>">
             <label>Título:</label>
             <input type="text" name="titulo" value="<?= htmlspecialchars($projeto['titulo_projeto']) ?>" placeholder="Novo título do projeto" required>
 
             <label>Descrição:</label>
-            <textarea name="descricao" id="descricao" minlength="15" maxlength="200" placeholder="Digite até 200 caractéres" required><?= htmlspecialchars($projeto['descricao_projeto']) ?></textarea>
+            <textarea name="descricao" id="descricao" minlength="15" maxlength="200" placeholder="Digite até 200 caracteres" required><?= htmlspecialchars($projeto['descricao_projeto']) ?></textarea>
 
             <label>Bloco:</label>
             <select name="bloco" id="bloco" required>
@@ -81,11 +57,11 @@ $projeto = $stmtSelecionarProjeto->get_result()->fetch_assoc();
                 <?php
                 switch ($projeto['bloco_projeto']) {
                     case 'A':
-                        echo "<option value='A' disabled selected>A (Atual)</option>";
+                        echo "<option value='A'>A (Atual)</option>";
                         echo "<option value='B'>B</option>";
                         break;
-                    case 'B':
-                        echo "<option value='B' disabled selected>B (Atual)</option>";
+                  case 'B':
+                        echo "<option value='B'>B (Atual)</option>";
                         echo "<option value='A'>A</option>";
                         break;
                 }
@@ -96,6 +72,7 @@ $projeto = $stmtSelecionarProjeto->get_result()->fetch_assoc();
             <select name="sala" id="sala" required>
                 <option value="" disabled selected>Selecione a sala:</option>
                 <?php
+                // Pensei em uma forma para melhorar isso, salvar todas as salas em uma tabela no banco, e criar uma tabela relacional para projeto-sala e projeto-stand
                 $querySala = "SELECT DISTINCT " . TABELA_PROJETO['sala'] . " FROM " . TABELA_PROJETO['nome_tabela'] . " ORDER BY " . TABELA_PROJETO['sala'] . " DESC";
                 $stmtSala = $mysqli->prepare($querySala);
                 $stmtSala->execute();
@@ -117,7 +94,7 @@ $projeto = $stmtSelecionarProjeto->get_result()->fetch_assoc();
                 $stands = $stmtStand->get_result();
 
                 foreach ($stands as $stand) {
-                    echo "<option value='" . $sala['stand_projeto'] . "'>Stand " . $stand['stand_projeto'] . "</option>";
+                    echo "<option value='" . $stand['stand_projeto'] . "'>Stand " . $stand['stand_projeto'] . "</option>";
                 }
                 ?>
             </select>
@@ -129,6 +106,6 @@ $projeto = $stmtSelecionarProjeto->get_result()->fetch_assoc();
             <button type="reset" onclick="window.location.reload()" class="btn-delete">Reverter</button>
         </form>
     </div>
-    <script src="../../assets/JS/selectedOptions.js"></script>
+    <script src="../../assets/js/selectedOptions.js"></script>
 </body>
 </html>

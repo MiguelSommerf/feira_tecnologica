@@ -1,5 +1,4 @@
 <?php 
-require_once __DIR__ . '/../../config/database.php';
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -10,57 +9,6 @@ if (empty($_SESSION['admin']) or $_SESSION['admin'] !== 1) {
     exit();
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $titulo = $_POST['titulo'];
-    $descricao = $_POST['descricao'];
-    $bloco = $_POST['bloco'];
-    $sala = $_POST['sala'];
-    $stand = $_POST['stand'];
-    $orientador = $_POST['orientador'];
-
-    // Primeiro: verificar se já existe esse stand na mesma sala e bloco
-    $sqlVerificar = "SELECT " . TABELA_PROJETO['id'] . " FROM " 
-                    . TABELA_PROJETO['nome_tabela'] . " WHERE " 
-                    . TABELA_PROJETO['bloco'] . " = ? AND " 
-                    . TABELA_PROJETO['sala'] . " = ? AND " 
-                    . TABELA_PROJETO['stand'] . " = ?";
-
-    $stmtVerificar = $mysqli->prepare($sqlVerificar);
-    $stmtVerificar->bind_param("sii", $bloco, $sala, $stand);
-    $stmtVerificar->execute();
-    $stmtVerificar->store_result();
-
-    if ($stmtVerificar->num_rows > 0) {
-        echo "<script>alert('Já existe um projeto cadastrado nesse Stand da mesma Sala e Bloco!')</script>";
-        echo "<script>window.location.href='criar_projeto.php'</script>";
-        $stmtVerificar->close();
-        exit();
-    }
-    $stmtVerificar->close();
-
-    // Inserir o novo projeto no banco de dados
-    $sqlCriarProjeto = "INSERT INTO "   . TABELA_PROJETO['nome_tabela']. " (" 
-                                        . TABELA_PROJETO['titulo']     . ", "
-                                        . TABELA_PROJETO['descricao']  . ", " 
-                                        . TABELA_PROJETO['bloco']      . ", " 
-                                        . TABELA_PROJETO['sala']       . ", " 
-                                        . TABELA_PROJETO['stand']      . ", "
-                                        . TABELA_PROJETO['orientador'] . ") VALUES (?, ?, ?, ?, ?, ?)";
-
-    $stmtInsert = $mysqli->prepare($sqlCriarProjeto);
-    $stmtInsert->bind_param("sssiis", $titulo, $descricao, $bloco, $sala, $stand, $orientador);
-    
-    if ($stmtInsert->execute()) {
-        echo "<script>alert('Projeto criado com sucesso!')</script>";
-        echo "<script>window.location.href='projetos.php'</script>";
-    } else {
-        echo "<script>alert('Ocorreu um erro ao inserir o projeto.')</script>";
-        echo "<script>window.location.href='criar_projeto.php'</script>";
-    }
-
-    $stmtInsert->close();
-    exit();
-}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -80,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <h2>Crie um projeto</h2>
 
         <!-- Formulário para criação. -->
-        <form method="POST">
+        <form method="POST" action="../src/projeto.php">
             <label>Título:</label>
             <input type="text" name="titulo" placeholder="Título do projeto" required>
 
