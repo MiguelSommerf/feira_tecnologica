@@ -62,7 +62,7 @@ $hashcodeTime = !empty($_SESSION['hashcode-time']) ? $_SESSION['hashcode-time'] 
                 <button type="submit">Enviar</button>
             </form>
             <script>var hashcodeTime = <?= (int)$hashcodeTime; ?>;</script>
-            <script src="../assets/JS/timerReenviarCodigo.js"></script>
+            <script src="../assets/js/timerReenviarCodigo.js"></script>
         <?php endif; ?>
     </main>
 </body>

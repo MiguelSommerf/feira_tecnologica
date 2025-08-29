@@ -57,6 +57,6 @@ if (session_status() === PHP_SESSION_NONE) {
         <a href="../back/logout.php" class="deslogar" id="deslogar" name="deslogar">Sair da Conta</a>
         <?php endif; ?>
     </div>
-    <script src="../assets/JS/menuLateral.js"></script>
+    <script src="../assets/js/menuLateral.js"></script>
 </body>
 </html>

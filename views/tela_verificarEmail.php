@@ -44,6 +44,6 @@ $hashcodeTime = $_SESSION['hashcode-time'];
         </form>
     </main>
     <script>var hashcodeTime = <?= (int)$hashcodeTime; ?>;</script>
-    <script src="../assets/JS/timerReenviarCodigo.js"></script>
+    <script src="../assets/js/timerReenviarCodigo.js"></script>
 </body>
 </html>

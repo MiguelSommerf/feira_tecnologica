@@ -143,6 +143,6 @@ if (!isset($id_projeto)) {
             }
         })
     </script>
-    <script src="../assets/JS/menuLateral.js"></script>
+    <script src="../assets/js/menuLateral.js"></script>
 </body>
 </html>

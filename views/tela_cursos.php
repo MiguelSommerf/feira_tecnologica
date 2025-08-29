@@ -128,6 +128,6 @@ if (session_status() === PHP_SESSION_NONE) {
         closeMenu(); // fecha o menu lateral
         });
     </script>
-    <script src="../assets/JS/menuLateral.js"></script>
+    <script src="../assets/js/menuLateral.js"></script>
 </body>
 </html>
