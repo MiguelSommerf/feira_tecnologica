@@ -10,12 +10,12 @@ if (session_status() === PHP_SESSION_NONE) {
 $blocos = ['A', 'B'];
 
 // Captura os filtros
-$filtroTitulo = trim($_GET['titulo'] ?? null);
-$filtroNome = trim($_GET['nome'] ?? null);
-$filtroCurso = trim($_GET['curso'] ?? null);
-$filtroSerie = trim($_GET['serie'] ?? null);
-$filtroOds = trim($_GET['ods'] ?? null);
-$filtroBloco = trim($_GET['bloco'] ?? null);
+$filtroTitulo = !empty($filtroTitulo) ? trim($_GET['titulo']) : null;
+$filtroNome = !empty($filtroNome) ? trim($_GET['nome']) : null;
+$filtroCurso = !empty($filtroCurso) ? trim($_GET['curso']) : null;
+$filtroSerie = !empty($filtroSerie) ? trim($_GET['serie']) : null;
+$filtroOds = !empty($filtroOds) ? trim($_GET['ods']) : null;
+$filtroBloco = !empty($filtroBloco) ? trim($_GET['bloco']) : null;
 
 // Query com filtros
 $query = "SELECT DISTINCT a." . TABELA_ALUNO['serie'] . ",
@@ -149,7 +149,7 @@ $result = $stmt->get_result();
                         <?php endforeach; ?>
                 </select>
 
-                <input type="text" name="nome" id="nome" class="botao" value="<?= htmlspecialchars($filtroNome ?? null) ?>" placeholder="Nome do Aluno:">
+                <input type="text" name="nome" id="nome" class="botao" value="<?php if (isset($filtroNome)) { echo htmlspecialchars($filtroNome); } ?>" placeholder="Nome do Aluno:">
 
                 <input type="text" name="ods" id="ods" class="botao" value="" placeholder="Tema (ODS):">
                 <button type="submit" class="botao">Filtrar</button>
