@@ -1,6 +1,6 @@
 -- --------------------------------------------------------
 -- Servidor:                     127.0.0.1
--- Versão do servidor:           11.7.2-MariaDB - mariadb.org binary distribution
+-- Versão do servidor:           11.4.8-MariaDB - mariadb.org binary distribution
 -- OS do Servidor:               Win64
 -- HeidiSQL Versão:              12.11.0.7065
 -- --------------------------------------------------------
@@ -26,9 +26,48 @@ CREATE TABLE IF NOT EXISTS `tb_aluno` (
   `serie_aluno` enum('1','2','3') NOT NULL,
   `curso_aluno` varchar(50) NOT NULL,
   PRIMARY KEY (`id_aluno`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
--- Exportação de dados foi desmarcado.
+INSERT INTO `tb_aluno` (`nome_aluno`, `serie_aluno`, `curso_aluno`) VALUES
+   -- Informática
+   ('Lucas Silva', 1, 'Informática'),
+   ('Ana Costa', 2, 'Informática'),
+   ('Pedro Lima', 3, 'Informática'),
+   ('Julia Martins', 1, 'Informática'),
+   ('Felipe Gomes', 2, 'Informática'),
+   
+   -- Química
+   ('Mariana Souza', 1, 'Química'),
+   ('Rafael Oliveira', 2, 'Química'),
+   ('Beatriz Fernandes', 3, 'Química'),
+   ('Thiago Ribeiro', 1, 'Química'),
+   ('Patrícia Carvalho', 2, 'Química'),
+
+   -- Administração
+   ('Gustavo Rocha', 1, 'Administração'),
+   ('Camila Pereira', 2, 'Administração'),
+   ('Bruno Alves', 3, 'Administração'),
+   ('Fernanda Melo', 1, 'Administração'),
+   ('Vitor Azevedo', 2, 'Administração'),
+
+   -- Recursos Humanos
+   ('Isabela Lima', 1, 'Recursos Humanos'),
+   ('Eduardo Farias', 2, 'Recursos Humanos'),
+   ('Carla Batista', 3, 'Recursos Humanos'),
+   ('Ricardo Santos', 1, 'Recursos Humanos'),
+   ('Marcos Pinto', 2, 'Recursos Humanos');
+
+-- Copiando estrutura para tabela feira.tb_bloco
+CREATE TABLE IF NOT EXISTS `tb_bloco` (
+  `id_bloco` int(11) NOT NULL AUTO_INCREMENT,
+  `nome_bloco` char(1) NOT NULL,
+  PRIMARY KEY (`id_bloco`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+
+-- Copiando dados para a tabela feira.tb_bloco: ~2 rows (aproximadamente)
+INSERT INTO `tb_bloco` (`nome_bloco`) VALUES
+	('A'),
+	('B');
 
 -- Copiando estrutura para tabela feira.tb_feedback
 CREATE TABLE IF NOT EXISTS `tb_feedback` (
@@ -40,18 +79,74 @@ CREATE TABLE IF NOT EXISTS `tb_feedback` (
   PRIMARY KEY (`id_feedback`),
   KEY `id_users` (`fk_id_usuario`),
   CONSTRAINT `tb_feedback_ibfk_1` FOREIGN KEY (`fk_id_usuario`) REFERENCES `tb_usuario` (`id_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
--- Exportação de dados foi desmarcado.
+-- Copiando dados para a tabela feira.tb_feedback: ~0 rows (aproximadamente)
+
+-- Copiando estrutura para tabela feira.tb_localizacao_projeto
+CREATE TABLE IF NOT EXISTS `tb_localizacao_projeto` (
+  `fk_id_bloco` int(11) NOT NULL,
+  `fk_id_sala` int(11) NOT NULL,
+  `fk_id_stand` int(11) NOT NULL,
+  `fk_id_projeto` int(11) NOT NULL,
+  KEY `fk_id_bloco` (`fk_id_bloco`),
+  KEY `fk_id_sala` (`fk_id_sala`),
+  KEY `fk_id_stand` (`fk_id_stand`),
+  KEY `fk_id_projeto` (`fk_id_projeto`),
+  CONSTRAINT `tb_localizacao_projeto_ibfk_1` FOREIGN KEY (`fk_id_bloco`) REFERENCES `tb_bloco` (`id_bloco`),
+  CONSTRAINT `tb_localizacao_projeto_ibfk_2` FOREIGN KEY (`fk_id_sala`) REFERENCES `tb_sala` (`id_sala`),
+  CONSTRAINT `tb_localizacao_projeto_ibfk_3` FOREIGN KEY (`fk_id_stand`) REFERENCES `tb_stand` (`id_stand`),
+  CONSTRAINT `tb_localizacao_projeto_ibfk_4` FOREIGN KEY (`fk_id_projeto`) REFERENCES `tb_projeto` (`id_projeto`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+
+INSERT INTO tb_localizacao_projeto (fk_id_bloco, fk_id_sala, fk_id_stand, fk_id_projeto) VALUES 
+	(1, 6, 8, 1),
+	(1, 6, 7, 2),
+	(1, 5, 8, 3),
+	(1, 5, 7, 4),
+	(1, 5, 5, 5),
+	(1, 7, 8, 6),
+	(1, 8, 8, 7),
+	(1, 4, 3, 8),
+	(1, 4, 5, 9),
+	(1, 3, 6, 10),
+	(2, 5, 7, 11),
+	(2, 5, 8, 12),
+	(2, 5, 4, 13),
+	(2, 3, 1, 14),
+	(2, 3, 5, 15),
+	(2, 3, 8, 16),
+	(2, 2, 7, 17),
+	(2, 2, 8, 18),
+	(2, 4, 3, 19),
+	(2, 9, 2, 20);
 
 -- Copiando estrutura para tabela feira.tb_ods
 CREATE TABLE IF NOT EXISTS `tb_ods` (
   `id_ods` int(11) NOT NULL AUTO_INCREMENT,
   `nome_ods` varchar(255) NOT NULL,
   PRIMARY KEY (`id_ods`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
--- Exportação de dados foi desmarcado.
+-- Copiando dados para a tabela feira.tb_ods: ~17 rows (aproximadamente)
+INSERT INTO `tb_ods` (`nome_ods`) VALUES
+	('Erradicação da pobreza'),
+	('Fome zero e agricultura sustentável'),
+	('Saúde e bem-estar'),
+	('Educação de qualidade'),
+	('Igualdade de gênero'),
+	('Água potável e saneamento'),
+	('Energia limpa e acessível'),
+	('Trabalho decente e crescimento econômico'),
+	('Indústria, inovação e infraestrutura'),
+	('Redução das desigualdades'),
+	('Cidades e comunidades sustentáveis'),
+	('Consumo e produção responsáveis'),
+	('Ação contra a mudança global do clima'),
+	('Vida na água'),
+	('Vida terrestre'),
+	('Paz, justiça e instituições eficazes'),
+	('Parcerias e meios de implementação');
 
 -- Copiando estrutura para tabela feira.tb_ods_projeto
 CREATE TABLE IF NOT EXISTS `tb_ods_projeto` (
@@ -63,24 +158,59 @@ CREATE TABLE IF NOT EXISTS `tb_ods_projeto` (
   CONSTRAINT `tb_ods_projeto_ibfk_2` FOREIGN KEY (`fk_id_projeto`) REFERENCES `tb_projeto` (`id_projeto`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
--- Exportação de dados foi desmarcado.
+INSERT INTO tb_ods_projeto (fk_id_ods, fk_id_projeto) VALUES 
+	(5, 1),
+	(3, 2),
+	(1, 3),
+	(2, 4),
+	(4, 5),
+	(7, 6),
+	(6, 7),
+	(2, 8),
+	(3, 9),
+	(8, 10),
+	(11, 11),
+	(7, 12),
+	(16, 13),
+	(14, 14),
+	(17, 15),
+	(12, 16),
+	(13, 17),
+	(15, 18),
+	(9, 19),
+	(10, 20);
 
 -- Copiando estrutura para tabela feira.tb_projeto
 CREATE TABLE IF NOT EXISTS `tb_projeto` (
   `id_projeto` int(11) NOT NULL AUTO_INCREMENT,
   `titulo_projeto` varchar(100) NOT NULL,
-  `descricao_projeto` varchar(255) NOT NULL,
-  `bloco_projeto` enum('A','B') NOT NULL,
-  `sala_projeto` varchar(20) NOT NULL,
-  `posicao_projeto` int(11) NOT NULL,
-  `stand_projeto` varchar(3) NOT NULL,
+  `descricao_projeto` varchar(200) NOT NULL,
   `orientador_projeto` varchar(100) NOT NULL,
   PRIMARY KEY (`id_projeto`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
-ALTER TABLE tb_projeto 
-ADD CONSTRAINT uq_bloco_sala_stand UNIQUE (bloco_projeto, sala_projeto, stand_projeto);
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
--- Exportação de dados foi desmarcado.
+-- Copiando dados para a tabela feira.tb_projeto: ~20 rows (aproximadamente)
+INSERT INTO `tb_projeto` (`titulo_projeto`, `descricao_projeto`, `orientador_projeto`) VALUES
+	('Sistema de Biblioteca', 'Sistema para controle de empréstimos e devoluções de livros', 'Prof. João Silva'),
+	('E-commerce de Roupas', 'Loja virtual para vendas de roupas com carrinho de compras', 'Profª Maria Souza'),
+	('Gestão de Restaurante', 'Sistema para controle de pedidos e mesas de um restaurante', 'Prof. Carlos Pereira'),
+	('Agenda Online', 'Aplicativo para agendamento de compromissos com notificações', 'Profª Ana Oliveira'),
+	('Controle de Estoque', 'Sistema para gerenciamento de entrada e saída de produtos', 'Prof. Paulo Mendes'),
+	('Plataforma de Cursos', 'Portal online para cadastro e acompanhamento de cursos', 'Profª Juliana Costa'),
+	('Sistema de Votação', 'Aplicativo para votação eletrônica com relatórios de resultados', 'Prof. Ricardo Gomes'),
+	('Rede Social Acadêmica', 'Plataforma de interação entre estudantes e professores', 'Profª Fernanda Lima'),
+	('App de Saúde', 'Aplicativo para monitoramento de atividades físicas e saúde', 'Prof. Marcelo Santos'),
+	('Controle Financeiro', 'Sistema para controle de contas pessoais e relatórios', 'Profª Patrícia Rocha'),
+	('Gerenciador de Tarefas', 'Aplicação para organização de tarefas e projetos', 'Prof. André Martins'),
+	('Sistema de Hotel', 'Software para reservas, check-in e check-out de hóspedes', 'Profª Beatriz Nunes'),
+	('Marketplace Local', 'Plataforma para vendas de produtos locais online', 'Prof. Gustavo Ferreira'),
+	('Sistema de Chamados', 'Aplicação para abertura e acompanhamento de tickets de suporte', 'Profª Camila Ramos'),
+	('Monitor de Tráfego', 'Sistema para análise e monitoramento de tráfego urbano', 'Prof. Eduardo Barbosa'),
+	('Loja de Música Online', 'Portal para compra e streaming de músicas', 'Profª Cláudia Mendes'),
+	('Aplicativo de Viagens', 'App para planejamento de roteiros e reservas de viagens', 'Prof. Fábio Almeida'),
+	('Controle Escolar', 'Sistema de notas, faltas e relatórios escolares', 'Profª Daniela Castro'),
+	('Gerenciador de Eventos', 'Plataforma para cadastro e divulgação de eventos', 'Prof. Leonardo Vieira'),
+	('Sistema de Doações', 'Aplicativo para intermediar doações entre pessoas e ONGs', 'Profª Renata Carvalho');
 
 -- Copiando estrutura para tabela feira.tb_projeto_aluno
 CREATE TABLE IF NOT EXISTS `tb_projeto_aluno` (
@@ -92,20 +222,84 @@ CREATE TABLE IF NOT EXISTS `tb_projeto_aluno` (
   CONSTRAINT `id_projetos_integrantes` FOREIGN KEY (`fk_id_projeto`) REFERENCES `tb_projeto` (`id_projeto`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
--- Exportação de dados foi desmarcado.
+INSERT INTO tb_projeto_aluno (fk_id_projeto, fk_id_aluno) VALUES
+   (1, 5),
+   (2, 3),
+   (3, 7),
+   (4, 1),
+   (5, 8),
+   (6, 2),
+   (7, 10),
+   (8, 12),
+   (9, 4),
+   (10, 6),
+   (11, 11),
+   (12, 9),
+   (13, 14),
+   (14, 13),
+   (15, 15),
+   (16, 17),
+   (17, 16),
+   (18, 19),
+   (19, 18),
+   (20, 20);
+
+-- Copiando estrutura para tabela feira.tb_sala
+CREATE TABLE IF NOT EXISTS `tb_sala` (
+  `id_sala` int(11) NOT NULL AUTO_INCREMENT,
+  `nome_sala` varchar(30) NOT NULL,
+  PRIMARY KEY (`id_sala`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+
+-- Copiando dados para a tabela feira.tb_sala: ~14 rows (aproximadamente)
+INSERT INTO `tb_sala` (`nome_sala`) VALUES
+	('Sala 1'),
+	('Sala 2'),
+	('Sala 3'),
+	('Sala 4'),
+	('Sala 5'),
+	('Sala 6'),
+	('Sala 7'),
+	('Sala 8'),
+	('Biblioteca'),
+	('Pátio'),
+	('Laboratório de Química 1'),
+	('Laboratório de Química 2'),
+	('Laboratório de Química 3'),
+	('Laboratório de Química 4');
+
+-- Copiando estrutura para tabela feira.tb_stand
+CREATE TABLE IF NOT EXISTS `tb_stand` (
+  `id_stand` int(11) NOT NULL AUTO_INCREMENT,
+  `numero_stand` int(2) NOT NULL,
+  PRIMARY KEY (`id_stand`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+
+-- Copiando dados para a tabela feira.tb_stand: ~10 rows (aproximadamente)
+INSERT INTO `tb_stand` (`numero_stand`) VALUES
+	(1),
+	(2),
+	(3),
+	(4),
+	(5),
+	(6),
+	(7),
+	(8),
+	(9),
+	(10);
 
 -- Copiando estrutura para tabela feira.tb_usuario
 CREATE TABLE IF NOT EXISTS `tb_usuario` (
   `id_usuario` int(11) NOT NULL AUTO_INCREMENT,
-  `is_admin` bit(1) NOT NULL DEFAULT 0,
+  `is_admin` bit(1) NOT NULL DEFAULT b'0',
   `nome_usuario` varchar(50) NOT NULL,
   `email_usuario` varchar(255) NOT NULL,
   `senha_usuario` varchar(255) DEFAULT NULL,
   `data_nascimento_usuario` date NOT NULL,
   PRIMARY KEY (`id_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
--- Exportação de dados foi desmarcado.
+-- Copiando dados para a tabela feira.tb_usuario: ~0 rows (aproximadamente)
 
 -- Copiando estrutura para tabela feira.tb_voto
 CREATE TABLE IF NOT EXISTS `tb_voto` (
@@ -120,74 +314,9 @@ CREATE TABLE IF NOT EXISTS `tb_voto` (
   KEY `id_users` (`fk_id_usuario`),
   CONSTRAINT `id_projetos` FOREIGN KEY (`fk_id_projeto`) REFERENCES `tb_projeto` (`id_projeto`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `id_users` FOREIGN KEY (`fk_id_usuario`) REFERENCES `tb_usuario` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
--- Exportação de dados foi desmarcado.
-
-INSERT INTO `tb_aluno` (`id_aluno`, `nome_aluno`, `serie_aluno`, `curso_aluno`) VALUES
-(1, 'aluno1', '1', 'informatíca'),
-(2, 'aluno2', '2', 'informatíca'),
-(3, 'aluno3', '3', 'informatíca'),
-(4, 'aluno4', '1', 'química'),
-(5, 'aluno5', '2', 'química'),
-(6, 'aluno6', '3', 'química'),
-(7, 'aluno7', '1', 'Administração'),
-(8, 'aluno8', '2', 'Administração'),
-(9, 'aluno9', '3', 'Administração'),
-(10, 'aluno10', '1', 'Recursos Humanos'),
-(11, 'aluno11', '2', 'Recursos Humanos'),
-(12, 'aluno12', '3', 'Recursos Humanos');
-
-INSERT INTO `tb_ods` (`id_ods`, `nome_ods`) VALUES
-(1, 'Erradicação da pobreza'),
-(2, 'Fome zero e agricultura sustentável'),
-(3, 'Saúde e bem-estar'),
-(4, 'Educação de qualidade'),
-(5, 'Igualdade de gênero'),
-(6, 'Água potável e saneamento'),
-(7, 'Energia limpa e acessível'),
-(8, 'Trabalho decente e crescimento econômico'),
-(9, 'Indústria, inovação e infraestrutura'),
-(10, 'Redução das desigualdades'),
-(11, 'Cidades e comunidades sustentáveis'),
-(12, 'Consumo e produção responsáveis'),
-(13, 'Ação contra a mudança global do clima'),
-(14, 'Vida na água'),
-(15, 'Vida terrestre'),
-(16, 'Paz, justiça e instituições eficazes'),
-(17, 'Parcerias e meios de implementação');
-
-INSERT INTO `tb_ods_projeto` (`fk_id_ods`, `fk_id_projeto`) VALUES
-(7, 1),
-(11, 1),
-(2, 2),
-(14, 2),
-(15, 2),
-(2, 3);
-
-INSERT INTO `tb_projeto` (`id_projeto`, `titulo_projeto`, `descricao_projeto`, `bloco_projeto`, `sala_projeto`, `posicao_projeto`, `stand_projeto`, `orientador_projeto`) VALUES
-(1, 'titulo1', 'projeto1', 'A', '5', 56, '5', 'fulano1'),
-(2, 'titulo2', 'projeto2', 'B', '2', 78, '8', 'fulano2'),
-(3, 'titulo3', 'projeto3', 'A', '7', 34, '3', 'fulano3'),
-(4, 'titulo4', 'projeto4', 'A', '1', 42, '9', 'fulano4'),
-(5, 'titulo5', 'projeto5', 'A', '2', 1, '1', 'fulano5'),
-(6, 'titulo6', 'projeto6', 'A', '3', 2, '2', 'fulano6'),
-(7, 'titulo7', 'projeto7', 'A', '4', 3, '3', 'fulano7'),
-(8, 'titulo8', 'projeto8', 'A', '6', 4, '4', 'fulano8'),
-(9, 'titulo9', 'projeto9', 'A', '8', 5, '5', 'fulano9'),
-(10, 'titulo10', 'projeto10', 'B', '1', 6, '6', 'fulano10'),
-(11, 'titulo11', 'projeto11', 'B', '3', 7, '7', 'fulano11'),
-(12, 'titulo12', 'projeto12', 'B', '4', 8, '8', 'fulano12'),
-(13, 'titulo13', 'projeto13', 'B', '5', 9, '9', 'fulano13');
-
-INSERT INTO `tb_projeto_aluno` (`fk_id_projeto`, `fk_id_aluno`) VALUES
-(1, 1),
-(2, 2);
-
-INSERT INTO `tb_voto` (`id_voto`, `data_hora_voto`, `valor_voto`, `comentario_voto`, `fk_id_usuario`, `fk_id_projeto`) VALUES
-(1, '2025-07-28 21:51:44', 100, NULL, 2, 3),
-(2, '2025-07-28 21:51:44', 0, 'abcd', 3, 1),
-(3, '2025-07-28 21:51:44', 50, '', 3, 2);
+-- Copiando dados para a tabela feira.tb_voto: ~0 rows (aproximadamente)
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

@@ -16,11 +16,7 @@ const TABELA_PROJETO = [
     'id'          => 'id_projeto',
     'titulo'      => 'titulo_projeto',
     'descricao'   => 'descricao_projeto',
-    'bloco'       => 'bloco_projeto',
-    'sala'        => 'sala_projeto',
-    'posicao'     => 'posicao_projeto',
-    'stand'       => 'stand_projeto',
-    'orientador'  => 'orientador_projeto'
+    'orientador'  => 'orientador_projeto',
 ];
 
 const TABELA_ODS = [
@@ -66,4 +62,30 @@ const TABELA_FEEDBACK = [
     'nota'        => 'nota_feedback',
     'comentario'  => 'comentario_feedback',
     'data'        => 'data_envio_feedback'
+];
+
+const TABELA_BLOCO = [
+    'nome_tabela' => 'tb_bloco',
+    'id'          => 'id_bloco',
+    'bloco'       => 'nome_bloco'
+];
+
+const TABELA_SALA = [
+    'nome_tabela' => 'tb_sala',
+    'id'          => 'id_sala',
+    'sala'        => 'nome_sala'
+];
+
+const TABELA_STAND = [
+    'nome_tabela' => 'tb_stand',
+    'id'          => 'id_stand',
+    'stand'       => 'numero_stand'
+];
+
+const TABELA_LOCALIZACAO_PROJETO = [
+    'nome_tabela' => 'tb_localizacao_projeto',
+    'bloco'       => 'fk_id_bloco',
+    'sala'        => 'fk_id_sala',
+    'stand'       => 'fk_id_stand',
+    'projeto'     => 'fk_id_projeto'
 ];
