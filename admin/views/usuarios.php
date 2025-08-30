@@ -42,9 +42,9 @@ if (!isset($_SESSION['admin']) or $_SESSION['admin'] !== 1) {
                                 <input type='hidden' name='id_usuario' value=" . $usuario['id_usuario'] . ">
                                 <button class='btn-admin' type='submit' onclick='return adminFunction()'>Tornar Admin</button>
                             </form>
-                            <form class='ocult' action='../src/deleteUser.php' method='POST'>
+                            <form class='ocult' action='../src/delete_user.php' method='POST'>
                                 <input type='hidden' name='id_usuario' value=" . $usuario['id_usuario'] . ">
-                                <button class='btn-delete' type='submit' onclick='return deleteUser()'>Deletar</button>
+                                <button class='btn-delete' type='submit' onclick='deleteUser(event)'>Deletar</button>
                             </form>
                         </div>
                     </td></tr>";
@@ -86,9 +86,9 @@ if (!isset($_SESSION['admin']) or $_SESSION['admin'] !== 1) {
                                             <input type='hidden' name='id_usuario' value=" . $usuario['id_usuario'] . ">
                                             <button class='btn-admin' type='submit' onclick='return standardFunction()'>Tornar Padrão</button>
                                         </form>
-                                        <form class='ocult' action='../src/deleteUser.php' method='POST'>
+                                        <form class='ocult' action='../src/delete_user.php' method='POST'>
                                             <input type='hidden' name='id_usuario' value=" . $usuario['id_usuario'] . ">
-                                            <button class='btn-delete' type='submit' onclick='return deleteUser()'>Deletar</button>
+                                            <button class='btn-delete' type='submit' onclick='deleteUser(event)'>Deletar</button>
                                         </form>
                                     </div>
                                 </td></tr>";
@@ -99,6 +99,6 @@ if (!isset($_SESSION['admin']) or $_SESSION['admin'] !== 1) {
             }
         ?>
     </div>
-    <script src="../../assets/JS/adminFunctions.js"></script>
+    <script src="../../assets/js/adminFunctions.js"></script>
 </body>
 </html>

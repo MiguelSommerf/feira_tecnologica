@@ -30,7 +30,6 @@ $resultProjeto = $mysqli->query($sqlProjeto);
     <div class="nav-bar">
         <div class="nav-bar-content">
             <a href="home.php">Voltar</a>
-            <a href="criar_projeto.php">Criar Projeto</a>
         </div>
     </div>
 
@@ -63,10 +62,6 @@ $resultProjeto = $mysqli->query($sqlProjeto);
                                     <form action="alterar_projeto.php" method="GET">
                                         <input type="hidden" name="id_projeto" value="<?= $row['id_projeto'] ?>">
                                         <button type="submit">Editar</button>
-                                    </form>
-                                    <form method="POST" action="../src/deletar_projeto.php" id="delete">
-                                        <input type="hidden" name="id_projeto" value="<?= $row['id_projeto'] ?>">
-                                        <button class="btn-delete" type="submit" onclick="deleteProject(event)">Excluir</button>
                                     </form>
                                 </div>
                             </td>
