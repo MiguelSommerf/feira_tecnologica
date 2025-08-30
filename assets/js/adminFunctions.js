@@ -1,18 +1,14 @@
-function deleteUser() {
-    const confirmacao = confirm('Você tem certeza que deseja deletar este usuário?');
-    return confirmacao;
-}
-
-function deleteProject(e) {
+function deleteUser(e) {
     e.preventDefault();
-    
-    const submitForm = document.getElementById('delete');
-    const confirmacao = confirm('Você tem certeza que deseja deletar este projeto?');
+
+    const form = e.target.parentNode;
+    const confirmacao = confirm('Você tem certeza que deseja deletar este usuário?');
 
     if (confirmacao === true) {
-        submitForm.submit();
+        form.submit();
     }
 }
+
 
 function adminFunction() {
     const confirmacao = confirm('Você tem certeza que deseja tornar este usuário administrador?');
