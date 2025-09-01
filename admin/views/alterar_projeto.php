@@ -16,54 +16,6 @@ if (!isset($id)) {
     exit();
 }
 
-<<<<<<< HEAD
-=======
-# Altera os dados do projeto quando o form é enviado.
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $titulo = $_POST['titulo'];
-    $descricao = $_POST['descricao'];
-    $sala = $_POST['sala'];
-    $bloco = $_POST['bloco'];
-    $stand = $_POST['stand'];
-    $orientador = $_POST['orientador'];
-
-    $sqlVerificar = "SELECT " . TABELA_PROJETO['id'] . " FROM " 
-                    . TABELA_PROJETO['nome_tabela'] . " WHERE " 
-                    . TABELA_PROJETO['bloco'] . " = ? AND " 
-                    . TABELA_PROJETO['sala'] . " = ? AND " 
-                    . TABELA_PROJETO['stand'] . " = ?";
-
-    $stmtVerificar = $mysqli->prepare($sqlVerificar);
-    $stmtVerificar->bind_param("sii", $bloco, $sala, $stand);
-    $stmtVerificar->execute();
-    $stmtVerificar->store_result();
-
-    if ($stmtVerificar->num_rows > 0) {
-        echo "<script>alert('Já existe um projeto cadastrado nesse Stand da mesma Sala e Bloco!')</script>";
-        echo "<script>window.location.href='criar_projeto.php'</script>";
-        $stmtVerificar->close();
-        exit();
-    }
-    $stmtVerificar->close();
-
-    $queryAlterarProjeto = "UPDATE ". TABELA_PROJETO['nome_tabela'] . " SET " 
-                                    . TABELA_PROJETO['titulo'] . " = ?, " 
-                                    . TABELA_PROJETO['descricao'] . " = ?, " 
-                                    . TABELA_PROJETO['bloco'] . " = ?, " 
-                                    . TABELA_PROJETO['sala'] . " = ?, " 
-                                    . TABELA_PROJETO['stand'] . " = ?, " 
-                                    . TABELA_PROJETO['orientador'] . " = ? WHERE " 
-                                    . TABELA_PROJETO['id'] . " = ?";
-    $stmtAlterarProjeto = $mysqli->prepare($queryAlterarProjeto);
-    $stmtAlterarProjeto->bind_param("sssiisi", $titulo, $descricao, $bloco, $sala, $stand, $orientador, $id);
-    $stmtAlterarProjeto->execute();
-
-    echo "<script>alert('Projeto alterado com sucesso!')</script>";
-    echo "<script>window.location.href='projetos.php'</script>";
-    exit();
-}
-
->>>>>>> 5bfaab1dbdbe00de4c18360ccbfa3e5c96db3ab9
 # Pega os dados do projeto.
 $sqlSelecionarProjeto = "SELECT * FROM " . TABELA_PROJETO['nome_tabela'] . " WHERE " . TABELA_PROJETO['id'] . " = ?";
 $stmtSelecionarProjeto = $mysqli->prepare($sqlSelecionarProjeto);
