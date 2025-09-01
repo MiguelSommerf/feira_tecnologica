@@ -23,11 +23,12 @@ $query = "SELECT DISTINCT a." . TABELA_ALUNO['serie'] . ",
          p." . TABELA_PROJETO['id'] . ",
          p." . TABELA_PROJETO['titulo'] . ",
          p." . TABELA_PROJETO['descricao'] . ",
-         p." . TABELA_PROJETO['bloco'] . ",
-         p." . TABELA_PROJETO['sala'] . ",
-         p." . TABELA_PROJETO['stand'] . ",
+         lo." . TABELA_LOCALIZACAO_PROJETO['bloco'] . ",
+         lo." . TABELA_LOCALIZACAO_PROJETO['sala'] . ",
+         lo." . TABELA_LOCALIZACAO_PROJETO['stand'] . ",
          p." . TABELA_PROJETO['orientador'] . "
          FROM " . TABELA_PROJETO['nome_tabela'] . " AS p
+         INNER JOIN " . TABELA_LOCALIZACAO_PROJETO['nome_tabela'] . " AS lo ON p." . TABELA_PROJETO['id'] . " = lo." . TABELA_LOCALIZACAO_PROJETO['projeto'] . "
          INNER JOIN " . TABELA_PROJETO_ALUNO['nome_tabela'] . " AS i ON p." . TABELA_PROJETO['id'] . " = i." . TABELA_PROJETO_ALUNO['projeto'] . "
          INNER JOIN " . TABELA_ALUNO['nome_tabela'] . " AS a ON a." . TABELA_ALUNO['id'] . " = i." . TABELA_PROJETO_ALUNO['aluno'] . "
          INNER JOIN " . TABELA_ODS_PROJETO['nome_tabela'] . " AS op ON op." . TABELA_ODS_PROJETO['projeto'] . " = p." . TABELA_PROJETO['id'] . "
@@ -61,7 +62,7 @@ if ($filtroOds) {
 }
 
 if ($filtroBloco) {
-    $query .= " AND p.". TABELA_PROJETO['bloco'] ." = ?";
+    $query .= " AND lo.". TABELA_LOCALIZACAO_PROJETO['bloco'] ." = ?";
     $params[] .= $filtroBloco;
     $types .= "s";
 }
@@ -190,9 +191,9 @@ $result = $stmt->get_result();
                     </div>
                     <div class="projeto-lugar">
                         <?php
-                        echo "Sala: " . htmlspecialchars($row['sala_projeto']) . " - ";
-                        echo "Stand: " . htmlspecialchars($row['stand_projeto']) . " - ";
-                        echo "Bloco: " . htmlspecialchars($row['bloco_projeto']);
+                        echo "Sala: " . htmlspecialchars($row['fk_id_sala']) . " - ";
+                        echo "Stand: " . htmlspecialchars($row['fk_id_stand']) . " - ";
+                        echo "Bloco: " . htmlspecialchars($row['fk_id_bloco']);
                         ?>
                     </div>
                     <div class="projeto-lugar">
