@@ -304,13 +304,13 @@ CREATE TABLE IF NOT EXISTS `tb_usuario` (
   `id_usuario` int(11) NOT NULL AUTO_INCREMENT,
   `is_admin` bit(1) NOT NULL DEFAULT b'0',
   `nome_usuario` varchar(50) NOT NULL,
-  `email_usuario` varchar(255) NOT NULL,
+  `email_usuario` varchar(255) NOT NULL UNIQUE,
   `senha_usuario` varchar(255) DEFAULT NULL,
   `data_nascimento_usuario` date NOT NULL,
   PRIMARY KEY (`id_usuario`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
--- Copiando dados para a tabela feira.tb_usuario: ~0 rows (aproximadamente)
+-- Copiando dados para a tabela feira.tb_usuario: ~2 rows (aproximadamente)
 INSERT INTO `tb_usuario` (`id_usuario`, `is_admin`, `nome_usuario`, `email_usuario`, `senha_usuario`, `data_nascimento_usuario`) VALUES
 	(1, b'1', 'Migueladmin', 'miguel.sommerfeldluiz@gmail.com', '$2y$10$d1dtWpjR7p0e54bdnddO0elRGp8DVSju0.nyLcyNKO15M39Z4TlLO', '2007-10-27'),
 	(2, b'1', 'Enzo', 'prenzo0001@gmail.com', '$2y$10$5PoYUmQpaw8OnapygZtt1.Cnq5AQiaeqWucYP2Vca/s7CqgN1kbfi', '2008-02-06');
@@ -318,7 +318,7 @@ INSERT INTO `tb_usuario` (`id_usuario`, `is_admin`, `nome_usuario`, `email_usuar
 -- Copiando estrutura para tabela feira.tb_voto
 CREATE TABLE IF NOT EXISTS `tb_voto` (
   `id_voto` int(11) NOT NULL AUTO_INCREMENT,
-  `data_hora_voto` datetime NOT NULL,
+  `data_hora_voto` datetime NOT NULL DEFAULT current_timestamp(),
   `valor_voto` int(11) NOT NULL,
   `comentario_voto` varchar(200) DEFAULT NULL,
   `fk_id_usuario` int(11) NOT NULL,
