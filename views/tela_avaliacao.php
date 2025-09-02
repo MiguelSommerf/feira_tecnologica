@@ -19,8 +19,10 @@ $resultAlunos = $stmtAluno->get_result();
 
 $querySerieCurso = "SELECT DISTINCT a." . TABELA_ALUNO['serie'] . ", a." . TABELA_ALUNO['curso'] . " FROM " . TABELA_PROJETO['nome_tabela'] . " AS p
           INNER JOIN " . TABELA_PROJETO_ALUNO['nome_tabela'] . " AS i ON p." . TABELA_PROJETO['id'] . " = i." . TABELA_PROJETO_ALUNO['projeto'] . "
-          INNER JOIN " . TABELA_ALUNO['nome_tabela'] . " AS a ON a." . TABELA_ALUNO['id'] . " = i." . TABELA_PROJETO_ALUNO['aluno'];
+          INNER JOIN " . TABELA_ALUNO['nome_tabela'] . " AS a ON a." . TABELA_ALUNO['id'] . " = i." . TABELA_PROJETO_ALUNO['aluno'] . 
+          " WHERE p.id_projeto = ?";
 $stmtSerieCurso = $mysqli->prepare($querySerieCurso);
+$stmtSerieCurso->bind_param("i", $id_projeto);
 $stmtSerieCurso->execute();
 $resultSerieCurso = $stmtSerieCurso->get_result();
 
@@ -74,7 +76,7 @@ if (!isset($id_projeto)) {
                         ?>" readonly/>
                     </div>
                     <div class="campo">
-                        <input type="text" value="Série: <?php while ($rowSerieCurso = $resultSerieCurso->fetch_assoc()) echo $rowSerieCurso['serie_aluno'] . '° ' . $rowSerieCurso['curso']; ?>" readonly>
+                        <input type="text" value="Série: <?php while ($rowSerieCurso = $resultSerieCurso->fetch_assoc()) echo $rowSerieCurso['serie_aluno'] . '° ' . $rowSerieCurso['curso_aluno']; ?>" readonly>
                     </div>
                 </div>
             </div>
