@@ -159,7 +159,9 @@ $result = $stmt->get_result();
 
         <h2>Resultados: <?=$result->num_rows ?></h2>
         <?php
-            if ($result->num_rows > 0):
+            if ($result->num_rows > 0): ?>
+            <div class='linha-projeto'>
+                <?php
                 while ($row = $result->fetch_assoc()):
                     $queryAluno = "SELECT " . TABELA_ALUNO['nome'] . " FROM " . TABELA_PROJETO_ALUNO['nome_tabela'] . " AS i
                                   INNER JOIN " . TABELA_PROJETO['nome_tabela'] . " AS p ON p." . TABELA_PROJETO['id'] . " = i." . TABELA_PROJETO_ALUNO['projeto'] . "
@@ -179,58 +181,55 @@ $result = $stmt->get_result();
                     $stmtOds->execute();
                     $resultOds = $stmtOds->get_result();
         ?>
-        <div class="linha-projeto">
-            <div class="container-projeto">
-                <div class="projetos">
-                    <div class="projeto-nome">
-                        <h3><?php
-                            echo $row['titulo_projeto'] . " - ";
-                            echo ucfirst($row['serie_aluno']) . "° ";
-                            echo strtoupper($row['curso_aluno']); ?>
-                        </h3>
-                    </div>
-                    <div class="projeto-lugar">
+            <div class="projetos">
+                <div class="projeto-nome">
+                    <h3><?php
+                        echo $row['titulo_projeto'] . " - ";
+                        echo ucfirst($row['serie_aluno']) . "° ";
+                        echo strtoupper($row['curso_aluno']); ?>
+                    </h3>
+                </div>
+                <div class="projeto-lugar">
+                    <?php
+                    echo "Sala: " . htmlspecialchars($row['fk_id_sala']) . " - ";
+                    echo "Stand: " . htmlspecialchars($row['fk_id_stand']) . " - ";
+                    echo "Bloco: " . htmlspecialchars($row['fk_id_bloco']);
+                    ?>
+                </div>
+                <div class="projeto-lugar">
+                    <p><strong>Alunos:</strong>
                         <?php
-                        echo "Sala: " . htmlspecialchars($row['fk_id_sala']) . " - ";
-                        echo "Stand: " . htmlspecialchars($row['fk_id_stand']) . " - ";
-                        echo "Bloco: " . htmlspecialchars($row['fk_id_bloco']);
+                        while ($rowAluno = $resultAlunos->fetch_assoc()) {
+                            $aluno = $rowAluno['nome_aluno'];
+                            echo htmlspecialchars($aluno) . "; ";
+                        }
                         ?>
-                    </div>
-                    <div class="projeto-lugar">
-                        <p><strong>Aluno:</strong>
-                            <?php
-                            while ($rowAluno = $resultAlunos->fetch_assoc()) {
-                                $aluno = $rowAluno['nome_aluno'];
-                                echo htmlspecialchars($aluno) . "; ";
-                            }
-                            ?>
-                        </p>
-                        <p><strong>ODS:</strong>
-                            <?php
-                            while ($rowOds = $resultOds->fetch_assoc()) {
-                                $ods = $rowOds['nome_ods'];
-                                echo htmlspecialchars($ods) . "; ";
-                            }
-                            ?>
-                        </p>
-                        <p><strong>Orientador:</strong>
-                            <?= htmlspecialchars($row['orientador_projeto']) ?>
-                        </p>
-                        <p><strong>Posição no Ranking:</strong>
-                            <?= $row['posicao_projeto'] ?? '?' ?>
-                        </p>
-                        <form action="tela_avaliacao.php" method="post">
-                            <input type="hidden" name="id_projeto" value="<?= $row['id_projeto']; ?>">
-                            <input type="hidden" name="titulo_projeto" value="<?= $row['titulo_projeto']; ?>">
-                            <button type="submit" class="avaliar">Avaliar</button>
-                        </form>
-                    </div>
-                    <?php endwhile; ?>
-                    <?php else: ?>
-                        <h1>Nenhum trabalho encontrado com os filtros selecionados.</h1>
-                    <?php endif; ?>
+                    </p>
+                    <p><strong>ODS:</strong>
+                        <?php
+                        while ($rowOds = $resultOds->fetch_assoc()) {
+                            $ods = $rowOds['nome_ods'];
+                            echo htmlspecialchars($ods) . "; ";
+                        }
+                        ?>
+                    </p>
+                    <p><strong>Orientador:</strong>
+                        <?= htmlspecialchars($row['orientador_projeto']) ?>
+                    </p>
+                    <p><strong>Posição no Ranking:</strong>
+                        <?= $row['posicao_projeto'] ?? '?' ?>
+                    </p>
+                    <form action="tela_avaliacao.php" method="post">
+                        <input type="hidden" name="id_projeto" value="<?= $row['id_projeto']; ?>">
+                        <input type="hidden" name="titulo_projeto" value="<?= $row['titulo_projeto']; ?>">
+                        <button type="submit" class="avaliar">Avaliar</button>
+                    </form>
                 </div>
             </div>
+                <?php endwhile; ?>
+                <?php else: ?>
+                    <h1>Nenhum trabalho encontrado com os filtros selecionados.</h1>
+                <?php endif; ?>
         </div>
     </main>
     <div id="mySideMenu" class="side-menu">

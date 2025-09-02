@@ -213,12 +213,21 @@ option {
 }
 
 .linha-projeto {
-  width: 100%;
-  max-width: 800px; /* largura fixa igual para todos */
-  margin: 20px auto;
+  width: 800px;
   display: flex;
-  justify-content: center;
-  box-sizing: border-box;
+  flex-direction: column;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  gap: 5px;
+}
+
+.projetos {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  max-width: 800px;
+  gap: 5px;
 }
 
 .foto-perfil {
@@ -234,6 +243,7 @@ option {
 
 .projeto-nome {
   width: 100%;
+  max-width: 800px;
   background-color: #d9a6a6;
   border: 3px solid #d71414;
   box-shadow: 0 0 10px #d71414;
@@ -246,6 +256,7 @@ option {
 
 .projeto-lugar {
   width: 100%;
+  max-width: 800px;
   background-color: #cffff1;
   border: 3px solid white;
   box-shadow: 0 0 10px white;
@@ -269,14 +280,6 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-}
-
-.projetos {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  height: auto;
-  gap: 5px;
 }
 
 /* Estilo de fundo que o body terá no Tablet */
