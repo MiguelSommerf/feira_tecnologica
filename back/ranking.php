@@ -2,9 +2,13 @@
 require_once '../config/database.php';
 
 // Pega todos os nomes e id's diferentes dos projetos que receberam votos
-$sql_nomes = "SELECT DISTINCT v." . TABELA_VOTO['projeto'] . ", " . "p." . TABELA_PROJETO['titulo'] . ", " . "p." . TABELA_PROJETO['bloco'] . ", " . "p." . TABELA_PROJETO['stand'] . ", " . "p." . TABELA_PROJETO['sala'] . ", " . "a." . TABELA_ALUNO['curso'] . " FROM " . TABELA_PROJETO['nome_tabela'] . " as p
+$sql_nomes = "SELECT DISTINCT v." . TABELA_VOTO['projeto'] . ", " . "p." . TABELA_PROJETO['titulo'] . ", " . "b." . TABELA_BLOCO['bloco'] . ", " . "sa." . TABELA_SALA['sala'] . ", " . "st." . TABELA_STAND['stand'] . ", " . "sa." . TABELA_SALA['sala'] . ", " . "a." . TABELA_ALUNO['curso'] . " FROM " . TABELA_PROJETO['nome_tabela'] . " as p
               INNER JOIN " . TABELA_VOTO['nome_tabela'] . " AS v ON p." . TABELA_PROJETO['id'] . " = v." . TABELA_VOTO['projeto'] . "
-              INNER JOIN " . TABELA_PROJETO_ALUNO['nome_tabela'] . " AS i ON i." . TABELA_PROJETO_ALUNO['projeto'] . " = p." . TABELA_PROJETO['id'] . "
+              INNER JOIN " . TABELA_PROJETO_ALUNO['nome_tabela'] . " AS i ON i." . TABELA_PROJETO_ALUNO['projeto'] . " = p." . TABELA_PROJETO['id'] . " 
+              INNER JOIN " . TABELA_LOCALIZACAO_PROJETO['nome_tabela'] . " AS lp ON lp." . TABELA_LOCALIZACAO_PROJETO['projeto'] . " = p." . TABELA_PROJETO['id'] . " 
+              INNER JOIN " . TABELA_BLOCO['nome_tabela'] . " AS b on b." . TABELA_BLOCO['id'] . " = lp." . TABELA_LOCALIZACAO_PROJETO['bloco'] . " 
+              INNER JOIN " . TABELA_STAND['nome_tabela'] . " AS st on st." . TABELA_STAND['id'] . " = lp." . TABELA_LOCALIZACAO_PROJETO['stand'] . " 
+              INNER JOIN " . TABELA_SALA['nome_tabela'] . " AS sa ON sa." . TABELA_SALA['id'] . " = lp." . TABELA_LOCALIZACAO_PROJETO['sala'] . " 
               INNER JOIN " . TABELA_ALUNO['nome_tabela'] . " AS a ON a." . TABELA_ALUNO['id'] . " = i." . TABELA_PROJETO_ALUNO['aluno'];
 $stmt = $mysqli->prepare($sql_nomes);
 $stmt->execute();
@@ -20,12 +24,12 @@ if ($result_nomes->num_rows > 0) {
 
     // vai percorrendo cada nome de projeto
     while ($row = $result_nomes->fetch_assoc()) {
-        $id_projeto = $row['id_projeto'];
+        $id_projeto = $row['fk_id_projeto'];
         $nomeProjeto = $row["titulo_projeto"];
-        $blocoProjeto = $row['bloco_projeto'];
-        $standProjeto = $row['stand_projeto'];
-        $salaProjeto = $row['sala_projeto'];
-        $cursoProjeto = $row['curso_projeto'];
+        $blocoProjeto = $row['nome_bloco'];
+        $standProjeto = $row['numero_stand'];
+        $salaProjeto = $row['nome_sala'];
+        $cursoProjeto = $row['curso_aluno'];
 
         // proteção contra SQL Injection
         $nomeSeguro = $mysqli->real_escape_string($nomeProjeto);
@@ -112,7 +116,7 @@ if ($result_nomes->num_rows > 0) {
                 <div class="projeto-nome">Projeto ' . htmlspecialchars($item["nome"]) . ' - ' . htmlspecialchars($item["curso"]) . ' 
                     <div class="colocacao">' . $posicao . 'º lugar</div>
                 </div>
-                <div class="projeto-lugar">Sala ' . htmlspecialchars($item["sala"]) . ', Stand ' . htmlspecialchars($item["stand"]) . ' - Bloco ' . htmlspecialchars($item["bloco"]) . '</div>
+                <div class="projeto-lugar">Bloco: ' . htmlspecialchars($item["bloco"]) . ' - Local: ' . htmlspecialchars($item["sala"]) . ' - Stand: ' . htmlspecialchars($item["stand"]) . '</div>
             </div>
         </div>';
         
@@ -122,6 +126,6 @@ if ($result_nomes->num_rows > 0) {
 
 } else {
     echo "<script>alert('Nenhum projeto com votos ainda.')</script>";
-    echo "<script>window.history.back()</script>";
+    echo "<script>window.location.href = '../views/tela_projetos.php'</script>";
     exit();
 }
