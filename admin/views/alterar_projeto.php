@@ -17,7 +17,12 @@ if (!isset($id)) {
 }
 
 # Pega os dados do projeto.
-$sqlSelecionarProjeto = "SELECT * FROM " . TABELA_PROJETO['nome_tabela'] . " WHERE " . TABELA_PROJETO['id'] . " = ?";
+$sqlSelecionarProjeto = "SELECT sa." . TABELA_SALA['sala'] . "b." . TABELA_BLOCO['bloco'] . "st." . TABELA_STAND['stand'] . " FROM " . TABELA_PROJETO['nome_tabela'] . " AS p " . " 
+                        INNER JOIN " . TABELA_BLOCO['nome_tabela'] . " AS b ON b." . TABELA_BLOCO['id'] = TABELA_LOCALIZACAO_PROJETO['bloco'] . "
+                        INNER JOIN " . TABELA_SALA['nome_tabela'] . " AS sa ON sa." . TABELA_SALA['id'] = TABELA_LOCALIZACAO_PROJETO['sala'] . "
+                        INNER JOIN " . TABELA_STAND['nome_tabela'] . " AS st ON st." . TABELA_STAND['id'] = TABELA_LOCALIZACAO_PROJETO['stand'] . "
+                        INNER JOIN " . TABELA_LOCALIZACAO_PROJETO['nome_tabela'] . " AS lp ON lp." . TABELA_LOCALIZACAO_PROJETO['projeto'] = "p" . TABELA_PROJETO['id'] . "
+                         WHERE " . TABELA_PROJETO['id'] . " = ?";
 $stmtSelecionarProjeto = $mysqli->prepare($sqlSelecionarProjeto);
 $stmtSelecionarProjeto->bind_param("i", $id);
 $stmtSelecionarProjeto->execute();
@@ -55,7 +60,7 @@ $projeto = $stmtSelecionarProjeto->get_result()->fetch_assoc();
             <select name="bloco" id="bloco" required>
                 <option value="" disabled selected>Selecione o bloco:</option>
                 <?php
-                switch ($projeto['bloco_projeto']) {
+                switch ($projeto['nome_bloco']) {
                     case 'A':
                         echo "<option value='A'>A (Atual)</option>";
                         echo "<option value='B'>B</option>";
@@ -73,13 +78,15 @@ $projeto = $stmtSelecionarProjeto->get_result()->fetch_assoc();
                 <option value="" disabled selected>Selecione a sala:</option>
                 <?php
                 // Pensei em uma forma para melhorar isso, salvar todas as salas em uma tabela no banco, e criar uma tabela relacional para projeto-sala e projeto-stand
-                $querySala = "SELECT DISTINCT " . TABELA_PROJETO['sala'] . " FROM " . TABELA_PROJETO['nome_tabela'] . " ORDER BY " . TABELA_PROJETO['sala'] . " DESC";
+                $querySala = "SELECT DISTINCT " . TABELA_SALA['sala'] . " FROM " . TABELA_SALA['nome_tabela'] . " ORDER BY " . TABELA_SALA['sala'] . " DESC";
                 $stmtSala = $mysqli->prepare($querySala);
                 $stmtSala->execute();
                 $salas = $stmtSala->get_result();
 
                 foreach ($salas as $sala) {
-                    echo "<option value='" . $sala['sala_projeto'] . "'>Sala " . $sala['sala_projeto'] . "</option>";
+                    if ($sala !== $projeto['nome_sala']) {
+                        echo "<option value='" . $sala['nome_sala'] . "'>Sala " . $sala['nome_sala'] . "</option>";
+                    }
                 }
                 ?>
             </select>
@@ -88,13 +95,15 @@ $projeto = $stmtSelecionarProjeto->get_result()->fetch_assoc();
             <select name="stand" id="stand" required>
                 <option value="" disabled selected>Selecione o stand:</option>
                 <?php
-                $queryStand = "SELECT DISTINCT " . TABELA_PROJETO['stand'] . " FROM " . TABELA_PROJETO['nome_tabela'] . " ORDER BY " . TABELA_PROJETO['stand'] . " DESC";
+                $queryStand = "SELECT DISTINCT " . TABELA_STAND['stand'] . " FROM " . TABELA_STAND['nome_tabela'] . " ORDER BY " . TABELA_STAND['stand'] . " DESC";
                 $stmtStand = $mysqli->prepare($queryStand);
                 $stmtStand->execute();
                 $stands = $stmtStand->get_result();
 
                 foreach ($stands as $stand) {
-                    echo "<option value='" . $stand['stand_projeto'] . "'>Stand " . $stand['stand_projeto'] . "</option>";
+                    if ($stand !== $projeto['nome_stand']) {
+                        echo "<option value='" . $stand['nome_stand'] . "'>Stand " . $stand['nome_stand'] . "</option>";
+                    }
                 }
                 ?>
             </select>
