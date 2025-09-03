@@ -17,11 +17,11 @@ if (!isset($id)) {
 }
 
 # Pega os dados do projeto.
-$sqlSelecionarProjeto = "SELECT sa." . TABELA_SALA['sala'] . "b." . TABELA_BLOCO['bloco'] . "st." . TABELA_STAND['stand'] . " FROM " . TABELA_PROJETO['nome_tabela'] . " AS p " . " 
-                        INNER JOIN " . TABELA_BLOCO['nome_tabela'] . " AS b ON b." . TABELA_BLOCO['id'] = TABELA_LOCALIZACAO_PROJETO['bloco'] . "
-                        INNER JOIN " . TABELA_SALA['nome_tabela'] . " AS sa ON sa." . TABELA_SALA['id'] = TABELA_LOCALIZACAO_PROJETO['sala'] . "
-                        INNER JOIN " . TABELA_STAND['nome_tabela'] . " AS st ON st." . TABELA_STAND['id'] = TABELA_LOCALIZACAO_PROJETO['stand'] . "
-                        INNER JOIN " . TABELA_LOCALIZACAO_PROJETO['nome_tabela'] . " AS lp ON lp." . TABELA_LOCALIZACAO_PROJETO['projeto'] = "p" . TABELA_PROJETO['id'] . "
+$sqlSelecionarProjeto = "SELECT sa." . TABELA_SALA['sala'] . ", b." . TABELA_BLOCO['bloco'] . ", st." . TABELA_STAND['stand'] . ", p." . TABELA_PROJETO['titulo'] . ", p." . TABELA_PROJETO['orientador'] . ", p." . TABELA_PROJETO['descricao'] . " FROM " . TABELA_PROJETO['nome_tabela'] . " AS p " . " 
+                        INNER JOIN " . TABELA_LOCALIZACAO_PROJETO['nome_tabela'] . " AS lp ON lp." . TABELA_LOCALIZACAO_PROJETO['projeto'] . " = p." . TABELA_PROJETO['id'] . "
+                        INNER JOIN " . TABELA_BLOCO['nome_tabela'] . " AS b ON b." . TABELA_BLOCO['id'] . " = lp." . TABELA_LOCALIZACAO_PROJETO['bloco'] . "
+                        INNER JOIN " . TABELA_SALA['nome_tabela'] . " AS sa ON sa." . TABELA_SALA['id'] . " = lp." . TABELA_LOCALIZACAO_PROJETO['sala'] . "
+                        INNER JOIN " . TABELA_STAND['nome_tabela'] . " AS st ON st." . TABELA_STAND['id'] . " = lp." . TABELA_LOCALIZACAO_PROJETO['stand'] . "
                          WHERE " . TABELA_PROJETO['id'] . " = ?";
 $stmtSelecionarProjeto = $mysqli->prepare($sqlSelecionarProjeto);
 $stmtSelecionarProjeto->bind_param("i", $id);
@@ -45,7 +45,7 @@ $projeto = $stmtSelecionarProjeto->get_result()->fetch_assoc();
     </div>
 
     <div class="container">
-        <h2>Editando Projeto '<?= $projeto['titulo_projeto'] ?>'</h2>
+        <h2>Editando Projeto: '<?= $projeto['titulo_projeto'] ?>'</h2>
 
         <!-- Formulário para alteração. -->
         <form method="POST" action="../src/editar_projeto.php">
@@ -78,14 +78,14 @@ $projeto = $stmtSelecionarProjeto->get_result()->fetch_assoc();
                 <option value="" disabled selected>Selecione a sala:</option>
                 <?php
                 // Pensei em uma forma para melhorar isso, salvar todas as salas em uma tabela no banco, e criar uma tabela relacional para projeto-sala e projeto-stand
-                $querySala = "SELECT DISTINCT " . TABELA_SALA['sala'] . " FROM " . TABELA_SALA['nome_tabela'] . " ORDER BY " . TABELA_SALA['sala'] . " DESC";
+                $querySala = "SELECT DISTINCT " . TABELA_SALA['sala'] . " FROM " . TABELA_SALA['nome_tabela'];
                 $stmtSala = $mysqli->prepare($querySala);
                 $stmtSala->execute();
                 $salas = $stmtSala->get_result();
 
                 foreach ($salas as $sala) {
-                    if ($sala !== $projeto['nome_sala']) {
-                        echo "<option value='" . $sala['nome_sala'] . "'>Sala " . $sala['nome_sala'] . "</option>";
+                    if ($sala['nome_sala'] !== $projeto['nome_sala']) {
+                        echo "<option value='" . $sala['nome_sala'] . "'>" . $sala['nome_sala'] . "</option>";
                     }
                 }
                 ?>
@@ -101,8 +101,8 @@ $projeto = $stmtSelecionarProjeto->get_result()->fetch_assoc();
                 $stands = $stmtStand->get_result();
 
                 foreach ($stands as $stand) {
-                    if ($stand !== $projeto['nome_stand']) {
-                        echo "<option value='" . $stand['nome_stand'] . "'>Stand " . $stand['nome_stand'] . "</option>";
+                    if ($stand['numero_stand'] !== $projeto['numero_stand']) {
+                        echo "<option value='" . $stand['numero_stand'] . "'>Stand " . $stand['numero_stand'] . "</option>";
                     }
                 }
                 ?>
