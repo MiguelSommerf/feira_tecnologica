@@ -13,19 +13,25 @@ if (empty($_SESSION['admin']) or $_SESSION['admin'] != true) {
 
     if(!empty($id_usuario) && $_SESSION['admin'] == true) {
         $queryEmailUsuario = "SELECT " . TABELA_USUARIO['email'] . " FROM " . TABELA_USUARIO['nome_tabela']
-        . " WHERE " . TABELA_USUARIO['email'] . " = ?";
+        . " WHERE " . TABELA_USUARIO['id'] . " = ?";
         $stmtEmailUsuario = $mysqli->prepare($queryEmailUsuario);
         $stmtEmailUsuario->bind_param("i", $id_usuario);
         $stmtEmailUsuario->execute();
-        $EmailUsuario = $stmtEmailUsuario->get_result()->fetch_assoc();
-        
+        $emailUsuario = $stmtEmailUsuario->get_result()->fetch_assoc();
+
+        $queryEmailAdmin = "SELECT " . TABELA_USUARIO['email'] . " FROM " . TABELA_USUARIO['nome_tabela'] . " WHERE " . TABELA_USUARIO['id'] . " = ?";
+        $stmtEmailAdmin = $mysqli->prepare($queryEmailAdmin);
+        $stmtEmailAdmin->bind_param("i", $_SESSION['id']);
+        $stmtEmailAdmin->execute();
+        $emailAdmin = $stmtEmailAdmin->get_result()->fetch_assoc();
+
         date_default_timezone_set('America/Sao_Paulo');
         $fusoHorario = new DateTime();
         $data = $fusoHorario->format('Y-m-d H:i:s');
 
-        $queryLogUsuario = "INSERT INTO " . TABELA_LOG_USUARIO['nome_tabela'] . " VALUES (?, ?)";
+        $queryLogUsuario = "INSERT INTO " . TABELA_LOG_USUARIO['nome_tabela'] . " VALUES (DEFAULT, ?, ?, ?)";
         $stmtLogUsuario = $mysqli->prepare($queryLogUsuario);
-        $stmtLogUsuario->bind_param("iis", $_SESSION['id'], $id_usuario, $EmailUsuario, $data);
+        $stmtLogUsuario->bind_param("sss", $emailAdmin['email_usuario'], $emailUsuario['email_usuario'], $data);
         $stmtLogUsuario->execute();
         $stmtLogUsuario->close();
 

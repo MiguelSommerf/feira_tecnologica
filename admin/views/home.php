@@ -24,6 +24,7 @@
                     <a href="../../views/tela_home.php">Home</a>
                     <a href="projetos.php">Projetos</a>
                     <a href="usuarios.php">Usuários</a>
+                    <a href="log_admin.php">Logs</a>
                     <a href="../../back/logout.php">Logout</a>
                 </div>
             </div>
