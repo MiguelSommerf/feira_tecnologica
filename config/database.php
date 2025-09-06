@@ -93,6 +93,7 @@ const TABELA_LOCALIZACAO_PROJETO = [
 const TABELA_LOG_USUARIO = [
     'nome_tabela' => 'tb_log_usuario',
     'id'          => 'id_log_usuario',
-    'admin'       => 'fk_id_admin',
-    'usuario'     => 'fk_id_usuario'
+    'admin'       => 'email_admin',
+    'email'       => 'email_usuario',
+    'data'        => 'data_log'
 ];

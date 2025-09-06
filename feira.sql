@@ -119,13 +119,10 @@ INSERT INTO `tb_localizacao_projeto` (`fk_id_bloco`, `fk_id_sala`, `fk_id_stand`
 -- Copiando estrutura para tabela feira.tb_log_usuario
 CREATE TABLE IF NOT EXISTS `tb_log_usuario` (
   `id_log_usuario` int(11) NOT NULL AUTO_INCREMENT,
-  `fk_id_admin` int(11) NOT NULL,
-  `fk_id_usuario` int(11) NOT NULL,
-  PRIMARY KEY (`id_log_usuario`),
-  KEY `fk_id_admin` (`fk_id_admin`),
-  KEY `fk_id_usuario` (`fk_id_usuario`),
-  CONSTRAINT `tb_log_usuario_ibfk_1` FOREIGN KEY (`fk_id_admin`) REFERENCES `tb_usuario` (`id_usuario`),
-  CONSTRAINT `tb_log_usuario_ibfk_2` FOREIGN KEY (`fk_id_usuario`) REFERENCES `tb_usuario` (`id_usuario`)
+  `email_admin` varchar(255) NOT NULL,
+  `email_usuario` varchar(255) NOT NULL,
+  `data_log` datetime NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id_log_usuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
 -- Copiando dados para a tabela feira.tb_log_usuario: ~0 rows (aproximadamente)
