@@ -10,12 +10,12 @@ if (session_status() === PHP_SESSION_NONE) {
 $blocos = ['A', 'B'];
 
 // Captura os filtros
-$filtroTitulo = !empty($filtroTitulo) ? trim($_GET['titulo']) : null;
-$filtroNome = !empty($filtroNome) ? trim($_GET['nome']) : null;
-$filtroCurso = !empty($filtroCurso) ? trim($_GET['curso']) : null;
-$filtroSerie = !empty($filtroSerie) ? trim($_GET['serie']) : null;
-$filtroOds = !empty($filtroOds) ? trim($_GET['ods']) : null;
-$filtroBloco = !empty($filtroBloco) ? trim($_GET['bloco']) : null;
+$filtroTitulo = !empty($_GET['titulo']) ? trim($_GET['titulo']) : null;
+$filtroNome = !empty($_GET['nome']) ? trim($_GET['nome']) : null;
+$filtroCurso = !empty($_GET['curso']) ? trim($_GET['curso']) : null;
+$filtroSerie = !empty($_GET['serie']) ? trim($_GET['serie']) : null;
+$filtroOds = !empty($_GET['ods']) ? trim($_GET['ods']) : null;
+$filtroBloco = !empty($_GET['bloco']) ? trim($_GET['bloco']) : null;
 
 // Query com filtros
 $query = "SELECT DISTINCT a." . TABELA_ALUNO['serie'] . ",
@@ -109,6 +109,7 @@ $result = $stmt->get_result();
             <form method="GET">
                 <select name="curso" id="curso" class="botao">
                     <option value="" disabled selected>Curso</option>
+                    <option value="">Todos</option>
                     <?php
                     $queryCurso = "SELECT DISTINCT " . TABELA_ALUNO['curso'] . " FROM " . TABELA_ALUNO['nome_tabela'];
                     $resultCurso = $mysqli->query($queryCurso);
