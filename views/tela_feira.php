@@ -58,6 +58,8 @@ if (session_status() === PHP_SESSION_NONE) {
     <a href="tela_sobreEtec.php">Sobre a Etec</a>
     <?php if(isset($_SESSION['id'])): ?>
     <a href="../back/logout.php" class="deslogar" id="deslogar" name="deslogar">Sair da Conta</a>
+    <?php else: ?>
+    <a href="tela_login.php">Entrar</a>
     <?php endif; ?>
   </div>
   <script src="../assets/js/menuLateral.js"></script>
