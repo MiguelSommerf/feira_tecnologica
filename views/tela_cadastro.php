@@ -6,62 +6,51 @@ $verif = new Logout();
 $verif->logout();
 ?>
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Grenze:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-  <script type="text/javascript" src="https://cdn.rybena.com.br/dom/master/latest/rybena.js"></script>
-  <link rel="stylesheet" href="../assets/css/cadastro.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../assets/css/cadastro.css">
   <title>Cadastro</title>
 </head>
-<body class="TelaCadastro">
-  <div class="container">
-    <div class="top">
-      <img src="../assets/img/etecmcm.png" alt="Logo" class="logo" />
-    </div>
-
-    
-    <button class="btn-voltar" onclick="window.location.href = '../index.php'">Voltar</button>
-    <div class="form-container">
-      <form action="../back/verificarEmail.php" method="post" id="cadastroForm">
-        <label for="nome">Nome</label>
-        <input type="text" id="nome" name="nameuser" placeholder="Digite seu nome" required />
-
-        <label for="email">Email</label>
-        <input type="email" id="email" name="emailuser" placeholder="Digite seu email" required />
-
-        <label for="senha">Senha</label>
-        <div class="senha-container">
-          <input type="password" id="senha" name="passuser" placeholder="Digite sua senha" minlength="8" required />
-          <span class="olho" id="olho1" onclick="toggleSenha('senha', 'olho1')">😐</span>
-        </div>
-
-        <label for="confirmar-senha">Confirmar Senha</label>
-        <div class="senha-container">
-          <input type="password" id="confirmar-senha" name="confirmar-senha" placeholder="Confirme sua senha" required />
-          <span class="olho" id="olho2" onclick="toggleSenha('confirmar-senha', 'olho2')">😐</span>
-        </div>
-
-        <label for="data-nascimento">Data de Nascimento</label>
-        <input type="date" id="data-nascimento" name="birthuser" required />
-
-        <div class="botoes">
-          <div class="g_id_signin" data-type="standard"></div>
-          <button onclick="checkSenha()" type="submit">Cadastrar</button>
-        </div>
-      </form>
-    </div>
-
-    <div class="login-container">
-      <button class="login-invertido" onclick="window.location.href='tela_login.php'">
-        Já tenho uma conta
-      </button>
-    </div>
-  </div>
-  <div class="cadastro-texto">CADASTRO</div>
+<body>
+    <main>
+      <div class="logo">
+          <img src="../assets/img/etecmcm.png" alt="">
+      </div>
+      <div class="content-background">
+          <form action="../back/cadastro.php" method="post">
+              <div class="content">
+                  <span>Nome</span>
+                  <input type="text" name="nameuser" id="" placeholder="Digite o seu nome" required>
+              </div>
+              <div class="content">
+                  <span>E-mail</span>
+                  <input type="email" name="emailuser" id="" placeholder="Digite o seu e-mail" required>
+              </div>
+              <div class="content">
+                  <span>Senha</span>
+                  <input type="password" name="passuser" id="senha" placeholder="Digite a sua senha" required>
+              </div>
+              <div class="content">
+                  <span>Confirmar senha</span>
+                  <input type="password" name="" id="confirmar-senha" placeholder="Confirme a sua senha" required>
+              </div>
+              <div class="content">
+                  <span>Data de Nascimento</span>
+                  <input type="date" name="birthuser" id="" required>
+              </div>
+              <div class="content">
+                  <div class="g_id_signin"></div>
+                  <button class="blue-button" type="submit">Cadastrar</button>
+              </div>
+              <div class="content">
+                  <a class="light-purple-button" href="tela_login.php">Entrar</a>
+              </div>
+            </div>
+          </form>
+          <h1 class="title-screen">Cadastro</h1>
+    </main>
 
   <!--API DO GOOGLE-->
   <!--Codado por Guilherme Solon (Turma A) e Miguel Luiz Sommerfeld (Turma B) - 3°F-->

@@ -11,7 +11,7 @@ $verif->logout();
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../assets/css/login.css">
-  <title>Document</title>
+  <title>Login</title>
 </head>
 <body>
   <main>
@@ -22,11 +22,11 @@ $verif->logout();
           <div class="content-background">
               <div class="content">
                   <span>E-mail</span>
-                  <input type="email" name="emailuser" id="">
+                  <input type="email" name="emailuser" id="" placeholder="Digite o seu e-mail" required>
               </div>
               <div class="content">
                   <span>Senha</span>
-                  <input type="password" name="passuser" id="">
+                  <input type="password" name="passuser" id="" placeholder="Digite a sua senha" required>
                   <div class="esqueci-senha">
                       <a href="tela_2step.php">Esqueci a senha</a>
                   </div>
