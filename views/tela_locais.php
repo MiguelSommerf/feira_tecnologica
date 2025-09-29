@@ -1,3 +1,10 @@
+<?php
+require_once '../config/database.php';
+require_once '../back/classes/Logout.php';
+
+$verif = new Logout();
+$verif->logout();
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -10,7 +17,7 @@
     <header class="headerLogo">
         <img src="../assets/img/etecmcm.png" alt="EtecMCM">
     </header>
-    <div class="conteudo">
+    <main>
         <div class="separacao">
             <p>Blocos</p>
             <a href="#">Bloco A</a>
@@ -18,11 +25,13 @@
         </div>
         <div class="separacao">
             <p>Outros locais</p>
-            <a href="#">Biblioteca</a>
-            <a href="#">Auditório</a>
-            <a href="#">Quadra</a>
+            <a href="#" class="cor-alt">Biblioteca</a>
+            <a href="#" class="cor-alt">Auditório</a>
+            <a href="#" class="cor-alt">Quadra</a>
         </div>
-        <h2>Locais</h2>
-    </div>
+        <div class="texto-fundo">
+            <h2>Locais</h2>
+        </div>
+    </main>
 </body>
 </html>
