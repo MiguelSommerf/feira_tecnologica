@@ -1,6 +1,12 @@
+@font-face {
+  font-family: 'ArchivoBlack';
+  src: url('../fonts/ArchivoBlack-Regular.ttf') format('truetype');
+}
+
 * {
   margin: 0px;
   padding: 0px;
+  font-family: 'ArchivoBlack';
 }
 
 body {
@@ -29,7 +35,7 @@ main {
   flex-direction: column;
   background-color: hsla(187, 13%, 12%, 0.758);
   width: 700px;
-  height: 500px;
+  height: 650px;
   border: white solid 1px;
   border-radius: 20px;
   gap: 100px;
@@ -37,19 +43,83 @@ main {
 
 .content {
   width: 100px;
+  text-align: center;
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-direction: column;
+  gap: 8px;
 }
 
 .content span {
   display: flex;
   align-items: flex-start;
-  width: 200px;
+  width: 400px;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.content a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 18px;
+  border-radius: 10px;
+  height: 50px;
+  width: 400px;
 }
 
 .blue-button {
   background-color: #0097E4;
-  height: 50px;
-  width: 200px;
+}
+
+.blue-button:hover {
+  background-color: #0087CC;
+}
+
+.light-purple-button {
+  background-color: #6D7EFF;
+}
+
+.light-purple-button:hover {
+  background-color: #4D62FF;
+}
+
+.dark-purple-button {
+  background-color: #705BC2;
+}
+
+.dark-purple-button:hover {
+  background-color: #5734DE;
+}
+
+@media screen and (max-width: 600px) {
+  .logo img {
+    height: 80px;
+    width: 80px;
+  }
+
+  .content-background {
+    display: flex;
+    justify-content: center;
+    height: 550px;
+    width: 330px;
+    gap: 22px;
+  }
+
+  .content {
+    height: 130px;
+    width: 200px;
+    gap: 6px;
+  }
+
+  .content span {
+    width: 200px;
+  }
+
+  .content a {
+    width: 200px;
+  }
 }
