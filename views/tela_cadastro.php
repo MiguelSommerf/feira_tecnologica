@@ -45,11 +45,11 @@ $verif->logout();
                   <button class="blue-button" type="submit">Cadastrar</button>
               </div>
               <div class="content">
-                  <a class="light-purple-button" href="tela_login.php">Entrar</a>
+                  <a class="dark-purple-button" href="tela_login.php">Entrar</a>
               </div>
-            </div>
           </form>
           <h1 class="title-screen">Cadastro</h1>
+      </div>
     </main>
 
   <!--API DO GOOGLE-->
@@ -151,38 +151,38 @@ $verif->logout();
         }
       })
     }
-    let piscando = { olho1: true, olho2: true };
-    let intervalos = {};
-    function iniciarPiscar(idOlho) {
-      const olho = document.getElementById(idOlho);
-      piscando[idOlho] = true;
-      intervalos[idOlho] = setInterval(() => {
-        if (!piscando[idOlho]) return;
-        olho.textContent = '😑';
-        setTimeout(() => {
-          if (piscando[idOlho]) olho.textContent = '😐';
-        }, 80);
-      }, 2000);
-    }
-    function pararPiscar(idOlho) {
-      piscando[idOlho] = false;
-      clearInterval(intervalos[idOlho]);
-    }
-    function toggleSenha(inputId, olhoId) {
-      const input = document.getElementById(inputId);
-      const olho = document.getElementById(olhoId);
-      if (input.type === 'password') {
-        input.type = 'text';
-        pararPiscar(olhoId);
-        olho.textContent = '😑';
-      } else {
-        input.type = 'password';
-        iniciarPiscar(olhoId);
-        olho.textContent = '😐';
-      }
-    }
-    iniciarPiscar('olho1');
-    iniciarPiscar('olho2');
+    // let piscando = { olho1: true, olho2: true };
+    // let intervalos = {};
+    // function iniciarPiscar(idOlho) {
+    //   const olho = document.getElementById(idOlho);
+    //   piscando[idOlho] = true;
+    //   intervalos[idOlho] = setInterval(() => {
+    //     if (!piscando[idOlho]) return;
+    //     olho.textContent = '😑';
+    //     setTimeout(() => {
+    //       if (piscando[idOlho]) olho.textContent = '😐';
+    //     }, 80);
+    //   }, 2000);
+    // }
+    // function pararPiscar(idOlho) {
+    //   piscando[idOlho] = false;
+    //   clearInterval(intervalos[idOlho]);
+    // }
+    // function toggleSenha(inputId, olhoId) {
+    //   const input = document.getElementById(inputId);
+    //   const olho = document.getElementById(olhoId);
+    //   if (input.type === 'password') {
+    //     input.type = 'text';
+    //     pararPiscar(olhoId);
+    //     olho.textContent = '😑';
+    //   } else {
+    //     input.type = 'password';
+    //     iniciarPiscar(olhoId);
+    //     olho.textContent = '😐';
+    //   }
+    // }
+    // iniciarPiscar('olho1');
+    // iniciarPiscar('olho2');
   </script>
 </body>
 </html>

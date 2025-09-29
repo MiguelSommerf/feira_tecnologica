@@ -38,7 +38,15 @@ main {
   height: 650px;
   border: white solid 1px;
   border-radius: 20px;
-  gap: 30px;
+}
+
+.content-background form {
+  height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 50px;
 }
 
 .content {
@@ -56,7 +64,6 @@ main {
   align-items: flex-start;
   width: 390px;
   color: #ffffff;
-  font-weight: bold;
 }
 
 .content input {
@@ -122,6 +129,10 @@ main {
   width: 396px;
 }
 
+.g_id_signin span {
+  color: #705BC2;
+}
+
 .blue-button {
   background-color: #0097E4;
 }
@@ -165,6 +176,11 @@ main {
     gap: 4px;
   }
 
+  .content-background form {
+    height: 450px;
+    gap: 16px;
+  }
+
   .content {
     height: 200px;
     width: 300px;
@@ -200,9 +216,5 @@ main {
 
   .g_id_signin {
     width: 296px;
-  }
-
-  .title-screen {
-    margin-bottom: 20px;
   }
 }

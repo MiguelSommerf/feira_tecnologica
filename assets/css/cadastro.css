@@ -32,9 +32,10 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   background-color: hsla(187, 13%, 12%, 0.758);
   width: 700px;
-  height: 800px;
+  height: 850px;
   border: white solid 1px;
   border-radius: 20px;
 }
@@ -63,7 +64,6 @@ main {
   align-items: flex-start;
   width: 390px;
   color: #ffffff;
-  font-weight: bold;
 }
 
 .content input {
@@ -129,6 +129,10 @@ main {
   width: 396px;
 }
 
+.g_id_signin span {
+  color: #705BC2;
+}
+
 .blue-button {
   background-color: #0097E4;
 }
@@ -156,6 +160,7 @@ main {
 .title-screen {
     color: #ffffff;
     font-size: 28px;
+    margin-bottom: 20px;
 }
 
 @media screen and (max-width: 600px) {
@@ -167,7 +172,8 @@ main {
   .content-background {
     display: flex;
     justify-content: center;
-    height: 600px;
+    flex-direction: column;
+    height: 750px;
     width: 330px;
     gap: 4px;
   }
@@ -176,8 +182,9 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 550px;
+    height: 600px;
     width: 330px;
+    gap: 8px;
   }
 
   .content {
@@ -218,6 +225,7 @@ main {
   }
 
   .title-screen {
-    margin-bottom: 20px;
+    margin-top: 10px;
+    margin-bottom: 0px;
   }
 }
