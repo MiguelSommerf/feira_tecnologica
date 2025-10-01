@@ -27,7 +27,7 @@ a {
     background-color: #0097E4;
     color: white;
     font-family: Arial;
-    height: 50px;
+    min-height: 50px;
 }
 
 .cor-alt {
@@ -35,7 +35,6 @@ a {
 }
 
 p {
-    font-family: 'Arial Narrow Bold', sans-serif;
     color: white;
     font-weight: bold;
     font-size: medium;
@@ -48,7 +47,7 @@ p {
 }
 
 .headerLogo > img {
-    margin: 10px;
+    margin: 20px;
     height: 100px;
     width: 100px;
 }
@@ -61,24 +60,26 @@ main {
     border: 1px solid white;
     border-radius: 15px;
     width: 70%;
-    height: 80%;
+    height: 70%;
     padding: 20px;
     gap: 20px;
 }
 
 h2 {
+    margin-top: 100%;
     color: white;
 }
 
 .separacao {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 20px;
     width: 60%;
-    margin: 15px;
+    height: 30%;
+    margin-top: 2%;
 }
 
-.separacao > p{
+.separacao > p {
     display: flex;
     align-items: start;
 }

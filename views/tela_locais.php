@@ -29,7 +29,7 @@ $verif->logout();
             <a href="#" class="cor-alt">Auditório</a>
             <a href="#" class="cor-alt">Quadra</a>
         </div>
-        <div class="texto-fundo">
+        <div>
             <h2>Locais</h2>
         </div>
     </main>
