@@ -3,6 +3,11 @@
   src: url('../fonts/ArchivoBlack-Regular.ttf') format('truetype');
 }
 
+@font-face {
+  font-family: 'AnekLatin';
+  src: url('../fonts/AnekLatin-Regular.ttf') format('truetype');
+}
+
 * {
   margin: 0px;
   padding: 0px;
@@ -11,7 +16,6 @@
 
 body, html {
   width: 100%;
-  height: 100%;
   background-color: #00486C;
   display: flex;
   flex-direction: column;
@@ -22,16 +26,16 @@ body, html {
   width: 100%;
   display: flex;
   justify-content: center;
+  margin: 30px;
 }
 
 .headerLogo > img {
-  margin: 20px;
   height: 100px;
   width: 100px;
 }
 
 p {
-  font-family: Arial;
+  font-family: 'AnekLatin';
   font-weight: 200;
   color: white;
   font-size: medium;
@@ -46,20 +50,28 @@ main {
   display: flex;
   align-items: center;
   flex-direction: column;
-  background-color: #1C343C;
+  width: 100%;
+  height: 100%;
+  margin-bottom: 20px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
   border: 1px solid white;
   border-radius: 15px;
-  width: 70%;
-  height: 70%;
   padding: 20px;
+  background-color: hsla(187, 13%, 12%, 0.74);
   gap: 20px;
 }
 
 .imagem {
   display: flex;
   flex-direction: column;
-  width: 50%;
-  height: 50%;
+  width: 60%;
+  height: 60%;
 }
 
 .imagem > img {
@@ -72,19 +84,11 @@ main {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  width: 60%;
+  width: 80%;
   height: 25%;
-  margin-top: 2%;
 }
 
 @media screen and (max-width: 1000px) {
-  main {
-    width: 80%;
-    height: 70%;
-    padding: 15px;
-    gap: 20px;
-  }
-
   .separacao {
     width: 95%;
     height: auto;
