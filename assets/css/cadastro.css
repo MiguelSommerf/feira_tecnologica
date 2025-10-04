@@ -1,288 +1,231 @@
-/* Variáveis e fonte */
-:root {
-  --FONTTitulo: 'Grenze';
-  --FONTTituloSIZE: 40px;
-
-  /* Cores para botões verdes ciano */
-  --btn-ciano-bg: #3de1c3;
-  --btn-ciano-glow: #9bffec;
-  --btn-ciano-text: black;
-
-  /* Variáveis do botão cadastrar / já tenho uma conta */
-  --btn-cadastrar-bg: rgba(255, 255, 255, 0.6);
-  --btn-cadastrar-border: white;
-  --btn-cadastrar-text: black;
-  --btn-cadastrar-glow: white;
+@font-face {
+  font-family: 'ArchivoBlack';
+  src: url('../fonts/ArchivoBlack-Regular.ttf') format('truetype');
 }
 
-/* Reset básico */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
+  margin: 0px;
+  padding: 0px;
+  font-family: 'ArchivoBlack';
 }
 
-body, html {
-  height: 100%;
-  width: 100%;
-  background-image: url('../img/login.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+body {
+  background-color: hsl(200, 100%, 21%);
 }
 
-/* Container principal */
-.container {
-  height: 100vh;
+main {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  padding-top: 30px;
+  flex-direction: column;
 }
 
-/* Logo */
 .logo {
-  width: 80px;
-  height: 80px;
-  margin-bottom: 20px;
+  padding: 30px;
 }
 
-.g_id_signin{
-  width: 100%;
+.logo img {
+  width: 100px;
+  height: 100px;
 }
 
-/* Formulário */
-.form-container {
-  background: #dedede;
-  padding: 20px;
-  width: 350px;
-  max-width: 90vw;
-  border: 5px solid white;
-  border-radius: 8px;
+.content-background {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: hsla(187, 13%, 12%, 0.758);
+  width: 700px;
+  height: 850px;
+  border: white solid 1px;
+  border-radius: 20px;
 }
 
-/* Labels */
-label {
-  display: block;
-  margin-top: 10px;
-  font-family: var(--FONTTitulo);
-  font-weight: 700;
-  font-size: 16px;
-  color: #000;
+.content-background form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 850px;
+  gap: 20px;
 }
 
-/* Inputs */
-input {
-  width: 100%;
-  padding: 10px;
-  margin-top: 5px;
+.content {
+  width: 400px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.content span {
+  display: flex;
+  align-items: flex-start;
+  width: 390px;
+  color: #ffffff;
+}
+
+.content input {
+  background-color: #ffffff99;
+  display: flex;
+  align-items: center;
+  width: 388px;
+  height: 48px;
+  border: none;
+  border-radius: 6px;
+  outline: none;
+  font-size: 18px;
+  color: #4c2ec4;
+  padding: 6px;
+}
+
+.content input:hover {
+  background-color: #ffffffc9;
+}
+
+.content a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 18px;
+  border-radius: 10px;
+  height: 50px;
+  width: 400px;
+}
+
+.content button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 18px;
   border: none;
   border-radius: 10px;
-  box-shadow: 2px 2px 5px #ccc;
-  font-size: 16px;
+  height: 50px;
+  width: 400px;
 }
 
-/* Campo senha com olho */
-.senha-container {
-  position: relative;
+.esqueci-senha {
+  width: 390px;
 }
 
-.senha-container input {
-  padding-right: 40px;
-}
-
-.olho {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  cursor: pointer;
-  font-size: 20px;
-  color: #555;
-  user-select: none;
-  transition: color 0.3s ease;
-}
-
-.olho:hover {
-  color: #46e0bf;
-}
-
-/* Botões */
-.botoes {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 15px;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-/* Botões "Cadastrar com Google" e "Cadastrar" - estilo verde ciano */
-.botoes button {
-  background-color: var(--btn-ciano-bg);
-  border: 0.25em solid var(--btn-ciano-bg);
-  color: var(--btn-ciano-text);
-  padding: 1em 3em;
-  font-weight: bold;
-  font-size: 15px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5em;
-  text-shadow: none;
-  box-shadow: none;
-}
-
-.botoes button.google img {
-  width: 20px;
+.esqueci-senha a {
+  width: 164px;
   height: 20px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
-/* Hover dos botões verdes */
-.botoes button:hover {
-  background-color: transparent;
-  border-color: var(--btn-ciano-glow);
-  box-shadow:
-    0 0 10px 4px var(--btn-ciano-glow),
-    inset 0 0 10px 4px var(--btn-ciano-glow);
-  color: var(--btn-ciano-glow);
+.esqueci-senha a:hover {
+  color: #ffffffa1;
 }
 
-/* Botão "Já tenho uma conta" com estilo igual ao .cadastrar */
-.login-invertido {
-  background-color: var(--btn-cadastrar-bg);
-  border: 0.25em solid var(--btn-cadastrar-border);
-  color: var(--btn-cadastrar-text);
-  padding: 1em 3em;
-  border-radius: 4px;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  width: 350px;
-  max-width: 90vw;
-  text-align: center;
-  text-shadow: 0 0 0.5em var(--btn-cadastrar-glow);
-  box-shadow: none;
-  margin-top: 20px;
+.g_id_signin {
+  width: 396px;
 }
 
-.login-invertido:hover {
-  background-color: transparent;
-  box-shadow:
-    0 0 10px 4px var(--btn-cadastrar-glow),
-    inset 0 0 10px 4px var(--btn-cadastrar-glow);
-  color: var(--btn-cadastrar-glow);
+.g_id_signin span {
+  color: #705BC2;
 }
 
-/* Texto decorativo fixo no canto inferior direito */
-.cadastro-texto {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  font-family: var(--FONTTitulo);
-  font-size: var(--FONTTituloSIZE);
-  font-weight: bold;
-  color: black;
-  pointer-events: none;
-  user-select: none;
-  z-index: -1;
+.blue-button {
+  background-color: #0097E4;
 }
 
-/* Responsividade */
-@media (max-width: 768px) {
-  .form-container {
-    width: 90vw;
+.blue-button:hover {
+  background-color: #0087CC;
+}
+
+.light-purple-button {
+  background-color: #6D7EFF;
+}
+
+.light-purple-button:hover {
+  background-color: #4D62FF;
+}
+
+.dark-purple-button {
+  background-color: #705BC2;
+}
+
+.dark-purple-button:hover {
+  background-color: #5734DE;
+}
+
+.title-screen {
+    color: #ffffff;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+@media screen and (max-width: 600px) {
+  .logo img {
+    height: 80px;
+    width: 80px;
   }
 
-  .botoes {
+  .content-background {
+    display: flex;
+    justify-content: center;
     flex-direction: column;
+    height: 750px;
+    width: 330px;
+    gap: 4px;
   }
 
-  .botoes button {
-    width: 100%;
+  .content-background form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 600px;
+    width: 330px;
+    gap: 8px;
   }
 
-  .login-invertido {
-    width: 100%;
+  .content {
+    height: 200px;
+    width: 300px;
+    gap: 6px;
+  }
+
+  .content input {
+    height: 30px;
+    width: 290px;
+    font-size: 16px;
+  }
+
+  .content span {
+    width: 296px;
+  }
+
+  .content a {
+    width: 300px;
+  }
+
+  .content button {
+    width: 300px;
+  }
+
+  .esqueci-senha {
+    width: 296px;
+  }
+
+  .esqueci-senha a {
+    width: 144px;
+    font-size: 16px;
+  }
+
+  .g_id_signin {
+    width: 296px;
+  }
+
+  .title-screen {
+    margin-top: 10px;
+    margin-bottom: 0px;
   }
 }
-
-@media (max-width: 480px) {
-  .cadastro-texto {
-    font-size: 26px;
-    bottom: 10px;
-    right: 10px;
-  }
-}
-
-.btn-voltar {
-  background-color: #00ffe5;
-  border: none;
-  color: #000000;
-  padding: 1em 3em;
-  font-weight: bold;
-  font-size: 100%;
-  border-radius: 20px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  max-width: 100px;
-  min-width: 50px;
-  height: 100%;
-  min-height: 20px;
-  max-height: 20px;
-  align-self: flex-start;
-  margin-left: 20px;
-  position: fixed;
-  right:  20px;
-  top: 80px;
-}
-.btn-voltar:hover {
-  background-color: #00cbcc;
-}
-
-.logo-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      height: fit-content;
-      width: fit-content;
-    }
-
-    @media (min-width: 768px) {
-      body.TelaCadastro {
-        background-image: url(../img/login.png);
-        background-repeat: no-repeat;
-        background-size: cover;
-  
-      }
-    }
-
-    @media (min-width: 375px) and (max-width: 768px) {
-      body.TelaCadastro {
-        background-image: url(../img/login.png);
-        background-repeat: no-repeat;
-        background-size: cover;
-      }
-    }
-
-    @media (max-width: 375px) {
-      body.TelaCadastro {
-        background-image: url(../img/login.png);
-        background-repeat: no-repeat;
-        background-size: cover;
-      }
-    } 

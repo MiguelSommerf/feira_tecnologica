@@ -11,22 +11,22 @@ $verif->logout();
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../assets/css/login.css">
-  <title>Document</title>
+  <title>Login</title>
 </head>
 <body>
   <main>
       <div class="logo">
           <img src="../assets/img/etecmcm.png" alt="">
       </div>
-      <form action="../back/login.php" method="post">
-          <div class="content-background">
+      <div class="content-background">
+          <form action="../back/login.php" method="post">
               <div class="content">
                   <span>E-mail</span>
-                  <input type="email" name="emailuser" id="">
+                  <input type="email" name="emailuser" id="" placeholder="Digite o seu e-mail" required>
               </div>
               <div class="content">
                   <span>Senha</span>
-                  <input type="password" name="passuser" id="">
+                  <input type="password" name="passuser" id="" placeholder="Digite a sua senha" required>
                   <div class="esqueci-senha">
                       <a href="tela_2step.php">Esqueci a senha</a>
                   </div>
@@ -38,9 +38,9 @@ $verif->logout();
               <div class="content">
                   <a href="tela_cadastro.php" class="dark-purple-button">Cadastrar</a>
               </div>
-              <h1 class="title-screen">Login</h1>
-          </div>
-      </form>
+          </form>
+          <h1 class="title-screen">Login</h1>
+      </div>
 
 
 
@@ -97,7 +97,7 @@ $verif->logout();
       return JSON.parse(atob(base64));
     }
   </script>
-  <script>
+  <!-- <script>
     const olho = document.getElementById('olho');
     const inputSenha = document.getElementById('senha');
     let piscando = true;
@@ -134,6 +134,6 @@ $verif->logout();
       }
     }
     iniciarPiscar();
-  </script>
+  </script> -->
 </body>
 </html>
