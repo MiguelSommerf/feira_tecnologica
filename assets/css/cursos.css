@@ -67,13 +67,13 @@ a {
 }
 
 p {
-  font-family: Arial;
+  font-family: 'AnekLatin';
 }
 
 h2 {
   color: white;
-  font-family: Arial;
-  font-weight: 100;
+  font-family: 'AnekLatin';
+  font-weight: 200;
   margin: 5px;
 }
 

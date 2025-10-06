@@ -1,97 +1,70 @@
-/* Camila - pagina Creditos */
-
-:root {
-  /* Paleta de cores */
-  --cor-bg-titulo: #54c1a3;
-  /* Cor de fundo dos títulos */
-  --cor-texto-titulo: #e9f7f4;
-  /* Cor do texto dos títulos */
-  --cor-bg-cartao: #e9fdf9;
-  /* Cor de fundo dos cartões */
-  --cor-borda-cartao: #ffffff;
-  /* Cor da borda dos cartões */
-  --cor-sombra-cartao: rgba(0, 0, 0, 0.15);
-  /* Sombra ao passar o mouse */
-  --cor-btn: rgb(118, 231, 222);
-  /* Cor de fundo dos botões */
-  --cor-btn-hover-shadow: rgba(0, 0, 0, 0.2);
-  /* Sombra ao passar o mouse no botão */
-  --cor-texto-primario: #333;
-  /* Cor principal do texto */
-  --cor-texto-secundario: #666;
-  /* Cor secundária do texto */
-  --overlay: rgba(0, 0, 0, 0.4);
-  /* Overlay escuro (caso queira usar) */
-  --FONTTitulo: Grenze;
-  --FONTPadrao: Roboto;
-  --FONTTituloSIZE: 20px;
+@font-face {
+  font-family: 'ArchivoBlack';
+  src: url('../fonts/ArchivoBlack-Regular.ttf') format('truetype');
 }
 
-
-/* 1. Reset e box-model básico   */
+@font-face {
+  font-family: 'AnekLatin';
+  src: url('../fonts/AnekLatin-Regular.ttf') format('truetype');
+}
 
 * {
-  margin: 0;
-  padding: 0;
-
+  margin: 0px;
+  padding: 0px;
+  font-family: 'AnekLatin';
 }
 
-/* HEADER BASE */
-header {
-  padding: 5px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-h1 {
-  font-family: var(--FONTTitulo);
-  font-size: var(--FONTTituloSIZE);
-}
-
-/* 2.Estilo do body e fundo     */
-
-.Creditos_body {
-  background-image: url('../img/cursos.png');
-  width: auto;
-  font-family: Arial, sans-serif;
-  color: var(--cor-texto-primario);
-  padding: 20px;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  position: relative;
-  /* para posicionar pseudo-elementos */
-}
-
-
-/* 3. Container principal        */
-
-.container {
-  max-width: 900px;
-  margin: 0 auto;
+body, html {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  align-items: center;
+  background-color: hsla(200, 100%, 21%);
 }
 
-
-/* 4. Título das seções         */
-
-.titulo {
-  background-color: var(--cor-bg-titulo);
-  color: var(--cor-texto-titulo);
-  padding: 10px 20px;
-  border-radius: 12px;
-  width: 40%;
-  margin: 0 auto 15px;
-  text-align: center;
-  font-size: 1.3rem;
-  font-weight: bold;
+p {
+  color: white;
+  font-size: 24px;
 }
 
+.headerLogo {
+  width: 100%;
+  margin: 30px;
+  display: flex;
+  justify-content: center;
+}
 
-/* 5. Layout de cartões          */
+.headerLogo > img {
+  height: 100px;
+  width: 100px;
+}
+
+main {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  margin-bottom: 20px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.sep-cat-cred {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: hsl(187, 13%, 12%, 0.74);
+  width: 50%;
+  min-height: 80px;
+  border-radius: 20px;
+}
 
 .cartoes {
   display: flex;
@@ -102,13 +75,10 @@ h1 {
 }
 
 .cartao {
-  background-color: var(--cor-bg-cartao);
+  background-color: #D8E6FF;
   border-radius: 10px;
-  border: 4px solid var(--cor-borda-cartao);
-  box-shadow: 0 0 35px var(--cor-borda-cartao);
   padding: 15px;
   width: calc((100% - 60px) / 3);
-  /* 3 colunas com 20px de gap */
   min-width: 220px;
   display: flex;
   align-items: center;
@@ -118,20 +88,16 @@ h1 {
 
 .cartao:hover {
   transform: translateY(-4px);
-  box-shadow: 0 4px 10px var(--cor-sombra-cartao);
 }
 
-
-/* 6. Avatar e informações       */
-
 .avatar {
-  background-color: white;
   height: 80px;
   width: 80px;
   border-radius: 50%;
   object-fit: cover;
   object-position: center;
   flex-shrink: 0;
+  box-shadow: 5px 5px 10px #000000a4;
 }
 
 .cargo {
@@ -151,308 +117,43 @@ h1 {
   margin-bottom: 12px;
 }
 
-
-/* 7. Botões de Git e LinkedIn   */
-
 .div-btn-cred {
   display: flex;
   justify-content: flex-start;
+  flex-direction: row;
   gap: 10px;
+  width: 100%;
   flex-wrap: wrap;
 }
 
-a.btn-git,
-a.btn-linkedin {
-  width: 100%;
+.btn-git, .btn-linkedin {
+  text-align: center;
+  min-width: 100px;
   padding: 6px 12px;
   border-radius: 4px;
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: #fff;
+  color: black;
   text-decoration: none;
   display: inline-block;
   cursor: pointer;
-  background-color: var(--cor-btn);
   transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
   user-select: none;
 }
 
-a.btn-git:hover,
-a.btn-linkedin:hover {
+.btn-git {
+  background-color: #705BC2;
+}
+
+.btn-linkedin {
+  background-color: #6D7EFF;
+}
+
+.btn-git:hover, .btn-linkedin:hover {
   transform: translateY(-2px);
   box-shadow: 0 2px 6px var(--cor-btn-hover-shadow);
   opacity: 0.9;
 }
 
-a.btn-git:focus,
-a.btn-linkedin:focus {
+.btn-git:focus, .btn-linkedin:focus {
   outline: 2px solid #fff;
   box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.3);
-}
-
-
-/* 8. Nav e título do header: Código do Eduardo */
-
-/*  ==========================================================
-                       INÍCIO CSS NAV BAR
-    ==========================================================*/
-.menu-toggle {
-  display: flex;
-  flex-direction: column;
-  width: 30px;
-  padding: 10px;
-  cursor: pointer;
-  transition: transform 0.5s;
-}
-
-.bar {
-  height: 3px;
-  width: 100%;
-  background-color: #000;
-  margin: 4px 0;
-  border-radius: 15px;
-  transition: transform 0.5s, opacity 0.5s;
-}
-
-.menu-toggle.active .bar:nth-child(1) {
-  transform: translateY(8px) rotate(45deg);
-}
-
-.menu-toggle.active .bar:nth-child(2) {
-  opacity: 0;
-}
-
-.menu-toggle.active .bar:nth-child(3) {
-  transform: translateY(-8px) rotate(-45deg);
-}
-
-.side-menu {
-  height: 100%;
-  width: 0;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: #111;
-  overflow-x: hidden;
-  transition: width 0.5s;
-  padding-top: 60px;
-}
-
-.side-menu a {
-  padding: 8px 8px 8px 32px;
-  text-decoration: none;
-  font-size: 25px;
-  color: #818181;
-  display: block;
-  transition: all 0.3s ease;
-}
-
-.side-menu a:hover {
-  color: #f1f1f1;
-  background-color: #444;
-}
-
-.side-menu .close-btn {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-}
-
-::-webkit-scrollbar {
-  display: none;
-}
-
-#BTNMenu {
-  display: none;
-}
-
-#Menu {
-  border-radius: 4px;
-  width: fit-content;
-  border: 2px solid transparent;
-  position: fixed;
-  left: 10px;
-}
-
-input[type="checkbox"]#BTNMenu:checked~#Menu {
-  box-shadow: 0 0 4px white, inset 0 0 4px white;
-  background-color: rgba(255, 255, 255, 0.5);
-  border: 2px solid white;
-}
-
-input[type="checkbox"]#BTNMenu:not(:checked)~div ul#MenuHolder {
-  display: none;
-}
-
-ul#MenuHolder li.BTNSMenu a {
-  appearance: auto;
-  text-decoration: none;
-  color: var(--COLORBTNSMenu);
-  font-family: var(--FONTBTNSMenu);
-  padding: 10px 20px;
-  background-color: var(--BACKGROUNDCOLORBTNSMenu);
-  box-shadow: inset 0 0 4px white;
-}
-
-ul#MenuHolder li.BTNSMenu {
-  list-style: none;
-}
-
-ul#MenuHolder {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.header-cursos {
-  padding: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.logo-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.logo-container img {
-  width: 50px;
-  height: auto;
-}
-
-.ORGInfoHeader {
-  display: flex;
-  width: 50%;
-  gap: 50%;
-  justify-content: flex-end;
-}
-
-header {
-  display: flex;
-  align-items: center;
-}
-
-
-
-
-
-/* Estilo de fundo que o body terá no Tablet */
-@media (min-width: 768px) {
-  body.Creditos_body {
-    background-image: url('../img/cursos.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
-}
-
-@media (min-width: 375px) and (max-width: 768px) {
-  body.Creditos_body {
-    background-image: url('../img/cursos.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
-}
-
-@media (max-width: 375px) {
-  body.Creditos_body {
-    background-image: url('../img/cursos.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
-}
-
-
-body {
-  max-height: 100dvh;
-  overflow: hidden;
-}
-
-body main {
-  overflow: scroll;
-}
-
-main {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  padding-top: 20px;
-  align-items: center;
-  gap: 20px;
-
-}
-
-.container {
-  padding-bottom: 100px;
-}
-
-@media (max-width: 900px) {
-  .cartao {
-    width: calc((100% - 40px) / 3);
-    /* reduz a largura dos cartões */
-  }
-}
-
-@media (max-width: 720px) {
-  .cartao {
-    width: calc((100% - 20px) / 2);
-    /* 2 colunas de cartões */
-  }
-}
-
-@media (max-width: 480px) {
-  .cartao {
-    width: 100%;
-    /* 1 coluna de cartão */
-  }
-
-  a.btn-git,
-  a.btn-linkedin {
-    width: 48%;
-    text-align: center;
-  }
-}
-
-.btn-voltar {
-  background-color: #00ffe5;
-  border: none;
-  color: #000000;
-  padding: 1em 3em;
-  font-weight: bold;
-  font-size: 100%;
-  border-radius: 20px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  max-width: 100px;
-  min-width: 50px;
-  height: 100%;
-  min-height: 20px;
-  max-height: 20px;
-  align-self: flex-start;
-  margin-left: 20px;
-  position: fixed;
-  right: 20px;
-  top: 80px;
-}
-
-.btn-voltar:hover {
-  background-color: #00cbcc;
-}
-
-.logo-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  height: fit-content;
-  width: fit-content;
 }

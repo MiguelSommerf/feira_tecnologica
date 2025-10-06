@@ -16,45 +16,45 @@
                 <h2>Manhã - Ensino Médio com Técnico</h2>
                 <div class="card-curso-list">
                     <p>Curso de Administração</p>
-                    <a href="https://etecmcm.cps.sp.gov.br/etim-administracao/">Ver mais</a>
+                    <a href="https://etecmcm.cps.sp.gov.br/etim-administracao/" target="_blank">Ver mais</a>
                 </div>
                 <div class="card-curso-list">
                     <p>Curso de Recursos Humanos</p>
-                    <a href="https://etecmcm.cps.sp.gov.br/mtec-recursos-humanos/">Ver mais</a>
+                    <a href="https://etecmcm.cps.sp.gov.br/mtec-recursos-humanos/" target="_blank">Ver mais</a>
                 </div>
                 <div class="card-curso-list">
                     <p>Curso de Informática Para Internet</p>
-                    <a href="https://etecmcm.cps.sp.gov.br/informatica-para-internet/">Ver mais</a>
+                    <a href="https://etecmcm.cps.sp.gov.br/informatica-para-internet/" target="_blank">Ver mais</a>
                 </div>
             </div>
             <div class="card-curso-holder" id="b">
                 <h2>Tarde - Ensino Médio com Técnico</h2>
                 <div class="card-curso-list">
                     <p>Curso de Química</p>
-                    <a href="">Ver mais</a>
+                    <a href="#">Ver mais</a>
                 </div>
                 <div class="card-curso-list">
                     <p>Curso de Informática Para Internet</p>
-                    <a href="https://etecmcm.cps.sp.gov.br/informatica-para-internet/">Ver mais</a>
+                    <a href="https://etecmcm.cps.sp.gov.br/informatica-para-internet/" target="_blank">Ver mais</a>
                 </div>
             </div>
             <div class="card-curso-holder" id="c">
                 <h2>Noite - Apenas Técnico</h2>
                 <div class="card-curso-list">
                     <p>Curso de Química</p>
-                    <a href="https://etecmcm.cps.sp.gov.br/quimica-noite/">Ver mais</a>
+                    <a href="https://etecmcm.cps.sp.gov.br/quimica-noite/" target="_blank">Ver mais</a>
                 </div>
                 <div class="card-curso-list">
                     <p>Curso de Recursos Humanos</p>
-                    <a href="https://etecmcm.cps.sp.gov.br/recursos-humanos-noite-2/">Ver mais</a>
+                    <a href="https://etecmcm.cps.sp.gov.br/recursos-humanos-noite-2/" target="_blank">Ver mais</a>
                 </div>
                 <div class="card-curso-list">
                     <p>Curso de Losgística</p>
-                    <a href="https://etecmcm.cps.sp.gov.br/logistica-noite/">Ver mais</a>
+                    <a href="https://etecmcm.cps.sp.gov.br/logistica-noite/" target="_blank">Ver mais</a>
                 </div>
                 <div class="card-curso-list">
                     <p>Curso de Administração</p>
-                    <a href="https://etecmcm.cps.sp.gov.br/administracao-noite/">Ver mais</a>
+                    <a href="https://etecmcm.cps.sp.gov.br/administracao-noite/" target="_blank">Ver mais</a>
                 </div>
             </div>
         </div>
