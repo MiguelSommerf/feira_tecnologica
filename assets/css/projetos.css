@@ -1,0 +1,160 @@
+@font-face {
+  font-family: 'ArchivoBlack';
+  src: url('../fonts/ArchivoBlack-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'AnekLatin';
+  src: url('../fonts/AnekLatin-Regular.ttf') format('truetype');
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+  font-family: 'ArchivoBlack';
+}
+
+body, html {
+  width: 100%;
+  background-color: #00486C;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.headerLogo {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 30px;
+}
+
+.headerLogo > img {
+  height: 100px;
+  width: 100px;
+}
+
+p {
+  font-family: 'AnekLatin';
+  font-weight: 200;
+  color: white;
+  font-size: medium;
+}
+
+h1 {
+  text-align: center;
+  color: white;
+  margin: 10px;
+}
+
+main {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  margin-bottom: 20px;
+}
+
+.filtros form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.botao {
+  flex: 1 1 150px;
+  min-width: 120px;
+  max-width: 200px;
+  height: 35px;
+  border-radius: 20px;
+  font-family: var(--FONTTitulo);
+  font-size: 18px;
+  background-color: #ffffff87;
+  border: none;
+  text-align: center;
+}
+
+option {
+  border: none;
+  border-radius: 10px;
+  background-color: rgb(221, 255, 240);
+}
+
+.container-projeto {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: transparent;
+  box-sizing: border-box;
+}
+
+.linha-projeto {
+  min-width: 100%;
+  min-width: 200px;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  overflow: hidden;
+  margin: 10px 20px 0px 20px;
+}
+
+.projetos {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  min-width: 200px;
+  max-width: 800px;
+  gap: 5px;
+}
+
+.projeto-nome {
+  border: 1px solid white;
+  min-width: 100%;
+  font-weight: bold;
+  text-align: center;
+  font-size: 18px;
+}
+
+.projeto-lugar {
+  min-width: 100%;
+  border: 1px solid white;
+  text-align: center;
+  font-family: sans-serif;
+  font-size: 16px;
+}
+
+.avaliar{
+  max-width: 100px;
+  width: 100%;
+  margin: 15px;
+  height: 20px;
+  background-color: #044e37;
+  color: white;
+  border-radius: 5px;
+  font-weight: bold;
+  border: solid 1px #fff';
+}
+
+.linha-projeto::-webkit-scrollbar {
+  display: none;
+}
+
+.linha-projeto {
+  scrollbar-width: none;
+}
+
+.linha-projeto {
+  -ms-overflow-style: none;
+}

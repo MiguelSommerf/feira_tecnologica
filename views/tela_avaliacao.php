@@ -43,110 +43,76 @@ if (!isset($id_projeto)) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Avaliação dos projetos</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Karantina:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>Avalie esse projeto</title>
     <link rel="stylesheet" href="../assets/css/avaliacao.css">
 </head>
-<body class="telaAvaliacao">
-    <header>
-      <div class="menu-toggle" id="mobile-menu">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-      </div>
-      <div class="logo-container">
-        <img src="../assets/img/etecmcm.png" alt="Logo MCM"/>
-      </div>
-      <div class="ORGInfoHeader">
-        <h1>Avaliação</h1>
-      </div>
-    </header>
+<body>
     <main>
-        <button class="btn-voltar" onclick="window.location.href = '../views/tela_projetos.php'">Voltar</button>
-        <div class="avaliacao-container">
-            <div class="avaliacao-header">
-                <div class="avaliacao-infos">
-                    <div class="campo">
-                        <input type="text" value="Projeto: <?= $titulo_projeto ?>" readonly>
-                    </div>
-                    <div class="campo">
-                        <input type="text" value="Alunos: <?php while ($row = $resultAlunos->fetch_assoc()) echo $row['nome_aluno'] . '; ';
-                        ?>" readonly/>
-                    </div>
-                    <div class="campo">
-                        <input type="text" value="Série: <?php while ($rowSerieCurso = $resultSerieCurso->fetch_assoc()) echo $rowSerieCurso['serie_aluno'] . '° ' . $rowSerieCurso['curso_aluno']; ?>" readonly>
-                    </div>
+        <header class="headerLogo">
+            <img src="../assets/img/etecmcm.png" alt="Logo MCM">
+        </header>
+        <div class="container" style="width: 60%;">
+            <p>Clique na estrela para avaliar.</p>
+        </div>
+        <div class="container">
+            <div class="separacao">
+                <div class="projeto">
+                    <p style="font-weight: bold; font-size: 32px;">Projeto:</p>
+                    <p><?= $titulo_projeto ?></p>
+                    <p style="font-weight: bold; font-size: 32px;">Alunos:</p>
+                    <p><?php while ($row = $resultAlunos->fetch_assoc()) echo $row['nome_aluno'] . '; ';?></p>
+                    <p style="font-weight: bold; font-size: 32px;">Série:</p>
+                    <p><?php while ($rowSerieCurso = $resultSerieCurso->fetch_assoc()) echo $rowSerieCurso['serie_aluno'] . '° ' . $rowSerieCurso['curso_aluno']; ?></p>
                 </div>
             </div>
-            <form action="../back/avaliacao.php" method="post">
+            <form action="../back/avaliacao.php" method="POST">
                 <input type="hidden" name="id_projeto" value="<?=$id_projeto?>">
-                <div class="avaliacao-linha">
-                    <span><strong>Nota:</strong></span>
+                <div class="separacao">
+                    <p style="font-size: 32px;">Avalicação do projeto:</p>
                     <div class="avaliacao-estrelas-container">
                         <input type="hidden" name="estrelas" id="nota" value="" required>
                         <div class="avaliacao-estrelas" data-id="0"></div>
                     </div>
                 </div>
-                <div class="avaliacao-comentario">
-                    <textarea name="comentario" class="avaliacao-textarea" placeholder="Deixe um comentário..."></textarea>
-                    <button type="submit" class="avaliacao-button" id="">Enviar</button>
+                <div class="separacao">
+                    <textarea name="comentario" class="avaliacao-textarea" placeholder="Deixe um comentário"></textarea>
+                    <button type="submit">Enviar</button>
                 </div>
             </form>
+            <h2 style="font-family: 'ArchivoBlack'; color: white; font-size: 40px;">Avaliação</h2>
         </div>
     </main>
-
-    <div id="mySideMenu" class="side-menu">
-      <a href="javascript:void(0)" id="close-btn" class="close-btn">&times;</a>
-      <a href="../index.php">Início</a>
-      <?php if (!empty($_SESSION['admin'])): ?>
-      <a href="../admin/views/home.php">Admin</a>
-      <?php endif; ?>
-      <a href="tela_mapa.php">Mapa</a>
-      <a href="tela_projetos.php">Projetos</a>
-      <a href="tela_ranking.php">Ranking</a>
-      <a href="tela_cursos.php">Cursos</a>
-      <a href="tela_sobreEtec.php">Sobre a Etec</a>
-      <?php if(isset($_SESSION['id'])): ?>
-      <a href="../back/logout.php" class="deslogar" id="deslogar" name="deslogar">Sair da Conta</a>
-      <?php else: ?>
-      <a href="tela_login.php">Entrar</a>
-      <?php endif; ?>
-    </div>
     <script>
-        //Script da avalicao
         function criarEstrelas(container, numEstrelas = 5) {
-        for (let i = 0; i < numEstrelas; i++) {
-            const inputNota = document.getElementById('nota');
-            const estrela = document.createElement("span");
-            estrela.innerHTML = "★";
-            estrela.classList.add("avaliacao-estrela");
-            estrela.addEventListener("click", function () {
-            const todasEstrelas = container.querySelectorAll(".avaliacao-estrela"); 
-            todasEstrelas.forEach((s, idx) => {
-                s.classList.toggle("checked", idx <= i);
-            });
-            
-            inputNota.value = i + 1; 
-            });
-            container.appendChild(estrela);
+            for (let i = 0; i < numEstrelas; i++) {
+                const inputNota = document.getElementById('nota');
+                const estrela = document.createElement("span");
+                estrela.innerHTML = "★";
+                estrela.classList.add("avaliacao-estrela");
+                estrela.addEventListener("click", function () {
+                    const todasEstrelas = container.querySelectorAll(".avaliacao-estrela"); 
+                    todasEstrelas.forEach((s, idx) => {
+                        s.classList.toggle("checked", idx <= i);
+                    });
+                    
+                    inputNota.value = i + 1; 
+                });
+                container.appendChild(estrela);
+            }
         }
-        }
+
         document.querySelectorAll('.avaliacao-estrelas').forEach(containerEstrela => {
-        criarEstrelas(containerEstrela);
+            criarEstrelas(containerEstrela);
         });
 
         const formulario = document.querySelector('form');
         formulario.addEventListener('submit', function(e){
             const inputNota = document.getElementById('nota');
-
             if (inputNota.value === "") {
                 alert('Selecione a quantidade de estrelas para enviar a avaliação.');
                 e.preventDefault();
             }
         })
     </script>
-    <script src="../assets/js/menuLateral.js"></script>
 </body>
 </html>
