@@ -17,6 +17,7 @@ main {
   display: flex;
   align-items: center;
   flex-direction: column;
+  margin-bottom: 20px;
 }
 
 .logo {
@@ -38,7 +39,8 @@ main {
   height: 650px;
   border: white solid 1px;
   border-radius: 20px;
-  gap: 100px;
+  gap: 80px;
+  padding: 20px;
 }
 
 .content {
@@ -48,6 +50,7 @@ main {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  margin: 10px 0px 10px 0px;
   gap: 8px;
 }
 
@@ -66,8 +69,9 @@ main {
   color: #ffffff;
   font-size: 18px;
   border-radius: 10px;
-  height: 50px;
+  min-height: 50px;
   width: 400px;
+  transition: 0.3s;
 }
 
 .blue-button {

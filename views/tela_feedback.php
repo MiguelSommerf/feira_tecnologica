@@ -25,11 +25,11 @@ if (!isset($_SESSION['id'])) {
       <img src="../assets/img/etecmcm.png" alt="Logo MCM">
     </header>
     <div class="container">
-      <h2>Envie seu Feedback</h2>
+      <h2>Envie seu Feedback!</h2>
       
       <form id="form" action="../back/feedback.php" method="POST">
         <div class="separacao">
-          <label for="nota">Avaliação:</label>
+          <span>Nota:</span>
           <select id="nota" name="nota" required>
             <option value="" disabled selected>Selecione</option>
             <option value="5">⭐⭐⭐⭐⭐</option>
@@ -40,10 +40,12 @@ if (!isset($_SESSION['id'])) {
           </select>
         </div>
         <div class="separacao">
-          <label for="comentario">Comentário:</label>
+          <span>Comentário:</span>
           <textarea id="comentario" name="comentario" rows="4"></textarea>
         </div>
-        <button type="submit" class="enviar">Enviar</button>
+        <div class="separacao">
+          <button type="submit" class="enviar">Enviar</button>
+        </div>
       </form>
     </div>
   </main>

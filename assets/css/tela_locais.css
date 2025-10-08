@@ -27,10 +27,20 @@ a {
     color: white;
     font-size: 18px;
     min-height: 50px;
+    transition: 0.3s;
+}
+
+a:hover {
+    background-color: #0087CC;
+    cursor: pointer;
 }
 
 .cor-alt {
     background-color: #6D7EFF;
+}
+
+.cor-alt:hover {
+    background-color: #4D62FF;
 }
 
 p {
