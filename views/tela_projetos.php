@@ -127,6 +127,7 @@ $result = $stmt->get_result();
                 </select>
 
                 <select name="bloco" id="bloco" class="botao">
+                    <option value="" disabled selected>Bloco</option>
                     <option value="">Todos</option>
                         <?php foreach ($blocos as $bloco): ?>
                             <option value="<?= $bloco ?>" <?= $filtroBloco == $bloco ? 'selected' : '' ?>>
@@ -169,20 +170,32 @@ $result = $stmt->get_result();
             <div class="projetos">
                 <div class="projeto-nome">
                     <h3><?php
-                        echo $row['titulo_projeto'] . " - ";
-                        echo ucfirst($row['serie_aluno']) . "° ";
-                        echo strtoupper($row['curso_aluno']); ?>
+                            echo $row['titulo_projeto'];
+                        ?>
                     </h3>
                 </div>
-                <div class="projeto-lugar">
-                    <?php
-                    echo "Sala: " . htmlspecialchars($row['fk_id_sala']) . " - ";
-                    echo "Stand: " . htmlspecialchars($row['fk_id_stand']) . " - ";
-                    echo "Bloco: " . htmlspecialchars($row['fk_id_bloco']);
-                    ?>
-                </div>
-                <div class="projeto-lugar">
-                    <p><strong>Alunos:</strong>
+                <div class="projeto-dados">
+                    <p>
+                        <bold>Local:</bold>
+                        <?php
+                            echo "Sala: " . htmlspecialchars($row['fk_id_sala']) . " - ";
+                            echo "Stand: " . htmlspecialchars($row['fk_id_stand']) . " - ";
+                            if ($row['fk_id_bloco'] == 1) {
+                                echo 'Bloco: A';
+                            } else {
+                                echo 'Bloco: B';
+                            }
+                        ?>
+                    </p>
+                    <p>
+                        <bold>Curso:</bold>
+                        <?php
+                            echo ucfirst($row['serie_aluno']) . "° ";
+                            echo strtoupper($row['curso_aluno']);
+                        ?>
+                    </p>
+                    <p>
+                        <bold>Alunos:</bold>
                         <?php
                         while ($rowAluno = $resultAlunos->fetch_assoc()) {
                             $aluno = $rowAluno['nome_aluno'];
@@ -190,7 +203,8 @@ $result = $stmt->get_result();
                         }
                         ?>
                     </p>
-                    <p><strong>ODS:</strong>
+                    <p>
+                        <bold>ODS:</bold>
                         <?php
                         while ($rowOds = $resultOds->fetch_assoc()) {
                             $ods = $rowOds['nome_ods'];
@@ -198,11 +212,13 @@ $result = $stmt->get_result();
                         }
                         ?>
                     </p>
-                    <p><strong>Orientador:</strong>
+                    <p>
+                        <bold>Orientador:</bold>
                         <?= htmlspecialchars($row['orientador_projeto']) ?>
                     </p>
-                    <p><strong>Posição no Ranking:</strong>
-                        <?= $row['posicao_projeto'] ?? '?' ?>
+                    <p>
+                        <bold>Posição no Ranking:</bold>
+                        <?= $row['posicao_projeto'] ?? 'Não definido' ?>
                     </p>
                     <form action="tela_avaliacao.php" method="post">
                         <input type="hidden" name="id_projeto" value="<?= $row['id_projeto']; ?>">

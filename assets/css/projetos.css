@@ -36,9 +36,8 @@ body, html {
 
 p {
   font-family: 'AnekLatin';
-  font-weight: 200;
-  color: white;
-  font-size: medium;
+  color: black;
+  font-size: 18px;
 }
 
 h1 {
@@ -72,18 +71,17 @@ main {
   min-width: 120px;
   max-width: 200px;
   height: 35px;
-  border-radius: 20px;
-  font-family: var(--FONTTitulo);
+  border-radius: 10px;
   font-size: 18px;
   background-color: #ffffff87;
   border: none;
   text-align: center;
+  cursor: pointer;
 }
 
 option {
-  border: none;
   border-radius: 10px;
-  background-color: rgb(221, 255, 240);
+  background-color: rgb(202, 247, 255);
 }
 
 .container-projeto {
@@ -97,54 +95,67 @@ option {
 }
 
 .linha-projeto {
-  min-width: 100%;
-  min-width: 200px;
-  max-width: 800px;
+  width: 90%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 30px;
+  gap: 20px;
   overflow: hidden;
-  margin: 10px 20px 0px 20px;
+  margin: 0px 10px 0px 10px;
+  padding: 5px;
 }
 
 .projetos {
+  border: 6px solid hsl(209, 100%, 60%);
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
   height: 100%;
   width: 100%;
-  min-width: 200px;
   max-width: 800px;
-  gap: 5px;
 }
 
 .projeto-nome {
-  border: 1px solid white;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  background-color: #D8E6FF;
+  border-bottom: 6px solid hsl(209, 100%, 60%);
+  padding: 5px 0px 5px 0px;
   min-width: 100%;
-  font-weight: bold;
   text-align: center;
   font-size: 18px;
 }
 
-.projeto-lugar {
+.projeto-dados {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 10px 0px 0px 0px;
   min-width: 100%;
-  border: 1px solid white;
   text-align: center;
-  font-family: sans-serif;
-  font-size: 16px;
+  background-color: white;
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
 }
 
 .avaliar{
-  max-width: 100px;
+  font-family: 'AnekLatin';
+  font-size: 18px;
   width: 100%;
+  max-width: 150px;
   margin: 15px;
-  height: 20px;
-  background-color: #044e37;
+  height: 30px;
+  background-color: #0097E4;
   color: white;
   border-radius: 5px;
-  font-weight: bold;
-  border: solid 1px #fff';
+  border: solid 1px #fff;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.avaliar:hover {
+  background-color: #0087CC;
 }
 
 .linha-projeto::-webkit-scrollbar {

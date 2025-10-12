@@ -62,9 +62,17 @@ main {
 }
 
 .projeto {
+  width: 300px;
   display: flex;
   flex-direction: column;
   gap: 25px;
+}
+
+.info {
+  background-color: white;
+  color: black;
+  border-radius: 10px;
+  padding: 10px 0px 10px 5px;
 }
 
 .separacao {

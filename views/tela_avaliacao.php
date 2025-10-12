@@ -58,11 +58,11 @@ if (!isset($id_projeto)) {
             <div class="separacao">
                 <div class="projeto">
                     <p style="font-weight: bold; font-size: 32px;">Projeto:</p>
-                    <p><?= $titulo_projeto ?></p>
+                    <p class="info"><?= $titulo_projeto ?></p>
                     <p style="font-weight: bold; font-size: 32px;">Alunos:</p>
-                    <p><?php while ($row = $resultAlunos->fetch_assoc()) echo $row['nome_aluno'] . '; ';?></p>
+                    <p class="info"><?php while ($row = $resultAlunos->fetch_assoc()) echo $row['nome_aluno'] . '; ';?></p>
                     <p style="font-weight: bold; font-size: 32px;">Série:</p>
-                    <p><?php while ($rowSerieCurso = $resultSerieCurso->fetch_assoc()) echo $rowSerieCurso['serie_aluno'] . '° ' . $rowSerieCurso['curso_aluno']; ?></p>
+                    <p class="info"><?php while ($rowSerieCurso = $resultSerieCurso->fetch_assoc()) echo $rowSerieCurso['serie_aluno'] . '° ' . $rowSerieCurso['curso_aluno']; ?></p>
                 </div>
             </div>
             <form action="../back/avaliacao.php" method="POST">
