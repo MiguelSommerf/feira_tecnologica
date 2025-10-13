@@ -20,6 +20,11 @@ if (session_status() === PHP_SESSION_NONE) {
     </header>
     <div class="container">
       <h1>Ranking</h1>
+      <div class="top">
+        <p><?= $top[0]; ?></p>
+        <p><?= $top[1]; ?></p>
+        <p><?= $top[2]; ?></p>
+      </div>
       <?php
         foreach ($resultados as $linha) {
           echo $linha;

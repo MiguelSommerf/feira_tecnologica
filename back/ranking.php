@@ -114,12 +114,22 @@ if ($result_nomes->num_rows > 0) {
     foreach ($ranking as $item) {
         $linha = '
         <div class="projetos">
-            <div class="projeto-nome">Projeto: ' . htmlspecialchars($item["nome"]) . ' 
-                <div class="colocacao">' . $posicao . 'º lugar</div>
-            </div>
-            <div class="projeto-dados">Turma: ' . $item["serie"] . 'º ' . $item["curso"] . '</div>
+        <div class="projeto-nome">Projeto: ' . htmlspecialchars($item["nome"]) . ' 
+        <div class="colocacao">' . $posicao . 'º lugar</div>
+        </div>
+        <div class="projeto-dados">Turma: ' . $item["serie"] . 'º ' . $item["curso"] . '</div>
         </div>';
         
+        // Se a posição for uma dessas, a linha fica nula.
+        if ($posicao == 1 || $posicao == 2 || $posicao == 3) {
+            $linha = "";
+            $rank = $posicao;
+        }
+
+        if ($rank) {
+            $top[] = $posicao;
+        }
+
         $resultados[] = $linha;
         $posicao++;
     }

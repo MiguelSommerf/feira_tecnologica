@@ -143,6 +143,7 @@ button {
   min-width: 200px;
   min-height: 50px;
   transition: 0.3s;
+  cursor: pointer;
 }
 
 button:hover {
