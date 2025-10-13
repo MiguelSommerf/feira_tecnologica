@@ -85,10 +85,10 @@ $result = $stmt->get_result();
     <link rel="stylesheet" href="../assets/css/projetos.css">
 </head>
 <body>
-    <header class="headerLogo">
-        <img src="../assets/img/etecmcm.png" alt="Logo MCM">
-    </header>
     <main>
+        <header class="headerLogo">
+            <img src="../assets/img/etecmcm.png" alt="Logo MCM">
+        </header>
         <div class="filtros">
             <form method="GET">
                 <select name="curso" id="curso" class="botao">

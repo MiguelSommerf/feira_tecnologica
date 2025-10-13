@@ -2,7 +2,7 @@
 require_once '../config/database.php';
 
 // Pega todos os nomes e id's diferentes dos projetos que receberam votos
-$sql_nomes = "SELECT DISTINCT v." . TABELA_VOTO['projeto'] . ", " . "p." . TABELA_PROJETO['titulo'] . ", " . "b." . TABELA_BLOCO['bloco'] . ", " . "sa." . TABELA_SALA['sala'] . ", " . "st." . TABELA_STAND['stand'] . ", " . "sa." . TABELA_SALA['sala'] . ", " . "a." . TABELA_ALUNO['curso'] . " FROM " . TABELA_PROJETO['nome_tabela'] . " as p
+$sql_nomes = "SELECT DISTINCT v." . TABELA_VOTO['projeto'] . ", " . "p." . TABELA_PROJETO['titulo'] . ", " . "b." . TABELA_BLOCO['bloco'] . ", " . "sa." . TABELA_SALA['sala'] . ", " . "st." . TABELA_STAND['stand'] . ", " . "sa." . TABELA_SALA['sala'] . ", " . "a." . TABELA_ALUNO['serie'] . ", " . "a." . TABELA_ALUNO['curso'] . " FROM " . TABELA_PROJETO['nome_tabela'] . " as p
               INNER JOIN " . TABELA_VOTO['nome_tabela'] . " AS v ON p." . TABELA_PROJETO['id'] . " = v." . TABELA_VOTO['projeto'] . "
               INNER JOIN " . TABELA_PROJETO_ALUNO['nome_tabela'] . " AS i ON i." . TABELA_PROJETO_ALUNO['projeto'] . " = p." . TABELA_PROJETO['id'] . " 
               INNER JOIN " . TABELA_LOCALIZACAO_PROJETO['nome_tabela'] . " AS lp ON lp." . TABELA_LOCALIZACAO_PROJETO['projeto'] . " = p." . TABELA_PROJETO['id'] . " 
@@ -29,6 +29,7 @@ if ($result_nomes->num_rows > 0) {
         $blocoProjeto = $row['nome_bloco'];
         $standProjeto = $row['numero_stand'];
         $salaProjeto = $row['nome_sala'];
+        $serieAluno = $row['serie_aluno'];
         $cursoProjeto = $row['curso_aluno'];
 
         // proteção contra SQL Injection
@@ -73,6 +74,7 @@ if ($result_nomes->num_rows > 0) {
         // coloca isso no array de ranking 
         $ranking[] = [
             "nome" => $nomeProjeto,
+            "serie" => $serieAluno,
             "curso" => $cursoProjeto,
             "bloco" => $blocoProjeto,
             "sala" => $salaProjeto,
@@ -111,13 +113,11 @@ if ($result_nomes->num_rows > 0) {
     $posicao = 1;
     foreach ($ranking as $item) {
         $linha = '
-        <div class="container-projeto">
-            <div class="projetos">
-                <div class="projeto-nome">Projeto ' . htmlspecialchars($item["nome"]) . ' - ' . htmlspecialchars($item["curso"]) . ' 
-                    <div class="colocacao">' . $posicao . 'º lugar</div>
-                </div>
-                <div class="projeto-lugar">Bloco: ' . htmlspecialchars($item["bloco"]) . ' - Local: ' . htmlspecialchars($item["sala"]) . ' - Stand: ' . htmlspecialchars($item["stand"]) . '</div>
+        <div class="projetos">
+            <div class="projeto-nome">Projeto: ' . htmlspecialchars($item["nome"]) . ' 
+                <div class="colocacao">' . $posicao . 'º lugar</div>
             </div>
+            <div class="projeto-dados">Turma: ' . $item["serie"] . 'º ' . $item["curso"] . '</div>
         </div>';
         
         $resultados[] = $linha;

@@ -19,6 +19,7 @@ if (session_status() === PHP_SESSION_NONE) {
       <img src="../assets/img/etecmcm.png" alt="Logo MCM">
     </header>
     <div class="container">
+      <h1>Ranking</h1>
       <?php
         foreach ($resultados as $linha) {
           echo $linha;
