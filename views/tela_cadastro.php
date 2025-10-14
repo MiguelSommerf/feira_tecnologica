@@ -19,7 +19,7 @@ $verif->logout();
       <img src="../assets/img/etecmcm.png" alt="">
     </div>
     <div class="content-background">
-      <form action="../back/cadastro.php" method="post">
+      <form action="../back/verificarEmail.php" method="POST">
         <div class="content">
           <span>Nome</span>
           <input type="text" name="nameuser" id="" placeholder="Digite o seu nome" required>
