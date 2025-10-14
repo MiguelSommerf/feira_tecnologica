@@ -21,9 +21,24 @@ if (session_status() === PHP_SESSION_NONE) {
     <div class="container">
       <h1>Ranking</h1>
       <div class="top">
-        <p><?= $top[0]; ?></p>
-        <p><?= $top[1]; ?></p>
-        <p><?= $top[2]; ?></p>
+        <div class="posicao">
+          <h3><?php if (isset($nome[1])) {echo $nome[1];}?></h3>
+          <div id="segundo">
+            <h1><?php if (isset($top[1])) {echo $top[1] . 'º';}?></h1>
+          </div>
+        </div>
+        <div class="posicao">
+          <h3><?php if (isset($nome[0])) {echo $nome[0];}?></h3>
+          <div id="primeiro">
+            <h1><?php if (isset($top[0])) {echo $top[0] . 'º';}?></h1>
+          </div>
+        </div>
+        <div class="posicao">
+          <h3><?php if (isset($nome[2])) {echo $nome[2];}?></h3>
+          <div id="terceiro">
+            <h1><?php if (isset($top[2])) {echo $top[2] . 'º';}?></h1>
+          </div>
+        </div>
       </div>
       <?php
         foreach ($resultados as $linha) {

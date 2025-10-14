@@ -127,6 +127,7 @@ if ($result_nomes->num_rows > 0) {
         }
 
         if ($rank) {
+            $nome[] = $item["nome"];
             $top[] = $posicao;
         }
 

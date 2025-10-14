@@ -46,6 +46,11 @@ h1 {
   color: white;
 }
 
+h3 {
+  font-family: 'AnekLatin';
+  color: white;
+}
+
 main {
   display: flex;
   align-items: center;
@@ -75,7 +80,7 @@ main {
   flex-direction: column;
   height: 100%;
   width: 100%;
-  max-width: 800px;
+  max-width: 600px;
 }
 
 .projeto-nome {
@@ -110,10 +115,65 @@ main {
 .colocacao {
   background-color: white;
   padding: 5px 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   border-radius: 5px;
   margin: 0px 10px 0px 10px;
   border: 1px solid grey;
+}
+
+.top {
+  width: 100%;
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  flex-direction: row;
+  gap: 15px;
+}
+
+.posicao {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  text-align: center;
+  gap: 10px;
+}
+
+#primeiro {
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  height: 180px;
+  width: 100%;
+  background-color: #FFB236;
+  border-radius: 10px;
+  padding-bottom: 10px;
+}
+
+#segundo {
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  height: 135px;
+  width: 100%;
+  background-color: #A7A7A7;
+  border-radius: 10px;
+  padding-bottom: 10px;
+}
+
+#terceiro {
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  height: 120px;
+  width: 100%;
+  background-color: #AA7F42;
+  border-radius: 10px;
+  padding-bottom: 10px;
+}
+
+@media screen and (max-width: 400px) {
+  .posicao {
+    width: 84px;
+  }
 }
