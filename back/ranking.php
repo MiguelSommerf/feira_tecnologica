@@ -2,12 +2,11 @@
 require_once '../config/database.php';
 
 // Pega todos os nomes e id's diferentes dos projetos que receberam votos
-$sql_nomes = "SELECT DISTINCT v." . TABELA_VOTO['projeto'] . ", " . "p." . TABELA_PROJETO['titulo'] . ", " . "b." . TABELA_BLOCO['bloco'] . ", " . "sa." . TABELA_SALA['sala'] . ", " . "st." . TABELA_STAND['stand'] . ", " . "sa." . TABELA_SALA['sala'] . ", " . "a." . TABELA_ALUNO['serie'] . ", " . "a." . TABELA_ALUNO['curso'] . " FROM " . TABELA_PROJETO['nome_tabela'] . " as p
+$sql_nomes = "SELECT DISTINCT v." . TABELA_VOTO['projeto'] . ", " . "p." . TABELA_PROJETO['titulo'] . ", " . "b." . TABELA_BLOCO['bloco'] . ", " . "sa." . TABELA_SALA['sala'] . ", " . "sa." . TABELA_SALA['sala'] . ", " . "a." . TABELA_ALUNO['serie'] . ", " . "a." . TABELA_ALUNO['curso'] . " FROM " . TABELA_PROJETO['nome_tabela'] . " as p
               INNER JOIN " . TABELA_VOTO['nome_tabela'] . " AS v ON p." . TABELA_PROJETO['id'] . " = v." . TABELA_VOTO['projeto'] . "
               INNER JOIN " . TABELA_PROJETO_ALUNO['nome_tabela'] . " AS i ON i." . TABELA_PROJETO_ALUNO['projeto'] . " = p." . TABELA_PROJETO['id'] . " 
               INNER JOIN " . TABELA_LOCALIZACAO_PROJETO['nome_tabela'] . " AS lp ON lp." . TABELA_LOCALIZACAO_PROJETO['projeto'] . " = p." . TABELA_PROJETO['id'] . " 
               INNER JOIN " . TABELA_BLOCO['nome_tabela'] . " AS b on b." . TABELA_BLOCO['id'] . " = lp." . TABELA_LOCALIZACAO_PROJETO['bloco'] . " 
-              INNER JOIN " . TABELA_STAND['nome_tabela'] . " AS st on st." . TABELA_STAND['id'] . " = lp." . TABELA_LOCALIZACAO_PROJETO['stand'] . " 
               INNER JOIN " . TABELA_SALA['nome_tabela'] . " AS sa ON sa." . TABELA_SALA['id'] . " = lp." . TABELA_LOCALIZACAO_PROJETO['sala'] . " 
               INNER JOIN " . TABELA_ALUNO['nome_tabela'] . " AS a ON a." . TABELA_ALUNO['id'] . " = i." . TABELA_PROJETO_ALUNO['aluno'];
 $stmt = $mysqli->prepare($sql_nomes);
@@ -27,7 +26,6 @@ if ($result_nomes->num_rows > 0) {
         $id_projeto = $row['fk_id_projeto'];
         $nomeProjeto = $row["titulo_projeto"];
         $blocoProjeto = $row['nome_bloco'];
-        $standProjeto = $row['numero_stand'];
         $salaProjeto = $row['nome_sala'];
         $serieAluno = $row['serie_aluno'];
         $cursoProjeto = $row['curso_aluno'];
@@ -78,7 +76,6 @@ if ($result_nomes->num_rows > 0) {
             "curso" => $cursoProjeto,
             "bloco" => $blocoProjeto,
             "sala" => $salaProjeto,
-            "stand" => $standProjeto,
             "total" => (int)$total,
             "qtd_votos" => (int)$qtd_votos,
             "qtd5" => (int)$qtd5,

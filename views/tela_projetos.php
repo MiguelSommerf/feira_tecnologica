@@ -25,7 +25,6 @@ $query = "SELECT DISTINCT a." . TABELA_ALUNO['serie'] . ",
          p." . TABELA_PROJETO['descricao'] . ",
          lo." . TABELA_LOCALIZACAO_PROJETO['bloco'] . ",
          lo." . TABELA_LOCALIZACAO_PROJETO['sala'] . ",
-         lo." . TABELA_LOCALIZACAO_PROJETO['stand'] . ",
          p." . TABELA_PROJETO['orientador'] . "
          FROM " . TABELA_PROJETO['nome_tabela'] . " AS p
          INNER JOIN " . TABELA_LOCALIZACAO_PROJETO['nome_tabela'] . " AS lo ON p." . TABELA_PROJETO['id'] . " = lo." . TABELA_LOCALIZACAO_PROJETO['projeto'] . "
@@ -179,7 +178,6 @@ $result = $stmt->get_result();
                         <bold>Local:</bold>
                         <?php
                             echo "Sala: " . htmlspecialchars($row['fk_id_sala']) . " - ";
-                            echo "Stand: " . htmlspecialchars($row['fk_id_stand']) . " - ";
                             if ($row['fk_id_bloco'] == 1) {
                                 echo 'Bloco: A';
                             } else {
