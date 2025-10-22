@@ -76,17 +76,10 @@ const TABELA_SALA = [
     'sala'        => 'nome_sala'
 ];
 
-const TABELA_STAND = [
-    'nome_tabela' => 'tb_stand',
-    'id'          => 'id_stand',
-    'stand'       => 'numero_stand'
-];
-
 const TABELA_LOCALIZACAO_PROJETO = [
     'nome_tabela' => 'tb_localizacao_projeto',
     'bloco'       => 'fk_id_bloco',
     'sala'        => 'fk_id_sala',
-    'stand'       => 'fk_id_stand',
     'projeto'     => 'fk_id_projeto'
 ];
 
