@@ -147,7 +147,7 @@ CREATE TABLE IF NOT EXISTS `tb_feedback` (
   `comentario_feedback` varchar(255) DEFAULT NULL,
   `data_envio_feedback` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id_feedback`),
-  KEY `id_users` (`fk_id_usuario`),
+  KEY `id_usuario` (`fk_id_usuario`),
   CONSTRAINT `tb_feedback_ibfk_1` FOREIGN KEY (`fk_id_usuario`) REFERENCES `tb_usuario` (`id_usuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
@@ -155,7 +155,7 @@ CREATE TABLE IF NOT EXISTS `tb_ods_projeto` (
   `fk_id_ods` int(11) NOT NULL,
   `fk_id_projeto` int(11) NOT NULL,
   KEY `id_ods` (`fk_id_ods`),
-  KEY `id_projetos` (`fk_id_projeto`),
+  KEY `id_projeto` (`fk_id_projeto`),
   CONSTRAINT `tb_ods_projeto_ibfk_1` FOREIGN KEY (`fk_id_ods`) REFERENCES `tb_ods` (`id_ods`),
   CONSTRAINT `tb_ods_projeto_ibfk_2` FOREIGN KEY (`fk_id_projeto`) REFERENCES `tb_projeto` (`id_projeto`)
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
@@ -190,19 +190,19 @@ CREATE TABLE IF NOT EXISTS `tb_voto` (
   `fk_id_usuario` int(11) NOT NULL,
   `fk_id_projeto` int(11) NOT NULL,
   PRIMARY KEY (`id_voto`),
-  KEY `id_projetos` (`fk_id_projeto`),
-  KEY `id_users` (`fk_id_usuario`),
-  CONSTRAINT `id_projetos` FOREIGN KEY (`fk_id_projeto`) REFERENCES `tb_projeto` (`id_projeto`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `id_users` FOREIGN KEY (`fk_id_usuario`) REFERENCES `tb_usuario` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `id_projeto` (`fk_id_projeto`),
+  KEY `id_usuario` (`fk_id_usuario`),
+  CONSTRAINT `id_projeto` FOREIGN KEY (`fk_id_projeto`) REFERENCES `tb_projeto` (`id_projeto`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `id_usuario` FOREIGN KEY (`fk_id_usuario`) REFERENCES `tb_usuario` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 CREATE TABLE IF NOT EXISTS `tb_projeto_aluno` (
   `fk_id_projeto` int(11) NOT NULL,
   `fk_id_aluno` int(11) NOT NULL,
-  KEY `id_projetos_integrantes` (`fk_id_projeto`),
+  KEY `id_projeto_integrantes` (`fk_id_projeto`),
   KEY `id_alunos_integrantes` (`fk_id_aluno`),
   CONSTRAINT `id_alunos_integrantes` FOREIGN KEY (`fk_id_aluno`) REFERENCES `tb_aluno` (`id_aluno`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `id_projetos_integrantes` FOREIGN KEY (`fk_id_projeto`) REFERENCES `tb_projeto` (`id_projeto`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `id_projeto_integrantes` FOREIGN KEY (`fk_id_projeto`) REFERENCES `tb_projeto` (`id_projeto`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 INSERT INTO `tb_projeto_aluno` (`fk_id_projeto`, `fk_id_aluno`) VALUES
