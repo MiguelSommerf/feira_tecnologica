@@ -77,7 +77,7 @@ INSERT INTO `tb_ods` (`id_ods`, `nome_ods`) VALUES
 CREATE TABLE IF NOT EXISTS `tb_projeto` (
   `id_projeto` int(11) NOT NULL AUTO_INCREMENT,
   `titulo_projeto` varchar(100) NOT NULL,
-  `descricao_projeto` varchar(200) NOT NULL,
+  `descricao_projeto` text NOT NULL,
   `orientador_projeto` varchar(100) NOT NULL,
   PRIMARY KEY (`id_projeto`)
 ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=UTF8MB4;
@@ -126,24 +126,6 @@ INSERT INTO `tb_sala` (`id_sala`, `nome_sala`) VALUES
 	(13, 'Laboratório de Química 3'),
 	(14, 'Laboratório de Química 4');
 
-CREATE TABLE IF NOT EXISTS `tb_stand` (
-  `id_stand` int(11) NOT NULL AUTO_INCREMENT,
-  `numero_stand` int(2) NOT NULL,
-  PRIMARY KEY (`id_stand`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=UTF8MB4;
-
-INSERT INTO `tb_stand` (`id_stand`, `numero_stand`) VALUES
-	(1, 1),
-	(2, 2),
-	(3, 3),
-	(4, 4),
-	(5, 5),
-	(6, 6),
-	(7, 7),
-	(8, 8),
-	(9, 9),
-	(10, 10);
-
 CREATE TABLE IF NOT EXISTS `tb_usuario` (
   `id_usuario` int(11) NOT NULL AUTO_INCREMENT,
   `is_admin` bit(1) NOT NULL DEFAULT b'0',
@@ -165,7 +147,7 @@ CREATE TABLE IF NOT EXISTS `tb_feedback` (
   `comentario_feedback` varchar(255) DEFAULT NULL,
   `data_envio_feedback` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id_feedback`),
-  KEY `id_users` (`fk_id_usuario`),
+  KEY `id_usuario` (`fk_id_usuario`),
   CONSTRAINT `tb_feedback_ibfk_1` FOREIGN KEY (`fk_id_usuario`) REFERENCES `tb_usuario` (`id_usuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
@@ -173,7 +155,7 @@ CREATE TABLE IF NOT EXISTS `tb_ods_projeto` (
   `fk_id_ods` int(11) NOT NULL,
   `fk_id_projeto` int(11) NOT NULL,
   KEY `id_ods` (`fk_id_ods`),
-  KEY `id_projetos` (`fk_id_projeto`),
+  KEY `id_projeto` (`fk_id_projeto`),
   CONSTRAINT `tb_ods_projeto_ibfk_1` FOREIGN KEY (`fk_id_ods`) REFERENCES `tb_ods` (`id_ods`),
   CONSTRAINT `tb_ods_projeto_ibfk_2` FOREIGN KEY (`fk_id_projeto`) REFERENCES `tb_projeto` (`id_projeto`)
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
@@ -208,19 +190,19 @@ CREATE TABLE IF NOT EXISTS `tb_voto` (
   `fk_id_usuario` int(11) NOT NULL,
   `fk_id_projeto` int(11) NOT NULL,
   PRIMARY KEY (`id_voto`),
-  KEY `id_projetos` (`fk_id_projeto`),
-  KEY `id_users` (`fk_id_usuario`),
-  CONSTRAINT `id_projetos` FOREIGN KEY (`fk_id_projeto`) REFERENCES `tb_projeto` (`id_projeto`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `id_users` FOREIGN KEY (`fk_id_usuario`) REFERENCES `tb_usuario` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `id_projeto` (`fk_id_projeto`),
+  KEY `id_usuario` (`fk_id_usuario`),
+  CONSTRAINT `id_projeto` FOREIGN KEY (`fk_id_projeto`) REFERENCES `tb_projeto` (`id_projeto`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `id_usuario` FOREIGN KEY (`fk_id_usuario`) REFERENCES `tb_usuario` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 CREATE TABLE IF NOT EXISTS `tb_projeto_aluno` (
   `fk_id_projeto` int(11) NOT NULL,
   `fk_id_aluno` int(11) NOT NULL,
-  KEY `id_projetos_integrantes` (`fk_id_projeto`),
+  KEY `id_projeto_integrantes` (`fk_id_projeto`),
   KEY `id_alunos_integrantes` (`fk_id_aluno`),
   CONSTRAINT `id_alunos_integrantes` FOREIGN KEY (`fk_id_aluno`) REFERENCES `tb_aluno` (`id_aluno`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `id_projetos_integrantes` FOREIGN KEY (`fk_id_projeto`) REFERENCES `tb_projeto` (`id_projeto`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `id_projeto_integrantes` FOREIGN KEY (`fk_id_projeto`) REFERENCES `tb_projeto` (`id_projeto`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 INSERT INTO `tb_projeto_aluno` (`fk_id_projeto`, `fk_id_aluno`) VALUES
@@ -248,36 +230,33 @@ INSERT INTO `tb_projeto_aluno` (`fk_id_projeto`, `fk_id_aluno`) VALUES
 CREATE TABLE IF NOT EXISTS `tb_localizacao_projeto` (
   `fk_id_bloco` int(11) NOT NULL,
   `fk_id_sala` int(11) NOT NULL,
-  `fk_id_stand` int(11) NOT NULL,
   `fk_id_projeto` int(11) NOT NULL,
   KEY `fk_id_bloco` (`fk_id_bloco`),
   KEY `fk_id_sala` (`fk_id_sala`),
-  KEY `fk_id_stand` (`fk_id_stand`),
   KEY `fk_id_projeto` (`fk_id_projeto`),
   CONSTRAINT `tb_localizacao_projeto_ibfk_1` FOREIGN KEY (`fk_id_bloco`) REFERENCES `tb_bloco` (`id_bloco`),
   CONSTRAINT `tb_localizacao_projeto_ibfk_2` FOREIGN KEY (`fk_id_sala`) REFERENCES `tb_sala` (`id_sala`),
-  CONSTRAINT `tb_localizacao_projeto_ibfk_3` FOREIGN KEY (`fk_id_stand`) REFERENCES `tb_stand` (`id_stand`),
   CONSTRAINT `tb_localizacao_projeto_ibfk_4` FOREIGN KEY (`fk_id_projeto`) REFERENCES `tb_projeto` (`id_projeto`)
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
-INSERT INTO `tb_localizacao_projeto` (`fk_id_bloco`, `fk_id_sala`, `fk_id_stand`, `fk_id_projeto`) VALUES
-	(1, 6, 8, 1),
-	(1, 6, 7, 2),
-	(1, 5, 8, 3),
-	(1, 5, 7, 4),
-	(1, 5, 5, 5),
-	(1, 7, 8, 6),
-	(1, 8, 8, 7),
-	(1, 4, 3, 8),
-	(1, 4, 5, 9),
-	(1, 3, 6, 10),
-	(2, 5, 7, 11),
-	(2, 5, 8, 12),
-	(2, 5, 4, 13),
-	(2, 3, 1, 14),
-	(2, 3, 5, 15),
-	(2, 3, 8, 16),
-	(2, 2, 7, 17),
-	(2, 2, 8, 18),
-	(2, 4, 3, 19),
-	(2, 9, 2, 20);
+INSERT INTO `tb_localizacao_projeto` (`fk_id_bloco`, `fk_id_sala`, `fk_id_projeto`) VALUES
+	(1, 6, 1),
+	(1, 6, 2),
+	(1, 5, 3),
+	(1, 5, 4),
+	(1, 5, 5),
+	(1, 7, 6),
+	(1, 8, 7),
+	(1, 4, 8),
+	(1, 4, 9),
+	(1, 3, 10),
+	(2, 5, 11),
+	(2, 5, 12),
+	(2, 5, 13),
+	(2, 3, 14),
+	(2, 3, 15),
+	(2, 3, 16),
+	(2, 2, 17),
+	(2, 2, 18),
+	(2, 4, 19),
+	(2, 9, 20);

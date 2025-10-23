@@ -25,7 +25,6 @@ $query = "SELECT DISTINCT a." . TABELA_ALUNO['serie'] . ",
          p." . TABELA_PROJETO['descricao'] . ",
          lo." . TABELA_LOCALIZACAO_PROJETO['bloco'] . ",
          lo." . TABELA_LOCALIZACAO_PROJETO['sala'] . ",
-         lo." . TABELA_LOCALIZACAO_PROJETO['stand'] . ",
          p." . TABELA_PROJETO['orientador'] . "
          FROM " . TABELA_PROJETO['nome_tabela'] . " AS p
          INNER JOIN " . TABELA_LOCALIZACAO_PROJETO['nome_tabela'] . " AS lo ON p." . TABELA_PROJETO['id'] . " = lo." . TABELA_LOCALIZACAO_PROJETO['projeto'] . "
@@ -82,29 +81,13 @@ $result = $stmt->get_result();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projetos</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Grenze:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <script type="text/javascript" src="https://cdn.rybena.com.br/dom/master/latest/rybena.js"></script>
-    <link rel="stylesheet" href="../assets/css/filtro.css">
+    <link rel="stylesheet" href="../assets/css/projetos.css">
 </head>
-<body class="TelaProjetos">
-    <header>
-        <div class="menu-toggle" id="mobile-menu">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-        </div>
-        <div class="logo-container">
-            <img src="../assets/img/etecmcm.png" alt="Logo MCM" />
-        </div>
-        <div class="ORGInfoHeader">
-            <h1>Projetos</h1>
-        </div>
-    </header>
-
-    <main class="main-projetos">
-        <button class="btn-voltar" onclick="window.location.href = '../views/tela_home.php'">Voltar</button>
+<body>
+    <main>
+        <header class="headerLogo">
+            <img src="../assets/img/etecmcm.png" alt="Logo MCM">
+        </header>
         <div class="filtros">
             <form method="GET">
                 <select name="curso" id="curso" class="botao">
@@ -143,6 +126,7 @@ $result = $stmt->get_result();
                 </select>
 
                 <select name="bloco" id="bloco" class="botao">
+                    <option value="" disabled selected>Bloco</option>
                     <option value="">Todos</option>
                         <?php foreach ($blocos as $bloco): ?>
                             <option value="<?= $bloco ?>" <?= $filtroBloco == $bloco ? 'selected' : '' ?>>
@@ -158,7 +142,7 @@ $result = $stmt->get_result();
             </form>
         </div>
 
-        <h2>Resultados: <?=$result->num_rows ?></h2>
+        <h1>Resultados: <?=$result->num_rows ?></h1>
         <?php
             if ($result->num_rows > 0): ?>
             <div class='linha-projeto'>
@@ -185,20 +169,31 @@ $result = $stmt->get_result();
             <div class="projetos">
                 <div class="projeto-nome">
                     <h3><?php
-                        echo $row['titulo_projeto'] . " - ";
-                        echo ucfirst($row['serie_aluno']) . "° ";
-                        echo strtoupper($row['curso_aluno']); ?>
+                            echo $row['titulo_projeto'];
+                        ?>
                     </h3>
                 </div>
-                <div class="projeto-lugar">
-                    <?php
-                    echo "Sala: " . htmlspecialchars($row['fk_id_sala']) . " - ";
-                    echo "Stand: " . htmlspecialchars($row['fk_id_stand']) . " - ";
-                    echo "Bloco: " . htmlspecialchars($row['fk_id_bloco']);
-                    ?>
-                </div>
-                <div class="projeto-lugar">
-                    <p><strong>Alunos:</strong>
+                <div class="projeto-dados">
+                    <p>
+                        <bold>Local:</bold>
+                        <?php
+                            echo "Sala: " . htmlspecialchars($row['fk_id_sala']) . " - ";
+                            if ($row['fk_id_bloco'] == 1) {
+                                echo 'Bloco: A';
+                            } else {
+                                echo 'Bloco: B';
+                            }
+                        ?>
+                    </p>
+                    <p>
+                        <bold>Curso:</bold>
+                        <?php
+                            echo ucfirst($row['serie_aluno']) . "° ";
+                            echo strtoupper($row['curso_aluno']);
+                        ?>
+                    </p>
+                    <p>
+                        <bold>Alunos:</bold>
                         <?php
                         while ($rowAluno = $resultAlunos->fetch_assoc()) {
                             $aluno = $rowAluno['nome_aluno'];
@@ -206,7 +201,8 @@ $result = $stmt->get_result();
                         }
                         ?>
                     </p>
-                    <p><strong>ODS:</strong>
+                    <p>
+                        <bold>ODS:</bold>
                         <?php
                         while ($rowOds = $resultOds->fetch_assoc()) {
                             $ods = $rowOds['nome_ods'];
@@ -214,11 +210,13 @@ $result = $stmt->get_result();
                         }
                         ?>
                     </p>
-                    <p><strong>Orientador:</strong>
+                    <p>
+                        <bold>Orientador:</bold>
                         <?= htmlspecialchars($row['orientador_projeto']) ?>
                     </p>
-                    <p><strong>Posição no Ranking:</strong>
-                        <?= $row['posicao_projeto'] ?? '?' ?>
+                    <p>
+                        <bold>Posição no Ranking:</bold>
+                        <?= $row['posicao_projeto'] ?? 'Não definido' ?>
                     </p>
                     <form action="tela_avaliacao.php" method="post">
                         <input type="hidden" name="id_projeto" value="<?= $row['id_projeto']; ?>">
@@ -233,23 +231,5 @@ $result = $stmt->get_result();
                 <?php endif; ?>
         </div>
     </main>
-    <div id="mySideMenu" class="side-menu">
-        <a href="javascript:void(0)" id="close-btn" class="close-btn">&times;</a>
-        <a href="../index.php">Início</a>
-        <?php if (!empty($_SESSION['admin'])): ?>
-        <a href="../admin/views/home.php">Admin</a>
-        <?php endif; ?>
-        <a href="tela_mapa.php">Mapa</a>
-        <a href="tela_projetos.php">Projetos</a>
-        <a href="tela_ranking.php">Ranking</a>
-        <a href="tela_cursos.php">Cursos</a>
-        <a href="tela_sobreEtec.php">Sobre a Etec</a>
-        <?php if(isset($_SESSION['id'])): ?>
-        <a href="../back/logout.php" class="deslogar" id="deslogar" name="deslogar">Sair da Conta</a>
-        <?php else: ?>
-        <a href="tela_login.php">Entrar</a>
-        <?php endif; ?>
-    </div>
-    <script src="../assets/js/menuLateral.js"></script>
 </body>
 </html>

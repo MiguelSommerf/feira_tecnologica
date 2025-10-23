@@ -138,3 +138,7 @@ p {
   opacity: 1;
   max-height: 100%;
 }
+
+@media sreen and (max-width: 550px) {
+  
+}

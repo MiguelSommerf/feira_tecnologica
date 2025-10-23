@@ -9,7 +9,7 @@ if (isset($_SESSION['redefine'])) {
     $novaSenha = $_POST['novaSenha'];
     $novaSenhaHash = password_hash($novaSenha, PASSWORD_DEFAULT);
 
-    $queryRedefinirSenha = "UPDATE " . TABELA_USUARIO['senha'] . " SET " . TABELA_USUARIO['senha'] . " = ? WHERE " . TABELA_USUARIO['email'] . " = ?";
+    $queryRedefinirSenha = "UPDATE " . TABELA_USUARIO['nome_tabela'] . " SET " . TABELA_USUARIO['senha'] . " = ? WHERE " . TABELA_USUARIO['email'] . " = ?";
     $stmtRedefinirSenha = $mysqli->prepare($queryRedefinirSenha);
     $stmtRedefinirSenha->bind_param("ss", $novaSenhaHash, $_SESSION['email']);
     $stmtRedefinirSenha->execute();

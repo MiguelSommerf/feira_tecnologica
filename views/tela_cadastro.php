@@ -14,44 +14,43 @@ $verif->logout();
   <title>Cadastro</title>
 </head>
 <body>
-    <main>
-      <div class="logo">
-          <img src="../assets/img/etecmcm.png" alt="">
-      </div>
-      <div class="content-background">
-          <form action="../back/cadastro.php" method="post">
-              <div class="content">
-                  <span>Nome</span>
-                  <input type="text" name="nameuser" id="" placeholder="Digite o seu nome" required>
-              </div>
-              <div class="content">
-                  <span>E-mail</span>
-                  <input type="email" name="emailuser" id="" placeholder="Digite o seu e-mail" required>
-              </div>
-              <div class="content">
-                  <span>Senha</span>
-                  <input type="password" name="passuser" id="senha" placeholder="Digite a sua senha" required>
-              </div>
-              <div class="content">
-                  <span>Confirmar senha</span>
-                  <input type="password" name="" id="confirmar-senha" placeholder="Confirme a sua senha" required>
-              </div>
-              <div class="content">
-                  <span>Data de Nascimento</span>
-                  <input type="date" name="birthuser" id="" required>
-              </div>
-              <div class="content">
-                  <div class="g_id_signin"></div>
-                  <button class="blue-button" type="submit">Cadastrar</button>
-              </div>
-              <div class="content">
-                  <a class="dark-purple-button" href="tela_login.php">Entrar</a>
-              </div>
-          </form>
-          <h1 class="title-screen">Cadastro</h1>
-      </div>
-    </main>
-
+  <main>
+    <div class="logo">
+      <img src="../assets/img/etecmcm.png" alt="">
+    </div>
+    <div class="content-background">
+      <form action="../back/verificarEmail.php" method="POST">
+        <div class="content">
+          <span>Nome</span>
+          <input type="text" name="nameuser" id="" placeholder="Digite o seu nome" required>
+        </div>
+        <div class="content">
+          <span>E-mail</span>
+          <input type="email" name="emailuser" id="" placeholder="Digite o seu e-mail" required>
+        </div>
+        <div class="content">
+          <span>Senha</span>
+          <input type="password" name="passuser" id="senha" placeholder="Digite a sua senha" required>
+        </div>
+        <div class="content">
+          <span>Confirmar senha</span>
+          <input type="password" name="" id="confirmar-senha" placeholder="Confirme a sua senha" required>
+        </div>
+        <div class="content">
+          <span>Data de Nascimento</span>
+          <input type="date" name="birthuser" id="" required>
+        </div>
+        <div class="content">
+          <div class="g_id_signin"></div>
+          <button class="blue-button" type="submit">Cadastrar</button>
+        </div>
+        <div class="content">
+          <a class="dark-purple-button" href="tela_login.php">Entrar</a>
+        </div>
+      </form>
+      <h1 class="title-screen">Cadastro</h1>
+    </div>
+  </main>
   <!--API DO GOOGLE-->
   <!--Codado por Guilherme Solon (Turma A) e Miguel Luiz Sommerfeld (Turma B) - 3°F-->
 
