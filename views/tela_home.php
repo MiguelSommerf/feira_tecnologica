@@ -22,6 +22,9 @@ if (isset($_SESSION['verificando'])) {
         <div class="content-background">
           <div class="content">
               <span>Feira Tecnológica</span>
+              <?php if (!empty($_SESSION['admin'])): ?>
+                  <a class="blue-button" href="../admin/views/home.php">Painel de Administrador</a>
+              <?php endif; ?>
               <a class="blue-button" href="tela_mapa.php">Mapa</a>
               <a class="blue-button" href="tela_projetos.php">Projetos</a>
               <a class="blue-button" href="tela_ods.php">ODS</a>
@@ -34,5 +37,7 @@ if (isset($_SESSION['verificando'])) {
           <h1 class="title-screen">Início</h1>
         </div>
     </main>
+
+    <script src="../../assets/js/adminFunctions.js"></script>
 </body>
 </html>
