@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . '/../../config/database.php';
 require_once __DIR__ . '/../../back/classes/Database.php';
+set_time_limit(400);
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();

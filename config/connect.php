@@ -1,7 +1,7 @@
 <?php
 const hostname = 'localhost';
 const username = 'root';
-const password = 'dimebag1966';
+const password = '';
 const database = 'feira';
 
 $mysqli = new mysqli(hostname, username, password, database);
