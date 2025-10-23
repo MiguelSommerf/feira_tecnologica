@@ -2,45 +2,44 @@
 require_once __DIR__ . '/../../config/database.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $idProjeto = !empty($_POST['id_projeto']) ? $_POST['id_projeto'] : null;
+    $idProjeto = !empty($_POST['id_projeto']) ? (int)$_POST['id_projeto'] : null;
     $tituloProjeto = !empty($_POST['titulo']) ? $_POST['titulo'] : null;
     $descricaoProjeto = !empty($_POST['descricao']) ? $_POST['descricao'] : null;
-    $blocoProjeto = !empty($_POST['bloco']) ? $_POST['bloco'] : null;
-    $salaProjeto = !empty($_POST['sala']) ? $_POST['sala'] : null;
-    $standProjeto = !empty($_POST['stand']) ? $_POST['stand'] : null;
+    $blocoProjeto = !empty($_POST['bloco']) ? (int)$_POST['bloco'] : null;
+    $salaProjeto = !empty($_POST['sala']) ? (int)$_POST['sala'] : null;
     $orientadorProjeto = !empty($_POST['orientador']) ? $_POST['orientador'] : null;
 
-    if (isset($tituloProjeto) && isset($descricaoProjeto) && isset($blocoProjeto) && isset($salaProjeto) && isset($standProjeto) && isset($orientadorProjeto)) {
+    if (isset($tituloProjeto) && isset($descricaoProjeto) && isset($blocoProjeto) && isset($salaProjeto) && isset($orientadorProjeto)) {
 
-        $sqlVerificar = "SELECT " . TABELA_PROJETO['id'] . " FROM " 
-                    . TABELA_PROJETO['nome_tabela'] . " WHERE " 
-                    . TABELA_PROJETO['bloco'] . " = ? AND " 
-                    . TABELA_PROJETO['sala'] . " = ? AND " 
-                    . TABELA_PROJETO['stand'] . " = ?";
+        // Faz um select de conta distinta, pegando a sala inserida como argumento.
+        $sqlVerificar = "SELECT COUNT(DISTINCT " . TABELA_LOCALIZACAO_PROJETO['projeto'] . ") as total_projetos 
+                        FROM " . TABELA_LOCALIZACAO_PROJETO['nome_tabela'] . " 
+                        WHERE " . TABELA_LOCALIZACAO_PROJETO['sala'] . " = ? 
+                        AND " . TABELA_LOCALIZACAO_PROJETO['bloco'] . " = ?";
 
         $stmtVerificar = $mysqli->prepare($sqlVerificar);
-        $stmtVerificar->bind_param("sss", $blocoProjeto, $salaProjeto, $standProjeto);
+        $stmtVerificar->bind_param("ii", $salaProjeto, $blocoProjeto);
         $stmtVerificar->execute();
-        $stmtVerificar->store_result();
+        $stmtVerificar->bind_result($totalProjetos);
+        $stmtVerificar->fetch();
+        $stmtVerificar->close();
 
-        if ($stmtVerificar->num_rows > 0) {
-            echo "<script>alert('Já existe um projeto cadastrado nesse Stand da mesma Sala e Bloco!')</script>";
+        if ($totalProjetos >= 5) {
+            echo "<script>alert('Essa sala já possui 5 projetos ou mais!')</script>";
             echo "<script>window.location.href = '../views/projetos.php'</script>";
             $stmtVerificar->close();
             exit();
         }
-        $stmtVerificar->close();
 
         $queryProjeto = "UPDATE " . TABELA_PROJETO['nome_tabela'] . " SET "
                         . TABELA_PROJETO['titulo'] . " = ?, "
                         . TABELA_PROJETO['descricao'] . " = ?, "
                         . TABELA_PROJETO['bloco'] . " = ?, "
                         . TABELA_PROJETO['sala'] . " = ?, "
-                        . TABELA_PROJETO['stand'] . " = ?, "
                         . TABELA_PROJETO['orientador'] . " = ? WHERE "
                         . TABELA_PROJETO['id'] . " = ?";
         $stmtProjeto = $mysqli->prepare($queryProjeto);
-        $stmtProjeto->bind_param("ssssssi", $tituloProjeto, $descricaoProjeto, $blocoProjeto, $salaProjeto, $standProjeto, $orientadorProjeto, $idProjeto);
+        $stmtProjeto->bind_param("sssssi", $tituloProjeto, $descricaoProjeto, $blocoProjeto, $salaProjeto, $orientadorProjeto, $idProjeto);
 
         if ($stmtProjeto->execute()) {
             echo "<script>alert('Projeto atualizado com sucesso!')</script>";

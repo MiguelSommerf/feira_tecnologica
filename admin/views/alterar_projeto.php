@@ -17,12 +17,11 @@ if (!isset($id)) {
 }
 
 # Pega os dados do projeto.
-$sqlSelecionarProjeto = "SELECT sa." . TABELA_SALA['sala'] . ", b." . TABELA_BLOCO['bloco'] . ", st." . TABELA_STAND['stand'] . ", p." . TABELA_PROJETO['titulo'] . ", p." . TABELA_PROJETO['orientador'] . ", p." . TABELA_PROJETO['descricao'] . " FROM " . TABELA_PROJETO['nome_tabela'] . " AS p " . " 
+$sqlSelecionarProjeto = "SELECT sa." . TABELA_SALA['sala'] . ", b." . TABELA_BLOCO['bloco'] . ", p." . TABELA_PROJETO['titulo'] . ", p." . TABELA_PROJETO['orientador'] . ", p." . TABELA_PROJETO['descricao'] . " FROM " . TABELA_PROJETO['nome_tabela'] . " AS p " . " 
                         INNER JOIN " . TABELA_LOCALIZACAO_PROJETO['nome_tabela'] . " AS lp ON lp." . TABELA_LOCALIZACAO_PROJETO['projeto'] . " = p." . TABELA_PROJETO['id'] . "
                         INNER JOIN " . TABELA_BLOCO['nome_tabela'] . " AS b ON b." . TABELA_BLOCO['id'] . " = lp." . TABELA_LOCALIZACAO_PROJETO['bloco'] . "
                         INNER JOIN " . TABELA_SALA['nome_tabela'] . " AS sa ON sa." . TABELA_SALA['id'] . " = lp." . TABELA_LOCALIZACAO_PROJETO['sala'] . "
-                        INNER JOIN " . TABELA_STAND['nome_tabela'] . " AS st ON st." . TABELA_STAND['id'] . " = lp." . TABELA_LOCALIZACAO_PROJETO['stand'] . "
-                         WHERE " . TABELA_PROJETO['id'] . " = ?";
+                        WHERE " . TABELA_PROJETO['id'] . " = ?";
 $stmtSelecionarProjeto = $mysqli->prepare($sqlSelecionarProjeto);
 $stmtSelecionarProjeto->bind_param("i", $id);
 $stmtSelecionarProjeto->execute();
@@ -62,12 +61,12 @@ $projeto = $stmtSelecionarProjeto->get_result()->fetch_assoc();
                 <?php
                 switch ($projeto['nome_bloco']) {
                     case 'A':
-                        echo "<option value='A'>A (Atual)</option>";
-                        echo "<option value='B'>B</option>";
+                        echo "<option value='1'>A (Atual)</option>";
+                        echo "<option value='2'>B</option>";
                         break;
                   case 'B':
-                        echo "<option value='B'>B (Atual)</option>";
-                        echo "<option value='A'>A</option>";
+                        echo "<option value='2'>B (Atual)</option>";
+                        echo "<option value='1'>A</option>";
                         break;
                 }
                 ?>
@@ -77,37 +76,20 @@ $projeto = $stmtSelecionarProjeto->get_result()->fetch_assoc();
             <select name="sala" id="sala" required>
                 <option value="" disabled selected>Selecione a sala:</option>
                 <?php
-                // Pensei em uma forma para melhorar isso, salvar todas as salas em uma tabela no banco, e criar uma tabela relacional para projeto-sala e projeto-stand
-                $querySala = "SELECT DISTINCT " . TABELA_SALA['sala'] . " FROM " . TABELA_SALA['nome_tabela'];
+                // Pensei em uma forma para melhorar isso, salvar todas as salas em uma tabela no banco, e criar uma tabela relacional para projeto-sala
+                $querySala = "SELECT DISTINCT " . TABELA_SALA['sala'] . ", " . TABELA_SALA['id'] . " FROM " . TABELA_SALA['nome_tabela'];
                 $stmtSala = $mysqli->prepare($querySala);
                 $stmtSala->execute();
                 $salas = $stmtSala->get_result();
 
                 foreach ($salas as $sala) {
                     if ($sala['nome_sala'] !== $projeto['nome_sala']) {
-                        echo "<option value='" . $sala['nome_sala'] . "'>" . $sala['nome_sala'] . "</option>";
+                        echo "<option value='" . $sala['id_sala'] . "'>" . $sala['nome_sala'] . "</option>";
                     }
                 }
                 ?>
             </select>
             
-            <label>Stand:</label>
-            <select name="stand" id="stand" required>
-                <option value="" disabled selected>Selecione o stand:</option>
-                <?php
-                $queryStand = "SELECT DISTINCT " . TABELA_STAND['stand'] . " FROM " . TABELA_STAND['nome_tabela'] . " ORDER BY " . TABELA_STAND['stand'] . " DESC";
-                $stmtStand = $mysqli->prepare($queryStand);
-                $stmtStand->execute();
-                $stands = $stmtStand->get_result();
-
-                foreach ($stands as $stand) {
-                    if ($stand['numero_stand'] !== $projeto['numero_stand']) {
-                        echo "<option value='" . $stand['numero_stand'] . "'>Stand " . $stand['numero_stand'] . "</option>";
-                    }
-                }
-                ?>
-            </select>
-
             <label>Orientador:</label>
             <input type="text" name="orientador" value="<?= htmlspecialchars($projeto['orientador_projeto']) ?>" placeholder="Orientador do projeto" required>
             

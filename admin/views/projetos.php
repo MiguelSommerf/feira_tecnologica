@@ -14,13 +14,11 @@ if (!isset($_SESSION['admin']) or $_SESSION['admin'] !== 1) {
 $sqlProjeto = "SELECT " . "p." . TABELA_PROJETO['id'] . ", " 
                         . "p." . TABELA_PROJETO['titulo'] . ", " 
                         . "sa." . TABELA_SALA['sala'] . ", " 
-                        . "b." . TABELA_BLOCO['bloco'] . ", " 
-                        . "st." . TABELA_STAND['stand'] . " FROM " 
-                        . TABELA_PROJETO['nome_tabela'] . " AS p  
+                        . "b." . TABELA_BLOCO['bloco'] . " FROM " 
+                        . TABELA_PROJETO['nome_tabela'] . " AS p 
                         INNER JOIN " . TABELA_LOCALIZACAO_PROJETO['nome_tabela'] . " AS lp ON p." . TABELA_PROJETO['id'] . " = lp." . TABELA_LOCALIZACAO_PROJETO['projeto'] . " 
                         INNER JOIN " . TABELA_BLOCO['nome_tabela'] . " AS b ON b." . TABELA_BLOCO['id'] . " = lp." . TABELA_LOCALIZACAO_PROJETO['bloco'] . " 
                         INNER JOIN " . TABELA_SALA['nome_tabela'] . " AS sa ON sa." . TABELA_SALA['id'] . " = lp." . TABELA_LOCALIZACAO_PROJETO['sala'] . " 
-                        INNER JOIN " . TABELA_STAND['nome_tabela'] . " AS st ON st." . TABELA_STAND['id'] . " = lp." . TABELA_LOCALIZACAO_PROJETO['stand'] . " 
                         ORDER BY " . TABELA_PROJETO['id'] . " ASC";
 $resultProjeto = $mysqli->query($sqlProjeto);
 
@@ -51,8 +49,7 @@ $resultProjeto = $mysqli->query($sqlProjeto);
                         <th>Título</th>
                         <th>Sala</th>
                         <th>Bloco</th>
-                        <th>Stand</th>
-                        <th>Ações</th>
+                        <th>Ação</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -63,7 +60,6 @@ $resultProjeto = $mysqli->query($sqlProjeto);
                             <td><?= htmlspecialchars($row['titulo_projeto']); ?></td>
                             <td><?= htmlspecialchars($row['nome_sala']); ?></td>
                             <td><?= htmlspecialchars($row['nome_bloco']); ?></td>
-                            <td><?= htmlspecialchars($row['numero_stand']); ?></td>
                             <td>
                                 <div class="actions">
                                     <form action="alterar_projeto.php" method="GET">
