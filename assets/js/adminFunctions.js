@@ -2,13 +2,23 @@ function deleteUser(e) {
     e.preventDefault();
 
     const form = e.target.parentNode;
-    const confirmacao = confirm('Você tem certeza que deseja deletar este usuário?');
+    const confirmacao = confirm('Você tem certeza de que deseja deletar este usuário?');
 
     if (confirmacao === true) {
         form.submit();
     }
 }
 
+function atualizarSistema(e) {
+    e.preventDefault();
+
+    const form = e.target.parentNode;
+    const confirmacao = confirm('Você tem certeza de que deseja atualizar o sistema?');
+
+    if (confirmacao === true) {
+        form.submit();
+    }
+}
 
 function adminFunction() {
     const confirmacao = confirm('Você tem certeza que deseja tornar este usuário administrador?');

@@ -77,7 +77,7 @@ INSERT INTO `tb_ods` (`id_ods`, `nome_ods`) VALUES
 CREATE TABLE IF NOT EXISTS `tb_projeto` (
   `id_projeto` int(11) NOT NULL AUTO_INCREMENT,
   `titulo_projeto` varchar(100) NOT NULL,
-  `descricao_projeto` varchar(200) NOT NULL,
+  `descricao_projeto` text NOT NULL,
   `orientador_projeto` varchar(100) NOT NULL,
   PRIMARY KEY (`id_projeto`)
 ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=UTF8MB4;
