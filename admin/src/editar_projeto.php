@@ -34,14 +34,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $queryProjeto = "UPDATE " . TABELA_PROJETO['nome_tabela'] . " SET "
                         . TABELA_PROJETO['titulo'] . " = ?, "
                         . TABELA_PROJETO['descricao'] . " = ?, "
-                        . TABELA_PROJETO['bloco'] . " = ?, "
-                        . TABELA_PROJETO['sala'] . " = ?, "
                         . TABELA_PROJETO['orientador'] . " = ? WHERE "
                         . TABELA_PROJETO['id'] . " = ?";
         $stmtProjeto = $mysqli->prepare($queryProjeto);
-        $stmtProjeto->bind_param("sssssi", $tituloProjeto, $descricaoProjeto, $blocoProjeto, $salaProjeto, $orientadorProjeto, $idProjeto);
+        $stmtProjeto->bind_param("sssi", $tituloProjeto, $descricaoProjeto, $orientadorProjeto, $idProjeto);
 
-        if ($stmtProjeto->execute()) {
+        $queryLocalizacao = "UPDATE " . TABELA_LOCALIZACAO_PROJETO['nome_tabela'] . " SET "
+                            . TABELA_LOCALIZACAO_PROJETO['bloco'] . " = ?, "
+                            . TABELA_LOCALIZACAO_PROJETO['sala'] . " = ? WHERE "
+                            . TABELA_LOCALIZACAO_PROJETO['projeto'] . " = ?";
+
+        $stmtLocalizacao = $mysqli->prepare($queryLocalizacao);
+        $stmtLocalizacao->bind_param('iii', $blocoProjeto, $salaProjeto, $idProjeto);
+
+        if ($stmtProjeto->execute() and $stmtLocalizacao->execute()) {
             echo "<script>alert('Projeto atualizado com sucesso!')</script>";
         } else {
             echo "<script>alert('Ocorreu um erro ao atualizar o projeto.')</script>";
