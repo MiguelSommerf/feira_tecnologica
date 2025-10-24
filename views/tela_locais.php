@@ -15,8 +15,8 @@
         <div class="container">
             <div class="separacao">
                 <p>Blocos</p>
-                <a class="button" href="#">Bloco A</a>
-                <a class="button" href="#">Bloco B</a>
+                <a class="button" href="mapa/blocoA.php">Bloco A</a>
+                <a class="button" href="mapa/blocoB.php">Bloco B</a>
             </div>
             <div class="separacao">
                 <p>Outros locais</p>

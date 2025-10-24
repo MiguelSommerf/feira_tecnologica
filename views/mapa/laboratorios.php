@@ -15,11 +15,11 @@
             <img src="../../assets/img/mapa/laboratorios.PNG" alt="Mapa Dos Labs" class="salaA">
                 <a href="#" class="maker">Maker</a>
                 <a href="#" class="lab4 cor-alt">Lab 4</a>
-                <a href="salas/tcc.html" class="tcc">2ºD</a>
-                <a href="salas/mtec.html" class="mtec cor-alt">1ºI 2ºI</a>
-                <a href="salas/mtec2.html" class="mtec2">3ºI</a>
-                <a href="salas/instrumental.html" class="instrumental cor-alt">Lab<br>Instrumental</a>
-                <a href="salas/mbiol.html" class="mbiol">Lab<br>MBiol</a>
+                <a href="laboratorios/tcc.php" class="tcc">2ºD</a>
+                <a href="laboratorios/mtec.php" class="mtec cor-alt">1ºI 2ºI</a>
+                <a href="laboratorios/mtec2.php" class="mtec2">3ºI</a>
+                <a href="laboratorios/instrumental.php" class="instrumental cor-alt">Lab<br>Instrumental</a>
+                <a href="laboratorios/mbiol.php" class="mbiol">Lab<br>MBiol</a>
                 <a href="#" class="fem cor-alt">Banheiro<br>Fem</a>
                 <a href="#" class="masc">Banheiro<br>Masc</a>
                 <a href="#" class="escada1 cor-alt">Escadas</a>

@@ -43,11 +43,11 @@ foreach ($dadosProjetos as $id => $projeto) {
         'orientador_projeto' => !empty($dadosProjetos[$id]['orientador']) ? $dadosProjetos[$id]['orientador'] : ""
     ];
 
-    if ($dadosProjetos[$id]['bloco'] === 'Bloco A') {
+    if ($dadosProjetos[$id]['bloco'] === 'A') {
         $bloco = 1;
     }
 
-    if ($dadosProjetos[$id]['bloco'] === 'Bloco B') {
+    if ($dadosProjetos[$id]['bloco'] === 'B') {
         $bloco = 2;
     }
 
@@ -55,6 +55,10 @@ foreach ($dadosProjetos as $id => $projeto) {
         'bloco_projeto' => !empty($bloco) ? $bloco : "",
         'sala_projeto'  => 1
     ];
+
+    if ($dadosProjetos[$id]['sala'] !== '24') {
+        $posicaoProjeto['sala_projeto'] = $dadosProjetos[$id]['sala'];
+    }
 
     //Inserindo projetos
     $queryInsertProjeto = "INSERT INTO " . TABELA_PROJETO['nome_tabela'] . " VALUES (DEFAULT, ?, ?, ?)";
