@@ -25,7 +25,7 @@
                     <a href="projetos.php">Projetos</a>
                     <a href="usuarios.php">Usuários</a>
                     <a href="log_admin.php">Logs</a>
-                    <form action="../src/consumoApi3C.php" method="POST">
+                    <form action="../src/consumoApi3C.php" method="POST" class="formAtualizar">
                         <button type="submit" onclick="atualizarSistema(event)">Atualizar o sistema</button>
                     </form>
                     <a href="../../back/logout.php">Logout</a>

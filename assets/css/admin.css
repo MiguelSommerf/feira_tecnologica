@@ -1,118 +1,117 @@
-*{
+/* ============================ */
+/* 🎨 ESTILO GLOBAL MODERNO     */
+/* ============================ */
+* {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
-.container {
+html, body {
+    background-color: #00486C;
+    color: white;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    min-height: 100vh;
 }
 
-.btn-admin {
-    background-color: #44f525;
-    color: rgb(0, 0, 0);
-    font-size: 80%;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-}
-
-.btn-delete {
-    background-color: #ff1c0c;
-    color: rgb(0, 0, 0);
-    font-size: 80%;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-}
-
+/* ============================ */
+/* 🌐 NAVBAR MODERNA            */
+/* ============================ */
 .nav-bar {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
-    background-color: #a3a3a3;
-    margin-bottom: 10px;
-    padding: 30px 30px;
+    align-items: center;
+    background-color: #00283b;
+    padding: 20px 50px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
 }
 
 .nav-bar-content {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 2rem;
 }
 
-table {
-    border-collapse: collapse;
-    width: 50%;
-    margin: 20px 0;
-    font-size: 18px;
+.nav-bar a {
+    color: #c0c0c0;
+    font-size: 1.1rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
 }
 
-th, td {
-    background-color: #a3a3a3;
-    border: 1px solid #000000;
-    padding: 8px;
-    align-content: center;
+.nav-bar a:hover {
+    color: #ffffff;
+    transform: translateY(-2px);
 }
 
-.actions {
+/* ============================ */
+/* 🧭 CONTAINER CENTRALIZADO    */
+/* ============================ */
+.container {
     display: flex;
-    justify-content: space-evenly;
-}
-
-.button-group {
-    display: flex;
-    gap: 10px; /* espaçamento entre os botões */
-    justify-content: center;
-    align-items: center;
-}
-
-form.ocult {
-    margin: 0;
-}
-
-form-group {
-    background-color: #a3a3a3;
-    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 2rem;
+    min-height: 80vh;
+    text-align: center;
+    border-radius: 16px;
+    margin: 2rem auto;
+    width: 90%;
+    transition: all 0.3s ease;
+}
+
+/* ============================ */
+/* 📄 FORMULÁRIOS E INPUTS      */
+/* ============================ */
+form {
+    background-color: #f9f9f9;
+    color: black;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    max-width: 500px;
+}
+
+.formAtualizar{
+    background-color: transparent;
+    box-shadow: none    ;
 }
 
 label {
-    display:grid;
-    font-size: 20px;
+    font-size: 18px;
     color: #000000;
-    margin: 3px;
+    text-align: left;
 }
 
-input {
-    display: flex;
-    width: 200px;
+input, select, textarea {
+    width: 100%;
     padding: 10px;
     border: 1px solid #000000;
-    border-radius: 4px;
+    border-radius: 6px;
     font-size: 16px;
-}
-
-a{
-    text-decoration: none;
+    background-color: white;
     color: #000000;
-    font-size: 20px;
 }
 
-a:hover{
-    text-decoration: none;
-    color: #5100b4;
-    font-size: 20px;
+textarea {
+    resize: none;
+    min-height: 80px;
 }
 
+/* ============================ */
+/* 🔘 BOTÕES                    */
+/* ============================ */
 button {
-    display: flex;
+    display: inline-block;
     background-color: #27b12b;
     color: white;
     padding: 10px 20px;
@@ -121,14 +120,84 @@ button {
     cursor: pointer;
     font-size: 16px;
     margin: 5px;
+    transition: all 0.3s ease;
 }
 
-select {
-    display: flex;
-    width: 200px;
+button:hover {
+    background-color: #268a15;
+    transform: scale(1.05);
+}
+
+.btn-admin {
+    background-color: #44f525;
+    color: #000000;
+}
+
+.btn-admin:hover {
+    background-color: #33c31c;
+}
+
+.btn-delete {
+    background-color: #ff1c0c;
+    color: #fff;
+}
+
+.btn-delete:hover {
+    background-color: #d91407;
+}
+
+/* ============================ */
+/* 📊 TABELAS                   */
+/* ============================ */
+table {
+    border-collapse: collapse;
+    width: 80%;
+    margin: 20px 0;
+    font-size: 18px;
+    background-color: #f1f1f1;
+    border-radius: 10px;
+    overflow: hidden;
+    color: #000;
+}
+
+th {
+    background-color: #003a54;
+    color: white;
+    padding: 12px;
+    text-align: center;
+}
+
+td {
+    border: 1px solid #ddd;
     padding: 10px;
-    border: 1px solid #000000;
-    border-radius: 4px;
-    font-size: 16px;
-    margin: 3px;
+    text-align: center;
+}
+
+tr:nth-child(even) {
+    background-color: #e9e9e9;
+}
+
+tr:hover {
+    background-color: #d2ecff;
+}
+
+/* ============================ */
+/* ⚙️ AÇÕES E BOTÕES INTERNOS   */
+/* ============================ */
+.actions, .button-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+a {
+    text-decoration: none;
+    color: #d6d6d6;
+    font-size: 20px;
+    transition: all 0.3s;
+}
+
+a:hover {
+    color: #ffffff;
+    transform: scale(1.05);
 }
