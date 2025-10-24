@@ -24,7 +24,7 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] === 0) {
                 <div class="content">
                     <span>Usuário</span>
                     <?php if (!empty($_SESSION['admin'])): ?>
-                        <a class="blue-button" href="admin/views/home.php">Admin</a>
+                        <a class="blue-button" href="admin/views/home.php">Painel de Administrador</a>
                     <?php endif; ?>
                     <a class="blue-button" href="views/tela_home.php">Home</a>
                 </div>

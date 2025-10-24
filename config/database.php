@@ -47,6 +47,16 @@ const TABELA_VOTO = [
     'projeto'     => 'fk_id_projeto'
 ];
 
+const TABELA_VOTO_BACKUP = [
+    'nome_tabela' => 'tb_voto_backup',
+    'id'          => 'id_voto',
+    'data'        => 'data_hora_voto',
+    'valor'       => 'valor_voto',
+    'comentario'  => 'comentario_voto',
+    'usuario'     => 'fk_id_usuario',
+    'projeto'     => 'fk_id_projeto'
+];
+
 const TABELA_ALUNO = [
     'nome_tabela' => 'tb_aluno',
     'id'          => 'id_aluno',
