@@ -13,6 +13,8 @@ if (empty($_SESSION['admin'])) {
     exit();
 }
 
+set_time_limit(400);
+
 $endpointProjetos = "https://etecmcm.com.br/feiraTecnologica-3C/Backend/api/projetos";
 $endpointAlunosProjeto = "https://etecmcm.com.br/feiraTecnologica-3C/Backend/api/projetos/alunos";
 
@@ -26,6 +28,9 @@ $database->deletarDados(TABELA_ODS_PROJETO['nome_tabela']);
 $database->resetarAutoIncrement(TABELA_ODS_PROJETO['nome_tabela']);
 $database->deletarDados(TABELA_PROJETO_ALUNO['nome_tabela']);
 $database->resetarAutoIncrement(TABELA_PROJETO_ALUNO['nome_tabela']);
+$database->deletarDados(TABELA_ALUNO['nome_tabela']);
+$database->resetarAutoIncrement(TABELA_ALUNO['nome_tabela']);
+$database->votoInsert(true);
 $database->deletarDados(TABELA_VOTO['nome_tabela']);
 $database->resetarAutoIncrement(TABELA_VOTO['nome_tabela']);
 $database->deletarDados(TABELA_PROJETO['nome_tabela']);
@@ -62,9 +67,7 @@ foreach ($dadosProjetos as $id => $projeto) {
     $stmtIdProjeto = $mysqli->prepare($queryIdProjeto);
     $stmtIdProjeto->bind_param("s", $projeto['descricao_projeto']);
     $stmtIdProjeto->execute();
-    $stmtIdProjeto->bind_result($resultIdProjeto);
-    $stmtIdProjeto->fetch();
-    $stmtIdProjeto->close();
+    $resultIdProjeto = $stmtIdProjeto->get_result()->fetch_assoc();
 
     if ($dadosProjetos[$id]['id_projeto'] !== 0) {
         $idProjeto = json_encode([
@@ -77,14 +80,13 @@ foreach ($dadosProjetos as $id => $projeto) {
         foreach ($resultOds as $ods) {
             $queryOdsProjeto = "INSERT INTO " . TABELA_ODS_PROJETO['nome_tabela'] . " VALUES (?, ?)";
             $stmtOdsProjeto = $mysqli->prepare($queryOdsProjeto);
-            $stmtOdsProjeto->bind_param("ii", $ods->id_ods, $resultIdProjeto);
+            $stmtOdsProjeto->bind_param("ii", $ods->id_ods, $resultIdProjeto['id_projeto']);
             $stmtOdsProjeto->execute();
         }
 
         $resultAlunos = $database->postApi('https://etecmcm.com.br/feiraTecnologica-3C/Backend/api/projetos/alunos', $idProjeto);
 
         foreach ($resultAlunos as $aluno) {
-            $idAluno = (int)substr($aluno->id_aluno, 3);
             $nomeALuno = $aluno->nome_aluno;
             $serieAluno = substr($aluno->id_aluno, 0, 1);
             $cursoAluno = substr($aluno->id_aluno, 1, 1);
@@ -119,25 +121,26 @@ foreach ($dadosProjetos as $id => $projeto) {
             $stmtSelectAluno = $mysqli->prepare($querySelectAluno);
             $stmtSelectAluno->bind_param("sss", $nomeALuno, $serieAluno, $cursoAluno);
             $stmtSelectAluno->execute();
-            $stmtSelectAluno->store_result();
-            $stmtSelectAluno->bind_result($idAluno);
-            $stmtSelectAluno->fetch();
+            $idAluno = $stmtSelectAluno->get_result()->fetch_assoc();
             $stmtSelectAluno->close();
 
             //Inserindo na tabela relacional de projetos e alunos
             $queryInsertProjetoAluno = "INSERT INTO " . TABELA_PROJETO_ALUNO['nome_tabela'] . " VALUES (?, ?)";
             $stmtInsertProjetoAluno = $mysqli->prepare($queryInsertProjetoAluno);
-            $stmtInsertProjetoAluno->bind_param("ii", $idProjeto, $idAluno);
-            $stmtInsertAluno->execute();
+            $stmtInsertProjetoAluno->bind_param("ii", $resultIdProjeto['id_projeto'], $idAluno['id_aluno']);
+            $stmtInsertProjetoAluno->execute();
 
             //Inserindo localização projeto
             $queryLocalizacao = "INSERT INTO " . TABELA_LOCALIZACAO_PROJETO['nome_tabela'] . " VALUES (?, ?, ?)";
             $stmtLocalizacao = $mysqli->prepare($queryLocalizacao);
             $stmtLocalizacao->bind_param("iii", $posicaoProjeto['bloco_projeto'], $posicaoProjeto['sala_projeto'], $resultIdProjeto);
             $stmtLocalizacao->execute();
+
         }
     }
 }
+
+$database->votoInsert(false);
 
 $url = '../views/home.php';
 header("Location: $url");

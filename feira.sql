@@ -137,8 +137,9 @@ CREATE TABLE IF NOT EXISTS `tb_usuario` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=UTF8MB4;
 
 INSERT INTO `tb_usuario` (`id_usuario`, `is_admin`, `nome_usuario`, `email_usuario`, `senha_usuario`, `data_nascimento_usuario`) VALUES
-	(1, b'1', 'Migueladmin', 'miguel.sommerfeldluiz@gmail.com', '$2y$10$d1dtWpjR7p0e54bdnddO0elRGp8DVSju0.nyLcyNKO15M39Z4TlLO', '2007-10-27'),
+	(1, b'1', 'Miguel Sommerfeld', 'miguel.sommerfeldluiz@gmail.com', '$2y$10$d1dtWpjR7p0e54bdnddO0elRGp8DVSju0.nyLcyNKO15M39Z4TlLO', '2007-10-27'),
 	(2, b'1', 'Enzo', 'prenzo0001@gmail.com', '$2y$10$5PoYUmQpaw8OnapygZtt1.Cnq5AQiaeqWucYP2Vca/s7CqgN1kbfi', '2008-02-06');
+	(3, b'1', 'Eduardo', 'eduardoataidemelo@gmail.com', '$2y$10$JO/XVvv7MXgxU6NSRDbugeVTdODGTKjkpr5dhwk0XgeqYdhOIT7Pe', '2008-05-18'),
 
 CREATE TABLE IF NOT EXISTS `tb_feedback` (
   `id_feedback` int(4) NOT NULL AUTO_INCREMENT,
@@ -195,6 +196,16 @@ CREATE TABLE IF NOT EXISTS `tb_voto` (
   CONSTRAINT `id_projeto` FOREIGN KEY (`fk_id_projeto`) REFERENCES `tb_projeto` (`id_projeto`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `id_usuario` FOREIGN KEY (`fk_id_usuario`) REFERENCES `tb_usuario` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
+
+CREATE TABLE IF NOT EXISTS `tb_voto_backup` (
+  `id_voto` int(11) NOT NULL AUTO_INCREMENT,
+  `data_hora_voto` datetime NOT NULL,
+  `valor_voto` int(11) NOT NULL,
+  `comentario_voto` varchar(200) DEFAULT NULL,
+  `fk_id_usuario` int(11) NOT NULL,
+  `fk_id_projeto` int(11) NOT NULL,
+  PRIMARY KEY (`id_voto`)
+ )
 
 CREATE TABLE IF NOT EXISTS `tb_projeto_aluno` (
   `fk_id_projeto` int(11) NOT NULL,

@@ -36,7 +36,41 @@ class Database
         return 0;
     }
 
-    public function postApi($url, $dados): array|object
+    public function votoInsert(bool $backup): void
+    {
+        if ($backup === true) {
+            $querySelectTodosVotos = "SELECT * FROM " . TABELA_VOTO['nome_tabela'];
+            $stmtSelectTodosVotos = $this->mysqli->prepare($querySelectTodosVotos);
+            $stmtSelectTodosVotos->execute();
+            $resultSelectTodosVotos = $stmtSelectTodosVotos->get_result();
+    
+            if ($resultSelectTodosVotos->num_rows > 0) {
+                while ($voto = $resultSelectTodosVotos->fetch_assoc()) {
+                    $queryInsertVoto = "INSERT INTO " . TABELA_VOTO_BACKUP['nome_tabela'] . " VALUES (DEFAULT, ?, ?, ?, ?, ?)";
+                    $stmtInsertVoto = $this->mysqli->prepare($queryInsertVoto);
+                    $stmtInsertVoto->bind_param("sisii", $voto['data_hora_voto'], $voto['valor_voto'], $voto['comentario_voto'], $voto['fk_id_usuario'], $voto['fk_id_projeto']);
+                    $stmtInsertVoto->execute();
+                }
+            }
+        }
+
+        if ($backup === false) {
+            $querySelectTodosVotos = "SELECT * FROM " . TABELA_VOTO_BACKUP['nome_tabela'];
+            $stmtSelectTodosVotos = $this->mysqli->prepare($querySelectTodosVotos);
+            $stmtSelectTodosVotos->execute();
+            $resultSelectTodosVotos = $stmtSelectTodosVotos->get_result();
+
+            if ($resultSelectTodosVotos->num_rows > 0) {
+                while ($voto = $resultSelectTodosVotos->fetch_assoc()) {
+                    $queryInsertVoto = "INSERT INTO " . TABELA_VOTO['nome_tabela'] . " VALUES (DEFAULT, ?, ?, ?, ?, ?)";
+                    $stmtInsertVoto = $this->mysqli->prepare($queryInsertVoto);
+                    $stmtInsertVoto->bind_param("sisii", $voto['data_hora_voto'], $voto['valor_voto'], $voto['comentario_voto'], $voto['fk_id_usuario'], $voto['fk_id_projeto']);
+                    $stmtInsertVoto->execute();
+                }
+            }
+        }
+    }
+    public function postApi($url, $dados)
     {
         $ch = curl_init();
         $chOptions = [
