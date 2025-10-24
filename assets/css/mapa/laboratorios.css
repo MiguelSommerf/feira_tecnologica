@@ -1,0 +1,149 @@
+@font-face {
+  font-family: 'ArchivoBlack';
+  src: url('../fonts/ArchivoBlack-Regular.ttf') format('truetype');
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'ArchivoBlack';
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  background-color: #00486C;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ======== LINKS (BOTÕES) ======== */
+a {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: white;
+  background-color: #0097E4;
+  border-radius: 10px;
+  font-size: clamp(10px, 1.5vw, 18px); /* fonte original mantida */
+  padding: 0.2em 0.4em; /* botões menores */
+  min-width: 30px; /* largura mínima menor */
+  min-height: 18px; /* altura mínima menor */
+  transition: 0.3s;
+  transform: translate(-50%, -50%);
+}
+
+a:hover {
+  background-color: #0087CC;
+  cursor: pointer;
+}
+
+.cor-alt {
+  background-color: #6D7EFF;
+}
+
+.cor-alt:hover {
+  background-color: #4D62FF;
+}
+
+/* ======== TEXTO ======== */
+p {
+  color: white;
+  font-weight: bold;
+  font-size: medium;
+}
+
+h2 {
+  color: white;
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* ======== ESTRUTURA ======== */
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.headerLogo {
+  width: 100%;
+  margin: 30px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.headerLogo img {
+  height: clamp(60px, 8vw, 100px);
+  width: auto;
+}
+
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  max-width: 800px;
+  background-color: hsla(187, 13%, 12%, 0.74);
+  border: 1px solid white;
+  border-radius: 15px;
+  padding: 20px;
+  gap: 10px;
+}
+
+/* ======== MAPA ======== */
+.salaA {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+/* ======== POSIÇÕES RELATIVAS ======== */
+.maker { top: 18.2%; left: 49%; }
+.mtec { top: 18.5%; left: 17.5%; }
+.mtec2 { top: 30%; left: 5.1%; transform: rotate(-90deg);}
+.fem { top: 44%; left: 48%; text-align: center; }
+.masc { top: 44%; left: 40.5%; text-align: center; }
+.tcc { top: 18.2%; left: 28.5%;}
+.elevador1 { top: 44.4%; left: 18.5%; }
+.elevador2 { top: 50%; left: 3.2%; transform: rotate(-90deg); }
+.escada1 { top: 80.5%; left: 50.5%; }
+.escada2 { top: 42.8%; left: 28%; }
+.instrumental { top: 55%; left: 75%;}
+.mbiol { top: 61.5%; left: 90%; text-align: center; transform: rotate(90deg);}
+.lab1 { top: 54.5%; left: 26%;}
+.lab2 { top: 54.7%; left: 44%; }
+.lab3 { top: 54.8%; left: 60.5%;}
+.lab4 { top: 18.3%; left: 40%; }
+
+/* ======== RESPONSIVIDADE ======== */
+@media (max-width: 768px) {
+  a {
+    font-size: clamp(10px, 2vw, 14px);
+    padding: 0.15em 0.3em; /* botões menores em telas médias */
+  }
+
+  .container {
+    width: 95%;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  a {
+    font-size: clamp(8px, 2vw, 12px);
+    padding: 0.1em 0.25em; /* ainda menores em celulares */
+    border-radius: 5px;
+  }
+
+  .container {
+    width: 95%;
+    padding: 10px;
+  }
+}

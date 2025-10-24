@@ -20,8 +20,8 @@
             </div>
             <div class="separacao">
                 <p>Outros locais</p>
-                <a href="#" class="button cor-alt">Biblioteca</a>
-                <a href="#" class="button cor-alt">Quadra</a>
+                <a href="mapa/terreo.php" class="button cor-alt">Térreo</a>
+                <a href="mapa/laboratorios.php" class="button cor-alt">Laboratórios</a>
             </div>
             <div>
                 <h2>Locais</h2>

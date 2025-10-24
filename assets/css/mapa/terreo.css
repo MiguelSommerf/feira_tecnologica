@@ -1,0 +1,148 @@
+@font-face {
+  font-family: 'ArchivoBlack';
+  src: url('../fonts/ArchivoBlack-Regular.ttf') format('truetype');
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'ArchivoBlack';
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  background-color: #00486C;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ======== LINKS (BOTÕES) ======== */
+a {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: white;
+  background-color: #0097E4;
+  border-radius: 10px;
+  font-size: clamp(10px, 1.5vw, 18px); /* fonte original mantida */
+  padding: 0.2em 0.4em; /* botões menores */
+  min-width: 30px; /* largura mínima menor */
+  min-height: 18px; /* altura mínima menor */
+  transition: 0.3s;
+  transform: translate(-50%, -50%);
+}
+
+a:hover {
+  background-color: #0087CC;
+  cursor: pointer;
+}
+
+.cor-alt {
+  background-color: #6D7EFF;
+}
+
+.cor-alt:hover {
+  background-color: #4D62FF;
+}
+
+/* ======== TEXTO ======== */
+p {
+  color: white;
+  font-weight: bold;
+  font-size: medium;
+}
+
+h2 {
+  color: white;
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* ======== ESTRUTURA ======== */
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.headerLogo {
+  width: 100%;
+  margin: 30px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.headerLogo img {
+  height: clamp(60px, 8vw, 100px);
+  width: auto;
+}
+
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  max-width: 800px;
+  background-color: hsla(187, 13%, 12%, 0.74);
+  border: 1px solid white;
+  border-radius: 15px;
+  padding: 20px;
+  gap: 10px;
+}
+
+/* ======== MAPA ======== */
+.salaA {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+/* ======== POSIÇÕES RELATIVAS ======== */
+.auditorio { top: 18.5%; left: 30%; }
+.diretor { top: 77%; left: 81%; }
+.coordenacao { top: 77%; left: 72%; }
+.fem { top: 45%; left: 45.2%; text-align: center; }
+.masc { top: 45%; left: 36%; text-align: center; }
+.biblioteca { top: 29.5%; left: 2%; transform: rotate(-90deg); text-align: center; }
+.elevador1 { top: 44%; left: 17.5%; }
+.patio { top: 52.5%; left: 26.3%; z-index: 1; }
+.secretaria { top: 70%; left: 88%; transform: rotate(90deg); }
+.professor { top: 55%; left: 75%; text-align: center; }
+.dp { top: 55%; left: 85%; text-align: center; }
+.escada1 { top: 78%; left: 46%; }
+.elevador2 { top: 50%; left: 2.3%; transform: rotate(-90deg); }
+.escada2 { top: 43.5%; left: 26%; }
+.cantina { top: 78.5%; left: 12.7%; }
+
+/* ======== RESPONSIVIDADE ======== */
+@media (max-width: 768px) {
+  a {
+    font-size: clamp(10px, 2vw, 14px);
+    padding: 0.15em 0.3em; /* botões menores em telas médias */
+  }
+
+  .container {
+    width: 95%;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  a {
+    font-size: clamp(8px, 2vw, 12px);
+    padding: 0.1em 0.25em; /* ainda menores em celulares */
+    border-radius: 5px;
+  }
+
+  .container {
+    width: 95%;
+    padding: 10px;
+  }
+}
