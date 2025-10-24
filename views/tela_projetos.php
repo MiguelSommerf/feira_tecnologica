@@ -61,6 +61,16 @@ if ($filtroOds) {
 }
 
 if ($filtroBloco) {
+    
+    switch ($filtroBloco) {
+        case 'A':
+            $filtroBloco = 1;
+            break;
+        case 'B':
+            $filtroBloco = 2;
+            break;
+    }
+
     $query .= " AND lo.". TABELA_LOCALIZACAO_PROJETO['bloco'] ." = ?";
     $params[] .= $filtroBloco;
     $types .= "s";
@@ -112,7 +122,7 @@ $result = $stmt->get_result();
                     <option value="" disabled selected>Série</option>
                     <option value="">Todas</option>
                         <?php
-                        $querySerie = "SELECT DISTINCT " . TABELA_ALUNO['serie'] . " FROM " . TABELA_ALUNO['nome_tabela'];
+                        $querySerie = "SELECT DISTINCT " . TABELA_ALUNO['serie'] . " FROM " . TABELA_ALUNO['nome_tabela'] . " ORDER BY " . TABELA_ALUNO['serie'] . " DESC";
                         $resultSerie = $mysqli->query($querySerie);
 
                         while ($row = $resultSerie->fetch_assoc()):
