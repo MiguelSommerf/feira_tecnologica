@@ -39,7 +39,7 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] === 0) {
             <div class="content">
                 <span>Informativos</span>
                 <a class="light-purple-button" href="https://etecmcm.cps.sp.gov.br/" target="blank">Etec MCM</a>
-                <a class="light-purple-button" href="https://www.etecmcm.com.br/vestibulinho" target="blank">Vestibulinho</a>
+                <a class="light-purple-button" href="views/tela_sobreEtec.php" target="blank">Sobre a Etec</a>
                 <a class="light-purple-button" href="views/tela_cursos.php" target="blank">Cursos</a>
             </div>
             <div class="content">

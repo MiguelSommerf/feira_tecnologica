@@ -134,6 +134,6 @@ if ($result_nomes->num_rows > 0) {
 
 } else {
     echo "<script>alert('Nenhum projeto com votos ainda.')</script>";
-    echo "<script>window.location.href = '../views/tela_projetos.php'</script>";
+    echo "<script>window.location.href = '../views/tela_home.php'</script>";
     exit();
 }

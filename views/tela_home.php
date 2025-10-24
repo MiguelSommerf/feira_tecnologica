@@ -27,12 +27,14 @@ if (isset($_SESSION['verificando'])) {
               <?php endif; ?>
               <a class="blue-button" href="tela_mapa.php">Mapa</a>
               <a class="blue-button" href="tela_projetos.php">Projetos</a>
+              <a class="blue-button" href="tela_ranking.php">Ranking</a>
               <a class="blue-button" href="tela_ods.php">ODS</a>
           </div>
           <div class="content">
               <span>Utilitários</span>
               <a class="dark-purple-button" href="tela_creditos.php">Créditos</a>
               <a class="dark-purple-button" href="tela_feedback.php">Avalie-nos</a>
+              <a class="dark-purple-button" href="tela_historico.php">Histórico de votos</a>
           </div>
           <h1 class="title-screen">Início</h1>
         </div>

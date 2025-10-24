@@ -93,10 +93,9 @@ $projeto = $stmtSelecionarProjeto->get_result()->fetch_assoc();
             <label>Orientador:</label>
             <input type="text" name="orientador" value="<?= htmlspecialchars($projeto['orientador_projeto']) ?>" placeholder="Orientador do projeto" required>
             
-            <button type="submit">Salvar</button>
+            <button type="submit" onclick="">Salvar</button>
             <button type="reset" onclick="window.location.reload()" class="btn-delete">Reverter</button>
         </form>
     </div>
-    <script src="../../assets/js/selectedOptions.js"></script>
 </body>
 </html>

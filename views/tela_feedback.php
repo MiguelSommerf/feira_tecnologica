@@ -21,8 +21,9 @@ if (!isset($_SESSION['id'])) {
 </head>
 <body>
   <main>
-    <header class="headerLogo">
-      <img src="../assets/img/etecmcm.png" alt="Logo MCM">
+    <header>
+      <a href="tela_home.php"><img class="setaVoltar" src="../assets/img/setaVoltar.png" alt="Voltar"></a>
+      <img class="logoMCM" src="../assets/img/etecmcm.png" alt="Logo MCM">
     </header>
     <div class="container">
       <h2>Envie seu Feedback!</h2>

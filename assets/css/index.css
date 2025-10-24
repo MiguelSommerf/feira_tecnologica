@@ -10,10 +10,12 @@
 }
 
 body {
+  width: 100%;
   background-color: hsl(200, 100%, 21%);
 }
 
 main {
+  width: 100%;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -21,7 +23,7 @@ main {
 }
 
 .logo {
-  padding: 30px;
+  margin: 30px 0px;
 }
 
 .logo img {
@@ -35,18 +37,18 @@ main {
   align-items: center;
   flex-direction: column;
   background-color: hsla(187, 13%, 12%, 0.758);
-  width: 700px;
-  height: 650px;
+  width: 90%;
+  max-width: 700px;
   border: white solid 1px;
   border-radius: 20px;
   gap: 80px;
-  padding: 20px;
+  padding: 20px 0px;
 }
 
 .content {
-  width: 400px;
-  text-align: center;
+  width: 80%;
   display: flex;
+  text-align: center;
   align-items: center;
   justify-content: center;
   flex-direction: column;
@@ -55,9 +57,9 @@ main {
 }
 
 .content span {
+  width: 100%;
   display: flex;
   align-items: flex-start;
-  width: 400px;
   color: #ffffff;
 }
 
@@ -70,7 +72,7 @@ main {
   font-size: 18px;
   border-radius: 10px;
   min-height: 50px;
-  width: 400px;
+  width: 100%;
   transition: 0.3s;
 }
 
@@ -99,30 +101,13 @@ main {
 }
 
 @media screen and (max-width: 600px) {
-  .logo img {
-    height: 80px;
-    width: 80px;
-  }
-
   .content-background {
     display: flex;
     justify-content: center;
-    height: 550px;
-    width: 330px;
     gap: 22px;
   }
 
   .content {
-    height: 130px;
-    width: 200px;
     gap: 6px;
-  }
-
-  .content span {
-    width: 200px;
-  }
-
-  .content a {
-    width: 200px;
   }
 }

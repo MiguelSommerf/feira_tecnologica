@@ -10,22 +10,38 @@
 }
 
 body {
+  width: 100%;
   background-color: hsl(200, 100%, 21%);
 }
 
 main {
+  width: 100%;
   display: flex;
   align-items: center;
   flex-direction: column;
+  margin-bottom: 20px;
 }
 
-.logo {
-  padding: 30px;
+header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 30px;
 }
 
-.logo img {
-  width: 100px;
+.logoMCM {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   height: 100px;
+  width: 100px;
+}
+
+.setaVoltar {
+  margin: 20px 0px 20px 20px;
+  height: 32px;
+  width: 32px;
 }
 
 .content-background {
@@ -34,13 +50,15 @@ main {
   align-items: center;
   flex-direction: column;
   background-color: hsla(187, 13%, 12%, 0.758);
-  width: 700px;
+  width: 90%;
+  max-width: 700px;
   height: 850px;
   border: white solid 1px;
   border-radius: 20px;
 }
 
 .content-background form {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -50,7 +68,7 @@ main {
 }
 
 .content {
-  width: 400px;
+  width: 80%;
   text-align: center;
   display: flex;
   align-items: center;
@@ -60,18 +78,18 @@ main {
 }
 
 .content span {
+  width: 100%;
   display: flex;
   align-items: flex-start;
-  width: 390px;
   color: #ffffff;
 }
 
 .content input {
+  width: 100%;
   background-color: #ffffff99;
   display: flex;
   align-items: center;
-  width: 388px;
-  height: 48px;
+  min-height: 50px;
   border: none;
   border-radius: 6px;
   outline: none;
@@ -85,6 +103,8 @@ main {
 }
 
 .content a {
+  width: 100%;
+  max-width: 400px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -93,7 +113,8 @@ main {
   font-size: 18px;
   border-radius: 10px;
   height: 50px;
-  width: 400px;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
 .content button {
@@ -106,15 +127,17 @@ main {
   border: none;
   border-radius: 10px;
   height: 50px;
-  width: 400px;
+  width: 100%;
+  max-width: 400px;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
 .esqueci-senha {
-  width: 390px;
+  width: 100%;
 }
 
 .esqueci-senha a {
-  width: 164px;
   height: 20px;
   display: flex;
   justify-content: flex-start;
@@ -126,7 +149,8 @@ main {
 }
 
 .g_id_signin {
-  width: 396px;
+  width: 100%;
+  max-width: 400px;
 }
 
 .g_id_signin span {
@@ -134,6 +158,8 @@ main {
 }
 
 .blue-button {
+  width: 100%;
+  max-width: 400px;
   background-color: #0097E4;
 }
 
@@ -161,71 +187,4 @@ main {
     color: #ffffff;
     font-size: 28px;
     margin-bottom: 20px;
-}
-
-@media screen and (max-width: 600px) {
-  .logo img {
-    height: 80px;
-    width: 80px;
-  }
-
-  .content-background {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    height: 750px;
-    width: 330px;
-    gap: 4px;
-  }
-
-  .content-background form {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 600px;
-    width: 330px;
-    gap: 8px;
-  }
-
-  .content {
-    height: 200px;
-    width: 300px;
-    gap: 6px;
-  }
-
-  .content input {
-    height: 30px;
-    width: 290px;
-    font-size: 16px;
-  }
-
-  .content span {
-    width: 296px;
-  }
-
-  .content a {
-    width: 300px;
-  }
-
-  .content button {
-    width: 300px;
-  }
-
-  .esqueci-senha {
-    width: 296px;
-  }
-
-  .esqueci-senha a {
-    width: 144px;
-    font-size: 16px;
-  }
-
-  .g_id_signin {
-    width: 296px;
-  }
-
-  .title-screen {
-    margin-top: 10px;
-    margin-bottom: 0px;
-  }
 }

@@ -13,8 +13,9 @@ if (session_status() === PHP_SESSION_NONE) {
 </head>
 <body>
     <main>
-        <header class="headerLogo">
-            <img src="../assets/img/etecmcm.png" alt="Logo MCM">
+        <header>
+            <a href="../index.php"><img class="setaVoltar" src="../assets/img/setaVoltar.png" alt="Voltar"></a>
+            <img class="logoMCM" src="../assets/img/etecmcm.png" alt="Logo MCM">
         </header>
         <div class="container">
             <!-- Back-end -->

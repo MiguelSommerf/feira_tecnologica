@@ -13,7 +13,7 @@ function atualizarSistema(e) {
     e.preventDefault();
 
     const form = e.target.parentNode;
-    const confirmacao = confirm('Você tem certeza de que deseja atualizar o sistema?');
+    const confirmacao = confirm('Você tem certeza de que deseja atualizar o sistema? Esse processo pode levar alguns minutos.');
 
     if (confirmacao === true) {
         form.submit();

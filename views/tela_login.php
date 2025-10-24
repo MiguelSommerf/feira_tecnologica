@@ -15,9 +15,10 @@ $verif->logout();
 </head>
 <body>
   <main>
-    <div class="logo">
-        <img src="../assets/img/etecmcm.png" alt="">
-    </div>
+    <header>
+      <a href="../index.php"><img class="setaVoltar" src="../assets/img/setaVoltar.png" alt="Voltar"></a>
+      <img class="logoMCM" src="../assets/img/etecmcm.png" alt="Logo MCM">
+    </header>
     <div class="content-background">
       <form action="../back/login.php" method="post">
         <div class="content">
@@ -36,7 +37,7 @@ $verif->logout();
           <button class="blue-button" type="submit">Entrar</button>
         </div>
         <div class="content">
-          <a href="tela_cadastro.php" class="dark-purple-button">Cadastrar</a>
+          <a href="tela_cadastro.php" class="dark-purple-button">Não possui conta?<br>Se cadastre</a>
         </div>
       </form>
       <h1 class="title-screen">Login</h1>

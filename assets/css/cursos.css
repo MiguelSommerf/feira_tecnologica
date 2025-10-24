@@ -22,16 +22,26 @@ body, html {
   align-items: center;
 }
 
-.headerLogo {
+header {
   width: 100%;
-  margin: 30px;
   display: flex;
-  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
+  margin: 30px;
 }
 
-.headerLogo > img {
+.logoMCM {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   height: 100px;
   width: 100px;
+}
+
+.setaVoltar {
+  margin: 20px 0px 20px 20px;
+  height: 32px;
+  width: 32px;
 }
 
 main {
@@ -52,7 +62,7 @@ main {
   gap: 20px;
 }
 
-a {
+.verMais {
   display: flex;
   text-decoration: none;
   align-items: center;

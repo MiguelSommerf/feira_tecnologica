@@ -43,5 +43,6 @@
         exit();
     }
     ?>
+    <script src="../../assets/js/adminFunctions.js"></script>
 </body>
 </html>
