@@ -111,3 +111,12 @@ main {
     gap: 6px;
   }
 }
+
+.btn-3c{
+  background-color: #23ad7f;
+  transition: all 0.5s; 
+}
+
+.btn-3c:hover{
+  background-color: #1b966d;
+}
