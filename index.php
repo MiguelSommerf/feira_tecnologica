@@ -45,6 +45,7 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] === 0) {
             <div class="content">
                 <span>Utilitários</span>
                 <a class="dark-purple-button" href="views/tela_creditos.php">Créditos</a>
+                <a class="btn-3c" href="https://etecmcm.com.br/feiraTecnologica-3C">Avaliações dos Projetos</a>
             </div>
         </div>
     </main>
