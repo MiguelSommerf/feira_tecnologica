@@ -129,14 +129,13 @@ foreach ($dadosProjetos as $id => $projeto) {
             $stmtInsertProjetoAluno = $mysqli->prepare($queryInsertProjetoAluno);
             $stmtInsertProjetoAluno->bind_param("ii", $resultIdProjeto['id_projeto'], $idAluno['id_aluno']);
             $stmtInsertProjetoAluno->execute();
-
-            //Inserindo localização projeto
-            $queryLocalizacao = "INSERT INTO " . TABELA_LOCALIZACAO_PROJETO['nome_tabela'] . " VALUES (?, ?, ?)";
-            $stmtLocalizacao = $mysqli->prepare($queryLocalizacao);
-            $stmtLocalizacao->bind_param("iii", $posicaoProjeto['bloco_projeto'], $posicaoProjeto['sala_projeto'], $resultIdProjeto);
-            $stmtLocalizacao->execute();
-
         }
+
+        //Inserindo localização projeto
+        $queryLocalizacao = "INSERT INTO " . TABELA_LOCALIZACAO_PROJETO['nome_tabela'] . " VALUES (?, ?, ?)";
+        $stmtLocalizacao = $mysqli->prepare($queryLocalizacao);
+        $stmtLocalizacao->bind_param("iii", $posicaoProjeto['bloco_projeto'], $posicaoProjeto['sala_projeto'], $resultIdProjeto['id_projeto']);
+        $stmtLocalizacao->execute();
     }
 }
 
