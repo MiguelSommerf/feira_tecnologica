@@ -139,6 +139,7 @@ CREATE TABLE IF NOT EXISTS `tb_usuario` (
 INSERT INTO `tb_usuario` (`id_usuario`, `is_admin`, `nome_usuario`, `email_usuario`, `senha_usuario`, `data_nascimento_usuario`) VALUES
 	(1, b'1', 'Miguel Sommerfeld', 'miguel.sommerfeldluiz@gmail.com', '$2y$10$d1dtWpjR7p0e54bdnddO0elRGp8DVSju0.nyLcyNKO15M39Z4TlLO', '2007-10-27'),
 	(2, b'1', 'Enzo', 'prenzo0001@gmail.com', '$2y$10$5PoYUmQpaw8OnapygZtt1.Cnq5AQiaeqWucYP2Vca/s7CqgN1kbfi', '2008-02-06');
+	(3, b'1', 'Eduardo', 'eduardoataidemelo@gmail.com', '$2y$10$JO/XVvv7MXgxU6NSRDbugeVTdODGTKjkpr5dhwk0XgeqYdhOIT7Pe', '2008-05-18'),
 
 CREATE TABLE IF NOT EXISTS `tb_feedback` (
   `id_feedback` int(4) NOT NULL AUTO_INCREMENT,
