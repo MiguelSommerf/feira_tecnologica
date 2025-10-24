@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS `tb_aluno` (
   `serie_aluno` enum('1','2','3') NOT NULL,
   `curso_aluno` varchar(50) NOT NULL,
   PRIMARY KEY (`id_aluno`)
-) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
+);
 
 INSERT INTO `tb_aluno` (`id_aluno`, `nome_aluno`, `serie_aluno`, `curso_aluno`) VALUES
 	(1, 'Lucas Silva', '1', 'Informática'),
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `tb_bloco` (
   `id_bloco` int(11) NOT NULL AUTO_INCREMENT,
   `nome_bloco` char(1) NOT NULL,
   PRIMARY KEY (`id_bloco`)
-) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
+);
 
 INSERT INTO `tb_bloco` (`id_bloco`, `nome_bloco`) VALUES
 	(1, 'A'),
@@ -47,13 +47,13 @@ CREATE TABLE IF NOT EXISTS `tb_log_usuario` (
   `email_usuario` varchar(255) NOT NULL,
   `data_log` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id_log_usuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
+);
 
 CREATE TABLE IF NOT EXISTS `tb_ods` (
   `id_ods` int(11) NOT NULL AUTO_INCREMENT,
   `nome_ods` varchar(255) NOT NULL,
   PRIMARY KEY (`id_ods`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=UTF8MB4;
+);
 
 INSERT INTO `tb_ods` (`id_ods`, `nome_ods`) VALUES
 	(1, 'Erradicação da pobreza'),
@@ -80,7 +80,7 @@ CREATE TABLE IF NOT EXISTS `tb_projeto` (
   `descricao_projeto` text NOT NULL,
   `orientador_projeto` varchar(100) NOT NULL,
   PRIMARY KEY (`id_projeto`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=UTF8MB4;
+);
 
 INSERT INTO `tb_projeto` (`id_projeto`, `titulo_projeto`, `descricao_projeto`, `orientador_projeto`) VALUES
 	(1, 'Sistema de Biblioteca', 'Sistema para controle de empréstimos e devoluções de livros', 'Prof. João Silva'),
@@ -108,7 +108,7 @@ CREATE TABLE IF NOT EXISTS `tb_sala` (
   `id_sala` int(11) NOT NULL AUTO_INCREMENT,
   `nome_sala` varchar(30) NOT NULL,
   PRIMARY KEY (`id_sala`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=UTF8MB4;
+);
 
 INSERT INTO `tb_sala` (`id_sala`, `nome_sala`) VALUES
 	(1, 'Sala 1'),
@@ -134,12 +134,12 @@ CREATE TABLE IF NOT EXISTS `tb_usuario` (
   `senha_usuario` varchar(255) DEFAULT NULL,
   `data_nascimento_usuario` date NOT NULL,
   PRIMARY KEY (`id_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=UTF8MB4;
+);
 
 INSERT INTO `tb_usuario` (`id_usuario`, `is_admin`, `nome_usuario`, `email_usuario`, `senha_usuario`, `data_nascimento_usuario`) VALUES
 	(1, b'1', 'Miguel Sommerfeld', 'miguel.sommerfeldluiz@gmail.com', '$2y$10$d1dtWpjR7p0e54bdnddO0elRGp8DVSju0.nyLcyNKO15M39Z4TlLO', '2007-10-27'),
-	(2, b'1', 'Enzo', 'prenzo0001@gmail.com', '$2y$10$5PoYUmQpaw8OnapygZtt1.Cnq5AQiaeqWucYP2Vca/s7CqgN1kbfi', '2008-02-06');
-	(3, b'1', 'Eduardo', 'eduardoataidemelo@gmail.com', '$2y$10$JO/XVvv7MXgxU6NSRDbugeVTdODGTKjkpr5dhwk0XgeqYdhOIT7Pe', '2008-05-18'),
+	(2, b'1', 'Enzo', 'prenzo0001@gmail.com', '$2y$10$5PoYUmQpaw8OnapygZtt1.Cnq5AQiaeqWucYP2Vca/s7CqgN1kbfi', '2008-02-06'),
+	(3, b'1', 'Eduardo', 'eduardoataidemelo@gmail.com', '$2y$10$JO/XVvv7MXgxU6NSRDbugeVTdODGTKjkpr5dhwk0XgeqYdhOIT7Pe', '2008-05-18');
 
 CREATE TABLE IF NOT EXISTS `tb_feedback` (
   `id_feedback` int(4) NOT NULL AUTO_INCREMENT,
@@ -150,7 +150,7 @@ CREATE TABLE IF NOT EXISTS `tb_feedback` (
   PRIMARY KEY (`id_feedback`),
   KEY `id_usuario` (`fk_id_usuario`),
   CONSTRAINT `tb_feedback_ibfk_1` FOREIGN KEY (`fk_id_usuario`) REFERENCES `tb_usuario` (`id_usuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
+);
 
 CREATE TABLE IF NOT EXISTS `tb_ods_projeto` (
   `fk_id_ods` int(11) NOT NULL,
@@ -159,7 +159,7 @@ CREATE TABLE IF NOT EXISTS `tb_ods_projeto` (
   KEY `id_projeto` (`fk_id_projeto`),
   CONSTRAINT `tb_ods_projeto_ibfk_1` FOREIGN KEY (`fk_id_ods`) REFERENCES `tb_ods` (`id_ods`),
   CONSTRAINT `tb_ods_projeto_ibfk_2` FOREIGN KEY (`fk_id_projeto`) REFERENCES `tb_projeto` (`id_projeto`)
-) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
+);
 
 INSERT INTO `tb_ods_projeto` (`fk_id_ods`, `fk_id_projeto`) VALUES
 	(5, 1),
@@ -195,7 +195,7 @@ CREATE TABLE IF NOT EXISTS `tb_voto` (
   KEY `id_usuario` (`fk_id_usuario`),
   CONSTRAINT `id_projeto` FOREIGN KEY (`fk_id_projeto`) REFERENCES `tb_projeto` (`id_projeto`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `id_usuario` FOREIGN KEY (`fk_id_usuario`) REFERENCES `tb_usuario` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
+);
 
 CREATE TABLE IF NOT EXISTS `tb_voto_backup` (
   `id_voto` int(11) NOT NULL AUTO_INCREMENT,
@@ -205,7 +205,7 @@ CREATE TABLE IF NOT EXISTS `tb_voto_backup` (
   `fk_id_usuario` int(11) NOT NULL,
   `fk_id_projeto` int(11) NOT NULL,
   PRIMARY KEY (`id_voto`)
- )
+ );
 
 CREATE TABLE IF NOT EXISTS `tb_projeto_aluno` (
   `fk_id_projeto` int(11) NOT NULL,
@@ -214,7 +214,7 @@ CREATE TABLE IF NOT EXISTS `tb_projeto_aluno` (
   KEY `id_alunos_integrantes` (`fk_id_aluno`),
   CONSTRAINT `id_alunos_integrantes` FOREIGN KEY (`fk_id_aluno`) REFERENCES `tb_aluno` (`id_aluno`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `id_projeto_integrantes` FOREIGN KEY (`fk_id_projeto`) REFERENCES `tb_projeto` (`id_projeto`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
+);
 
 INSERT INTO `tb_projeto_aluno` (`fk_id_projeto`, `fk_id_aluno`) VALUES
 	(1, 5),
@@ -248,7 +248,7 @@ CREATE TABLE IF NOT EXISTS `tb_localizacao_projeto` (
   CONSTRAINT `tb_localizacao_projeto_ibfk_1` FOREIGN KEY (`fk_id_bloco`) REFERENCES `tb_bloco` (`id_bloco`),
   CONSTRAINT `tb_localizacao_projeto_ibfk_2` FOREIGN KEY (`fk_id_sala`) REFERENCES `tb_sala` (`id_sala`),
   CONSTRAINT `tb_localizacao_projeto_ibfk_4` FOREIGN KEY (`fk_id_projeto`) REFERENCES `tb_projeto` (`id_projeto`)
-) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
+);
 
 INSERT INTO `tb_localizacao_projeto` (`fk_id_bloco`, `fk_id_sala`, `fk_id_projeto`) VALUES
 	(1, 6, 1),

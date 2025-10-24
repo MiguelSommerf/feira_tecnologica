@@ -15,14 +15,13 @@
         <div class="container">
             <div class="separacao">
                 <p>Blocos</p>
-                <a href="#">Bloco A</a>
-                <a href="#">Bloco B</a>
+                <a class="button" href="#">Bloco A</a>
+                <a class="button" href="#">Bloco B</a>
             </div>
             <div class="separacao">
                 <p>Outros locais</p>
-                <a href="#" class="cor-alt">Biblioteca</a>
-                <a href="#" class="cor-alt">Auditório</a>
-                <a href="#" class="cor-alt">Quadra</a>
+                <a href="#" class="button cor-alt">Biblioteca</a>
+                <a href="#" class="button cor-alt">Quadra</a>
             </div>
             <div>
                 <h2>Locais</h2>

@@ -25,7 +25,7 @@ if (isset($_SESSION['verificando'])) {
               <?php if (!empty($_SESSION['admin'])): ?>
                   <a class="blue-button" href="../admin/views/home.php">Painel de Administrador</a>
               <?php endif; ?>
-              <a class="blue-button" href="tela_mapa.php">Mapa</a>
+              <a class="blue-button" href="tela_locais.php">Mapa</a>
               <a class="blue-button" href="tela_projetos.php">Projetos</a>
               <a class="blue-button" href="tela_ranking.php">Ranking</a>
               <a class="blue-button" href="tela_ods.php">ODS</a>
@@ -34,7 +34,6 @@ if (isset($_SESSION['verificando'])) {
               <span>Utilitários</span>
               <a class="dark-purple-button" href="tela_creditos.php">Créditos</a>
               <a class="dark-purple-button" href="tela_feedback.php">Avalie-nos</a>
-              <a class="dark-purple-button" href="tela_historico.php">Histórico de votos</a>
           </div>
           <h1 class="title-screen">Início</h1>
         </div>
