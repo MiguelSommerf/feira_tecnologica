@@ -188,12 +188,24 @@ $result = $stmt->get_result();
                     <p>
                         <bold>Local:</bold>
                         <?php
+                        if ($row['fk_id_sala'] < 9) {
                             echo "Sala: " . htmlspecialchars($row['fk_id_sala']) . " - ";
-                            if ($row['fk_id_bloco'] == 1) {
-                                echo 'Bloco: A';
-                            } else {
-                                echo 'Bloco: B';
+                        }
+
+                        if ($row['fk_id_sala'] > 8) {
+                            if ($row['fk_id_sala'] == 9) {
+                                echo "Sala: Biblioteca - ";
                             }
+                            if ($row['fk_id_sala'] == 10) {
+                                echo "Sala: Pátio - ";
+                            }
+                        }
+
+                        if ($row['fk_id_bloco'] == 1) {
+                            echo 'Bloco: A';
+                        } else {
+                            echo 'Bloco: B';
+                        }
                         ?>
                     </p>
                     <p>

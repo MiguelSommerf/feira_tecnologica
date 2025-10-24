@@ -34,6 +34,7 @@ if (isset($_SESSION['verificando'])) {
               <span>Utilitários</span>
               <a class="dark-purple-button" href="tela_creditos.php">Créditos</a>
               <a class="dark-purple-button" href="tela_feedback.php">Avalie-nos</a>
+              <a href="../back/logout.php" class="dark-purple-button">Logout</a>
           </div>
           <h1 class="title-screen">Início</h1>
         </div>

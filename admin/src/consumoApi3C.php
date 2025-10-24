@@ -43,11 +43,11 @@ foreach ($dadosProjetos as $id => $projeto) {
         'orientador_projeto' => !empty($dadosProjetos[$id]['orientador']) ? $dadosProjetos[$id]['orientador'] : ""
     ];
 
-    if ($dadosProjetos[$id]['bloco'] === 'A') {
+    if ($dadosProjetos[$id]['bloco'] === 'A' or $dadosProjetos[$id]['bloco'] === 'Bloco A') {
         $bloco = 1;
     }
 
-    if ($dadosProjetos[$id]['bloco'] === 'B') {
+    if ($dadosProjetos[$id]['bloco'] === 'B' or $dadosProjetos[$id]['bloco'] === 'Bloco B') {
         $bloco = 2;
     }
 
@@ -58,6 +58,14 @@ foreach ($dadosProjetos as $id => $projeto) {
 
     if ($dadosProjetos[$id]['sala'] !== '24') {
         $posicaoProjeto['sala_projeto'] = $dadosProjetos[$id]['sala'];
+    }
+
+    if ($dadosProjetos[$id]['sala'] === 'Lab Ensino') {
+        $posicaoProjeto['sala_projeto'] = 11;
+    }
+
+    if ($dadosProjetos[$id]['sala'] === 'Biblioteca') {
+        $posicaoProjeto['sala_projeto'] = 9;
     }
 
     //Inserindo projetos
