@@ -23,7 +23,7 @@ if (isset($_SESSION['verificando'])) {
           <div class="content">
               <span>Feira Tecnológica</span>
               <?php if (!empty($_SESSION['admin'])): ?>
-                  <a class="blue-button" href="../admin/views/home.php">Painel de Administrador</a>
+                <a class="blue-button" href="../admin/views/home.php">Painel de Administrador</a>
               <?php endif; ?>
               <a class="blue-button" href="tela_locais.php">Mapa</a>
               <a class="blue-button" href="tela_projetos.php">Projetos</a>
@@ -34,7 +34,12 @@ if (isset($_SESSION['verificando'])) {
               <span>Utilitários</span>
               <a class="dark-purple-button" href="tela_creditos.php">Créditos</a>
               <a class="dark-purple-button" href="tela_feedback.php">Avalie-nos</a>
-              <a href="../back/logout.php" class="dark-purple-button">Logout</a>
+              <?php if (empty($_SESSION['id'])): ?> 
+                <a class="dark-purple-button" href="../index.php">Voltar para o começo</a>
+              <?php endif; ?>
+              <?php if (!empty($_SESSION['id'])): ?> 
+                <a class="dark-purple-button" href="../back/logout.php">Logout</a>
+              <?php endif; ?>
           </div>
           <h1 class="title-screen">Início</h1>
         </div>
