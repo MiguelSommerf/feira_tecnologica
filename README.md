@@ -1,2 +1,5 @@
-Projeto da Feira Tecnologica da ETEC MCM, realizado pelos 3°s anos, 3°F (Período da tarde) e 3°C (Período da manhã), onde estou responsável pelo Back-End.
-Team-Leader (Turma B - 3°F)
+# FINALIZADO
+## Projeto da Feira Tecnológica feito pelo 3°F (2025) - Etec MCM
+Site de avaliação de projetos para visitantes
+
+Por: Miguel Sommerfeld (Team-Leader) - Back-end (Turma B)
